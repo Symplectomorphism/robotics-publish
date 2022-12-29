@@ -1,0 +1,128 @@
+# Classification
+
+## Mobile Robots
+
+- The first generation robots were fixed in place and cannot move about the
+  factory.
+
+- By contrast, mobile robots can move through the world using various forms of
+  mobility.
+
+<center><img src="contents/assets/mobile.png"
+             style="max-width: 50%;"/></center>
+
+- Locomote: over the ground using wheels or legs, fly thorugh the air
+  using fixed wings or multiple rotors, move through the water or sail over it.
+
+## Manufacturing robots
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<br>
+
+- Typically operate in factories and are the technological descendents of the
+first generation robots.
+
+- Arm-type manipulators on a fixed base that performs repetitive tasks within a
+  local work cell.
+
+:::
+
+::: {.column width="50%" fig-align="right"}
+![](contents/assets/manufacturing.png){width=80% fig-align="right"}
+:::
+
+::::
+
+
+## Service robots
+
+:::: {.columns}
+
+<br><br>
+
+::: {.column width="50%"}
+- They supply services to people such as cleaning, personal care, medical
+rehabilitation or fetching and carrying.
+
+- Must operate and move in a complex, cluttered, and changing environment.
+
+:::
+
+::: {.column width="50%" layout-valign="center"}
+![](contents/assets/service.png){width=80% fig-align="right"}
+:::
+
+::::
+
+## Field robots {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- They work outdoors on tasks such as environmental monitoring, agriculture,
+mining, construction and forestry.
+
+<br>
+
+- Must operate and move in a complex, cluttered, and changing environment.
+  - Mars rover must navigate rocks, small craters despite not having an accurate
+    local map.
+  - Self-driving cars must follow roads, avoid obstacles and obey traffic
+    signals, and the rules of the road.
+:::
+
+::: {.column width="50%" layout-valign="center"}
+![](contents/assets/morefield.png){width=80% fig-align="right"}
+:::
+
+::::
+
+
+## Humanoid robots
+
+:::: {.columns}
+
+<br><br>
+
+::: {.column width="50%"}
+They have the physical form of a human being -- they are both mobile robots and
+service robots.
+:::
+
+::: {.column width="50%" layout-valign="center"}
+![](contents/assets/humanoid.png){width=80% fig-align="right"}
+:::
+
+::::
+
+
+## So, what is a robot?
+
+:::: {.fragment .fade-out}
+
+::::
+
+:::: {.fragment .fade-up}
+
+::: {.callout-note icon="false"}
+## Our definition of robot
+A robot is a goal-oriented machine that can sense, plan and act.
+::: 
+:::: 
+
+:::: {.columns .fragment .fade-up}
+
+::: {.column width="50%"}
+A robot senses its environment and uses that information, together with a goal,
+to *plan* some action.
+:::
+
+::: {.column width="50%"}
+![](contents/assets/quadruped.png){width=80% fig-align="right"}
+:::
+
+::::
+

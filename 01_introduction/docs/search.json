@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "01_introduction.html#robotics-and-automated-systems",
+    "href": "01_introduction.html#robotics-and-automated-systems",
+    "title": "01_introduction",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nWelcome and Introduction\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  History  Definitions  Classifications"
+  },
+  {
+    "objectID": "01_introduction.html#lets-get-started",
+    "href": "01_introduction.html#lets-get-started",
+    "title": "01_introduction",
+    "section": "Let’s get started!",
+    "text": "Let’s get started!\n\n\n\n\n\nRobots are still far behind what many people expect them to be from movies.\n\n\n\nOne thing is certain: robotics will be an important technology in this century.\n\nVacuum cleaning robots have already been with us for over a decade.\nSelf driving cars are coming."
+  },
+  {
+    "objectID": "01_introduction.html#good-old-days",
+    "href": "01_introduction.html#good-old-days",
+    "title": "01_introduction",
+    "section": "Good-old days",
+    "text": "Good-old days\n\n\n \n\n\n18th18^{th} century Europe was fascinated by automata such as Vaucanson’s duck, which was complex by the standards of the day.\n\n\n\nJacquard extended these ideas and developed a loom, which was essentially a programmable weaving machine."
+  },
+  {
+    "objectID": "01_introduction.html#good-old-days-1",
+    "href": "01_introduction.html#good-old-days-1",
+    "title": "01_introduction",
+    "section": "Good-old days",
+    "text": "Good-old days\n\nThe term robot was first introduced by the Czech playwright Karel Čapek in his 19201920 play Rossum’s Universal Robots.\nThe word robota is the Czech word for worker.\n\n\n\n\n\nThe first patent for what we would now consider a robot was filed in 19541954 by George C. Devol.\nThe device comprised a mechanical arm with a gripper that was mounted on a track."
+  },
+  {
+    "objectID": "01_introduction.html#mobile-robots",
+    "href": "01_introduction.html#mobile-robots",
+    "title": "01_introduction",
+    "section": "Mobile Robots",
+    "text": "Mobile Robots\n\nThe first generation robots were fixed in place and cannot move about the factory.\nBy contrast, mobile robots can move through the world using various forms of mobility.\n\n\n\n\n\nLocomote: over the ground using wheels or legs, fly thorugh the air using fixed wings or multiple rotors, move through the water or sail over it."
+  },
+  {
+    "objectID": "01_introduction.html#manufacturing-robots",
+    "href": "01_introduction.html#manufacturing-robots",
+    "title": "01_introduction",
+    "section": "Manufacturing robots",
+    "text": "Manufacturing robots\n\n\n\n\nTypically operate in factories and are the technological descendents of the first generation robots.\nArm-type manipulators on a fixed base that performs repetitive tasks within a local work cell."
+  },
+  {
+    "objectID": "01_introduction.html#service-robots",
+    "href": "01_introduction.html#service-robots",
+    "title": "01_introduction",
+    "section": "Service robots",
+    "text": "Service robots\n\n\n\nThey supply services to people such as cleaning, personal care, medical rehabilitation or fetching and carrying.\nMust operate and move in a complex, cluttered, and changing environment."
+  },
+  {
+    "objectID": "01_introduction.html#field-robots",
+    "href": "01_introduction.html#field-robots",
+    "title": "01_introduction",
+    "section": "Field robots",
+    "text": "Field robots\n\n\n\nThey work outdoors on tasks such as environmental monitoring, agriculture, mining, construction and forestry.\n\n\n\nMust operate and move in a complex, cluttered, and changing environment.\n\nMars rover must navigate rocks, small craters despite not having an accurate local map.\nSelf-driving cars must follow roads, avoid obstacles and obey traffic signals, and the rules of the road."
+  },
+  {
+    "objectID": "01_introduction.html#humanoid-robots",
+    "href": "01_introduction.html#humanoid-robots",
+    "title": "01_introduction",
+    "section": "Humanoid robots",
+    "text": "Humanoid robots\n\n\nThey have the physical form of a human being – they are both mobile robots and service robots."
+  },
+  {
+    "objectID": "01_introduction.html#so-what-is-a-robot",
+    "href": "01_introduction.html#so-what-is-a-robot",
+    "title": "01_introduction",
+    "section": "So, what is a robot?",
+    "text": "So, what is a robot?\n\n\n\n\n\n\n\nOur definition of robot\n\n\nA robot is a goal-oriented machine that can sense, plan and act.\n\n\n\n\n\n\nA robot senses its environment and uses that information, together with a goal, to plan some action.\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+  }
+]

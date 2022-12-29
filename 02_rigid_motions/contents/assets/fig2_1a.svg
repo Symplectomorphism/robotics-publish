@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with EazyDraw for Mac ( http://www.eazydraw.com/ ) -->
+
+<svg
+    version="1.1"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+    width="136.8097"
+    height="131.8893"
+    viewBox="0, 0, 136.8097, 131.8893"
+    preserveAspectRatio="none"
+    id="svg2">
+   <defs
+       id="defs_CDAA2AB1">
+      <filter
+          id="filter_E6B8B75F"
+          width="2.188668165106"
+          height="2.205343356782"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_E6B8B75F_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_E6B8B75F_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_E6B8B75F_Offset"
+             in="bluralpha"
+             dx="1.486092946519"
+             dy="1.6301666026"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_E6B8B75F_Merge">
+            <feMergeNode id="filter_E6B8B75F_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_E6B8B75F_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="F6B8B75F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="F6B8B75F_end_arrow_path"
+             style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.15349275;stroke-miterlimit:10"
+             d="M0,0 L-7.517540966287,2.736161146605 L-4.64609583401,0 L-7.517540966287,-2.736161146605 z"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="17B8B75F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="17B8B75F_end_arrow_path"
+             style="fill:none;stroke:#000000;stroke-opacity:1;stroke-linecap:square;stroke-linejoin:miter;stroke-width:2.069853;stroke-miterlimit:10"
+             d="M-7.517540966287,-2.736161146605 L0,0 L-7.517540966287,2.736161146605"/>
+      </marker>
+   </defs>
+   <metadata
+       id="metadata7">
+      <rdf:RDF>
+         <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <g
+       id="layer_Paper"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:1;stroke-miterlimit:10">
+      <circle
+          style="fill:#808080;stroke:none;filter:url(#filter_E6B8B75F)"
+          id="E6B8B75F"
+          cx="63.847"
+          cy="46.8397"
+          r="4.32"/>
+      <line
+          style="fill:none;stroke-width:0.613971;marker-end:url(#F6B8B75F_end_arrow)"
+          id="F6B8B75F"
+          x1="5.668841"
+          y1="127.559066"
+          x2="62.806209"
+          y2="48.188972"/>
+      <line
+          style="fill:none;stroke-width:2.069853;marker-end:url(#17B8B75F_end_arrow)"
+          id="17B8B75F"
+          x1="5.668841"
+          y1="127.559066"
+          x2="119.054683"
+          y2="127.559066"/>
+      <line
+          style="fill:none;stroke-width:2.069853;marker-end:url(#17B8B75F_end_arrow)"
+          id="27B8B75F"
+          x1="5.668841"
+          y1="127.559066"
+          x2="5.668841"
+          y2="14.173224"/>
+      <image
+          style="fill:none;stroke:none"
+          id="47B8B75F"
+          x="0"
+          y="0"
+          width="9"
+          height="14"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAAXNSR0IArs4c6QAAAK1JREFUKBWV
+kTEKwkAURKMEBCGQFB7DTqw8R+o9yl4hl8gF4glsPYS9jWBhJei85X/csGkcmJ358/9udklV/YGV
+ZjtxL+IdB5mNF1HmYwxSwCayG4VjK0P48EAaxWmdBS/5s9iKbAB3cUguW07ynMZdAL6uk/0tV7NH
+6VO8iG/LZsKdYDpl1smK0Qb6LCtssKGi4QGv5TONB640dlYwwAsLRCU0YRAXwUn8AnQRX45uHWof
+I9ZLAAAAAElFTkSuQmCC"/>
+      <image
+          style="fill:none;stroke:none"
+          id="77116A8F"
+          x="124.724"
+          y="121.8893"
+          width="10"
+          height="10"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI5JREFUGBlj
+YCATiAL1mSDp5QKydZH4DIxAznsg/g/FCkAapADGB8mjAEEgDyQJ0yQNZKuhqEDiwExRQBLDyrwA
+FAUpxrAOWTXI8TATQc6AAyY4C8L4CqSWQ8VsoDTcjaDgaADizUDcA8QgADL1IBCDnOELxGB3gMJO
+Hog/AfEtIAYBkCl8QPwciJ8CMQMAv+gZ0j5wGegAAAAASUVORK5CYII="/>
+      <line
+          style="fill:none;stroke:#4C4C4C;stroke-width:0.613971"
+          id="E222F92A"
+          x1="21.75944"
+          y1="45.172957"
+          x2="5.668841"
+          y2="36.850387"/>
+      <text
+          id="F222F92A"
+          style="stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="22.007" y="48.8257">axis</tspan>
+      </text>
+      <line
+          style="fill:none;stroke:#4C4C4C;stroke-width:0.613971"
+          id="1ACE5B2A"
+          x1="56.598536"
+          y1="89.457152"
+          x2="40.507945"
+          y2="81.134582"/>
+      <text
+          id="BF54EB2A"
+          style="fill:#4C4C4C;stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="75.905" y="121.6123">axis</tspan>
+      </text>
+      <text
+          id="DF54EB2A"
+          style="fill:#4C4C4C;stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="57.454" y="92.7683">coordinate</tspan>
+      </text>
+      <text
+          id="EF54EB2A"
+          style="fill:#4C4C4C;stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="87.274" y="63.4632">point</tspan>
+      </text>
+      <text
+          id="FF54EB2A"
+          style="fill:#4C4C4C;stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="58.999" y="101.0543">vector</tspan>
+      </text>
+      <text
+          id="C0EA3C2A"
+          style="fill:#4C4C4C;stroke:none"
+          font-family="Bradley Hand"
+          font-size="12"
+          font-weight="bold"
+          font-style="normal">
+         <tspan x="27.538" y="119.2583">origin</tspan>
+      </text>
+      <line
+          style="fill:none;stroke:#4C4C4C;stroke-width:0.613971"
+          id="D0EA3C2A"
+          x1="6.656497"
+          y1="127.559066"
+          x2="26.815333"
+          y2="117.600402"/>
+      <line
+          style="fill:none;stroke:#4C4C4C;stroke-width:0.613971"
+          id="40268D2A"
+          x1="86.61848"
+          y1="61.010711"
+          x2="68.426112"
+          y2="50.233512"/>
+      <line
+          style="fill:none;stroke:#4C4C4C;stroke-width:0.613971"
+          id="A4B5AF2A"
+          x1="75.026286"
+          y1="118.813842"
+          x2="57.157939"
+          y2="126.293395"/>
+      <image
+          style="fill:none;stroke:none"
+          id="D1B44DB0"
+          x="54.456"
+          y="31.1577"
+          width="10"
+          height="14"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAOCAYAAAAWo42rAAAAAXNSR0IArs4c6QAAAKhJREFUKBWN
+kbENwlAMRANCdExAARWT0LEJPZuwSYagRSwQNkCIjgbuBd+XZaXgJH+fz5cfO+m6PzGTbxfet/Iy
+8af4I+ox7XV+UlwTRz8pGrgVEZOxFvEFzWxxsCvyMczDvDRqebNQjSyQcY7iYtGvZkvmZUG4Z1yI
+j7CRBnMSvYIH+IQNNmKYRJ1x0oRoI38F1GV+qk4bD6FsWqcQBt0qVkW/q35l7QvZNifzjpxMCQAA
+AABJRU5ErkJggg=="/>
+   </g>
+</svg>

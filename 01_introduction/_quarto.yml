@@ -1,0 +1,6 @@
+project:
+  title: "01_introduction"
+  type: website
+  output-dir: docs
+
+
