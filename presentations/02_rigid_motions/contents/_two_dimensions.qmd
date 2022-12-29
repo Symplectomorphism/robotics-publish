@@ -1,0 +1,251 @@
+# Rigid Motion in Two Dimensions 
+
+## Working in two dimensions ($2$D) {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* A point is represented by its $\bm{x}$- and $\bm{y}$-coordinates $(x,y)$ or 
+as a bound vector $$ \bm{p} = x\bm{x} + y\bm{y}.$$
+
+* We wish to describe the red coordinate frame $\{B\}$ with respect to the blue 
+coordinate frame $\{A\}$.
+
+* Clearly the origin of $\{B\}$ has been displaced by the vector 
+$\bm{t} = (x, y)$ and then rotated counter-clockwise by an angle $\theta$.
+
+* A concrete representation of the pose is therefore the $3$-vector 
+${^A}\xi_B \sim (x, y, \theta)$.
+
+* Unfortunately, this _representation_ is not convenient for compounding since 
+$$ (x_1, y_1, \theta_1) \oplus (x_2, y_2, \theta_2) $$ is a complex
+trigonometric function of both poses.
+
+* We will look for a different way to represent the pose.
+:::
+
+::: {.column width="40%"}
+<img src="contents/assets/fig2_6.svg" width="500" heigth="500" />
+
+::: {.callout-tip}
+## 2D coordinate frames
+Familiar to us from high-school geometry.
+$\{B\}$ is rotated and translated w.r.t. $\{A\}$.
+:::
+
+:::
+
+::::
+
+
+## Orientation in two dimensions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* First, we create an auxiliary frame $\{V\}$ whose axes are paraellel to those 
+of $\{A\}$ but whose origin is the same as $\{B\}$.
+* Express the point $\bm{P}$ in both $\{V\}$ and $\{B\}$:
+$$ \bm{p} = x_b \bm{x}_B + y_b \bm{y}_B = x_v \bm{x}_V + y_v \bm{y}_V. $$
+* In the same vein, we can express $\bm{x}_V$ and $\bm{y}_V$ in $\{B\}$:
+$$
+\begin{aligned}
+  \bm{x}_B &= \cos{\theta}\bm{x}_V + \sin{\theta}\bm{y}_V, \\
+  \bm{y}_B &= -\sin{\theta}\bm{x}_V + \cos{\theta}\bm{y}_V.
+\end{aligned}
+$$
+
+* Substituting these equations into the previous, we obtain:
+$$ \bm{p} = \left( c_\theta x_b - s_\theta y_b \right)\bm{x}_V + 
+            \left( s_\theta x_b + c_\theta y_b \right)\bm{y}_V $$
+
+* Comparing the expressions for $\bm{p}$, we observe
+$$ \begin{pmatrix} x_v \\ y_v \end{pmatrix} = 
+\begin{pmatrix}
+  c_\theta & -s_\theta \\ s_\theta & c_\theta
+\end{pmatrix}\begin{pmatrix} x_b \\ y_b \end{pmatrix} \triangleq {{^V}\bm{R}_B}
+\begin{pmatrix} x_b \\ y_b \end{pmatrix}.
+$$
+:::
+
+::: {.column width="30%"}
+<img src="contents/assets/fig2_7.svg" width="500" heigth="500" />
+
+::: {.callout-tip}
+Rotated coordinate frames in $2$D.
+:::
+
+:::
+
+::::
+
+## Orientation in two dimensions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="80%"}
+
+::: {.callout-note}
+## Definition
+$$
+{^A}R_B \triangleq
+\begin{bmatrix}
+  x_B \cdot x_A & y_B \cdot x_A \\
+  x_B \cdot y_A & y_B \cdot y_A
+\end{bmatrix}
+$$
+:::
+
+::: {.callout-tip}
+## Properties of $2$-D rotation matrices
+
+* They are _orthonormal_: each of its columns is a unit vector and columns are
+orthogonal.
+
+* The columns are the unit vectors that define the axes of the rotated frame
+$\{B\}$ w.r.t. $\{A\}$.
+
+* It belongs to the special orthogonal group of dimension $2$, i.e., $\bm{R} 
+\in \bm{SO}(2)$. This means that the product of any two such matrices belongs 
+to the same group as its inverse.
+
+* Its determinant is $+1$, which means, in particular, that the length of a 
+vector is unchanged after transformation, i.e., $\left\| {^B}\bm{p} \right\| = 
+\left\| {^A}\bm{p} \right\|$, for all $\theta$.
+
+* The inverse is the same as the transpose, i.e., $\bm{R}^{-1} = \bm{R}^\top$.
+:::
+
+:::
+
+::: {.column width="20%"}
+<img src="contents/assets/fig2_7.svg" width="500" heigth="500" />
+
+::: {.callout-tip}
+Rotated coordinate frames in $2$D.
+:::
+
+:::
+
+::::
+
+
+## Pose in two dimensions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* Let's account for the translation btw. the origins of $\{A\}$ and $\{B\}$.
+* Since the axes $\{V\}$ and $\{A\}$ are parallel, we can add
+
+$$
+\begin{aligned}
+\begin{pmatrix}
+x_a \\ y_a
+\end{pmatrix} &= 
+\begin{pmatrix}
+x_v \\ y_v
+\end{pmatrix} + 
+\begin{pmatrix}
+x \\ y
+\end{pmatrix} = 
+\begin{bmatrix}
+c_\theta & -s_\theta \\ s_\theta & c_\theta
+\end{bmatrix}
+\begin{pmatrix}
+x_b \\ y_b
+\end{pmatrix} + 
+\begin{pmatrix}
+x \\ y 
+\end{pmatrix} \\ 
+&= \begin{bmatrix}
+c_\theta & -s_\theta & x \\ s_\theta & c_\theta & y
+\end{bmatrix}
+\begin{pmatrix}
+x_b \\ y_b
+\end{pmatrix}
+\end{aligned}
+$$
+or more compactly as
+
+$$
+\begin{pmatrix}
+x_a \\ y_a \\ 1
+\end{pmatrix} = 
+\begin{bmatrix}
+{^A}\bm{R}_B & \bm{t} \\ \bm{0}_{1 \times 2} & 1
+\end{bmatrix}
+\begin{pmatrix}
+x_b \\ y_b \\ 1
+\end{pmatrix}.
+$$
+
+* This representation is called the __homogeneous representation__ and we write:
+$$ 
+{^A}\bm{p} = 
+\begin{bmatrix}
+{^A}\bm{R}_B & \bm{t} \\ \bm{0}_{1 \times 2} & 1
+\end{bmatrix}
+{^B}\bm{p} = {^A}\bm{T}_B {^B}\bm{p}.
+$$
+
+:::
+
+::: {.column width="30%"}
+<img src="contents/assets/fig2_6.svg" width="500" heigth="500" />
+
+<img src="contents/assets/fig2_7.svg" width="500" heigth="500" />
+
+::: {.callout-tip icon=false}
+## Figures
+Rotated coordinate frames in $2$D.
+:::
+
+:::
+
+::::
+
+
+## Homogeneous transformations in $2$D {.smaller}
+
+* The matrix ${^A}\bm{T}_B$ has a very specific structure and belongs to the special 
+Euclidean group of dimension $2$ or $\bm{T} \in \bm{SE}(2)$.
+* This matrix is often referred to as a _rigid-body motion_.
+
+::: {.callout-tip icon="false"}
+## Properties of homogeneous transformations
+
+$$
+\bm{T} = \begin{bmatrix}
+c_\theta & -s_\theta & x \\ s_\theta & c_\theta & y \\ 0 & 0 & 1
+\end{bmatrix}
+$$
+
+A concrete representation of relative pose $\xi$ is $\xi \sim \bm{T} \in 
+\bm{SE}(2)$ and $\bm{T}_1 \oplus \bm{T}_2 \mapsto \bm{T}_1\bm{T}_2$ which is 
+the standard matrix multiplication
+
+$$
+\bm{T}_1 \bm{T}_2 = 
+\begin{bmatrix}
+\bm{R}_1 & \bm{t}_1 \\ \bm{0}_{1 \times 2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+\bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 2} & 1
+\end{bmatrix}
+\begin{bmatrix}
+\bm{R}_1\bm{R}_2 & \bm{t}_1 + R_1t_2 \\ \bm{0}_{1 \times 2} & 1
+\end{bmatrix}.
+$$
+
+One of the algebraic rules was $\xi \oplus 0 = \xi$. For matrices, we know that 
+$\bm{T} \bm{I} = \bm{T}$, where $\bm{I}$ is the identity matrix. So for pose, 
+we make the identification $0 \leftrightarrow \bm{I}$.
+
+Another rule was that $\xi \ominus \xi = 0$. We know for matrices that $\bm{T}
+\bm{T}^{-1} = \bm{I}$, which implies that $\ominus \bm{T} \leftrightarrow 
+\bm{T}^{-1}$.
+
+Finally, for a point $\bm{p}$ in homogeneous representation, we have $\bm{T} 
+\bullet \bm{p} \leftrightarrow \bm{Tp}$, which is a standard matrix-vector product.
+:::

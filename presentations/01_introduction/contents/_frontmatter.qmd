@@ -1,0 +1,21 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Welcome and Introduction*
+
+<br/>
+
+::: {layout="[120, 60]"}
+__Instructor__: Aykut Satici, Ph.D. <br>
+<br>
+Mechanical and Biomedical Engineering <br>
+Electrical and Computer Engineering <br>
+Boise State University, Boise, ID, USA
+
+__Topics__: <br>
+History <br>
+Definitions <br>
+Classifications <br>
+:::

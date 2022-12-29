@@ -1,0 +1,22 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Rigid Motions*
+
+<br/>
+
+::: {layout="[120, 60]"}
+__Instructor__: Aykut Satici, Ph.D. <br>
+<br>
+Mechanical and Biomedical Engineering <br>
+Electrical and Computer Engineering <br>
+Boise State University, Boise, ID, USA
+
+__Topics__: <br>
+Representing Position <br>
+Representing Rotations <br>
+Representing Pose <br>
+Algebra of Rigid Motions <br>
+:::
