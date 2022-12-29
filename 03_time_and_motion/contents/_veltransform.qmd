@@ -1,0 +1,39 @@
+## Transforming twists {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+* The velocity of a moving body can be expressed w.r.t. a world reference 
+frame $\{A\}$ or the moving body frame $\{B\}$ as shown in the figure:
+
+$$ {^Y}\bm{\nu} = \text{Ad}\left( {^Y}\xi_X \right){^X}\bm{\nu}. $$
+
+by using the adjoint mapping/matrix, $\text{Ad}$, which is defined by:
+
+$$ \text{Ad}(\xi) = 
+\begin{bmatrix}
+\bm{R} & \hat{\bm{t}} \bm{R} \\ 0 & \bm{R}
+\end{bmatrix} \in \mathbb{R}^{6 \times 6}.
+$$
+
+* Recall $\xi \sim (\bm{R}, \bm{t})$ represents the rigid-body motion.
+
+:::
+
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/fig3_1.svg" width="400" height="200" />
+</center>
+
+::: {.callout-tip icon="false"}
+## Representing spatial velocities
+Notice that $\bm{\nu}$ is a $6$-dimensional vector.
+:::
+
+:::
+
+::::

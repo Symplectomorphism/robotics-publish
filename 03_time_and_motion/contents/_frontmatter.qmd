@@ -1,0 +1,23 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Time and Motion*
+
+<br/>
+
+::: {layout="[120, 62]"}
+__Instructor__: Aykut Satici, Ph.D. <br>
+<br>
+Mechanical and Biomedical Engineering <br>
+Electrical and Computer Engineering <br>
+Boise State University, Boise, ID, USA
+
+__Topics__: <br>
+Derivative of Pose <br>
+Transforming Spatial Velocities <br>
+Incremental Rigid-Body Motion <br>
+Dynamics of Moving Bodies <br>
+Transforming Wrenches <br>
+:::

@@ -1,0 +1,48 @@
+## Inertial[^1] and noninertial reference frames {.smaller}
+[^1]: a frame that is not accelerating or rotating.
+
+* Imagine that a frame $\{B\}$ is accelerating at a constant acceleration
+${^0}a_B$ w.r.t. $\{0\}$. 
+  - From the perspective of $\{B\}$, a particle that is at rest w.r.t. frame
+    $\{0\}$ appears to be accelerating, in fact ${^B}a_P = -{^0}a_B$ and this 
+    violates Newton's first law.
+  - An observer in frame $\{B\}$ who was aware of Newton's theories might invoke
+    a magical force to explain what they observe -- they only exist in an
+    accelerating or noninertial reference frame.
+    - Example: accelerating car or an airplane.
+* For a rotating reference frame things are more complicated still:
+  - Imagine that you and your friend are standing on a large rotating turntable,
+    and throwing a ball back and forth.
+  - You will observe that the ball follows a curved path in space.
+  - As a Newton-aware observer in this noninertial refernce frame you would have
+    to resort to invoking some magical force that explains why flowing objects
+    follow curved paths.
+
+
+
+## Inertial[^1] and noninertial reference frames {.smaller}
+[^1]: a frame that is not accelerating or rotating.
+
+* If the reference frame $\{B\}$ is rotating with angular velocity $\bm{\omega}$
+about its origin then Newton's second law becomes
+$$
+m \left[
+{^B}\dot{\bm{v}} + \underbrace{\bm{\omega} \times \left(\bm{\omega} \times
+{^B}\bm{p}\right)}_{\text{centripetal}} + \underbrace{2 \bm{\omega} \times
+{^B}\bm{v}}_{\text{Coriolis}} + \underbrace{\frac{\text{d}
+\bm{\omega}}{\text{d}t} \times {^B}\bm{p}}_{Euler}
+\right] = {^0}\bm{f},
+$$
+with three _new_ acceleration terms.
+  - Centripetal acceleration always acts inward toward the origin.
+  - If the point is moving then Coriolis acceleration will be normal to its
+    velocity.
+  - If the rotational velocity is time-varying then Euler acceleration will be 
+  normal to the position vector.
+
+* This complexity is symptomatic of being in a noninertial reference frame, and 
+another definition of an inertial frame is one which
+
+::: {.callout-warning appearance="minimal"}
+''Physical laws hold good in their simplest form.''
+:::

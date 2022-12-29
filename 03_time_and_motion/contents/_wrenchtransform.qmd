@@ -1,0 +1,24 @@
+## Transforming wrenches (forces and torques) {.smaller}
+
+* The twist is a vector quantity that represents translational and rotational 
+velocity.
+
+* In a similar fashion, we can combine translational force and rotational torque 
+into a $6$-vector that is called a _wrench_ $\bm{W} = \left(f_x, f_y, f_z, m_x,
+m_y, m_z\right) \in \mathbb{R}^6$.
+
+* A wrench ${^B}\bm{W}$ is defined w.r.t. the coordinate frame $\{B\}$ and
+applied at the origin of that frame.
+
+* A wrench ${^C}\bm{W}$ is equivalent if it causes the same motion of the body
+when applied to the origin of the coordinate frame $\{C\}$ and defined w.r.t. 
+$\{C\}$. The wrenches are related by
+$$
+{^C}\bm{W} = \begin{bmatrix}
+{^B}\bm{R}_C & {^B}\hat{\bm{t}}_C \; {^B}\bm{R}_C \\ \bm{0}_{3 \times 3} & 
+{^B}\bm{R}_C
+\end{bmatrix}^\top =
+\text{Ad}\left({^B}\xi_C\right)^\top {^B}\bm{W},
+$$
+which is similar to the transformation of twists, but uses the transpose of the
+adjoint of the _inverse_ relative pose!

@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "03_time_and_motion.html#robotics-and-automated-systems",
+    "href": "03_time_and_motion.html#robotics-and-automated-systems",
+    "title": "03_time_and_motion",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nTime and Motion\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  Derivative of Pose  Transforming Spatial Velocities  Incremental Rigid-Body Motion  Dynamics of Moving Bodies  Transforming Wrenches"
+  },
+  {
+    "objectID": "03_time_and_motion.html#derivative-of-orientation",
+    "href": "03_time_and_motion.html#derivative-of-orientation",
+    "title": "03_time_and_motion",
+    "section": "Derivative of orientation",
+    "text": "Derivative of orientation\n\nWe start by recalling the exponential representation of the orientation: A𝐑B(t)=eA𝛚̂(t)θ(t)∈𝐒𝐎(3), {^A}\\bm{R}_B(t) = e^{{^A}\\hat{\\bm{\\omega}}(t)\\theta(t)} \\in \\bm{SO}(3),  where the rotation is described by a rotational axis A𝛚̂(t){^A}\\hat{\\bm{\\omega}}(t) expressed in frame {A}\\{A\\} and a rotational angle θ(t)\\theta(t).\nThe derivative w.r.t. time, assuming 𝛚\\bm{\\omega} is fixed is A𝐑̇B(t)=A𝛚̂(t)θ̇eA𝛚̂(t)θ(t)=A𝛚̂(t)θ̇A𝐑B(t), {^A}\\dot{\\bm{R}}_B(t) = {^A}\\hat{\\bm{\\omega}}(t) \\dot{\\theta} e^{{^A}\\hat{\\bm{\\omega}}(t)\\theta(t)}\n = {^A}\\hat{\\bm{\\omega}}(t) \\dot{\\theta} {^A}\\bm{R}_B(t), \nSubsuming θ̇\\dot{\\theta} into A𝛚{^A}\\bm{\\omega}, we write this succinctly as A𝐑̇B=A𝛚̂A𝐑B, {^A}\\dot{\\bm{R}}_B = {^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B, \nThe quantity A𝛚BA{^A}{\\bm{\\omega}}^A_B is defined as the spatial angular velocity of frame {B}\\{B\\} with respect to frame {A}\\{A\\}, expressed in frame {A}\\{A\\}.\nRecall the following identities and substitute them: A𝛚=A𝐑BB𝛚𝐀𝐯̂=𝐀𝐯̂𝐀⊤ \\begin{aligned} \n{^A}\\bm{\\omega} &= {^A}\\bm{R}_B {^B}\\bm{\\omega} \\\\\n\\widehat{\\bm{Av}} &= \\bm{A}\\hat{\\bm{v}}\\bm{A}^\\top\n\\end{aligned}"
+  },
+  {
+    "objectID": "03_time_and_motion.html#angular-velocity",
+    "href": "03_time_and_motion.html#angular-velocity",
+    "title": "03_time_and_motion",
+    "section": "Angular velocity",
+    "text": "Angular velocity\n \n\n\n\n\n\nBody angular velocity\n\n\nA𝐑̇B=A𝐑BB𝛚̂.{^A}\\dot{\\bm{R}}_B = {^A}\\bm{R}_B {^B}\\hat{\\bm{\\omega}}.\n\n\n\n\n\n\nSpatial angular velocity\n\n\nA𝐑̇B=A𝛚̂A𝐑B.{^A}\\dot{\\bm{R}}_B = {^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B. \n\n\n\n\n\n\nIn words, if the angular velocity of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\} is expressed in frame {B}\\{B\\}, we call it the body angular velocity, and use the formula on the left.\nIf the angular velocity of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\} is expressed in frame {A}\\{A\\}, we call it the spatial angular velocity, and use the formula on the right."
+  },
+  {
+    "objectID": "03_time_and_motion.html#derivative-of-pose",
+    "href": "03_time_and_motion.html#derivative-of-pose",
+    "title": "03_time_and_motion",
+    "section": "Derivative of pose",
+    "text": "Derivative of pose\n\nThe derivative of pose may be determined by expressing the pose as a homogeneous transformation matrix ξ∼A𝐓B\\xi \\sim {^A}\\bm{T}_B: ξ̇∼A𝐓̇B=[A𝐑̇BA𝐭̇B01×30]=[A𝛚̂A𝐑BA𝐭̇B01×30]. \\dot{\\xi} \\sim {^A}\\dot{\\bm{T}}_B = \n\\begin{bmatrix}\n{^A}\\dot{\\bm{R}}_B & {^A}\\dot{\\bm{t}}_B \\\\ \\bm{0}_{1 \\times 3} & 0\n\\end{bmatrix} = \n\\begin{bmatrix}\n{^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B & {^A}\\dot{\\bm{t}}_B \\\\ \\bm{0}_{1 \\times 3} & 0\n\\end{bmatrix}.\n\nThe rate of change can be described in terms of the current orientation A𝐑B{^A}\\bm{R}_B and two velocities.\nThe linear or translational velocity 𝐯=A𝐭̇B\\bm{v} = {^A}\\dot{\\bm{t}}_B is the velocity of the origin of {B}\\{B\\} w.r.t. {A}\\{A\\}.\nThe (spatial) angular velocity A𝛚B{^A}\\bm{\\omega}_B has already been introduced.\nWe can combine these two velocity vectors to create, the so called twist: A𝛎B≜(A𝐯B,AωB)∈ℝ6. {^A}\\bm{\\nu}_B \\triangleq \\left( {^A}\\bm{v}_B, {^A}\\omega_B \\right) \\in \\mathbb{R}^6.  which can be interpreted as the ‘’velocity’’ of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\}."
+  },
+  {
+    "objectID": "03_time_and_motion.html#transforming-twists",
+    "href": "03_time_and_motion.html#transforming-twists",
+    "title": "03_time_and_motion",
+    "section": "Transforming twists",
+    "text": "Transforming twists\n \n\n\n\nThe velocity of a moving body can be expressed w.r.t. a world reference frame {A}\\{A\\} or the moving body frame {B}\\{B\\} as shown in the figure:\n\nY𝛎=Ad(YξX)X𝛎. {^Y}\\bm{\\nu} = \\text{Ad}\\left( {^Y}\\xi_X \\right){^X}\\bm{\\nu}. \nby using the adjoint mapping/matrix, Ad\\text{Ad}, which is defined by:\nAd(ξ)=[𝐑𝐭̂𝐑0𝐑]∈ℝ6×6. \\text{Ad}(\\xi) = \n\\begin{bmatrix}\n\\bm{R} & \\hat{\\bm{t}} \\bm{R} \\\\ 0 & \\bm{R}\n\\end{bmatrix} \\in \\mathbb{R}^{6 \\times 6}.\n\n\nRecall ξ∼(𝐑,𝐭)\\xi \\sim (\\bm{R}, \\bm{t}) represents the rigid-body motion.\n\n\n\n\n\n\n\n\nRepresenting spatial velocities\n\n\nNotice that 𝛎\\bm{\\nu} is a 66-dimensional vector."
+  },
+  {
+    "objectID": "03_time_and_motion.html#incremental-rotation",
+    "href": "03_time_and_motion.html#incremental-rotation",
+    "title": "03_time_and_motion",
+    "section": "Incremental rotation",
+    "text": "Incremental rotation\n\nTo gain some insight into 𝐑̇\\dot{\\bm{R}}, consider a first-order approximation to the derivative (note that subtraction is not defined in 𝐒𝐎(3)\\bm{SO}(3)): 𝐑̇≈1δt(𝐑⟨t+δt⟩−𝐑⟨t⟩)∈ℝ3×3. \\dot{\\bm{R}} \\approx \\frac{1}{\\delta_t} \\left( \\bm{R} \\left\\langle t+\\delta_t\n\\right\\rangle - \\bm{R}\\langle t \\rangle \\right) \\in \\mathbb{R}^{3 \\times 3}. \nConsider an object whose body frames {B}\\{B\\} at two consecutive time steps are related by a small rotation B𝐑Δ{^B}\\bm{R}_\\Delta expressed in the body frame. 𝐑B⟨t+δt⟩=𝐑B⟨t⟩B𝐑Δ. \\bm{R}_B \\left\\langle t + \\delta_t \\right\\rangle = \\bm{R}_B \\langle t \\rangle \n{^B} \\bm{R}_\\Delta. \nNow, substitute 𝐑̇B=𝐑BB𝛚̂\\dot{\\bm{R}}_B = \\bm{R}_B \\; {^B}\\hat{\\bm{\\omega}} into the top equation and rearrange to obtain B𝐑Δ≈δtB𝛚̂+𝐈, {^B}\\bm{R}_\\Delta \\approx \\delta_t {^B}\\hat{\\bm{\\omega}} + \\bm{I},  which says that an infinitesimally small rotation can be approximated by the sum of a skew-symmetric matrix and an identity matrix.\nAlternatively, if the angular velocity expressed in the body frame is known, we can approximately update the rotation matrix 𝐑B⟨t+δt⟩≈𝐑B⟨t⟩+δt𝐑B⟨t⟩𝛚̂.\\bm{R}_B\\left\\langle t+\\delta_t \\right\\rangle \\approx \\bm{R}_B\\langle t\n\\rangle + \\delta_t \\bm{R}_B\\langle t \\rangle \\hat{\\bm{\\omega}}. \nThis is cheap to compute, involves no trigonometric operations, and is key to inertial navigation systems."
+  },
+  {
+    "objectID": "03_time_and_motion.html#incremental-rigid-body-motion",
+    "href": "03_time_and_motion.html#incremental-rigid-body-motion",
+    "title": "03_time_and_motion",
+    "section": "Incremental rigid-body motion",
+    "text": "Incremental rigid-body motion\n\nConsider two poses ξ1\\xi_1 and ξ2\\xi_2 that differ infinitesimally and are related by ξ2=ξ1⊕ξΔ, \\xi_2 = \\xi_1 \\oplus \\xi_\\Delta,  where ξΔ=⊖ξ1⊕ξ2\\xi_\\Delta = \\ominus \\xi_1 \\oplus \\xi_2.\nIn homogeneous transformation matrix form ξΔ∼𝐓Δ=[𝐑Δ𝐭Δ01×30], \\xi_\\Delta \\sim \\bm{T}_\\Delta = \\begin{bmatrix} \\bm{R}_\\Delta & \\bm{t}_\\Delta\n\\\\ \\bm{0}_{1 \\times 3} & 0 \\end{bmatrix},  where 𝐭Δ\\bm{t}_\\Delta is an incremental displacement and 𝐑Δ\\bm{R}_\\Delta is an incremental rotation matrix.\nThe incremental rigid-body motion can therefore be described by just six parameters Δ(ξ1,ξ2)↦𝚫ξ∈ℝ6, \\Delta(\\xi_1, \\xi_2) \\mapsto \\bm{\\Delta}_\\xi \\in \\mathbb{R}^6,  where 𝚫ξ=(𝚫t,𝚫R)\\bm{\\Delta}_\\xi = \\left(\\bm{\\Delta}_t, \\bm{\\Delta}_R \\right) can be considered a twist.\nA body with constant twist 𝛎\\bm{\\nu} for δt\\delta_t seconds undergoes a spatial displacement of 𝚫ξ=δt𝛎\\bm{\\Delta}_\\xi = \\delta_t \\bm{\\nu}. The inverse operator Δ−1(𝚫ξ)↦ξΔ∈𝐒𝐄(3)\\Delta^{-1}\\left(\\bm{\\Delta}_\\xi\\right) \\mapsto \\xi_\\Delta \\in \\bm{SE}(3) is given by ξΔ∼𝐓Δ=[𝚫̂R+𝐈𝚫t01×31].\n\\xi_\\Delta \\sim \\bm{T}_\\Delta = \\begin{bmatrix}\n\\hat{\\bm{\\Delta}}_R + \\bm{I} & \\bm{\\Delta}_t \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}."
+  },
+  {
+    "objectID": "03_time_and_motion.html#dynamics-of-moving-bodies",
+    "href": "03_time_and_motion.html#dynamics-of-moving-bodies",
+    "title": "03_time_and_motion",
+    "section": "Dynamics of moving bodies",
+    "text": "Dynamics of moving bodies\n \n\nFor translational motion, Newton’s second law describes, in the inertial frame, the acceleration of a particle with position xx and mass mm due to the applied force 𝐟\\bm{f}: m0𝐱̈=0𝐟. m {^0}\\ddot{\\bm{x}} = {^0}\\bm{f}. \nRotational motion in 𝐒𝐎(3)\\bm{SO}(3) is described by Euler’s equations of motion which relates the angular acceleration of the body in the body frame to the applied torque 𝛕\\bm{\\tau} and a positive-definite rotational inertia matrix B𝐉{^B}\\bm{J} (notice that this is frame-dependent!) B𝐉B𝛚̇+𝛚×(B𝐉𝛚)=B𝛕. {^B}\\bm{J} \\; {^B} \\dot{\\bm{\\omega}} + \\bm{\\omega} \\times \\left( {^B}\\bm{J}\n\\; \\bm{\\omega} \\right) = {^B} \\bm{\\tau}. \nNonzero angular acceleration implies that angular velocity, the axis and/or the angle of rotation, evolves over time."
+  },
+  {
+    "objectID": "03_time_and_motion.html#transforming-wrenches-forces-and-torques",
+    "href": "03_time_and_motion.html#transforming-wrenches-forces-and-torques",
+    "title": "03_time_and_motion",
+    "section": "Transforming wrenches (forces and torques)",
+    "text": "Transforming wrenches (forces and torques)\n\nThe twist is a vector quantity that represents translational and rotational velocity.\nIn a similar fashion, we can combine translational force and rotational torque into a 66-vector that is called a wrench 𝐖=(fx,fy,fz,mx,my,mz)∈ℝ6\\bm{W} = \\left(f_x, f_y, f_z, m_x, m_y, m_z\\right) \\in \\mathbb{R}^6.\nA wrench B𝐖{^B}\\bm{W} is defined w.r.t. the coordinate frame {B}\\{B\\} and applied at the origin of that frame.\nA wrench C𝐖{^C}\\bm{W} is equivalent if it causes the same motion of the body when applied to the origin of the coordinate frame {C}\\{C\\} and defined w.r.t. {C}\\{C\\}. The wrenches are related by C𝐖=[B𝐑CB𝐭̂CB𝐑C03×3B𝐑C]⊤=Ad(BξC)⊤B𝐖,\n{^C}\\bm{W} = \\begin{bmatrix}\n{^B}\\bm{R}_C & {^B}\\hat{\\bm{t}}_C \\; {^B}\\bm{R}_C \\\\ \\bm{0}_{3 \\times 3} & \n{^B}\\bm{R}_C\n\\end{bmatrix}^\\top =\n\\text{Ad}\\left({^B}\\xi_C\\right)^\\top {^B}\\bm{W},\n which is similar to the transformation of twists, but uses the transpose of the adjoint of the inverse relative pose!"
+  },
+  {
+    "objectID": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames",
+    "href": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames",
+    "title": "03_time_and_motion",
+    "section": "Inertial1 and noninertial reference frames",
+    "text": "Inertial1 and noninertial reference frames\n\nImagine that a frame {B}\\{B\\} is accelerating at a constant acceleration 0aB{^0}a_B w.r.t. {0}\\{0\\}.\n\nFrom the perspective of {B}\\{B\\}, a particle that is at rest w.r.t. frame {0}\\{0\\} appears to be accelerating, in fact BaP=−0aB{^B}a_P = -{^0}a_B and this violates Newton’s first law.\nAn observer in frame {B}\\{B\\} who was aware of Newton’s theories might invoke a magical force to explain what they observe – they only exist in an accelerating or noninertial reference frame.\n\nExample: accelerating car or an airplane.\n\n\nFor a rotating reference frame things are more complicated still:\n\nImagine that you and your friend are standing on a large rotating turntable, and throwing a ball back and forth.\nYou will observe that the ball follows a curved path in space.\nAs a Newton-aware observer in this noninertial refernce frame you would have to resort to invoking some magical force that explains why flowing objects follow curved paths.\n\n\na frame that is not accelerating or rotating."
+  },
+  {
+    "objectID": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames-1",
+    "href": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames-1",
+    "title": "03_time_and_motion",
+    "section": "Inertial1 and noninertial reference frames",
+    "text": "Inertial1 and noninertial reference frames\n\nIf the reference frame {B}\\{B\\} is rotating with angular velocity 𝛚\\bm{\\omega} about its origin then Newton’s second law becomes m[B𝐯̇+𝛚×(𝛚×B𝐩)⏟centripetal+2𝛚×B𝐯⏟Coriolis+d𝛚dt×B𝐩⏟Euler]=0𝐟,\nm \\left[\n{^B}\\dot{\\bm{v}} + \\underbrace{\\bm{\\omega} \\times \\left(\\bm{\\omega} \\times\n{^B}\\bm{p}\\right)}_{\\text{centripetal}} + \\underbrace{2 \\bm{\\omega} \\times\n{^B}\\bm{v}}_{\\text{Coriolis}} + \\underbrace{\\frac{\\text{d}\n\\bm{\\omega}}{\\text{d}t} \\times {^B}\\bm{p}}_{Euler}\n\\right] = {^0}\\bm{f},\n with three new acceleration terms.\n\nCentripetal acceleration always acts inward toward the origin.\nIf the point is moving then Coriolis acceleration will be normal to its velocity.\nIf the rotational velocity is time-varying then Euler acceleration will be normal to the position vector.\n\nThis complexity is symptomatic of being in a noninertial reference frame, and another definition of an inertial frame is one which\n\n\n\n\n‘’Physical laws hold good in their simplest form.’’\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici\n\na frame that is not accelerating or rotating."
+  }
+]

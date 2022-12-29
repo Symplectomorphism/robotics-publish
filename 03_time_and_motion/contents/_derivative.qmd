@@ -1,0 +1,79 @@
+# Time-Varying Pose
+
+## Derivative of orientation {.smaller}
+
+* We start by recalling the exponential representation of the orientation:
+$$ {^A}\bm{R}_B(t) = e^{{^A}\hat{\bm{\omega}}(t)\theta(t)} \in \bm{SO}(3), $$ 
+where the rotation is described by a rotational axis ${^A}\hat{\bm{\omega}}(t)$ 
+expressed in frame $\{A\}$ and a rotational angle $\theta(t)$.
+
+* The derivative w.r.t. time, assuming $\bm{\omega}$ is fixed is 
+$$ {^A}\dot{\bm{R}}_B(t) = {^A}\hat{\bm{\omega}}(t) \dot{\theta} e^{{^A}\hat{\bm{\omega}}(t)\theta(t)}
+   = {^A}\hat{\bm{\omega}}(t) \dot{\theta} {^A}\bm{R}_B(t), $$
+
+* Subsuming $\dot{\theta}$ into ${^A}\bm{\omega}$, we write this succinctly as
+$$ {^A}\dot{\bm{R}}_B = {^A}\hat{\bm{\omega}} \; {^A}\bm{R}_B, $$
+
+* The quantity ${^A}{\bm{\omega}}^A_B$ is defined as the _spatial angular velocity_ 
+of frame $\{B\}$ with respect to frame $\{A\}$, expressed in frame $\{A\}$.
+
+* Recall the following identities and substitute them:
+$$ \begin{aligned} 
+{^A}\bm{\omega} &= {^A}\bm{R}_B {^B}\bm{\omega} \\
+\widehat{\bm{Av}} &= \bm{A}\hat{\bm{v}}\bm{A}^\top
+\end{aligned}
+$$
+
+
+## Angular velocity
+
+&nbsp;
+
+::: {layout-ncol="2" layout-align="center"}
+
+::: {.callout-warning icon="false"}
+## Body angular velocity
+$${^A}\dot{\bm{R}}_B = {^A}\bm{R}_B {^B}\hat{\bm{\omega}}.$$
+:::
+
+::: {.callout-warning icon="false"}
+## Spatial angular velocity
+$${^A}\dot{\bm{R}}_B = {^A}\hat{\bm{\omega}} \; {^A}\bm{R}_B. $$
+:::
+
+:::
+
+* In words, if the angular velocity of frame $\{B\}$ w.r.t. frame $\{A\}$ is 
+expressed in frame $\{B\}$, we call it the _body angular velocity_, and use the 
+formula on the left.
+
+* If the angular velocity of frame $\{B\}$ w.r.t. frame $\{A\}$ is 
+expressed in frame $\{A\}$, we call it the _spatial angular velocity_, and use 
+the formula on the right.
+
+
+## Derivative of pose {.smaller}
+
+* The derivative of pose may be determined by expressing the pose as a homogeneous
+transformation matrix $\xi \sim {^A}\bm{T}_B$:
+$$ \dot{\xi} \sim {^A}\dot{\bm{T}}_B = 
+\begin{bmatrix}
+{^A}\dot{\bm{R}}_B & {^A}\dot{\bm{t}}_B \\ \bm{0}_{1 \times 3} & 0
+\end{bmatrix} = 
+\begin{bmatrix}
+{^A}\hat{\bm{\omega}} \; {^A}\bm{R}_B & {^A}\dot{\bm{t}}_B \\ \bm{0}_{1 \times 3} & 0
+\end{bmatrix}.
+$$
+
+* The rate of change can be described in terms of the current orientation ${^A}\bm{R}_B$
+and _two_ velocities.
+
+* The linear or translational velocity $\bm{v} = {^A}\dot{\bm{t}}_B$ is the velocity 
+of the origin of $\{B\}$ w.r.t. $\{A\}$.
+
+* The (spatial) angular velocity ${^A}\bm{\omega}_B$ has already been introduced.
+
+* We can combine these two velocity vectors to create, the so called __twist__:
+$$ {^A}\bm{\nu}_B \triangleq \left( {^A}\bm{v}_B, {^A}\omega_B \right) \in \mathbb{R}^6. $$
+which can be interpreted as the ''velocity'' of frame $\{B\}$ w.r.t. frame $\{A\}$.
+

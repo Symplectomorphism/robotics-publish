@@ -1,0 +1,20 @@
+# Accelerating Bodies and Reference Frames
+
+## Dynamics of moving bodies {.smaller}
+
+&nbsp;
+
+* For translational motion, Newton's second law describes, in the inertial
+frame, the acceleration of a particle with position $x$ and mass $m$ due to the 
+applied force $\bm{f}$:
+$$ m {^0}\ddot{\bm{x}} = {^0}\bm{f}. $$ 
+
+* Rotational motion in $\bm{SO}(3)$ is described by Euler's equations of motion 
+which relates the angular acceleration of the body in the body frame to the 
+applied torque $\bm{\tau}$ and a positive-definite rotational inertia matrix 
+${^B}\bm{J}$ (notice that this is frame-dependent!)
+$$ {^B}\bm{J} \; {^B} \dot{\bm{\omega}} + \bm{\omega} \times \left( {^B}\bm{J}
+\; \bm{\omega} \right) = {^B} \bm{\tau}. $$
+
+* Nonzero angular acceleration implies that angular velocity, the axis and/or 
+the angle of rotation, evolves over time.

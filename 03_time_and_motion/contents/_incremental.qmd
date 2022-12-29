@@ -1,0 +1,52 @@
+## Incremental rotation {.smaller}
+
+* To gain some insight into $\dot{\bm{R}}$, consider a first-order approximation 
+to the derivative (note that subtraction is not defined in $\bm{SO}(3)$):
+$$ \dot{\bm{R}} \approx \frac{1}{\delta_t} \left( \bm{R} \left\langle t+\delta_t
+\right\rangle - \bm{R}\langle t \rangle \right) \in \mathbb{R}^{3 \times 3}. $$
+
+* Consider an object whose body frames $\{B\}$ at two consecutive time steps are
+related by a small rotation ${^B}\bm{R}_\Delta$ expressed in the body frame.
+$$ \bm{R}_B \left\langle t + \delta_t \right\rangle = \bm{R}_B \langle t \rangle 
+{^B} \bm{R}_\Delta. $$
+
+* Now, substitute $\dot{\bm{R}}_B = \bm{R}_B \; {^B}\hat{\bm{\omega}}$ into the 
+top equation and rearrange to obtain
+$$ {^B}\bm{R}_\Delta \approx \delta_t {^B}\hat{\bm{\omega}} + \bm{I}, $$
+which says that an infinitesimally small rotation can be approximated by the sum 
+of a skew-symmetric matrix and an identity matrix.
+
+* Alternatively, if the angular velocity expressed in the body frame is known,
+we can approximately update the rotation matrix
+$$\bm{R}_B\left\langle t+\delta_t \right\rangle \approx \bm{R}_B\langle t
+\rangle + \delta_t \bm{R}_B\langle t \rangle \hat{\bm{\omega}}. $$
+
+* This is cheap to compute, involves no trigonometric operations, and is key to 
+inertial navigation systems.
+
+
+## Incremental rigid-body motion {.smaller}
+
+* Consider two poses $\xi_1$ and $\xi_2$ that differ infinitesimally and are 
+related by $$ \xi_2 = \xi_1 \oplus \xi_\Delta, $$ where $\xi_\Delta = \ominus 
+\xi_1 \oplus \xi_2$.
+
+* In homogeneous transformation matrix form 
+$$ \xi_\Delta \sim \bm{T}_\Delta = \begin{bmatrix} \bm{R}_\Delta & \bm{t}_\Delta
+\\ \bm{0}_{1 \times 3} & 0 \end{bmatrix}, $$ where $\bm{t}_\Delta$ is an 
+incremental displacement and $\bm{R}_\Delta$ is an incremental rotation matrix.
+
+* The incremental rigid-body motion can therefore be described by just six 
+parameters $$ \Delta(\xi_1, \xi_2) \mapsto \bm{\Delta}_\xi \in \mathbb{R}^6, $$
+where $\bm{\Delta}_\xi = \left(\bm{\Delta}_t, \bm{\Delta}_R \right)$ can be 
+considered a twist.
+
+* A body with constant twist $\bm{\nu}$ for $\delta_t$ seconds undergoes a 
+spatial displacement of $\bm{\Delta}_\xi = \delta_t \bm{\nu}$. The inverse
+operator $\Delta^{-1}\left(\bm{\Delta}_\xi\right) \mapsto \xi_\Delta \in
+\bm{SE}(3)$ is given by 
+$$
+\xi_\Delta \sim \bm{T}_\Delta = \begin{bmatrix}
+\hat{\bm{\Delta}}_R + \bm{I} & \bm{\Delta}_t \\ \bm{0}_{1 \times 3} & 1
+\end{bmatrix}.
+$$
