@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "02_rigid_motions.html#robotics-and-automated-systems",
+    "href": "02_rigid_motions.html#robotics-and-automated-systems",
+    "title": "02_rigid_motions",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nRigid Motions\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  Representing Position  Representing Rotations  Representing Pose  Algebra of Rigid Motions"
+  },
+  {
+    "objectID": "02_rigid_motions.html#coordinate-frames-1",
+    "href": "02_rigid_motions.html#coordinate-frames-1",
+    "title": "02_rigid_motions",
+    "section": "Coordinate frames",
+    "text": "Coordinate frames\n\n\n\n\nA point is described by a coordinate vector.\n\nThe vector represents the displacement of a point w.r.t. some reference frame – we call this a bound vector.\nNotice that a point is not the same as a vector!\n\nA coordinate frame, is a triad of orthogonal axes which intersect at a point, known as the origin.\nA real object comprises infinitely many points.\n\nAn object, unlike a point, has an orientation.\nAttaching a coordinate frame to an object, every point within it can be described by a constant vector w.r.t. that frame.\n\nThis allows us to describe the position and orientation, the pose, of that object’s fixed frame w.r.t. a reference coordinate frame.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLeft\n\n\nPoint PP is described by a coordinate vector w.r.t. an absolute coordinate frame.\n\n\n\n\n\n\n\n\n\nRight\n\n\nThe points are described w.r.t. object’s coordinate frame {B}, which in turn is described by a relative pose ξB\\xi_B."
+  },
+  {
+    "objectID": "02_rigid_motions.html#coordinate-frames-2",
+    "href": "02_rigid_motions.html#coordinate-frames-2",
+    "title": "02_rigid_motions",
+    "section": "Coordinate frames",
+    "text": "Coordinate frames\n\n\n\n\nWe think of AξB{^A}\\xi_B as describing some motion: pick up {A}\\{A\\}\n\nApply a displacement and a rotation,\nNow {A}\\{A\\} is transformed to {B}\\{B\\}.\n\nIf the initial superscript is missing, we assume that the pose is w.r.t. the world coordinate frame.\nThe point 𝐏\\boldsymbol{P} can be described w.r.t. either coordinate frame: A𝐩=AξB•B𝐩. {^A}\\bm{p} = {^A}\\xi_B \\bullet {^B}\\bm{p}. \n\nThe operator •\\bullet transforms the vector.\nThe new vector describes the same point but w.r.t. a different coordinate frame.\n\n\n\n\n\n\n\n\n\n\nRelative pose\n\n\nThe point 𝐏\\boldsymbol{P} can be descrbied by coordinate vectors relative to either frame {A}\\{A\\} or {B}\\{B\\}. The pose of {B}\\{B\\} relative to {A}\\{A\\} is AξB{^A}\\xi_B."
+  },
+  {
+    "objectID": "02_rigid_motions.html#coordinate-frames-3",
+    "href": "02_rigid_motions.html#coordinate-frames-3",
+    "title": "02_rigid_motions",
+    "section": "Coordinate frames",
+    "text": "Coordinate frames\n\n\n\nRelative poses can be composed or compounded. AξC=AξB⊕BξC. {^A}\\xi_C = {^A}\\xi_B \\oplus {^B}\\xi_C. \n\n\n\n\n\n\n\nSub/super-script cancellation\n\n\nIf the subscript and superscript on each side of the ⊕\\oplus operator match, then we can cancel out the intermediate sub/super-scripts. XξZ=XξY⊕YξZ. {^X}\\xi_Z = {^X}\\xi_Y \\oplus {^Y}\\xi_Z. \n\n\n\n\nFor this case, the point 𝐏\\bm{P} can be described by A𝐩=(AξB⊕BξC)•C𝐩. {^A}\\bm{p} = \\left({^A}\\xi_B \\oplus {^B}\\xi_C\\right) \\bullet {^C}\\bm{p}. \nLater, we will convert these abstract notions of ξ\\xi, •\\bullet and ⊕\\oplus into concrete mathematical objects and operators.\n\n\n\n\n\n\n\n\n\nRelative pose\n\n\nThe point 𝐏\\boldsymbol{P} can be descrbied by coordinate vectors relative to either frame {A}\\{A\\}, {B}\\{B\\} or {C}\\{C\\}. The frames are described by relative poses."
+  },
+  {
+    "objectID": "02_rigid_motions.html#coordinate-frames-more-complex-example",
+    "href": "02_rigid_motions.html#coordinate-frames-more-complex-example",
+    "title": "02_rigid_motions",
+    "section": "Coordinate frames: more complex example",
+    "text": "Coordinate frames: more complex example\n\n\n\nThe fixed camera observes the object and estimates the object’s pose FξB{^F}\\xi_B.\nThe other camera is not fixed, it is attached to the robot at some constant relative pose and estimates the object’s pose CξB{^C}\\xi_B.\nAn alternative representation of the spatial representation is a directed graph.\n\nEach node represents a frame and each edge represents a relative pose.\nRecall: we can compose relative poses, e.g.: ξF⊕FξB=ξR⊕RξC⊕CξB,ξF⊕FξR=ξR.\n\\begin{aligned}\n\\xi_F \\oplus {^F}\\xi_B &= \\xi_R \\oplus {^R}\\xi_C \\oplus {^C}\\xi_B, \\\\\n\\xi_F \\oplus {^F}\\xi_R &= \\xi_R.\n\\end{aligned}\n\nEach equation represents a loop in the graph with each side of the equation starting and ending at the same node."
+  },
+  {
+    "objectID": "02_rigid_motions.html#algebraic-rules-of-relative-poses",
+    "href": "02_rigid_motions.html#algebraic-rules-of-relative-poses",
+    "title": "02_rigid_motions",
+    "section": "Algebraic rules of relative poses",
+    "text": "Algebraic rules of relative poses\n\n\n\n\n\n\nGroup properties\n\n\nThere are just a few algebraic rules:\nξ⊕0=ξ,ξ⊖0=ξ,ξ⊖ξ=0,⊖ξ⊕ξ=0,\n\\begin{aligned}\n\\xi \\oplus 0 = \\xi, \\quad &\\xi \\ominus 0 = \\xi, \\\\\n\\xi \\ominus \\xi = 0, \\quad &\\ominus \\xi \\oplus \\xi = 0,\n\\end{aligned}\n\nwhere 00 represents a zero relative pose. A pose has an inverse\n⊖XξY=YξX, \\ominus {^X}\\xi_Y = {^Y}\\xi_X, \nwhich is represented graphically by an arrow from {Y}\\{Y\\} to {X}\\{X\\}. Relative poses can also be composed or compounded\nXξY⊕YξZ=XξZ. {^X}\\xi_Y \\oplus {^Y}\\xi_Z = {^X}\\xi_Z. \nA relative pose can transform a point expressed as a vector relative to one frame to a vector relative to another X𝐩=XξY•Y𝐩. {^X}\\bm{p} = {^X}\\xi_Y \\bullet {^Y}\\bm{p}. \n\n\n\n\n\n\n\n\n\nComposition is NOT commutative\n\n\nξ1⊕ξ2≠ξ2⊕ξ1, \\xi_1 \\oplus \\xi_2 \\neq \\xi_2 \\oplus \\xi_1, \nwith the exception being the case where ξ1⊕ξ2=0\\xi_1 \\oplus \\xi_2 = 0."
+  },
+  {
+    "objectID": "02_rigid_motions.html#algebraic-manipulation-of-poses",
+    "href": "02_rigid_motions.html#algebraic-manipulation-of-poses",
+    "title": "02_rigid_motions",
+    "section": "Algebraic manipulation of poses",
+    "text": "Algebraic manipulation of poses\n\nThe second loop eqn. in our example says that the pose of the robot is the same as composing two relative poses:\n\nfrom the world frame to the fixed camera,\nfrom the fixed camera to the robot.\n\n\n⊖ξF⊕ξF⊕FξR=⊖ξF⊕ξRFξR=⊖ξF⊕ξR,\n\\begin{aligned}\n\\ominus \\xi_F \\oplus \\xi_F \\oplus {^F}\\xi_R &= \\ominus \\xi_F \\oplus \\xi_R \\\\\n{^F}\\xi_R &= \\ominus \\xi_F \\oplus \\xi_R,\n\\end{aligned}\n\nwhich is the pose of the robot relative to the fixed camera, shown as the dashed line in the directed graph.\n\n\n\n\n\n\nWriting these expressions by inspection\n\n\nTo find the pose of node XX w.r.t. node YY:\n\nfind a path from {Y}\\{Y\\} to {X}\\{X\\} and write down the relative poses on the edges in a left-to-right order,\nif you traverse the edge in the direction of its arrow, precede it with the ⊕\\oplus operator, otherwise use ⊖\\ominus."
+  },
+  {
+    "objectID": "02_rigid_motions.html#working-in-two-dimensions-2d",
+    "href": "02_rigid_motions.html#working-in-two-dimensions-2d",
+    "title": "02_rigid_motions",
+    "section": "Working in two dimensions (22D)",
+    "text": "Working in two dimensions (22D)\n\n\n\nA point is represented by its 𝐱\\bm{x}- and 𝐲\\bm{y}-coordinates (x,y)(x,y) or as a bound vector 𝐩=x𝐱+y𝐲. \\bm{p} = x\\bm{x} + y\\bm{y}.\nWe wish to describe the red coordinate frame {B}\\{B\\} with respect to the blue coordinate frame {A}\\{A\\}.\nClearly the origin of {B}\\{B\\} has been displaced by the vector 𝐭=(x,y)\\bm{t} = (x, y) and then rotated counter-clockwise by an angle θ\\theta.\nA concrete representation of the pose is therefore the 33-vector AξB∼(x,y,θ){^A}\\xi_B \\sim (x, y, \\theta).\nUnfortunately, this representation is not convenient for compounding since (x1,y1,θ1)⊕(x2,y2,θ2) (x_1, y_1, \\theta_1) \\oplus (x_2, y_2, \\theta_2)  is a complex trigonometric function of both poses.\nWe will look for a different way to represent the pose.\n\n\n\n\n\n\n\n\n\n2D coordinate frames\n\n\nFamiliar to us from high-school geometry. {B}\\{B\\} is rotated and translated w.r.t. {A}\\{A\\}."
+  },
+  {
+    "objectID": "02_rigid_motions.html#orientation-in-two-dimensions",
+    "href": "02_rigid_motions.html#orientation-in-two-dimensions",
+    "title": "02_rigid_motions",
+    "section": "Orientation in two dimensions",
+    "text": "Orientation in two dimensions\n\n\n\nFirst, we create an auxiliary frame {V}\\{V\\} whose axes are paraellel to those of {A}\\{A\\} but whose origin is the same as {B}\\{B\\}.\nExpress the point 𝐏\\bm{P} in both {V}\\{V\\} and {B}\\{B\\}: 𝐩=xb𝐱B+yb𝐲B=xv𝐱V+yv𝐲V. \\bm{p} = x_b \\bm{x}_B + y_b \\bm{y}_B = x_v \\bm{x}_V + y_v \\bm{y}_V. \nIn the same vein, we can express 𝐱V\\bm{x}_V and 𝐲V\\bm{y}_V in {B}\\{B\\}: 𝐱B=cosθ𝐱V+sinθ𝐲V,𝐲B=−sinθ𝐱V+cosθ𝐲V.\n\\begin{aligned}\n\\bm{x}_B &= \\cos{\\theta}\\bm{x}_V + \\sin{\\theta}\\bm{y}_V, \\\\\n\\bm{y}_B &= -\\sin{\\theta}\\bm{x}_V + \\cos{\\theta}\\bm{y}_V.\n\\end{aligned}\n\nSubstituting these equations into the previous, we obtain: 𝐩=(cθxb−sθyb)𝐱V+(sθxb+cθyb)𝐲V \\bm{p} = \\left( c_\\theta x_b - s_\\theta y_b \\right)\\bm{x}_V + \n          \\left( s_\\theta x_b + c_\\theta y_b \\right)\\bm{y}_V \nComparing the expressions for 𝐩\\bm{p}, we observe (xvyv)=(cθ−sθsθcθ)(xbyb)≜V𝐑B(xbyb). \\begin{pmatrix} x_v \\\\ y_v \\end{pmatrix} = \n\\begin{pmatrix}\nc_\\theta & -s_\\theta \\\\ s_\\theta & c_\\theta\n\\end{pmatrix}\\begin{pmatrix} x_b \\\\ y_b \\end{pmatrix} \\triangleq {{^V}\\bm{R}_B}\n\\begin{pmatrix} x_b \\\\ y_b \\end{pmatrix}.\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nRotated coordinate frames in 22D."
+  },
+  {
+    "objectID": "02_rigid_motions.html#orientation-in-two-dimensions-1",
+    "href": "02_rigid_motions.html#orientation-in-two-dimensions-1",
+    "title": "02_rigid_motions",
+    "section": "Orientation in two dimensions",
+    "text": "Orientation in two dimensions\n\n\n\n\n\n\n\n\nDefinition\n\n\nARB≜[xB⋅xAyB⋅xAxB⋅yAyB⋅yA]\n{^A}R_B \\triangleq\n\\begin{bmatrix}\n  x_B \\cdot x_A & y_B \\cdot x_A \\\\\n  x_B \\cdot y_A & y_B \\cdot y_A\n\\end{bmatrix}\n\n\n\n\n\n\n\n\n\n\nProperties of 22-D rotation matrices\n\n\n\nThey are orthonormal: each of its columns is a unit vector and columns are orthogonal.\nThe columns are the unit vectors that define the axes of the rotated frame {B}\\{B\\} w.r.t. {A}\\{A\\}.\nIt belongs to the special orthogonal group of dimension 22, i.e., 𝐑∈𝐒𝐎(2)\\bm{R} \\in \\bm{SO}(2). This means that the product of any two such matrices belongs to the same group as its inverse.\nIts determinant is +1+1, which means, in particular, that the length of a vector is unchanged after transformation, i.e., ∥B𝐩∥=∥A𝐩∥\\left\\| {^B}\\bm{p} \\right\\| = \\left\\| {^A}\\bm{p} \\right\\|, for all θ\\theta.\nThe inverse is the same as the transpose, i.e., 𝐑−1=𝐑⊤\\bm{R}^{-1} = \\bm{R}^\\top.\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nRotated coordinate frames in 22D."
+  },
+  {
+    "objectID": "02_rigid_motions.html#pose-in-two-dimensions",
+    "href": "02_rigid_motions.html#pose-in-two-dimensions",
+    "title": "02_rigid_motions",
+    "section": "Pose in two dimensions",
+    "text": "Pose in two dimensions\n\n\n\nLet’s account for the translation btw. the origins of {A}\\{A\\} and {B}\\{B\\}.\nSince the axes {V}\\{V\\} and {A}\\{A\\} are parallel, we can add\n\n(xaya)=(xvyv)+(xy)=[cθ−sθsθcθ](xbyb)+(xy)=[cθ−sθxsθcθy](xbyb)\n\\begin{aligned}\n\\begin{pmatrix}\nx_a \\\\ y_a\n\\end{pmatrix} &= \n\\begin{pmatrix}\nx_v \\\\ y_v\n\\end{pmatrix} + \n\\begin{pmatrix}\nx \\\\ y\n\\end{pmatrix} = \n\\begin{bmatrix}\nc_\\theta & -s_\\theta \\\\ s_\\theta & c_\\theta\n\\end{bmatrix}\n\\begin{pmatrix}\nx_b \\\\ y_b\n\\end{pmatrix} + \n\\begin{pmatrix}\nx \\\\ y \n\\end{pmatrix} \\\\ \n&= \\begin{bmatrix}\nc_\\theta & -s_\\theta & x \\\\ s_\\theta & c_\\theta & y\n\\end{bmatrix}\n\\begin{pmatrix}\nx_b \\\\ y_b\n\\end{pmatrix}\n\\end{aligned}\n or more compactly as\n(xaya1)=[A𝐑B𝐭01×21](xbyb1).\n\\begin{pmatrix}\nx_a \\\\ y_a \\\\ 1\n\\end{pmatrix} = \n\\begin{bmatrix}\n{^A}\\bm{R}_B & \\bm{t} \\\\ \\bm{0}_{1 \\times 2} & 1\n\\end{bmatrix}\n\\begin{pmatrix}\nx_b \\\\ y_b \\\\ 1\n\\end{pmatrix}.\n\n\nThis representation is called the homogeneous representation and we write: A𝐩=[A𝐑B𝐭01×21]B𝐩=A𝐓BB𝐩. \n{^A}\\bm{p} = \n\\begin{bmatrix}\n{^A}\\bm{R}_B & \\bm{t} \\\\ \\bm{0}_{1 \\times 2} & 1\n\\end{bmatrix}\n{^B}\\bm{p} = {^A}\\bm{T}_B {^B}\\bm{p}.\n\n\n\n\n\n\n\n\nFigures\n\n\nRotated coordinate frames in 22D."
+  },
+  {
+    "objectID": "02_rigid_motions.html#homogeneous-transformations-in-2d",
+    "href": "02_rigid_motions.html#homogeneous-transformations-in-2d",
+    "title": "02_rigid_motions",
+    "section": "Homogeneous transformations in 22D",
+    "text": "Homogeneous transformations in 22D\n\nThe matrix A𝐓B{^A}\\bm{T}_B has a very specific structure and belongs to the special Euclidean group of dimension 22 or 𝐓∈𝐒𝐄(2)\\bm{T} \\in \\bm{SE}(2).\nThis matrix is often referred to as a rigid-body motion.\n\n\n\n\nProperties of homogeneous transformations\n\n\n𝐓=[cθ−sθxsθcθy001]\n\\bm{T} = \\begin{bmatrix}\nc_\\theta & -s_\\theta & x \\\\ s_\\theta & c_\\theta & y \\\\ 0 & 0 & 1\n\\end{bmatrix}\n\nA concrete representation of relative pose ξ\\xi is ξ∼𝐓∈𝐒𝐄(2)\\xi \\sim \\bm{T} \\in \\bm{SE}(2) and 𝐓1⊕𝐓2↦𝐓1𝐓2\\bm{T}_1 \\oplus \\bm{T}_2 \\mapsto \\bm{T}_1\\bm{T}_2 which is the standard matrix multiplication\n𝐓1𝐓2=[𝐑1𝐭101×21][𝐑2𝐭201×21][𝐑1𝐑2𝐭1+R1t201×21].\n\\bm{T}_1 \\bm{T}_2 = \n\\begin{bmatrix}\n\\bm{R}_1 & \\bm{t}_1 \\\\ \\bm{0}_{1 \\times 2} & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n\\bm{R}_2 & \\bm{t}_2 \\\\ \\bm{0}_{1 \\times 2} & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n\\bm{R}_1\\bm{R}_2 & \\bm{t}_1 + R_1t_2 \\\\ \\bm{0}_{1 \\times 2} & 1\n\\end{bmatrix}.\n\nOne of the algebraic rules was ξ⊕0=ξ\\xi \\oplus 0 = \\xi. For matrices, we know that 𝐓𝐈=𝐓\\bm{T} \\bm{I} = \\bm{T}, where 𝐈\\bm{I} is the identity matrix. So for pose, we make the identification 0↔𝐈0 \\leftrightarrow \\bm{I}.\nAnother rule was that ξ⊖ξ=0\\xi \\ominus \\xi = 0. We know for matrices that 𝐓𝐓−1=𝐈\\bm{T} \\bm{T}^{-1} = \\bm{I}, which implies that ⊖𝐓↔𝐓−1\\ominus \\bm{T} \\leftrightarrow \\bm{T}^{-1}.\nFinally, for a point 𝐩\\bm{p} in homogeneous representation, we have 𝐓•𝐩↔𝐓𝐩\\bm{T} \\bullet \\bm{p} \\leftrightarrow \\bm{Tp}, which is a standard matrix-vector product."
+  },
+  {
+    "objectID": "02_rigid_motions.html#working-in-three-dimensions-3d",
+    "href": "02_rigid_motions.html#working-in-three-dimensions-3d",
+    "title": "02_rigid_motions",
+    "section": "Working in three dimensions (33D)",
+    "text": "Working in three dimensions (33D)\n\n\n\nA point 𝐏\\bm{P} is represented by its 𝐱\\bm{x}-, 𝐲\\bm{y}-, and 𝐳\\bm{z}-coordinates (x,y,z)(x,y,z) or as a bound vector 𝐩=x𝐱+y𝐲+z𝐳. \\bm{p} = x\\bm{x} +\ny\\bm{y}+ z\\bm{z}.\nWe wish to describe the red coordinate frame {B}\\{B\\} with respect to the blue coordinate frame {A}\\{A\\}.\nClearly the origin of {B}\\{B\\} has been displaced by the vector 𝐭=(x,y,z)\\bm{t} = (x, y, z) and then rotated in some complex fashion.\nOur approach is again to consider an arbitrary point 𝐏\\bm{P} w.r.t. each of the coordinate frames and tod etermine the relationship between A𝐩{^A}\\bm{p} and B𝐩{^B}\\bm{p}.\nRotation is much more complex for the 33D case so we’ll spend a good amount of time on it.\n\n\n\n\n\n\n\n\n\n3D coordinate frames\n\n\n{B}\\{B\\} is rotated and translated w.r.t. {A}\\{A\\}."
+  },
+  {
+    "objectID": "02_rigid_motions.html#orientation-in-three-dimensions",
+    "href": "02_rigid_motions.html#orientation-in-three-dimensions",
+    "title": "02_rigid_motions",
+    "section": "Orientation in three dimensions",
+    "text": "Orientation in three dimensions\n\n\n\nEuler’s rotation theorem (Kuipers 1999)\n\n\nAny two independent orthonormal coordinate frames can be related by a sequence of rotations (not more than three) about coordinate axes, where no two successive rotations may be about the same axis.\n\n\n\n\n\n\n\n\n\n\n\nRotation of a 33D coordinate frame\n\n\n{~}(a) original coordinate frame, (b-f) frame (a) after various rotations as indicated.\n\n\n\n\n\n\n\n\n\n\nNoncommutativity of rotation\n\n\nTop row: Frame rotated by π2\\frac{\\pi}{2} about the xx-axis and then by π2\\frac{\\pi}{2} about the yy-axis. Bottom row: reverse order."
+  },
+  {
+    "objectID": "02_rigid_motions.html#orientation-in-three-dimensions-1",
+    "href": "02_rigid_motions.html#orientation-in-three-dimensions-1",
+    "title": "02_rigid_motions",
+    "section": "Orientation in three dimensions",
+    "text": "Orientation in three dimensions\n\n\n\nDefinition\n\n\nA𝐑B≜[xB⋅xAyb⋅xAzb⋅xAxB⋅yAyb⋅yAzb⋅yAxB⋅zAyb⋅zAzb⋅zA]\n{^A}\\bm{R}_B \\triangleq\n\\begin{bmatrix}\nx_B \\cdot x_A & y_b \\cdot x_A & z_b \\cdot x_A \\\\\nx_B \\cdot y_A & y_b \\cdot y_A & z_b \\cdot y_A \\\\\nx_B \\cdot z_A & y_b \\cdot z_A & z_b \\cdot z_A\n\\end{bmatrix}\n\nThe matrix A𝐑B{^A}\\bm{R}_B transforms the components of a vector defined w.r.t. some frame {B}\\{B\\} to its components w.r.t. frame {A}\\{A\\}.\nA𝐯=A𝐑BB𝐯. {^A}\\bm{v} = {^A}\\bm{R}_B {^B}\\bm{v}. \n\n\n\n\n\n\nProperties of 33-D rotation matrices\n\n\n\nThey are orthonormal: each of its columns is a unit vector and columns are orthogonal.\nThe columns are the unit vectors that define the axes of the rotated frame {B}\\{B\\} w.r.t. {A}\\{A\\}.\nIt belongs to the special orthogonal group of dimension 33, i.e., 𝐑∈𝐒𝐎(3)\\bm{R} \\in \\bm{SO}(3). This means that the product of any two such matrices belongs to the same group as its inverse.\nIts determinant is +1+1, which means, in particular, that the length of a vector is unchanged after transformation, i.e., ∥B𝐩∥=∥A𝐩∥\\left\\| {^B}\\bm{p} \\right\\| = \\left\\| {^A}\\bm{p} \\right\\|, for all θ\\theta.\nThe inverse is the same as the transpose, i.e., 𝐑−1=𝐑⊤\\bm{R}^{-1} = \\bm{R}^\\top."
+  },
+  {
+    "objectID": "02_rigid_motions.html#basic-rotation-matrices",
+    "href": "02_rigid_motions.html#basic-rotation-matrices",
+    "title": "02_rigid_motions",
+    "section": "Basic rotation matrices",
+    "text": "Basic rotation matrices\nThe rotation matrices representing a rotation of θ\\theta about the xx-, yy-, and zz-axes are\n\n\n\n𝐑x,θ=[1000cθ−sθ0sθcθ]\n\\bm{R}_{x,\\theta} = \n\\begin{bmatrix}\n1 & 0 & 0 \\\\ 0 & c_\\theta & -s_\\theta \\\\ 0 & s_\\theta & c_\\theta\n\\end{bmatrix}\n\n\n\n𝐑y,θ=[cθ0sθ010−sθ0cθ]\n\\bm{R}_{y,\\theta} = \n\\begin{bmatrix}\nc_\\theta & 0 & s_\\theta \\\\ 0 & 1 & 0 \\\\ -s_\\theta & 0 & c_\\theta\n\\end{bmatrix}\n\n\n\n𝐑z,θ=[cθ−sθ0sθcθ0001]\n\\bm{R}_{z,\\theta} = \n\\begin{bmatrix}\nc_\\theta & -s_\\theta & 0 \\\\ s_\\theta & c_\\theta & 0 \\\\ 0 & 0 & 1\n\\end{bmatrix}\n\n\n\n\n\n\nRecall from Euler’s rotation theorem that any rotation can be represented by not more than three rotations about coordinate axes.\nThis means that an arbitrary rotation between frames can be decomposed into a sequence of three rotation angles and associated rotation axes."
+  },
+  {
+    "objectID": "02_rigid_motions.html#constraints-in-the-rotation-matrix",
+    "href": "02_rigid_motions.html#constraints-in-the-rotation-matrix",
+    "title": "02_rigid_motions",
+    "section": "Constraints in the rotation matrix",
+    "text": "Constraints in the rotation matrix\n\n\nThe nine elements rijr_{ij} in an arbitrary rotational transformation 𝐑∈𝐒𝐎(3)\\bm{R} \\in \\bm{SO}(3) are not independent quantities:\nColumns of 𝐑\\bm{R} are unit vectors and they are mutually orthogonal:\n\n∑irij2=1,j∈{1,2,3},r1ir1j+r2ir2j+r3ir3j=0,i≠j.\n\\begin{aligned}\n\\sum_{i}r_{ij}^2 &= 1, \\quad j \\in \\{1, 2, 3\\}, \\\\\nr_{1i}r_{1j} + r_{2i}r_{2j} + r_{3i}r_{3j} &= 0, \\quad i \\neq j.\n\\end{aligned}\n\n\n\n\n\n\nThere are three free parameters!\n\n\nTogether, these constraints define six independent equations with nine unknowns."
+  },
+  {
+    "objectID": "02_rigid_motions.html#euler-angles-zyz",
+    "href": "02_rigid_motions.html#euler-angles-zyz",
+    "title": "02_rigid_motions",
+    "section": "Euler angles (ZYZ)",
+    "text": "Euler angles (ZYZ)\n\n\n\nFirst rotate by the angle ϕ\\phi about the zz-axis,\nNext rotate by the angle θ\\theta about the yy-axis,\nFinally rotate by the angle ψ\\psi about the zz-axis.\n\n\n\n\n\n\n\n𝐑ZYZ=𝐑z,ϕ𝐑y,ϕ𝐑z,ψ=[cϕ−sϕ0sϕcϕ0001][cθ0sθ010−sθ0cθ][cψ−sψ0sψcψ0001]=[cϕcθcψ−sϕsψ−cϕcθsψ−sϕcψcϕsθsϕcθcψ+cϕsψ−sϕcθsψ+cϕcψsϕsθ−sθcψsθsψcθ].\n\\begin{aligned}\n\\bm{R}_{ZYZ} = \\bm{R}_{z,\\phi}\\bm{R}_{y,\\phi}\\bm{R}_{z,\\psi} &= \n\\begin{bmatrix}\nc_\\phi& -s_\\phi& 0 \\\\ s_\\phi & c_\\phi & 0 \\\\ 0 & 0 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\nc_\\theta & 0 & s_\\theta \\\\ 0 & 1 & 0 \\\\ -s_\\theta & 0 & c_\\theta\n\\end{bmatrix}\n\\begin{bmatrix}\nc_\\psi& -s_\\psi& 0 \\\\ s_\\psi & c_\\psi & 0 \\\\ 0 & 0 & 1\n\\end{bmatrix} \\\\ \n&= \\begin{bmatrix}\nc_\\phi c_\\theta c_\\psi - s_\\phi s_\\psi & -c_\\phi c_\\theta s_\\psi - s_\\phi c_\\psi & c_\\phi s_\\theta \\\\\ns_\\phi c_\\theta c_\\psi + c_\\phi s_\\psi & -s_\\phi c_\\theta s_\\psi + c_\\phi c_\\psi & s_\\phi s_\\theta \\\\\n-s_\\theta c_\\psi & s_\\theta s_\\psi & c_\\theta\n\\end{bmatrix}.\n\\end{aligned}"
+  },
+  {
+    "objectID": "02_rigid_motions.html#zyz-euler-angles-inverse-problem",
+    "href": "02_rigid_motions.html#zyz-euler-angles-inverse-problem",
+    "title": "02_rigid_motions",
+    "section": "ZYZ Euler angles: inverse problem",
+    "text": "ZYZ Euler angles: inverse problem\n\n\n\nFor a given 𝐑∈𝐒𝐎(3)\\bm{R} \\in \\bm{SO}(3), find a set of Euler angles ϕ\\phi, θ\\theta, and ψ\\psi that satisfy\n𝐑=[cϕcθcψ−sϕsψ−cϕcθsψ−sϕcψcϕsθsϕcθcψ+cϕsψ−sϕcθsψ+cϕcψsϕsθ−sθcψsθsψcθ].\n\\bm{R} = \n\\begin{bmatrix}\nc_\\phi c_\\theta c_\\psi - s_\\phi s_\\psi & -c_\\phi c_\\theta s_\\psi - s_\\phi c_\\psi & c_\\phi s_\\theta \\\\\ns_\\phi c_\\theta c_\\psi + c_\\phi s_\\psi & -s_\\phi c_\\theta s_\\psi + c_\\phi c_\\psi & s_\\phi s_\\theta \\\\\n-s_\\theta c_\\psi & s_\\theta s_\\psi & c_\\theta\n\\end{bmatrix}.\n\n\n\n\n\n\n\nCase 1. Not both r13r_{13}, r23r_{23} are zero.\n\n\n\nsθ≠0s_\\theta \\neq 0. thus, not both r31r_{31}, r32r_{32} are zero.\nTherefore, r33≠±1r_{33} \\neq \\pm 1 and we have cθ=r33c_\\theta = r_{33} and sθ=±1−r332s_\\theta = \\pm \\sqrt{1 - r_{33}^2}.\nThere are two solutions, depending on the sign chosen for θ\\theta.\n\n\n\n\nθ=arctan2(r33,1−r332)θ=arctan2(r33,−1−r332)\n\\begin{aligned}\n  \\theta &= \\arctan_2{ \\left( r_{33}, \\sqrt{1-r_{33}^2} \\right) } \\\\\n  \\theta &= \\arctan_2{ \\left( r_{33}, -\\sqrt{1-r_{33}^2} \\right) }\n\\end{aligned}\n\n\n\nϕ=arctan2(r13,r23)ϕ=arctan2(−r13,−r23)\n\\begin{aligned}\n  \\phi &= \\arctan_2{ \\left( r_{13}, r_{23} \\right) } \\\\\n  \\phi &= \\arctan_2{ \\left( -r_{13}, -r_{23} \\right) }\n\\end{aligned}\n\n\n\nψ=arctan2(−r31,r32)ψ=arctan2(r31,−r32)\n\\begin{aligned}\n  \\psi &= \\arctan_2{ \\left( -r_{31}, r_{32} \\right) } \\\\\n  \\psi &= \\arctan_2{ \\left( r_{31}, -r_{32} \\right) }\n\\end{aligned}"
+  },
+  {
+    "objectID": "02_rigid_motions.html#zyz-euler-angles-inverse-problem-1",
+    "href": "02_rigid_motions.html#zyz-euler-angles-inverse-problem-1",
+    "title": "02_rigid_motions",
+    "section": "ZYZ Euler angles: inverse problem",
+    "text": "ZYZ Euler angles: inverse problem\n\n\n\nCase 2. r13=r23=0r_{13} = r_{23} = 0 so that r33=±1r_{33} = \\pm 1 and r31=r32=0r_{31} = r_{32} = 0.\n\n\n\n𝐑\\bm{R} has the form\n\n\n𝐑=[r11r120r12r22000±1]. \\bm{R} = \\begin{bmatrix} r_{11} & r_{12} & 0 \\\\ \nr_{12} & r_{22} & 0 \\\\ 0 & 0 & \\pm 1 \\end{bmatrix}. \n\n\nIf r33=+1r_{33} = +1, then cθ=1c_\\theta = 1 and sθ=0s_\\theta = 0 so that θ=0\\theta = 0 and 𝐑\\bm{R} becomes\n\n\n𝐑=[cϕcψ−sϕsψ−cϕsψ−sϕcψ0sϕcψ+cϕsψ−sϕsψ+cϕcψ0001]=[cϕ+ψ−sϕ+ψ0sϕ+ψcϕ+ψ0001].\n\\bm{R} = \n\\begin{bmatrix}\n  c_\\phi c_\\psi - s_\\phi s_\\psi & -c_\\phi s_\\psi - s_\\phi c_\\psi & 0 \\\\\n  s_\\phi c_\\psi + c_\\phi s_\\psi & -s_\\phi s_\\psi + c_\\phi c_\\psi & 0 \\\\\n  0 & 0 & 1\n\\end{bmatrix} = \n\\begin{bmatrix}\n  c_{\\phi+\\psi} & -s_{\\phi+\\psi} & 0 \\\\\n  s_{\\phi+\\psi} & c_{\\phi+\\psi} & 0 \\\\\n  0 & 0 & 1\n\\end{bmatrix}.\n\n\nThus, the sum can be determined as ϕ+ψ=arctan2(r11,r21)=arctan2(r11,−r12). \\phi + \\psi = \\arctan_2{ \\left( r_{11}, \nr_{21} \\right) } = \\arctan_2{ \\left( r_{11}, -r_{12} \\right) }. \n\nIf r33=−1r_{33} = -1, then cθ=−1c_\\theta = -1 and sθ=0s_\\theta = 0 so that θ=π\\theta = \\pi and 𝐑\\bm{R} becomes\n\n\n𝐑=[−cϕ−ψ−sϕ−ψ0sϕ−ψcϕ−ψ000−]=[r11r120r21r22000−1].\n\\bm{R} = \n\\begin{bmatrix}\n  -c_{\\phi-\\psi} & -s_{\\phi-\\psi} & 0 \\\\\n  s_{\\phi-\\psi} & c_{\\phi-\\psi} & 0 \\\\\n  0 & 0 & -\n\\end{bmatrix} = \n\\begin{bmatrix}\n  r_{11} & r_{12} & 0 \\\\ r_{21} & r_{22} & 0 \\\\ 0 & 0 & -1\n\\end{bmatrix}.\n\n\nThe solution isϕ−ψ=arctan2(−r11,−r12). \\phi - \\psi = \\arctan_2{ \\left( -r_{11}, -r_{12} \\right) }."
+  },
+  {
+    "objectID": "02_rigid_motions.html#pose-in-three-dimensions",
+    "href": "02_rigid_motions.html#pose-in-three-dimensions",
+    "title": "02_rigid_motions",
+    "section": "Pose in three dimensions",
+    "text": "Pose in three dimensions\n\n\n\nLet’s account for the trnaslation btw. the origins of {A}\\{A\\} and {B}\\{B\\}.\n𝐭∈ℝ3\\bm{t} \\in \\mathbb{R}^3 is a vector defining the origin of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\} and 𝐑\\bm{R} is the rotation matrix describing the orientation of the axes of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\}. (xayaza1)=[A𝐑B𝐭01×31](xbybzb1)\n\\begin{pmatrix}\nx_a \\\\ y_a \\\\ z_a \\\\ 1\n\\end{pmatrix} = \n\\begin{bmatrix}\n{^A}\\bm{R}_B & \\bm{t} \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}\n\\begin{pmatrix}\nx_b \\\\ y_b \\\\ z_b \\\\ 1\n\\end{pmatrix}\n\nIf points are represented by homogeneous coordinate vectors, then A𝐩=[A𝐑B𝐭01×31]B𝐩=A𝐓BB𝐩. {^A}\\bm{p} = \n\\begin{bmatrix}\n{^A}\\bm{R}_B & \\bm{t} \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix} {^B}\\bm{p} = {^A}\\bm{T}_B{^B}\\bm{p}.\n\nThe matrix A𝐓B{^A}\\bm{T}_B has a very specific structure and belongs to the special Euclidean group of dimension 33 or 𝐓∈𝐒𝐄(3)⊆ℝ4×4\\bm{T} \\in \\bm{SE}(3) \\subseteq \\mathbb{R}^{4 \\times 4}.\n\n\n\n\n\n\n\n\n\n3D coordinate frames\n\n\n{B}\\{B\\} is rotated and translated w.r.t. {A}\\{A\\}."
+  },
+  {
+    "objectID": "02_rigid_motions.html#homogeneous-transformations-in-3d",
+    "href": "02_rigid_motions.html#homogeneous-transformations-in-3d",
+    "title": "02_rigid_motions",
+    "section": "Homogeneous transformations in 33D",
+    "text": "Homogeneous transformations in 33D\n\n\n\nProperties of homogeneous transformations\n\n\nA concrete representation of relative pose ξ\\xi is ξ∼𝐓∈𝐒𝐄(3)\\xi \\sim \\bm{T} \\in \\bm{SE}(3) and 𝐓1⊕𝐓2↦𝐓1𝐓2\\bm{T}_1 \\oplus \\bm{T}_2 \\mapsto \\bm{T}_1\\bm{T}_2 which is the standard matrix multiplication\n𝐓1𝐓2=[𝐑1𝐭101×31][𝐑2𝐭201×31][𝐑1𝐑2𝐭1+R1t201×31].\n\\bm{T}_1 \\bm{T}_2 = \n\\begin{bmatrix}\n\\bm{R}_1 & \\bm{t}_1 \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n\\bm{R}_2 & \\bm{t}_2 \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n\\bm{R}_1\\bm{R}_2 & \\bm{t}_1 + R_1t_2 \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}.\n\nOne of the algebraic rules was ξ⊕0=ξ\\xi \\oplus 0 = \\xi. For matrices, we know that 𝐓𝐈=𝐓\\bm{T} \\bm{I} = \\bm{T}, where 𝐈\\bm{I} is the identity matrix. So for pose, we make the identification 0↔𝐈0 \\leftrightarrow \\bm{I}.\nAnother rule was that ξ⊖ξ=0\\xi \\ominus \\xi = 0. We know for matrices that 𝐓𝐓−1=𝐈\\bm{T} \\bm{T}^{-1} = \\bm{I}, which implies that ⊖𝐓↔𝐓−1\\ominus \\bm{T} \\leftrightarrow \\bm{T}^{-1}.\n𝐓−1=[𝐑𝐭01×31]−1=[𝐑⊤−𝐑⊤𝐭01×31].\n\\bm{T}^{-1} = \\begin{bmatrix} \\bm{R} & \\bm{t} \\\\ \\bm{0}_{1 \\times 3} & 1 \n\\end{bmatrix}^{-1} = \\begin{bmatrix} \\bm{R}^\\top & -\\bm{R}^\\top \\bm{t} \\\\ \n\\bm{0}_{1 \\times 3} & 1 \\end{bmatrix}.\n\nFinally, for a point 𝐩\\bm{p} in homogeneous representation, we have 𝐓•𝐩↔𝐓𝐩\\bm{T} \\bullet \\bm{p} \\leftrightarrow \\bm{Tp}, which is a standard matrix-vector product.\n\n\n\nThe 4×44 \\times 4 homogeneous transformation is very commonly used in robotics, computer graphics, and computer vision.\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+  }
+]
