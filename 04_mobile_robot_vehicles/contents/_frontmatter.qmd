@@ -1,0 +1,36 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Mobile Robot Vehicles*
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+__Instructor__: Aykut Satici, Ph.D. <br>
+
+&nbsp;
+
+* Mechanical and Biomedical Engineering <br>
+* Electrical and Computer Engineering <br>
+* Boise State University, Boise, ID, USA
+
+:::
+
+::: {.column width="40%"}
+
+__Topics__: <br>
+
+* Wheeled Mobile Robots
+  * Car-like mobile robots
+  * Differentially-steered vehicle
+  * Omnidirectional vehicle
+* Flying robots
+
+:::
+
+::::

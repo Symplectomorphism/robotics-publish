@@ -1,0 +1,76 @@
+## Omnidirectional vehicle {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+* Omnidirectional wheels remove the nonholonomic constraint, simplifying control
+algorithms.
+* Such ''Swedish'' wheels comprises a number of rollers set around a
+circumference of the wheel with their axes at an angle of $\alpha$ relative to
+the axle of the wheel.
+* The rollers have a barrel shape so only one point on the roller is in contact
+with the ground at any time.
+* Rotation of the wheel will cause a forward velocity of $R\omega \bm{x}_W$
+where $R$ is the wheel radius.
+* Because the roller is free to roll in the direction indicated by the green
+line, normal to the roller's axis, there is potentially arbitrary velocity in
+that direction.
+* Resolve a desired velocity $\bm{v}$ into two components, one parallel to
+$\bm{x}_W$ and one parallel to the rolling direction
+$$
+\begin{aligned}
+\bm{v} &= \underbrace{v_W\bm{x}_W}_{\text{driven}} + \underbrace{v_r\left(
+\cos{\alpha} \bm{x}_W + \sin{\alpha}\bm{y}_W\right)}_{\text{rolling}} \\ 
+&= \left( v_W + v_r \cos{\alpha}\right)\bm{x}_W + v_r \sin{\alpha} \bm{y}_W,
+\end{aligned}
+$$
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_17.svg" width=400 height=200/>
+</center>
+
+<center>
+<img src="contents/assets/kuka.png" width=400 height=300/>
+</center>
+
+:::
+
+::::
+
+
+
+## Omnidirectional vehicle {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+
+&nbsp;
+
+&nbsp;
+
+* Here $v_W$ is the speed due to wheel rotation and $v_r$ is the rolling speed.
+* Hence the required wheel rotation rate is $\omega = \frac{v_W}{R}$.
+* A single mecanum wheel does not allow any control in the rolling direction,
+but for three or more mecanum wheels, suitably arranged, the motion in the
+rolling direction of any one wheel will be driven by the other wheels.
+* The four wheel contact points indicated by the _gray dots_ have coordinate
+vectors ${^B}\bm{p}_i$. For a desired body velocity ${^B}\bm{v}_B$ and angular
+rate ${^B}\omega$ the velocity at each wheel contact point is
+$$ {^B}\bm{v}_i = {^B}\bm{v}_B + {^B}\omega \bm{z}_B \times {^B}\bm{p}_i. $$
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_18b.svg" width=300 height=300/>
+</center>
+
+<center>
+<img src="contents/assets/kuka.png" width=400 height=300/>
+</center>
+
+:::
+
+::::

@@ -1,0 +1,86 @@
+## Differentially-steered vehicle {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+* Differential steering steers by independently controlling the speed of the
+wheels on each side of the vehicle -- if the speeds are not equal the vehicle
+will turn.
+* The vehicle's velocity is bey definition $v$ in the vehicle's $x$-direction,
+and zero in the $y$-direction since the wheel's cannot slip sideways: $$
+{^B}\bm{v} = (v, 0). $$
+* The configuration of the vehicle is represented by the generalized coordinates
+$\bm{q} = (x, y, \theta) \in \mathcal{C} = \mathbb{R}^2 \times \mathbb{S}^1$.
+* The vehicle follows a curved path centered on ICR.
+* The left-hand wheels move at a speed of $v_L$ along an arc with a radius $R_L$
+while the right-hand wheels move at a speed of $v_R$ along an arc with a radius
+of $R_R$. The angular velocity is
+$$
+\dot{\theta} = \frac{v_L}{R_L} = \frac{v_R}{R_R} = \frac{v_R - v_L}{W},
+$$
+since $R_R = R_L + W$, with $W$ denoting the wheel separation.
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_14.svg" width=400 height=300/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Differential drive robot
+The robot is shown in _light gray_ and the unicycle approximation in _dark
+gray_. The vehicle follows a path around the ICP and the distance from the ICR
+to the left and right wheels is $R_L$ and $R_R$, respectively. We can use the
+alternative body frame $\left\{B^\prime\right\}$ for trajectory tracking control.
+:::
+
+:::
+
+::::
+
+
+## Differentially-steered vehicle {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+* The equations of motion are therefore
+$$
+\begin{aligned}
+\dot{x} &= v \cos{\theta}, \\
+\dot{y} &= v \sin{\theta}, \\
+\dot{\theta} &= \frac{v_\Delta}{W},
+\end{aligned}
+$$
+where $v = \frac{1}{2}\left(v_R+v_L\right)$ and $v_\Delta = v_R - v_L$ are the
+average and differential velocities, respectively.
+* For a desired speed $v$ and turn rate $\dot{\theta}$ we can solve for $v_R$
+and $v_L$. This kinematic model is often called the _unicycle model_.
+* Similar to the car-like vehicle, this model has a _nonholonomic constraint_ as
+well: $$ \dot{y} \cos{\theta} - \dot{x} \sin{\theta} = 0. $$
+* If we move the vehicle's reference frame to $\left\{B^\prime\right\}$ and
+ignore orientation, we can rewrite the EoM as
+$$
+\begin{pmatrix} \dot{x} \\ \dot{y} \end{pmatrix} = 
+\begin{bmatrix} \cos{\theta} & -a \sin{\theta} \\ \sin{\theta} & a \cos{\theta}
+\end{bmatrix}\begin{pmatrix} v \\ \omega \end{pmatrix}.
+$$
+(To be solved for desired $\dot{x}$ and $\dot{y}$.)
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_14.svg" width=400 height=300/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Differential drive robot
+The robot is shown in _light gray_ and the unicycle approximation in _dark
+gray_. The vehicle follows a path around the ICP and the distance from the ICR
+to the left and right wheels is $R_L$ and $R_R$, respectively. We can use the
+alternative body frame $\left\{B^\prime\right\}$ for trajectory tracking control.
+:::
+
+:::
+
+::::

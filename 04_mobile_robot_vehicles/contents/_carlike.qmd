@@ -1,0 +1,90 @@
+# Wheeled Mobile Robots
+
+## Car-like mobile robots {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+* A commonly used model for the low-speed behavior of a four-wheeled car-like 
+vehicle is the kinematic bicycle model.
+* The velocity of each wheel is in the plane of the wheel and the wheel rools
+w/o slipping sideways: $$ {^B}\bm{v} = (v, 0). $$
+* The _configuration_ of the vehicle is represented by the generalized
+coordinates $\bm{q} = (x, y, \theta) \in \mathcal{C} = \mathbb{R}^2 \times
+\mathbb{S}^1$.
+* The dashed lines show the direction along which the wheels cannot move; these
+lines of no motion intersect at the instantenous center of rotation (ICR).
+* The angular velocity is $$ \dot{\theta} = \frac{v}{R_B}, $$ and by simple
+geometry the turning radius is $R_B = \frac{L}{\tan \gamma}$, where $L$ is the
+length of the vehicle or _wheel base_.
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_1.svg" width=400 height=300/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Bicycle model of a car
+The car is shown in _light gray_ and the bicycle approximation is _dark gray_.
+The steering wheel angle is $\gamma$ and the velocity of the back 
+wheel in the $x$-direction, is $v$. The two wheel axes are extended as dashed 
+lines and intersect at the Instantaneous Center of Rotation (ICR) and the
+distance from the ICR to the back and front wheels is $R_B$ and $R_F$,
+respectively.
+:::
+
+:::
+
+
+::::
+
+
+## Car-like mobile robots {.smaller}
+
+:::: {.columns}
+
+::: {.column width="67%"}
+* For a fixed steering wheel angle, the car moves along a circular arc.
+* The velocity of the robot in the world frame is $(v \cos{\theta}, v
+\sin{\theta})$ so the equations of motion are
+
+$$
+\begin{aligned}
+\dot{x} &= v \cos{\theta}, \\
+\dot{y} &= v \sin{\theta}, \\
+\dot{\theta} &= \frac{v}{L} \tan{\gamma}.
+\end{aligned}
+$$
+
+::: {.callout-note icon="false"}
+## Characteristics of a car-like vehicle
+* When $v=0$ then $\dot{\theta} = 0$; i.e., it is not possible to change the
+vehicle's orientation when it is stationary.
+* In the world-coordinate frame, the velocity must satisfy an algebraic
+equality: $$ \dot{y}\cos{\theta} - \dot{x}\sin{\theta} \equiv 0, $$
+called a _nonholonomic constraint_. This equation cannot be integrated to form a
+_holonomic constraint_, i.e., a relationship between $x$, $y$, and $\theta$.
+:::
+
+:::
+
+::: {.column width="33%"}
+<center>
+<img src="contents/assets/fig4_1.svg" width=400 height=300/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Bicycle model of a car
+The car is shown in _light gray_ and the bicycle approximation is _dark gray_.
+The steering wheel angle is $\gamma$ and the velocity of the back 
+wheel in the $x$-direction, is $v$. The two wheel axes are extended as dashed 
+lines and intersect at the Instantaneous Center of Rotation (ICR) and the
+distance from the ICR to the back and front wheels is $R_B$ and $R_F$,
+respectively.
+:::
+
+:::
+
+
+::::
