@@ -1,0 +1,31 @@
+## Navigation[^1] {.smaller}
+[^1]: The problem of guiding a robot towards a goal.
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* Human approach: make maps and erect sign posts.
+* Many robotic tasks can be achieved without any map, using an approach
+referred to as _reactive navigation_.
+  - E.g.: navigating by heading towards a light, following a white line on the
+    ground.
+  - moving through a maze by following a wall,
+  - vacuuming a room by following a random path.
+* Human-style _map-based navigation_ is used by more sophisticated robots.
+* It is also known as _motion planning_.
+* It supports more complex tasks, but ...
+  - Imposes a number of requirements such as having a map of the environment.
+  - Also requires that the robot's position be known.
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/britain_map.png" width="250" height=400 />
+</center>
+
+<center>
+<img src="contents/assets/roomba_timelapse.png" width="400" height=200 />
+</center>
+:::
+
+::::

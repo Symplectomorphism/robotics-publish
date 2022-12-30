@@ -1,0 +1,35 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Navigation*
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+__Instructor__: Aykut Satici, Ph.D. <br>
+
+&nbsp;
+
+* Mechanical and Biomedical Engineering <br>
+* Electrical and Computer Engineering <br>
+* Boise State University, Boise, ID, USA
+
+:::
+
+::: {.column width="45%"}
+
+__Topics__: <br>
+
+* Reactive Navigation
+* Map-Based Planning
+  * $D^\star$
+  * Rapidly-Exploring Random Tree (RRT)
+
+:::
+
+::::

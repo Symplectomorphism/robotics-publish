@@ -1,0 +1,132 @@
+# Map-Based Planning
+
+... when a robot is a goal oriented machine that can sense, <mark>plan</mark> and act.
+
+
+## $D^*$ {.smaller}
+
+* $D^*$ is popular algorithm that finds the best path through a graph, which it 
+first computes, that corresponds to the input occupancy grid.
+
+* Firstly, it generalizes the occupancy grid to a cost map, representing the
+cost $c > 0$ of traversing each cell in the horizontal or vertical direction.
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+<br>
+
+* $D^*$ finds the path that minimizes the total cost of travel, e.g.,
+  - shortest time to reach the goal,
+  - maximizing passenger comfort, etc.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/dstarpath.png" width=400 height=200 />
+</center>
+:::
+
+* Secondly, $D^*$ supports incremental replanning at a much lower computational
+cost than complete-replanning.
+
+::::
+
+
+## Implementation of $D^*$ {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* We create a very dense directed graph.
+  - Every cell is a vertex and has a cost: distance to the goal.
+  - Each vertex has an edge to the neighboring cell that is closest to the goal.
+  - Each vertex has a state $t \in \{\text{NEW,OPEN,CLOSED}\}$.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/dstarpath.png" width=400 height=200 />
+</center>
+:::
+
+* Initially every cell is in the NEW state, the cost of the goal cell is zero
+and its state is OPEN.
+* Think of the set of all cells in the OPEN state as a wavefront
+propagating outward from the goal.
+* The cost of reaching cells that are neighbors of an OPEN cell is computed and
+these cells are in turn set to OPEN and the original cell is removed from the
+open list and becomes CLOSED.
+* The real power of $D^*$ comes from beinge able to efficiently change the cost
+map during the mission.
+  - In reality, sensors have a finite range and a robot discovers more of world
+    as it proceeds.
+
+::::
+
+
+
+## Rapidly-exploring random tree (RRT) {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* RRT is able to take into account the motion model of the vehicle.
+* Unlike $D^*$ that plans over a regular grid, RRT uses probabilistic methods.
+* Figure shows a family of paths that the bicycle model would follow in the
+configuration space.
+  - Paths are computed over a fixed time interval,
+  - for discrete values of velocity, forward and backward 
+  - various steering angles.
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/bicycle_model.png" width=300 height=300/>
+</center>
+:::
+
+* This demonstrates clearly the subset of all possible configurations that a
+nonholonomic vehicle can reach from a given initial configuration.
+
+::::
+
+
+
+## Implementation of RRT {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* A graph of robot configurations is maintained: each node is a configuration
+$\bm{q} \in \mathbb{R}^2 \times \mathbb{S}^1$.
+* A random configuration $\bm{q}_{\text{rand}}$ is chosen, and the node with the
+closest configuration, $\bm{q}_{\text{near}}$ is found.
+  - this configuration is near in terms of a cost function that includes
+    distance and orientation.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/fig5_margin2.svg" width=200 height=200/>
+</center>
+:::
+
+* A control is computed that moves the robot from $\bm{q}_{\text{near}}$ toward
+$\bm{q}_{\text{rand}}$.
+* The configuration that it reaches is $\bm{q}_{\text{new}}$ and this is added
+to the graph.
+
+* For any desired starting configuration, we can find the closest configuration
+in the graph and work backward toward the starting configuration.
+  - Determine the sequence of steering angles and velocities needed to move from
+    the start to the goal configuration.
+
+* To handle obstacles, 
+  - the configuration $\bm{q}_{\text{rand}}$ is discarded if it lies within an obstacle
+  - the point $\bm{q}_{\text{near}}$ will not be added to the graph if the path
+    from $\bm{q}_{\text{near}}$ toward $\bm{q}_{\text{rand}}$ intersects an
+    obstacle.
+
+::::

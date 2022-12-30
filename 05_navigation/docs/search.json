@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "05_navigation.html#robotics-and-automated-systems",
+    "href": "05_navigation.html#robotics-and-automated-systems",
+    "title": "05_navigation",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nNavigation\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nReactive Navigation\nMap-Based Planning\n\nD⋆D^\\star\nRapidly-Exploring Random Tree (RRT)"
+  },
+  {
+    "objectID": "05_navigation.html#navigation1",
+    "href": "05_navigation.html#navigation1",
+    "title": "05_navigation",
+    "section": "Navigation1",
+    "text": "Navigation1\n\n\n\nHuman approach: make maps and erect sign posts.\nMany robotic tasks can be achieved without any map, using an approach referred to as reactive navigation.\n\nE.g.: navigating by heading towards a light, following a white line on the ground.\nmoving through a maze by following a wall,\nvacuuming a room by following a random path.\n\nHuman-style map-based navigation is used by more sophisticated robots.\nIt is also known as motion planning.\nIt supports more complex tasks, but …\n\nImposes a number of requirements such as having a map of the environment.\nAlso requires that the robot’s position be known.\n\n\n\n\n\n\n\n\n\n\n\nThe problem of guiding a robot towards a goal."
+  },
+  {
+    "objectID": "05_navigation.html#braitenberg-vehicles",
+    "href": "05_navigation.html#braitenberg-vehicles",
+    "title": "05_navigation",
+    "section": "Braitenberg Vehicles",
+    "text": "Braitenberg Vehicles\n\nThey have no explicit internal representation of the environment in which tye operate and they do not make explicit plans.\nExample problem: robot moving in 22D that is seeking the local maxima of light intensity.\n\n\n\n\nWe estimate the gradient using two sensors on each side of the robot’s body.\nSensors return the intensity on the right and left of the robot.\nSteer the heading angle of a mobile robot by looking at the difference between the intensities on either side of the robot.\nSet the speed of the robot to zero if the sensors are both giving maximal values, otherwise increase it gradually.\n\n\n\n\n\n\n\n\nPath of the Braitenberg vehicle\n\n\nMoving toward the maximum of a 22D scalar field whose magnitude is shown color coded."
+  },
+  {
+    "objectID": "05_navigation.html#simple-automata-a.k.a.-bugs",
+    "href": "05_navigation.html#simple-automata-a.k.a.-bugs",
+    "title": "05_navigation",
+    "section": "Simple Automata (a.k.a. bugs)",
+    "text": "Simple Automata (a.k.a. bugs)\n\n∃\\exists many bug algorithms which share the ability to sense when they are close to an obstacle.\nThey are similar to Braitenberg class, but the bug includes a state machine and other logic in between sensors and the motors.\nThe automata have memory which the Braitenberg vehicle lacked.\n\n\n\n\nAssumptions:\n\nrobot operates in a (occupancy) grid world and occupies one grid cell.\nrobot is capable of omnidirectional motion.\nit can determine its position on the plane.\nit can only sense its goal and whether adjacent cells are occupied.\n\nThe map is not used by the robot, its just there for simulation/demonstration purposes.\n\n\n\n\n\n\n\n\nMap of the environment\n\n\nApprox. scale = 4.54.5 cm. per cell.\nRed: obstacles; Green: path taken."
+  },
+  {
+    "objectID": "05_navigation.html#simple-automata-a.k.a.-bugs-1",
+    "href": "05_navigation.html#simple-automata-a.k.a.-bugs-1",
+    "title": "05_navigation",
+    "section": "Simple Automata (a.k.a. bugs)",
+    "text": "Simple Automata (a.k.a. bugs)\n\n\n\nThe robot is given a straight line – the m-line – towards its goal.\nStrategy:\n\nIf obstacle is encountered, turn right and continue until a point on the m-line is encountered that is close to the goal than when it departed from the m-line.\n\nNotice in the example the bug reached the goal but it has taken a very suboptimal route.\n\ntraversed the inside of a wardrobe\nwent behind doors and visited two bathrooms.\n\nFundamentally, the robot is limted by not using a map.\n\nIt cannot see the big picture.\nTherefore takes paths that are locally, rather than globally, optimal.\n\n\n\n \n\n\n\n\n\n\nMap of the environment\n\n\nApprox. scale = 4.54.5 cm. per cell.\nRed: obstacles; Green: path taken."
+  },
+  {
+    "objectID": "05_navigation.html#d",
+    "href": "05_navigation.html#d",
+    "title": "05_navigation",
+    "section": "D*D^*",
+    "text": "D*D^*\n\nD*D^* is popular algorithm that finds the best path through a graph, which it first computes, that corresponds to the input occupancy grid.\nFirstly, it generalizes the occupancy grid to a cost map, representing the cost c>0c > 0 of traversing each cell in the horizontal or vertical direction.\n\n\n\n\n\nD*D^* finds the path that minimizes the total cost of travel, e.g.,\n\nshortest time to reach the goal,\nmaximizing passenger comfort, etc.\n\n\n\n\n\n\n\nSecondly, D*D^* supports incremental replanning at a much lower computational cost than complete-replanning."
+  },
+  {
+    "objectID": "05_navigation.html#implementation-of-d",
+    "href": "05_navigation.html#implementation-of-d",
+    "title": "05_navigation",
+    "section": "Implementation of D*D^*",
+    "text": "Implementation of D*D^*\n\n\n\nWe create a very dense directed graph.\n\nEvery cell is a vertex and has a cost: distance to the goal.\nEach vertex has an edge to the neighboring cell that is closest to the goal.\nEach vertex has a state t∈{NEW,OPEN,CLOSED}t \\in \\{\\text{NEW,OPEN,CLOSED}\\}.\n\n\n\n\n\n\n\nInitially every cell is in the NEW state, the cost of the goal cell is zero and its state is OPEN.\nThink of the set of all cells in the OPEN state as a wavefront propagating outward from the goal.\nThe cost of reaching cells that are neighbors of an OPEN cell is computed and these cells are in turn set to OPEN and the original cell is removed from the open list and becomes CLOSED.\nThe real power of D*D^* comes from beinge able to efficiently change the cost map during the mission.\n\nIn reality, sensors have a finite range and a robot discovers more of world as it proceeds."
+  },
+  {
+    "objectID": "05_navigation.html#rapidly-exploring-random-tree-rrt",
+    "href": "05_navigation.html#rapidly-exploring-random-tree-rrt",
+    "title": "05_navigation",
+    "section": "Rapidly-exploring random tree (RRT)",
+    "text": "Rapidly-exploring random tree (RRT)\n\n\n\nRRT is able to take into account the motion model of the vehicle.\nUnlike D*D^* that plans over a regular grid, RRT uses probabilistic methods.\nFigure shows a family of paths that the bicycle model would follow in the configuration space.\n\nPaths are computed over a fixed time interval,\nfor discrete values of velocity, forward and backward\nvarious steering angles.\n\n\n\n\n\n\n\nThis demonstrates clearly the subset of all possible configurations that a nonholonomic vehicle can reach from a given initial configuration."
+  },
+  {
+    "objectID": "05_navigation.html#implementation-of-rrt",
+    "href": "05_navigation.html#implementation-of-rrt",
+    "title": "05_navigation",
+    "section": "Implementation of RRT",
+    "text": "Implementation of RRT\n\n\n\nA graph of robot configurations is maintained: each node is a configuration 𝐪∈ℝ2×𝕊1\\bm{q} \\in \\mathbb{R}^2 \\times \\mathbb{S}^1.\nA random configuration 𝐪rand\\bm{q}_{\\text{rand}} is chosen, and the node with the closest configuration, 𝐪near\\bm{q}_{\\text{near}} is found.\n\nthis configuration is near in terms of a cost function that includes distance and orientation.\n\n\n\n\n\n\n\nA control is computed that moves the robot from 𝐪near\\bm{q}_{\\text{near}} toward 𝐪rand\\bm{q}_{\\text{rand}}.\nThe configuration that it reaches is 𝐪new\\bm{q}_{\\text{new}} and this is added to the graph.\nFor any desired starting configuration, we can find the closest configuration in the graph and work backward toward the starting configuration.\n\nDetermine the sequence of steering angles and velocities needed to move from the start to the goal configuration.\n\nTo handle obstacles,\n\nthe configuration 𝐪rand\\bm{q}_{\\text{rand}} is discarded if it lies within an obstacle\nthe point 𝐪near\\bm{q}_{\\text{near}} will not be added to the graph if the path from 𝐪near\\bm{q}_{\\text{near}} toward 𝐪rand\\bm{q}_{\\text{rand}} intersects an obstacle.\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+  }
+]

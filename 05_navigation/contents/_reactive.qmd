@@ -1,0 +1,116 @@
+# Reactive Navigation
+
+... when a robot is a goal oriented machine that can sense, <s>plan</s> and act.
+
+
+## Braitenberg Vehicles {.smaller}
+
+* They have no explicit internal representation of the environment in which tye
+operate and they do not make explicit plans.
+* Example problem: robot moving in $2$D that is seeking the local
+maxima of light intensity.
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* We estimate the gradient using two sensors on each side of the robot's body.
+* Sensors return the intensity on the right and left of the robot.
+* Steer the heading angle of a mobile robot by looking at the difference between
+the intensities on either side of the robot.
+* Set the speed of the robot to zero if the sensors are both giving maximal
+values, otherwise increase it gradually.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/braitenberg_path.png" width=300 height=200/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Path of the Braitenberg vehicle
+Moving toward the maximum of a $2$D scalar field whose magnitude is shown color
+coded.
+:::
+
+:::
+
+::::
+
+
+
+## Simple Automata (a.k.a. bugs) {.smaller}
+
+* $\exists$ many _bug_ algorithms which share the ability to sense
+when they are close to an obstacle.
+
+* They are similar to Braitenberg class, but the _bug_ includes a state machine
+and other logic in between sensors and the motors.
+* The automata have memory which the Braitenberg vehicle lacked.
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* Assumptions: 
+  - robot operates in a (occupancy) grid world and occupies one grid cell.
+  - robot is capable of omnidirectional motion.
+  - it can determine its position on the plane.
+  - it can only sense its goal and whether adjacent cells are occupied.
+* The map is not used by the robot, its just there for simulation/demonstration
+purposes.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/bug.png" width=300 height=200/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Map of the environment
+Approx. scale = $4.5$ cm. per cell.
+
+Red: obstacles; Green: path taken.
+:::
+
+:::
+
+::::
+
+## Simple Automata (a.k.a. bugs) {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+* The robot is given a straight line -- the m-line -- towards its goal.
+* Strategy:
+  - If obstacle is encountered, turn right and continue until a point on the
+    m-line is encountered that is close to the goal than when it departed from
+    the m-line.
+* Notice in the example the bug reached the goal but it has taken a very
+suboptimal route.
+  - traversed the inside of a wardrobe
+  - went behind doors and visited two bathrooms.
+* Fundamentally, the robot is limted by not using a map.
+  - It cannot see the big picture.
+  - Therefore takes paths that are locally, rather than globally, optimal.
+
+:::
+
+::: {.column width="30%"}
+
+&nbsp;
+
+<center>
+<img src="contents/assets/bug.png" width=300 height=200/>
+</center>
+
+::: {.callout-tip icon="false"}
+## Map of the environment
+Approx. scale = $4.5$ cm. per cell.
+
+Red: obstacles; Green: path taken.
+:::
+
+:::
+
+::::
