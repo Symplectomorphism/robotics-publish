@@ -1,0 +1,230 @@
+# Localizing with a Map
+
+## Localizing with a map {.smaller}
+
+* Recall: uncertainty in position grows w/o bound using dead-reckoning alone.
+* The solution, as the Phoenicians worked out $4,000$ years ago, is to bring in
+additional information from observations of known features in the world.
+  - In the examples, we will use a map that contains $N$ fixed but randomly
+    located landmarks whose positions are known.
+* The robot is equipped with a sensor that provides observations of the
+landmarks w.r.t. the robot, described by $$ \bm{z} = \bm{h}(\bm{x}, \bm{p}_i), $$
+where $\bm{p}_i = \left(x_i, y_i\right)^\top$ is the _known_ location of the
+$i^{\text{th}}$ landmark in the world frame.
+
+* To make this concrete, let's consider a common type of snesor that measures
+the range and bearing angle to a landmark in the environment
+  - such as radar or a scanning-laser rangefinder.
+
+:::{.callout-tip icon="false"}
+## Observation of the $i^{\text{th}}$ landmark
+$$
+\bm{z} = \bm{h}(\bm{x}, \bm{p}_i) = 
+\begin{pmatrix}
+\sqrt{ \left(y_i - y_v \right)^2 + \left(x_i - x_v\right)^2 } \\ 
+\arctan{\left(y_i-y_v, x_i-x_v\right)} - \theta_v
+\end{pmatrix} + 
+\begin{pmatrix} w_r \\ w_\beta \end{pmatrix}
+$$
+
+:::
+
+
+## Localizing with a map {.smaller}
+
+:::{.callout-tip icon="false"}
+## Observation of the $i^{\text{th}}$ landmark
+$$
+\bm{z} = \bm{h}(\bm{x}, \bm{p}_i) = 
+\begin{pmatrix}
+\sqrt{ \left(y_i - y_v \right)^2 + \left(x_i - x_v\right)^2 } \\ 
+\arctan{\left(y_i-y_v, x_i-x_v\right)} - \theta_v
+\end{pmatrix} + 
+\begin{pmatrix} w_r \\ w_\beta \end{pmatrix}
+$$
+:::
+
+* $\bm{z} = (r, \beta)^\top$, $r$ is the range, $\beta$ is the bearing angle.
+* $\bm{w} = \left(w_r, w_\beta\right)^\top \sim \mathcal{N}(0, \bm{W}), \;\;
+\bm{W} = \text{diag}\{ \sigma_r^2, \sigma_\beta^2 \}$: constant covariance
+matrix.
+* In implementation, this sensor return the range and bearing to some landmark 
+along with its identity (to avoid data association problem).
+  - Recall: the location $(x_i, y_i)$ of the measured landmark is known in the world frame.
+* Using the equation above, the robot can estimate the range and bearing angle
+to the landmark based on its own estimated position and the known position of
+the landmark from the map.
+* Any difference between the observation $\bm{z}^\sharp$ and the estimated
+observation indicates an error in the robot's pose estimate $\hat{\bm{x}}$ -- it
+isn't where it _thought_ it was!
+
+
+## Localizing with a map {.smaller}
+
+* This difference
+
+::: {.callout-tip icon="false"}
+## Observation error
+$$
+\bm{\nu} = \bm{z}^\sharp \langle k+1 \rangle - \bm{h}\left(\hat{{\bm{x}}} 
+\langle k + 1 \rangle, \bm{p}_i \right)
+$$
+:::
+is key to the operation of the Kalman filter.
+
+* It is called the innovation since it represents _new_ information.
+* Kalman filter uses the innovation to correct the state estimate and update the
+uncertainty estimate in an optimal way.
+* The predicted state, computed earlier, is updated by
+
+::: {.callout-note icon="false"}
+## Kalman filter update equations
+$$
+\begin{aligned}
+\hat{\bm{x}} \langle k+1 \rangle &= \hat{\bm{x}}^+ \langle k+1 \rangle +
+\bm{K}\bm{\nu} \\
+\hat{\bm{P}} \langle k+1 \rangle &= \hat{\bm{P}}^+ \langle k+1 \rangle -
+\bm{K}\bm{H}_x\hat{\bm{P}}^+ \langle k+1 \rangle
+\end{aligned}
+$$
+:::
+
+
+## Localizing with a map {.smaller}
+
+::: {.callout-note icon="false"}
+## Kalman filter update equations
+$$
+\begin{aligned}
+\hat{\bm{x}} \langle k+1 \rangle &= \hat{\bm{x}}^+ \langle k+1 \rangle +
+\bm{K}\bm{\nu} \\
+\hat{\bm{P}} \langle k+1 \rangle &= \hat{\bm{P}}^+ \langle k+1 \rangle -
+\bm{K}\bm{H}_x\hat{\bm{P}}^+ \langle k+1 \rangle
+\end{aligned}
+$$
+:::
+
+* These take the _predicted_ values for the next tiem step, denoted with the
+${~}^+$ and compute the optimal estimate by applying landmark measurement from
+step $k+1$.
+
+::: {.callout-note icon="false"}
+## Kalman gain
+$$
+\begin{aligned}
+\bm{K} &= \bm{P}^+ \langle k+1 \rangle \bm{H}_x^\top \bm{S}^{-1} \\
+\bm{S} &= \bm{H}_x \bm{P}^+ \langle k+1 \rangle \bm{H}_x^\top + \bm{H}_w
+\hat{\bm{W}} \bm{H}_w^\top
+\end{aligned}
+$$
+:::
+where $\hat{\bm{W}}$ is the estimated covariance of the sensor noise and
+$\bm{H}_x$ and $\bm{H}_w$ are Jacobians
+
+$$
+\bm{H}_x = \frac{\partial \bm{h}}{\partial \bm{x}}\vert_{\bm{w}=0} = 
+\begin{pmatrix}
+-\frac{1}{r}\left(x_i - x_v\right) & -\frac{1}{r}\left(y_i - y_v\right) & 0 \\
+\frac{1}{r}\left(y_i - y_v\right) & -\frac{1}{r}\left(x_i - x_v\right) & -1
+\end{pmatrix}, \quad\quad
+\bm{H}_w = \frac{\partial \bm{h}}{\partial \bm{w}}\vert_{\bm{w}=0} = 
+\begin{pmatrix}
+1 & 0 \\ 0 & 1
+\end{pmatrix}.
+$$
+
+
+
+## Localizing with a map {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+&nbsp;
+
+* The Kalman gain matrix $\bm{K}$ _distributes_ the innovation from the landmark
+observation, a $2$-vector, to update every element of the state vector.
+
+* Note that the second term in the covariance update equation is _subtracted_
+from the estimated covariance.
+  - This provides a means for estimated covariance to decrease, which was not
+    possible for the dead-reckoning case.
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+&nbsp;
+
+<center>
+<img src="contents/assets/kalman_summary.png" width="500" height="300" />
+</center>
+:::
+
+::::
+
+
+
+## Localizing with a map {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* EKF localization 
+  - Blue: true path of the robot, 
+  - Red: estimated path from odometry and landmarks,
+  - Stars: landmarks.
+* The error ellipses are now much smaller -- many can hardly be seen.
+* The bottom figure shows a zoomed view of the robot's actual and estimated
+path (moving from top to bottom).
+  - The error ellipses grow as the robot moves and then shrinks just afer a jg
+    in the estimated path.
+  - This corresponds to the observation of a landmark.
+  - New information, beyond odometry, has been used to correct the state in the
+    Kalman filter update phase.
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/ekfpath_wmap.png" width="500" height="300" />
+</center>
+<center>
+<img src="contents/assets/ekfpath_wmap_closeup.png" width="500" height="300" />
+</center>
+:::
+
+::::
+
+
+
+## Localizing with a map {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* Overall uncertainty is no longer growing monotonically
+  - When the robot sees a landmark, it is able to dramatically reduce its
+    estimated covariance.
+* The bottom figure shows the error associated with each component of pose 
+  - The pink background is estimated $95\%$ confidence bound (derived from the
+    covariance matrix).
+  - Notice the error is mostly within this envelope.
+* Below this is plotted the landmark observations
+  - Notice that the confidence bounds are tight (indicating low uncertainty)
+    while landmarks are being observed
+  - They start to grow once observations stop.
+  - As soon as an observation is made the uncertainty rapidly decreases.
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/ekf_cov_wmap.png" width="500" height="300" />
+</center>
+<center>
+<img src="contents/assets/confbounds.png" width="500" height="300" />
+</center>
+:::
+
+::::

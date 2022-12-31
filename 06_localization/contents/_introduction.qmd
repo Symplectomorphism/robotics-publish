@@ -1,0 +1,124 @@
+## Localization {.smaller}
+
+:::: {.columns}
+
+::: {.column width="85%"}
+* GPS makes outdoor localization easy; unfortunately GPS is far from perfect.
+  - relies on very weak radio signals received from distant orbiting satellites.
+  - GPS cannot work where there is no _line of sight_ radio reception.
+* GPS has only been in use since 1995 yet humankind has been navigating the
+planet for many thousands of years!
+* _Dead reckoning_ is the estimation of location based on estimated speed,
+direction and time of travel w.r.t. a previous estimate.
+:::
+
+::: {.column width="15%"}
+<center>
+<img src="contents/assets/localization.png" width="150" height="300"/>
+</center>
+:::
+
+
+
+::: {.column width="80%"}
+* Given average compass heading over the previous hour and a distance traveled
+the position at $3$ p.m. can be found using elementary geometry from the
+position at $2$ p.m.
+  - Measurements on which the update is based are subject to both systematic and
+    random error.
+  - Modern instruments are quite precise but 500 years ago clocks, compasses and
+    speed measurements were primitive.
+:::
+
+::: {.column width="20%"}
+<center>
+<img src="contents/assets/fig6_1.svg" width="400" height="150"/>
+</center>
+:::
+
+::::
+
+
+## Localization {.smaller}
+
+:::: {.columns}
+
+::: {.column width="80%"}
+* Estimates are recursive: each estimate is based on the previous one.
+  - errors will accumulate over time
+  - for sea voyages of many-years this approach was quite inadequate!
+* The Phonecians were navigating at sea more than $4,000$ years ago and they did
+not even have a compass!
+:::
+
+::: {.column width="20%"}
+<center>
+<img src="contents/assets/fig6_1.svg" width="400" height="150"/>
+</center>
+:::
+
+::: {.column width="70%"}
+* They navigated with crude dead reckoning but wherever possible they used
+_additional information_ to correct their position estimate.
+  - sigthings of islands and headlands
+  - primitive maps and observations of the Sun and the Pole Star.
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/fig6_2.svg" width="400" height="200"/>
+</center>
+:::
+
+* A landmark is a visible feature in the environment whose location is known
+w.r.t. some coordinate frame.
+  - A precise bearing measurement to two landmarks will therefore pinpoint our
+    location, a process known as _resectioning_.
+::::
+
+
+
+## Localization {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* This process is critically reliant on correctly associating the observed
+landmark with the feature on the map.
+  - Mistaking one lighthouse for another, e.g. $\bm{C}$ for $\bm{B}$ leads to
+    significant error in estimated position ($\bm{q}$ instead of $\bm{p}$).
+* This is a very common error and countless ships have foundered because of this
+fundamental data association error.
+  - This is why lighthouses flash with a _unique_ flashing pattern!
+:::
+
+::: {.column width="30%"}
+<center>
+<img src="contents/assets/fig6_2.svg" width="400" height="200"/>
+</center>
+:::
+
+::: {.column width="50%"}
+
+::: {.callout-note icon="false"}
+## Localization Problem
+Find an estimate $\hat{\bm{x}}$ of the true, but unknown position, $\bm{x}$ of 
+the robot. We also wish to know the _uncertainty_ of the estimate (standard
+deviation associated with the position estimate $\hat{\bm{x}}$).
+:::
+
+* It is useful to describe a robot's estimated position in terms of a pdf.
+  - allows for multiple hypotheses about the robot's position.
+
+:::
+
+::: {.column width="50%"}
+<center>
+<img src="contents/assets/gaussian.png" width="600" height="300"/>
+</center>
+:::
+
+::::
+
+
+

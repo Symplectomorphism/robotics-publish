@@ -1,0 +1,104 @@
+# Creating a Map
+
+## Creating a map {.smaller}
+
+* Somebody or something has to create the maps we will use.
+
+::: {.callout-tip icon="false"}
+## Assumptions:
+* Sensor can determine the identity of each observed landmark.
+* The robot knows its own position perfectly (ideal localization).
+:::
+
+* We need to estimate the coordinates of the landmarks so for this problem, the
+state vector comprises the estimated coordinates of the $M$ landmarks we have
+observed so far: $$ \hat{\bm{x}} = \left(x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)
+\in \mathbb{R}^{2M \times 1}. $$
+
+* The corresponding estiamted covariance $\hat{\bm{P}}$ will be a $2M \times 2M$
+matrix.
+
+* The state vector has variable length since we do now know in advance how many
+landmarks exist.
+  - Initially $M = 0$ and is incremented every time a previously unseen landmark
+    is observed.
+
+
+## Creating a map {.smaller}
+
+* The prediction equation is straightforward since the landmarks are stationary.
+$$
+\begin{aligned}
+\hat{\bm{x}} \langle k+1 \rangle &= \hat{\bm{x}} \langle k \rangle \\
+\hat{\bm{P}}^+ \langle k+1 \rangle &= \hat{\bm{P}} \langle k \rangle
+\end{aligned}
+$$
+
+* We introduce the function $\bm{g}(\cdot)$, the inverse of $\bm{h}(\cdot)$,
+which gives the coordinates of the observed landmark based on the known vehicle
+pose and the sensor observation
+$$ \bm{g}(\bm{x}, \bm{z}) = \begin{pmatrix}
+x_v + r \cos{\left(\theta_v + \beta\right)} \\
+y_v + r \sin{\left(\theta_v + \beta\right)}
+\end{pmatrix} $$
+
+* Since $\hat{\bm{x}}$ has a variable length, we need to extend the state vector
+and the covariance matrix whenever we encounter a previously unseen landmark.
+$$ 
+\bm{x} \langle k \rangle^\prime = \bm{y}\left(\bm{x} \langle k \rangle,
+\bm{x}_v \langle k \rangle \right) 
+= \begin{pmatrix}
+\bm{x} \langle k \rangle \\
+\bm{g} \left(\bm{x}_v \langle k \rangle, \bm{z} \langle k \rangle \right)
+\end{pmatrix}.
+$$
+  - This appends the sensor-based estimate of the new landmark's coordinats to
+    those alsready in the map.
+  - The order of feature coordinates within $\hat{\bm{x}}$ therefore depends on
+    the order in which they are observed.
+
+
+## Creating a map {.smaller}
+
+* The covariance matrix also needs to be extended when a new landmark is
+observed and this is achieved by
+$$ \hat{\bm{P}} \langle k \rangle^\prime = \bm{Y}_z \begin{pmatrix}
+\hat{\bm{P}}\langle k \rangle & 0 \\ 0 & \hat{\bm{W}} \end{pmatrix}
+\bm{Y}_z^\top $$ where $\bm{Y}_z$ is the insertion Jacobian $$ \bm{Y}_z =
+\frac{\partial \bm{y}}{\partial \bm{z}} = \begin{pmatrix} \bm{I}_{n \times n} &
+& \bm{0}_{n \times 2} \\ \bm{G}_x & \bm{0}_{2 \times n-3} & \bm{G}_z
+\end{pmatrix} $$ that relates the rate of change of the extended state vector to
+the new observation.
+
+* $n$ is the dimension of $\hat{\bm{P}}$ prior to being extended and 
+$$
+\bm{G}_x = \frac{\partial \bm{g}}{\partial \bm{x}} = \begin{pmatrix} 0 & 0 & 0
+\\ 0 & 0 & 0 \end{pmatrix}, \quad\quad
+\bm{G}_z = \frac{\partial \bm{g}}{\partial \bm{z}} = \begin{pmatrix} 
+\cos{\left(\theta_v + \beta\right)} & -r\sin{\left(\theta_v + \beta\right)} \\
+\sin{\left(\theta_v + \beta\right)} & r\cos{\left(\theta_v + \beta\right)}
+\end{pmatrix}
+$$
+
+* An additional Jacobian that we will need later is the Jacobian for
+$\bm{h}(\cdot)$
+$$ \bm{H}_{p_i} = \frac{\partial \bm{h}}{\partial \bm{p}_i} = \begin{pmatrix} 
+\frac{1}{r}\left(x_i - x_v\right) & \frac{1}{r}\left(y_i - y_v\right) \\
+-\frac{1}{r^2}\left(y_i - y_v\right) & \frac{1}{r^2}\left(x_i - x_v\right)
+\end{pmatrix}. $$
+
+
+## Creating a map {.smaller}
+
+<center>
+<img src="contents/assets/mapcreation.png" width="550" height="400" />
+</center>
+
+::: {.callout-tip icon="false"}
+## EKF mapping results
+The estimated landmarks are indicated by _black dots_ with $95\%$ confidence
+ellipses (_green_, hard to see w/o zooming), the true location (_black star
+marker_) and the robot's path (_blue_). 
+The landmark estimates have not fully converged to their true values.
+:::
+

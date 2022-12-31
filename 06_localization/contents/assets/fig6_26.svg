@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with EazyDraw for Mac ( http://www.eazydraw.com/ ) -->
+
+<svg
+    version="1.1"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+    width="473.42841451"
+    height="337.8471"
+    viewBox="0, 0, 473.42841451, 337.8471"
+    preserveAspectRatio="none"
+    id="svg2">
+   <defs
+       id="defs_7E1C97C1">
+      <filter
+          id="filter_5127EFE0"
+          width="1.256955347684"
+          height="1.160888076405"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_5127EFE0_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_5127EFE0_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_5127EFE0_Offset"
+             in="bluralpha"
+             dx="6.317186509685"
+             dy="10.202605285"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_5127EFE0_Merge">
+            <feMergeNode id="filter_5127EFE0_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_5127EFE0_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <filter
+          id="filter_440302F0"
+          width="1.267418708383"
+          height="1.22786530413"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_440302F0_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_440302F0_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_440302F0_Offset"
+             in="bluralpha"
+             dx="6.317186509685"
+             dy="10.202605285"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_440302F0_Merge">
+            <feMergeNode id="filter_440302F0_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_440302F0_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <filter
+          id="filter_583312F0"
+          width="1.251544253641"
+          height="1.22786530413"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_583312F0_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_583312F0_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_583312F0_Offset"
+             in="bluralpha"
+             dx="6.317186509685"
+             dy="10.202605285"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_583312F0_Merge">
+            <feMergeNode id="filter_583312F0_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_583312F0_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <filter
+          id="filter_5DDAC2F0"
+          width="1.219584952414"
+          height="1.22786530413"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_5DDAC2F0_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_5DDAC2F0_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_5DDAC2F0_Offset"
+             in="bluralpha"
+             dx="6.317186509685"
+             dy="10.202605285"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_5DDAC2F0_Merge">
+            <feMergeNode id="filter_5DDAC2F0_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_5DDAC2F0_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="7D5C54F0_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="7D5C54F0_end_arrow_path"
+             style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.25;stroke-miterlimit:10"
+             d="M0,0 L-7.517540966287,2.736161146605 L-7.517540966287,-2.736161146605 z"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="105F9244_start_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="105F9244_start_arrow_path"
+             style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.25;stroke-miterlimit:10"
+             d="M0,0 L7.517540966287,-2.736161146605 L7.517540966287,2.736161146605 z"/>
+      </marker>
+   </defs>
+   <metadata
+       id="metadata7">
+      <rdf:RDF>
+         <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <g
+       id="layer_Paper"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:1;stroke-miterlimit:10">
+      <rect
+          style="fill:#EBEBFF;filter:url(#filter_5127EFE0)"
+          id="5127EFE0"
+          x="23.227328"
+          y="8.484894714983"
+          width="90.708515"
+          height="297.638"/>
+      <rect
+          style="fill:#EBEBFF;filter:url(#filter_440302F0)"
+          id="440302F0"
+          x="363.384328"
+          y="8.484894714983"
+          width="85.0394"
+          height="141.732"/>
+      <rect
+          style="fill:#EBEBFF;filter:url(#filter_583312F0)"
+          id="583312F0"
+          x="193.306328"
+          y="8.484894714983"
+          width="93.9473861111"
+          height="141.732"/>
+      <rect
+          style="fill:#EBEBFF;filter:url(#filter_5DDAC2F0)"
+          id="5DDAC2F0"
+          x="193.306328"
+          y="167.224994715"
+          width="119.055"
+          height="141.732"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="7D5C54F0"
+          x1="74.250798"
+          y1="59.508539715"
+          x2="193.305928"
+          y2="59.508539715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="231655F0"
+          x1="85.58939"
+          y1="93.524309715"
+          x2="193.305867"
+          y2="93.524309715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="ED3A55F0"
+          x1="85.58939"
+          y1="76.516413715"
+          x2="193.305867"
+          y2="76.516413715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="D4F075F0"
+          x1="287.291808556"
+          y1="61.840194715"
+          x2="363.384663"
+          y2="62.343195715"/>
+      <text
+          id="69EBD134"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="203.975328" y="80.846994715">f()</tspan>
+      </text>
+      <text
+          id="1DC70534"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="198.306328" y="95.019994715">Fx()</tspan>
+      </text>
+      <text
+          id="60AD0534"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="117.697994715">Fv()</tspan>
+      </text>
+      <text
+          id="71383634"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="365.550328" y="66.673994715">demand()</tspan>
+      </text>
+      <text
+          id="77B93634"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="191.397994715">reading()</tspan>
+      </text>
+      <text
+          id="1C24C834"
+          style="stroke:none"
+          font-family="Courier"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="28.227328" y="287.359244715">EKF, </tspan>
+         <tspan x="28.227328" y="300.359244715" font-size="10">ParticleFilter</tspan>
+      </text>
+      <text
+          id="E6113934"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="206.810328" y="304.783994715">Sensor</tspan>
+      </text>
+      <text
+          id="25B04934"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="198.306328" y="143.672444263">Vehicle</tspan>
+      </text>
+      <text
+          id="82B44934"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="367.051328" y="143.208994715">Driver</tspan>
+      </text>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="03CF1B34"
+          x1="85.58939"
+          y1="110.532183715"
+          x2="193.305806"
+          y2="110.532183715"/>
+      <line
+          style="fill:none;stroke-dasharray:4,4;marker-end:url(#7D5C54F0_end_arrow)"
+          id="D9D10044"
+          x1="363.384693"
+          y1="19.823496715"
+          x2="286.390492333"
+          y2="19.823496715"/>
+      <line
+          style="fill:none;stroke-dasharray:4,4;marker-start:url(#105F9244_start_arrow)"
+          id="105F9244"
+          x1="363.384693"
+          y1="201.240862715"
+          x2="312.361042"
+          y2="201.240862715"/>
+      <polyline
+          style="fill:none;stroke-dasharray:4,4;marker-end:url(#7D5C54F0_end_arrow)"
+          id="1237F2D1"
+          points="312.361042,189.902269715 343.542164,189.902269715 343.542164,104.862886715 287.291808556,104.862886715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="48B70844"
+          x1="114.546141889"
+          y1="187.067644715"
+          x2="193.305836"
+          y2="187.067644715"/>
+      <text
+          id="271BC844"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="11"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="207.405994715">g()</tspan>
+      </text>
+      <text
+          id="131D0944"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="11"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="241.421994715">h()</tspan>
+      </text>
+      <text
+          id="950EF68E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="25.392328" y="21.319594715">run()</tspan>
+      </text>
+      <text
+          id="15C5778E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="28.227328" y="61.004594715">step()</tspan>
+      </text>
+      <text
+          id="8D147B8E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="28.227328" y="41.162094715">init()</tspan>
+      </text>
+      <text
+          id="29333D8E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="368.384328" y="41.162094715">init()</tspan>
+      </text>
+      <text
+          id="EA2C3D8E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="198.306328" y="43.996694715">init()</tspan>
+      </text>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="98FF629E"
+          x1="74.250798"
+          y1="39.666017715"
+          x2="193.305867"
+          y2="39.666017715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="31DF829E"
+          x1="287.291808556"
+          y1="39.666017715"
+          x2="363.384663"
+          y2="39.666017715"/>
+      <text
+          id="EC2B979E"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="63.838994715">step()</tspan>
+      </text>
+      <polyline
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="54C29A9E"
+          points="60.07758,19.823496715 71.416157,19.823496715 71.416157,28.327440715 0.55,28.327440715 0.55,56.673899715 23.227169,56.673899715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="E188CB9E"
+          x1="0.55"
+          y1="36.831377715"
+          x2="23.227169"
+          y2="36.831377715"/>
+      <line
+          style="fill:none"
+          id="B00421AE"
+          x1="85.58939"
+          y1="59.508539715"
+          x2="85.58939"
+          y2="110.532183715"/>
+      <rect
+          style="fill:none"
+          id="A00448AE"
+          x="23.227328"
+          y="276.359244715"
+          width="90.708515"
+          height="29.76365"/>
+      <rect
+          style="fill:none"
+          id="296D98AE"
+          x="193.306328"
+          y="133.208994715"
+          width="93.5029416667"
+          height="17.0079"/>
+      <rect
+          style="fill:none"
+          id="E00BA8AE"
+          x="363.384328"
+          y="133.208994715"
+          width="85.0394"
+          height="17.0079"/>
+      <rect
+          style="fill:none"
+          id="6AA7D8AE"
+          x="193.306328"
+          y="291.949994715"
+          width="119.055"
+          height="17.0079"/>
+      <line
+          style="fill:none;stroke-dasharray:4,4;marker-start:url(#105F9244_start_arrow)"
+          id="39B1ABAE"
+          x1="193.305867"
+          y1="19.823496715"
+          x2="114.546141889"
+          y2="19.987294715"/>
+      <text
+          id="83F5C6A7"
+          style="stroke:none"
+          font-family="Lucida Grande"
+          font-size="10"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="237.991328" y="86.515994715">x</tspan>
+         <tspan x="237.991328" y="98.515994715">x_hist</tspan>
+         <tspan x="237.991328" y="110.515994715">V</tspan>
+      </text>
+      <text
+          id="90D0BAA7"
+          style="stroke:none"
+          font-family="Lucida Grande"
+          font-size="10"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="382.558328" y="89.350994715">goal</tspan>
+         <tspan x="382.558328" y="101.350994715">speed</tspan>
+      </text>
+      <rect
+          style="fill:none"
+          id="12C89FB7"
+          x="377.558328"
+          y="76.515994715"
+          width="42.5197"
+          height="39.6851"/>
+      <rect
+          style="fill:none"
+          id="736CEFB7"
+          x="232.991328"
+          y="76.515994715"
+          width="39.6851"
+          height="39.6851"/>
+      <g
+          id="17E1A7D1">
+         <text
+             id="0E1C03A7"
+             style="stroke:none"
+             font-family="Lucida Grande"
+             font-size="10"
+             font-weight="normal"
+             font-style="normal">
+            <tspan x="48.069328" y="180.059994715">x</tspan>
+            <tspan font-family="Symbol">_</tspan>
+            <tspan>est</tspan>
+            <tspan x="48.069328" y="193.059994715">P</tspan>
+            <tspan font-family="Symbol">_</tspan>
+            <tspan>est</tspan>
+            <tspan x="48.069328" y="206.059994715">V_est</tspan>
+            <tspan x="48.069328" y="218.059994715">W_est</tspan>
+            <tspan x="48.069328" y="230.059994715">history</tspan>
+         </text>
+         <rect
+             style="fill:none"
+             id="4B7B60C7"
+             x="45.903328"
+             y="170.059994715"
+             width="45.3543"
+             height="62.3622"/>
+      </g>
+      <g
+          id="4C6425D1">
+         <rect
+             style="fill:#EBEBFF;filter:url(#filter_440302F0)"
+             id="2C1CB2F0"
+             x="363.384328"
+             y="167.224994715"
+             width="85.0394"
+             height="141.732"/>
+         <text
+             id="23157A34"
+             style="stroke:none"
+             font-family="Courier New"
+             font-size="11"
+             font-weight="normal"
+             font-style="normal">
+            <tspan x="368.384328" y="300.949994715">LandmarkMap</tspan>
+         </text>
+         <rect
+             style="fill:none"
+             id="3D5AC8AE"
+             x="363.384328"
+             y="291.949994715"
+             width="85.0394"
+             height="17.0079"/>
+         <text
+             id="D9BB98A7"
+             style="stroke:none"
+             font-family="Lucida Grande"
+             font-size="10"
+             font-weight="normal"
+             font-style="normal">
+            <tspan x="376.888328" y="197.066994715">map</tspan>
+            <tspan x="376.888328" y="209.066994715">nfeatures</tspan>
+            <tspan x="376.888328" y="221.066994715">dim</tspan>
+         </text>
+         <rect
+             style="fill:none"
+             id="9D1DE0C7"
+             x="374.722328"
+             y="184.231994715"
+             width="53.8583"
+             height="48.189"/>
+      </g>
+      <g
+          id="6BFF96D1">
+         <text
+             id="9DD44AB7"
+             style="stroke:none"
+             font-family="Lucida Grande"
+             font-size="12"
+             font-weight="normal"
+             font-style="normal">
+            <tspan x="224.485328" y="281.271994715">W</tspan>
+         </text>
+         <rect
+             style="fill:none"
+             id="B73A21C7"
+             x="215.983328"
+             y="266.437994715"
+             width="31.1811"
+             height="19.8425"/>
+      </g>
+      <text
+          id="D6A796C1"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="11"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="224.413994715">Gx(),Gz()</tspan>
+      </text>
+      <text
+          id="D5A038C1"
+          style="stroke:none"
+          font-family="Courier New"
+          font-size="11"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="201.140328" y="258.429994715">Hx(),Hxf(),Hfw()</tspan>
+      </text>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="C5683DC1"
+          x1="113.935843"
+          y1="221.083367715"
+          x2="193.305867"
+          y2="221.083345715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="5BB34DC1"
+          x1="113.935843"
+          y1="206.910137715"
+          x2="193.305806"
+          y2="206.910143715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="E30D4DC1"
+          x1="113.935843"
+          y1="238.091243715"
+          x2="193.305806"
+          y2="238.091219715"/>
+      <line
+          style="fill:none;marker-end:url(#7D5C54F0_end_arrow)"
+          id="4D0F4DC1"
+          x1="113.935843"
+          y1="255.099119715"
+          x2="193.305806"
+          y2="255.099123715"/>
+      <text
+          id="917AAF9C"
+          style="stroke:none"
+          font-family="Helvetica"
+          font-size="6"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="251.705448333" y="143.049415091">superclass</tspan>
+      </text>
+      <text
+          id="8FDFF3AC"
+          style="stroke:none"
+          font-family="Helvetica"
+          font-size="6"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="255.587971482" y="304.314813876">superclass</tspan>
+      </text>
+   </g>
+</svg>

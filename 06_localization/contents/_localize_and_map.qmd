@@ -1,0 +1,99 @@
+# Localization and Mapping
+
+## Simulatenous localization and mapping {.smaller}
+
+* Feels like a ''chicken and egg'' problem
+  - we need a map to localize and
+  - we need to localize to make a map.
+* However, based on what we ahve learned so far this problem is now quite
+straightforward to solve.
+
+* The state vector comprises the vehicle configuration _and_ the coordinates of
+the $M$ landmarks that have been observed so far $$ \hat{\bm{x}} =
+\left(x_v, y_v, \theta_v, x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)^\top \in
+\mathbb{R}^{2M+3 \times 1} $$
+
+* The estimated covariance is a $(2M+3) \times (2M+3)$ matrix and has the
+structure $$ \hat{\bm{P}} = \begin{pmatrix} \hat{\bm{P}}_{vv} &
+\hat{\bm{P}}_{vm} \\ \hat{\bm{P}}_{vm}^\top & \hat{\bm{P}}_{mm} \end{pmatrix} $$ 
+where $\hat{\bm{P}}_{vv}$ is the covariance of the vehicle pose,
+$\hat{\bm{P}}_{mm}$ the covariance of the map landmark positions, and
+$\hat{\bm{P}}_{vm}$ is the correlation between vehicle landmark states.
+
+
+## SLAM {.smaller}
+
+
+* The predicted vehicle state and covariances are as they were given in
+localization section with perfect map knowledge.
+
+* When a new feature is observed the state vector is updated using the insertion
+Jacobian $\bm{Y}_z$ but in this case $\bm{G}_x$ is nonzero
+$$ \bm{G}_x = \frac{\partial \bm{g}}{\partial \bm{x}} = \begin{pmatrix} 
+1 & 0 & -r \sin{\left(\theta_v + \beta\right)} \\
+0 & 1 & r \cos{\left(\theta_v + \beta\right)} \end{pmatrix} $$ since the 
+estimate of the new landmark depends on the state vector which now contains the 
+vehicle's pose.
+
+* For SLAM, the Jacobian $\bm{H}_x$ describes how the landmark observation
+changes w.r.t. the state vector. The observation will depend on the position of
+the vehicle and on the position of the observed landmark $$ \bm{H}_x =
+\frac{\partial \bm{h}}{\partial \bm{x}}\vert_{w=0} = \begin{pmatrix}
+\bm{H}_{x_v} & \cdots & 0 & \cdots & \bm{H}_{p_i} & \cdots & 0 \end{pmatrix} \in
+\mathbb{R}^{2 \times \left(2M+3\right)}. $$
+
+* Now, the Kalman gain matrix $\bm{K}$ _distributes_ innovation from the
+landmark observation, a $2$-vector, to update _every_ element of the state vector
+-- the pose of the vehicle _and_ the position of _every_ landmark in the map.
+
+
+## SLAM -- results {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+:::{.callout-tip icon="false"}
+## SLAM -- path
+Simulatenous localization and mapping showing the true (_blue_) and estimated
+(_red_) robot path superimposed on the true map (_black star marker_). The
+estimated map features are indicated by _black dots_ with $95\%$ confidence
+ellipses (_green_).
+:::
+
+:::
+
+::: {.column width="50%"}
+<center>
+<img src="contents/assets/slam-path.png" width="400" height="250"/>
+</center>
+:::
+
+::::
+
+
+:::: {.columns}
+
+::: {.column width="60%"}
+<img src="contents/assets/slam-covariance.png" width="600" height="200"/>
+:::
+
+::: {.column width="40%"}
+
+:::{.callout-tip icon="false"}
+## SLAM -- covariance
+The final covariance matrix is shown graphically on the right. the landmark
+uncertainties never increase. 
+
+The position prediction model is that they do not move, but they also never drop
+below the initial uncertainty of the vehicle.
+:::
+
+:::
+
+::::
+
+* The correlations are used by the Kalman filter to connect the observation of
+any landmark to an improvement in the estimate of every other landmark in the
+map as well as the vehicle pose. It is as if all the states were connect by
+springs.

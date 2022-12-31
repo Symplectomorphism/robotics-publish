@@ -1,0 +1,33 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+*Localization*
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+__Instructor__: Aykut Satici, Ph.D. <br>
+
+* Mechanical and Biomedical Engineering <br>
+* Electrical and Computer Engineering <br>
+* Boise State University, Boise, ID, USA
+
+:::
+
+::: {.column width="45%"}
+
+__Topics__: <br>
+
+* Dead Reckoning
+* Localizing with a Map
+* Creating a Map
+* Localization and Mapping
+
+:::
+
+::::

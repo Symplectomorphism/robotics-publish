@@ -1,0 +1,196 @@
+# Dead Reckoning
+
+## Dead reckoning {.smaller}
+
+* An odometer is a sensor that measures distance traveled and sometimes also
+change in heading direction.
+  - For wheeled devices, can be determined by measuring the angular
+    rotation of the wheels.
+  - Direction of travel can be measured using a compass or 
+  - Change in heading can be measured using a gyroscope.
+* These sensors are imperfect due to systematic errors
+  - incorrect wheel radius,
+  - gyroscope bias
+* They are also imperfect due to random errors such as slip between wheels and
+the ground.
+* Robots w/o wheels, such as aerial robots, can use visual odometry based on
+observations of the world moving past the robot.
+
+
+## Modeling the vehicle {.smaller}
+
+* The first step in estimating the robot's pose is to write a function,
+$\bm{f}(\cdot)$, that describes how the vehicle's configuration changes from one
+time step to the next.
+* The initial pose is represented in $\bm{SE}(2)$ as 
+$$
+\xi\langle k \rangle \sim
+\begin{pmatrix}
+\cos{\theta\langle k \rangle} & -\sin{\theta\langle k \rangle} & x\langle k
+\rangle \\ 
+\sin{\theta\langle k \rangle} & \cos{\theta\langle k \rangle} & y\langle k
+\rangle \\ 
+0 & 0 & 1
+\end{pmatrix}
+$$
+* Move forward in the vehicle $x$-direction by $\delta_d$ and then rotate by
+$\delta_\theta$ giving the new configuration
+$$
+\begin{aligned}
+\xi\langle k \rangle &\sim
+\begin{pmatrix}
+\cos{\theta\langle k \rangle} & -\sin{\theta\langle k \rangle} & x\langle k
+\rangle \\ 
+\sin{\theta\langle k \rangle} & \cos{\theta\langle k \rangle} & y\langle k
+\rangle \\ 
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & \delta_d \\ 0 & 1 & 0 \\ 0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\cos{\delta_\theta} & -\sin{\delta_\theta} & 0 \\
+\sin{\delta_\theta} & \cos{\delta_\theta} & 0 \\ 
+0 & 0 & 1
+\end{pmatrix} \\ 
+&\sim
+\begin{pmatrix}
+\cos{\left(\theta \langle k \rangle + \delta_\theta\right)} &
+-\sin{\left(\theta\langle k \rangle + \delta_\theta\right)} & 
+x\langle k \rangle + \delta_d \cos{\theta\langle k \rangle} \\
+\sin{\left(\theta \langle k \rangle + \delta_\theta\right)} &
+\cos{\left(\theta\langle k \rangle + \delta_\theta\right)} & 
+y\langle k \rangle + \delta_d \sin{\theta\langle k \rangle} \\
+0 & 0 & 1
+\end{pmatrix}
+\end{aligned}
+$$
+
+
+## Modeling the vehicle {.smaller}
+
+* Let's represent this succinctly as a $3$-vector $\bm{x} = (x, y, \theta)$ so
+that
+$$
+\bm{x}\langle k+1 \rangle = \begin{pmatrix}
+x\langle k \rangle + \delta_d \cos{\theta\langle k \rangle} \\
+y\langle k \rangle + \delta_d \cos{\theta\langle k \rangle} \\
+\theta\langle k \rangle + \delta_\theta
+\end{pmatrix}
+$$
+which gives the new configuration in terms of the previous configuration and the
+odometry.
+* Odometry is not perfect and we model the error by imagining a random number
+generator $(v_d, v_\theta)$ that corrupts the output of a perfect odometer
+(_sensor noise_).
+
+::: {.callout-warning icon="false"}
+## Robot's configuration at the next time step, including odometry error
+$$
+\bm{x}\langle k+1 \rangle = \bm{f}\left( \bm{x}\langle k \rangle, \delta \langle
+k \rangle, \bm{v}\langle k \rangle \right) = \begin{pmatrix}
+x\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
+y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
+\theta\langle k \rangle + \delta_\theta + v_\theta
+\end{pmatrix}
+$$
+:::
+
+* We typically model the odometry noise as $\bm{v} = \left(v_d,
+v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})$, a zero-mean multivariate
+Gaussian, with variance $\bm{V} = \text{diag}\left\{\sigma_d^2, \sigma_\theta^2
+\right\}$.
+
+
+## Estimating pose {.smaller}
+
+:::{.callout-tip icon="false"}
+## Ship's navigator problem
+How to estimate our new pose given the previous pose and noise odometry?
+:::
+* The mathematical tool that we will use is the _Kalman filter_.
+  - provides the optimal estimate of the system state assuming zero-mean
+    Gaussian noise.
+* The filter is a recursive algorithm that updates, at each time step, the
+optimal estimate of the unknown true configuration and the uncertainty
+associated with that estimate.
+* The Kalman filter is formulated for linear systems but our model of the
+vehicle's motion is nonlinear, so we'll use the extended Kalman filter (EKF).
+* For this problem, the state vector is the vehicle's configuration $$ \bm{x} =
+\left(x_v, y_v, \theta_v \right) $$ and the prediction equations 
+$$
+\begin{aligned}
+\hat{\bm{x}}^+\langle k+1 \rangle &= \bm{f}\left(\hat{\bm{x}}\langle k \rangle,
+\hat{\bm{u}}\langle k \rangle \right) \\
+\hat{\bm{P}}^+\langle k+1 \rangle &= \bm{F}_x\hat{\bm{P}}\langle k
+\rangle \bm{F}_x^\top + \bm{F}_v \hat{\bm{V}}\bm{F}_v^\top
+\end{aligned}
+$$
+describe how the state and covariance evolve with time.
+
+
+## Estimating pose {.smaller}
+
+$$
+\begin{aligned}
+\hat{\bm{x}}^+\langle k+1 \rangle &= \bm{f}\left(\hat{\bm{x}}\langle k \rangle,
+\hat{\bm{u}}\langle k \rangle \right) \\
+\hat{\bm{P}}^+\langle k+1 \rangle &= \bm{F}_x\hat{\bm{P}}\langle k
+\rangle \bm{F}_x^\top + \bm{F}_v \hat{\bm{V}}\bm{F}_v^\top
+\end{aligned}
+$$
+
+* $\hat{\bm{u}}\langle k \rangle$: input to the process; in this case is the
+measured odometry, so $\hat{\bm{u}}\langle k \rangle = \delta \langle k \rangle$.
+* $\hat{\bm{P}} \in \mathbb{R}^{3 \times 3}$ is a covariance matrix representing
+the uncertainty in the estimated vehicle configuration.
+* $\hat{\bm{V}}$ is our estimate of the covariance of the odometry noise, which
+in reality, we do not know.
+* $\bm{F}_x$ and $\bm{F}_v$ are Jacobian matrices obtained by differentiating
+the equations of motion and evaluating the result at $\bm{v} = 0$, giving
+$$
+\begin{aligned}
+\bm{F}_x &= \frac{\partial \bm{f}}{\partial \bm{x}}\vert_{\bm{v}=0} =
+\begin{pmatrix}
+1 & 0 & -\delta_d \sin{\theta_v} \\ 0 & 1 & \delta_d \cos{\theta_v} \\ 0 & 0 & 1
+\end{pmatrix} \\
+\bm{F}_v &= \frac{\partial \bm{f}}{\partial \bm{v}}\vert_{\bm{v}=0} = 
+\begin{pmatrix}
+\cos{\theta_v} & 0 \\ \sin{\theta_v} & 0 \\ 0 & 1
+\end{pmatrix}
+\end{aligned}
+$$
+which are functions of the current state and odometry.
+
+
+## Estimating pose {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* The true (_blue_) and estimated (_red_) robot path is shown in the figure to
+the right.
+  - $95\%$ confidence ellipses are indicated in green. 
+  - That is there is $95\%$ chance that the robot's $x$- and $y$-coordinate is 
+  within $\pm 2\sigma$ bound.
+* There are off-diagonal terms in the correlation matrix, which indicate that
+the uncertainties between the corresponding variables are related.
+  - For example, the value $P_{1,3}=P_{3,1} = -0.5575$ indicats the
+    uncertainties in $x$ and $\theta$ are related.
+* The total uncertaintly is given by $\sqrt{\det{(\hat{\bm{P}})}} and is
+plotted.
+  - It never decreases b/c RHS of the $\hat{\bm{P}}$ eqn. is positive definite.
+  - Means that $\bm{P}$, the position uncertainty can never decrease!
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="contents/assets/ekf_path.png" width="300" height="250"/>
+</center>
+
+<center>
+<img src="contents/assets/ekf_cov.png" width="300" height="250"/>
+</center>
+:::
+
+::::
