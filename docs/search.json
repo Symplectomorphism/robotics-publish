@@ -4,7 +4,7 @@
     "href": "06_localization.html#robotics-and-automated-systems",
     "title": "06_localization",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping"
+    "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping\nPose Graph SLAM"
   },
   {
     "objectID": "06_localization.html#localization",
@@ -165,6 +165,48 @@
     "href": "06_localization.html#slam-results",
     "title": "06_localization",
     "section": "SLAM – results",
-    "text": "SLAM – results\n\n\n\n\n\nSLAM – path\n\n\nSimulatenous localization and mapping showing the true (blue) and estimated (red) robot path superimposed on the true map (black star marker). The estimated map features are indicated by black dots with 95%95\\% confidence ellipses (green).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLAM – covariance\n\n\nThe final covariance matrix is shown graphically on the right. the landmark uncertainties never increase.\nThe position prediction model is that they do not move, but they also never drop below the initial uncertainty of the vehicle.\n\n\n\n\n\n\nThe correlations are used by the Kalman filter to connect the observation of any landmark to an improvement in the estimate of every other landmark in the map as well as the vehicle pose. It is as if all the states were connect by springs.\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "text": "SLAM – results\n\n\n\n\n\nSLAM – path\n\n\nSimulatenous localization and mapping showing the true (blue) and estimated (red) robot path superimposed on the true map (black star marker). The estimated map features are indicated by black dots with 95%95\\% confidence ellipses (green).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLAM – covariance\n\n\nThe final covariance matrix is shown graphically on the right. the landmark uncertainties never increase.\nThe position prediction model is that they do not move, but they also never drop below the initial uncertainty of the vehicle.\n\n\n\n\n\n\nThe correlations are used by the Kalman filter to connect the observation of any landmark to an improvement in the estimate of every other landmark in the map as well as the vehicle pose. It is as if all the states were connect by springs."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-1",
+    "href": "06_localization.html#pose-graph-slam-1",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n \n\nAn alternative approach to the SLAM problem is to separate it into two components:\n\na front-end and a back-end\n\nThe robot’s path is considered to be a sequence of distinct poses.\nThe task is to estimate those poses.\nConstraints between the unknown poses are based on measurements from a variety of sensors including odometry, laset scanners and cameras."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-2",
+    "href": "06_localization.html#pose-graph-slam-2",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\n\nThe problem is formulated as a directed graph.\nA node corresponds to a robot pose or a landmark position.\nAn edge between two nodes represents a spatial constraint between the nodes derived from some sensor data.\n\n\n\n\nDead-reckoning example\n\n\nThe robot travels around a square. By the time the robot reaches node 44, the error is significant.\nHowever, when it makes a measurement of node 11, a consraint is added – the dashed edge – indicating that the nodes are closer than the estimated relative pose based on the chain of relative poses from odometry: 1ξ2♯⊕2ξ3♯⊕3ξ4♯{^1}\\xi_2^\\sharp \\oplus {^2}\\xi_3^\\sharp \\oplus {^3}\\xi_4^\\sharp.\nThe back-end algorithm will then pull all the nodes closer to their correct pose.\n\n\n\n\n\n\n\n\n\n\nPose-graph SLAM example\n\n\nPlaces are shown as circular nodes and have an associated pose.\nLandmarks are shown as star-shaped nodes and have an associated pose.\nEdges represent a measurement of a relative pose or position w.r.t. the node at the tail of the arrow."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-3",
+    "href": "06_localization.html#pose-graph-slam-3",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\nThe front-end adds new nodes as the robot travels as well as edges that define constraints between poses. E.g.:\n\nWhen moving from one place to another wheel odometry gives an estimate of distance and change in orientation, which is a constraint.\nThe robot’s exteroceptive sensors may observe the relative position of a landmark and this also adds a constraint.\n\nEvery measurement adds a constraint – an edge in the graph.\n\nThere is no limit to the number of edges entering or leaving a node.\n\n\n\nThe back-end adjusts the poses of the nodes so that the constraints are satisfied as well as possible\n\nThe sensor observations are explained optimally."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-4",
+    "href": "06_localization.html#pose-graph-slam-4",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\nCoordinate frames {i}\\{i\\} and {j}\\{j\\} are associated with robot poses ii and jj.\nWe seek to estimate 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j in the world coordinate frame.\n\n\nThe robot makes a measurement of the relative pose iξj♯{^i}\\xi_j^\\sharp which will, in general, be different than the relative pose iξj{^i}\\xi_j inferred from poses 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j.\nThe difference, or innovation, is caused by the error in the sensor measurement iξj♯{^i}\\xi_j^\\sharp and/or the node poses 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j.\n\nWe use it to adjust the poses of the nodes.\n\nThere is insufficient information to determine where the error lies\n\nNaively adjusting 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j to better explain the measurement might increase the error in antoher part of the graph.\nWe need to minimize the error consistently over the whole graph.\n\n\n\n\n\n\n\n\n\nPose graph notation\n\n\nThe light gray robot is the estimated pose of {j}\\{j\\} based on the sensor measurement iξj♯{^i}\\xi_j^\\sharp.\nThe yellow ellipse indicates the uncertainty associated with that measurement."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-5",
+    "href": "06_localization.html#pose-graph-slam-5",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\nThe first step is to express the error associated with the graph edge in terms of the sensor measurement and our best estimates of the node poses w.r.t. the world frame ξε=⊖iξj♯⊖0ξ̂i⊕0ξ̂j∈𝐒𝐄(2) \\xi_\\varepsilon = \\ominus {^i}\\xi_j^\\sharp \\ominus\n{^0}\\hat{\\xi}_i \\oplus {^0}\\hat{\\xi}_j \\in \\bm{SE}(2)  which is ideally zero.\n\n\n\n\nWe can formulate this as a minimization problem and attempt to find the poses of all the nodes 𝐱={ξ1,ξ2,…,ξN}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_N \\right\\} that minimizes the error across all the edges 𝐱*=argmin𝐱∑kFk(𝐱) \\bm{x}^* = \\arg \\min_\\bm{x} \\sum_k\nF_k(\\bm{x}) \n\n𝐱\\bm{x} is the state of the pose graph and contains the pose of every node.\nFk(𝐱)F_k(\\bm{x}) is a nonnegative scalar cost associated with the edge kk connecting node ii to node jj.\n\n\n\n\n\n\n\nIf we convert edge pose error to a vector representation ξε∼(x,y,θ)=𝐟k(𝐱)\\xi_\\varepsilon \\sim (x, y, \\theta) = \\bm{f}_k(\\bm{x}) then the scalar cost can be obtained as a quadratic expression 𝐅k(𝐱)=𝐟k⊤𝛀k𝐟k(𝐱). \\bm{F}_k(\\bm{x}) = \\bm{f}_k^\\top \\bm{\\Omega}_k\n\\bm{f}_k(\\bm{x})."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-6",
+    "href": "06_localization.html#pose-graph-slam-6",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\n\nThe pose graph can also include landmarks as shown in the figure.\nLandmarks have a position 𝐏j∈ℝ2\\bm{P}_j \\in \\mathbb{R}^2, not a pose, and therefore differ from the nodes discussed so far.\nTo accommodate this, we redefine the state vector 𝐱={ξ1,ξ2,…,ξn|𝐏1,𝐏2,…,𝐏M}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_n \\vert \\bm{P}_1, \\bm{P}_2, \\ldots, \\bm{P}_M \\right\\}.\n\n\n\n\n\n\nThe robot at pose ii observes landmark jj at range and bearing 𝐳♯=(r♯,β♯)\\bm{z}^\\sharp = \\left( r^\\sharp, \\beta^\\sharp \\right) which is converted to Cartesian form in frame {i}\\{i\\} i𝐏j♯=(r♯cosβ♯,r♯sinβ♯)∈ℝ2. {^i}\\bm{P}_j^\\sharp = \\left( r^\\sharp\n\\cos{\\beta^\\sharp}, r^\\sharp \\sin{\\beta^\\sharp} \\right) \\in \\mathbb{R}^2. \nThe estimated position of the landmark in frame {i}\\{i\\} is i𝐏̂j=(⊖0ξi)•𝐏̂j∈ℝ2\n{^i}\\hat{\\bm{P}}_j = \\left( \\ominus {^0}\\xi_i \\right) \\bullet \\hat{\\bm{P}}_j \\in \\mathbb{R}^2  and the error vector is 𝐟k(𝐱)=ε=i𝐏̂j−i𝐏j♯∈ℝ2. \\bm{f}_k(\\bm{x}) = \\varepsilon = {^i}\\hat{\\bm{P}}_j -\n{^i}\\bm{P}_j^\\sharp \\in \\mathbb{R}^2. \n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]

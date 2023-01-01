@@ -13,6 +13,8 @@
 
 __Instructor__: Aykut Satici, Ph.D. <br>
 
+&nbsp;
+
 * Mechanical and Biomedical Engineering <br>
 * Electrical and Computer Engineering <br>
 * Boise State University, Boise, ID, USA
@@ -27,6 +29,7 @@ __Topics__: <br>
 * Localizing with a Map
 * Creating a Map
 * Localization and Mapping
+* Pose Graph SLAM
 
 :::
 
