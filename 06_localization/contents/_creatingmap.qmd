@@ -91,7 +91,7 @@ $$ \bm{H}_{p_i} = \frac{\partial \bm{h}}{\partial \bm{p}_i} = \begin{pmatrix}
 ## Creating a map {.smaller}
 
 <center>
-<img src="contents/assets/mapcreation.png" width="550" height="400" />
+<img src="contents/assets/mapcreation.png" width="50%"/>
 </center>
 
 ::: {.callout-tip icon="false"}

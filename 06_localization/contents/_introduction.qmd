@@ -14,7 +14,7 @@ direction and time of travel w.r.t. a previous estimate.
 
 ::: {.column width="15%"}
 <center>
-<img src="contents/assets/localization.png" width="150" height="300"/>
+<img src="contents/assets/localization.png" width="100%" />
 </center>
 :::
 
@@ -32,7 +32,7 @@ position at $2$ p.m.
 
 ::: {.column width="20%"}
 <center>
-<img src="contents/assets/fig6_1.svg" width="400" height="150"/>
+<img src="contents/assets/fig6_1.svg" width="100%" />
 </center>
 :::
 
@@ -53,7 +53,7 @@ not even have a compass!
 
 ::: {.column width="20%"}
 <center>
-<img src="contents/assets/fig6_1.svg" width="400" height="150"/>
+<img src="contents/assets/fig6_1.svg" width="200%"/>
 </center>
 :::
 
@@ -66,7 +66,7 @@ _additional information_ to correct their position estimate.
 
 ::: {.column width="30%"}
 <center>
-<img src="contents/assets/fig6_2.svg" width="400" height="200"/>
+<img src="contents/assets/fig6_2.svg" width="100%"/>
 </center>
 :::
 
@@ -94,7 +94,7 @@ fundamental data association error.
 
 ::: {.column width="30%"}
 <center>
-<img src="contents/assets/fig6_2.svg" width="400" height="200"/>
+<img src="contents/assets/fig6_2.svg" width="100%"/>
 </center>
 :::
 
@@ -114,7 +114,7 @@ deviation associated with the position estimate $\hat{\bm{x}}$).
 
 ::: {.column width="50%"}
 <center>
-<img src="contents/assets/gaussian.png" width="600" height="300"/>
+<img src="contents/assets/gaussian.png" width="100%"/>
 </center>
 :::
 

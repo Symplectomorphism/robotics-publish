@@ -185,11 +185,11 @@ plotted.
 
 ::: {.column width="40%"}
 <center>
-<img src="contents/assets/ekf_path.png" width="300" height="250"/>
+<img src="contents/assets/ekf_path.png" width="100%"/>
 </center>
 
 <center>
-<img src="contents/assets/ekf_cov.png" width="300" height="250"/>
+<img src="contents/assets/ekf_cov.png" width="100%"/>
 </center>
 :::
 

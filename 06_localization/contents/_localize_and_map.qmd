@@ -65,7 +65,7 @@ ellipses (_green_).
 
 ::: {.column width="50%"}
 <center>
-<img src="contents/assets/slam-path.png" width="400" height="250"/>
+<img src="contents/assets/slam-path.png" width="60%"/>
 </center>
 :::
 
@@ -75,7 +75,7 @@ ellipses (_green_).
 :::: {.columns}
 
 ::: {.column width="60%"}
-<img src="contents/assets/slam-covariance.png" width="600" height="200"/>
+<img src="contents/assets/slam-covariance.png" width="90%"/>
 :::
 
 ::: {.column width="40%"}
