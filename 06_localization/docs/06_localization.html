@@ -407,7 +407,7 @@
 <ul>
 <li>They navigated with crude dead reckoning but wherever possible they used <em>additional information</em> to correct their position estimate.
 <ul>
-<li>sigthings of islands and headlands</li>
+<li>sightings of islands and headlands</li>
 <li>primitive maps and observations of the Sun and the Pole Star.</li>
 </ul></li>
 </ul>
@@ -639,9 +639,9 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 <ul>
 <li>For example, the value <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mn>1</mn><mo>,</mo><mn>3</mn></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mn>3</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mo>−</mo><mn>0.5575</mn></mrow><annotation encoding="application/x-tex">P_{1,3}=P_{3,1} = -0.5575</annotation></semantics></math> indicats the uncertainties in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math> are related.</li>
 </ul></li>
-<li>The total uncertaintly is given by $ and is plotted.
+<li>The total uncertainty is given by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">(</mo><mover><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{\det{(\hat{\bm{P}})}}</annotation></semantics></math> and is plotted.
 <ul>
-<li>It never decreases b/c RHS of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{P}}</annotation></semantics></math> eqn. is positive definite.</li>
+<li>It never decreases because RHS of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{P}}</annotation></semantics></math> eqn. is positive definite.</li>
 <li>Means that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><annotation encoding="application/x-tex">\bm{P}</annotation></semantics></math>, the position uncertainty can never decrease!</li>
 </ul></li>
 </ul>
@@ -663,13 +663,13 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 <section id="localizing-with-a-map-1" class="slide level2 smaller">
 <h2>Localizing with a map</h2>
 <ul>
-<li><p>Recall: uncertainty in position grows w/o bound using dead-reckoning alone.</p></li>
+<li><p>Recall: uncertainty in position grows without bound using dead-reckoning alone.</p></li>
 <li><p>The solution, as the Phoenicians worked out <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>,</mo><mn>000</mn></mrow><annotation encoding="application/x-tex">4,000</annotation></semantics></math> years ago, is to bring in additional information from observations of known features in the world.</p>
 <ul>
 <li>In the examples, we will use a map that contains <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> fixed but randomly located landmarks whose positions are known.</li>
 </ul></li>
 <li><p>The robot is equipped with a sensor that provides observations of the landmarks w.r.t. the robot, described by <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐳</mi></mstyle><mo>=</mo><mstyle mathvariant="bold"><mi>𝐡</mi></mstyle><mrow><mo stretchy="true" form="prefix">(</mo><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mo>,</mo><msub><mstyle mathvariant="bold"><mi>𝐩</mi></mstyle><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex"> \bm{z} = \bm{h}(\bm{x}, \bm{p}_i), </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>𝐩</mi></mstyle><mi>i</mi></msub><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">\bm{p}_i = \left(x_i, y_i\right)^\top</annotation></semantics></math> is the <em>known</em> location of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mtext mathvariant="normal">th</mtext></msup><annotation encoding="application/x-tex">i^{\text{th}}</annotation></semantics></math> landmark in the world frame.</p></li>
-<li><p>To make this concrete, let’s consider a common type of snesor that measures the range and bearing angle to a landmark in the environment</p>
+<li><p>To make this concrete, let’s consider a common type of sensor that measures the range and bearing angle to a landmark in the environment</p>
 <ul>
 <li>such as radar or a scanning-laser rangefinder.</li>
 </ul></li>
@@ -831,7 +831,7 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <center>
-<img src="contents/assets/kalman_summary.png" width="500" height="300">
+<img src="contents/assets/kalman_summary.png" width="100%">
 </center>
 </div>
 </div>
@@ -850,17 +850,17 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 <li>The error ellipses are now much smaller – many can hardly be seen.</li>
 <li>The bottom figure shows a zoomed view of the robot’s actual and estimated path (moving from top to bottom).
 <ul>
-<li>The error ellipses grow as the robot moves and then shrinks just afer a jg in the estimated path.</li>
+<li>The error ellipses grow as the robot moves and then shrinks just after a jag in the estimated path.</li>
 <li>This corresponds to the observation of a landmark.</li>
 <li>New information, beyond odometry, has been used to correct the state in the Kalman filter update phase.</li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <center>
-<img src="contents/assets/ekfpath_wmap.png" width="500" height="300">
+<img src="contents/assets/ekfpath_wmap.png" width="90%">
 </center>
 <center>
-<img src="contents/assets/ekfpath_wmap_closeup.png" width="500" height="300">
+<img src="contents/assets/ekfpath_wmap_closeup.png" width="90%">
 </center>
 </div>
 </div>
@@ -881,7 +881,7 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 </ul></li>
 <li>Below this is plotted the landmark observations
 <ul>
-<li>Notice that the confidence bounds are tight (indicating low uncertainty) while landmarks are being observed</li>
+<li>Notice that the confidence bounds are tight (indicating low uncertainty) while landmarks are being observed.</li>
 <li>They start to grow once observations stop.</li>
 <li>As soon as an observation is made the uncertainty rapidly decreases.</li>
 </ul></li>
@@ -922,7 +922,7 @@ y\langle k \rangle + (\delta_d+v_d) \cos{\theta\langle k \rangle} \\
 <ul>
 <li><p>We need to estimate the coordinates of the landmarks so for this problem, the state vector comprises the estimated coordinates of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> landmarks we have observed so far: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mo accent="true">̂</mo></mover><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>M</mi></msub><mo>,</mo><msub><mi>y</mi><mi>M</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><msup><mstyle mathvariant="double-struck"><mi>ℝ</mi></mstyle><mrow><mn>2</mn><mi>M</mi><mo>×</mo><mn>1</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> \hat{\bm{x}} = \left(x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)
 \in \mathbb{R}^{2M \times 1}. </annotation></semantics></math></p></li>
-<li><p>The corresponding estiamted covariance <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{P}}</annotation></semantics></math> will be a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>M</mi><mo>×</mo><mn>2</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">2M \times 2M</annotation></semantics></math> matrix.</p></li>
+<li><p>The corresponding estimated covariance <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐏</mi></mstyle><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{P}}</annotation></semantics></math> will be a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>M</mi><mo>×</mo><mn>2</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">2M \times 2M</annotation></semantics></math> matrix.</p></li>
 <li><p>The state vector has variable length since we do now know in advance how many landmarks exist.</p>
 <ul>
 <li>Initially <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">M = 0</annotation></semantics></math> and is incremented every time a previously unseen landmark is observed.</li>
@@ -951,7 +951,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 \end{pmatrix}.
 </annotation></semantics></math></p>
 <ul>
-<li>This appends the sensor-based estimate of the new landmark’s coordinats to those alsready in the map.</li>
+<li>This appends the sensor-based estimate of the new landmark’s coordinates to those already in the map.</li>
 <li>The order of feature coordinates within <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{x}}</annotation></semantics></math> therefore depends on the order in which they are observed.</li>
 </ul></li>
 </ul>
@@ -1000,15 +1000,15 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <h1>Localization and Mapping</h1>
 
 </section>
-<section id="simulatenous-localization-and-mapping" class="slide level2 smaller">
-<h2>Simulatenous localization and mapping</h2>
+<section id="simultaneous-localization-and-mapping" class="slide level2 smaller">
+<h2>Simultaneous localization and mapping</h2>
 <ul>
 <li><p>Feels like a ‘’chicken and egg’’ problem</p>
 <ul>
 <li>we need a map to localize and</li>
 <li>we need to localize to make a map.</li>
 </ul></li>
-<li><p>However, based on what we ahve learned so far this problem is now quite straightforward to solve.</p></li>
+<li><p>However, based on what we have learned so far this problem is now quite straightforward to solve.</p></li>
 <li><p>The state vector comprises the vehicle configuration <em>and</em> the coordinates of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> landmarks that have been observed so far <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mo accent="true">̂</mo></mover><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mi>v</mi></msub><mo>,</mo><msub><mi>y</mi><mi>v</mi></msub><mo>,</mo><msub><mi>θ</mi><mi>v</mi></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>M</mi></msub><mo>,</mo><msub><mi>y</mi><mi>M</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup><mo>∈</mo><msup><mstyle mathvariant="double-struck"><mi>ℝ</mi></mstyle><mrow><mn>2</mn><mi>M</mi><mo>+</mo><mn>3</mn><mo>×</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex"> \hat{\bm{x}} =
 \left(x_v, y_v, \theta_v, x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)^\top \in
 \mathbb{R}^{2M+3 \times 1} </annotation></semantics></math></p></li>
@@ -1040,7 +1040,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <p><strong>SLAM – path</strong></p>
 </div>
 <div class="callout-content">
-<p>Simulatenous localization and mapping showing the true (<em>blue</em>) and estimated (<em>red</em>) robot path superimposed on the true map (<em>black star marker</em>). The estimated map features are indicated by <em>black dots</em> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math> confidence ellipses (<em>green</em>).</p>
+<p>Simultaneous localization and mapping showing the true (<em>blue</em>) and estimated (<em>red</em>) robot path superimposed on the true map (<em>black star marker</em>). The estimated map features are indicated by <em>black dots</em> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math> confidence ellipses (<em>green</em>).</p>
 </div>
 </div>
 </div>
@@ -1060,7 +1060,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <p><strong>SLAM – covariance</strong></p>
 </div>
 <div class="callout-content">
-<p>The final covariance matrix is shown graphically on the right. the landmark uncertainties never increase.</p>
+<p>The final covariance matrix is shown graphically on the right. The landmark uncertainties never increase.</p>
 <p>The position prediction model is that they do not move, but they also never drop below the initial uncertainty of the vehicle.</p>
 </div>
 </div>
@@ -1068,7 +1068,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 </div>
 </div>
 <ul>
-<li>The correlations are used by the Kalman filter to connect the observation of any landmark to an improvement in the estimate of every other landmark in the map as well as the vehicle pose. It is as if all the states were connect by springs.</li>
+<li>The correlations are used by the Kalman filter to connect the observation of any landmark to an improvement in the estimate of every other landmark in the map as well as the vehicle pose. It is as if all the states were connected by springs.</li>
 </ul>
 </section></section>
 <section>
@@ -1086,7 +1086,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 </ul></li>
 <li>The robot’s path is considered to be a sequence of distinct poses.</li>
 <li>The task is to estimate those poses.</li>
-<li>Constraints between the unknown poses are based on measurements from a variety of sensors including odometry, laset scanners and cameras.</li>
+<li>Constraints between the unknown poses are based on measurements from a variety of sensors including odometry, laser scanners and cameras.</li>
 </ul>
 <center>
 <img data-src="contents/assets/fig6_13.svg">
@@ -1174,7 +1174,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 </ul></li>
 <li><p>There is insufficient information to determine where the error lies</p>
 <ul>
-<li>Naively adjusting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math> to better explain the measurement might increase the error in antoher part of the graph.</li>
+<li>Naively adjusting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math> to better explain the measurement might increase the error in another part of the graph.</li>
 <li>We need to minimize the error consistently over the whole graph.</li>
 </ul></li>
 </ul>

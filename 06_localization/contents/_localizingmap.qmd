@@ -2,7 +2,7 @@
 
 ## Localizing with a map {.smaller}
 
-* Recall: uncertainty in position grows w/o bound using dead-reckoning alone.
+* Recall: uncertainty in position grows without bound using dead-reckoning alone.
 * The solution, as the Phoenicians worked out $4,000$ years ago, is to bring in
 additional information from observations of known features in the world.
   - In the examples, we will use a map that contains $N$ fixed but randomly
@@ -12,7 +12,7 @@ landmarks w.r.t. the robot, described by $$ \bm{z} = \bm{h}(\bm{x}, \bm{p}_i), $
 where $\bm{p}_i = \left(x_i, y_i\right)^\top$ is the _known_ location of the
 $i^{\text{th}}$ landmark in the world frame.
 
-* To make this concrete, let's consider a common type of snesor that measures
+* To make this concrete, let's consider a common type of sensor that measures
 the range and bearing angle to a landmark in the environment
   - such as radar or a scanning-laser rangefinder.
 
@@ -159,7 +159,7 @@ from the estimated covariance.
 &nbsp;
 
 <center>
-<img src="contents/assets/kalman_summary.png" width="500" height="300" />
+<img src="contents/assets/kalman_summary.png" width="100%" />
 </center>
 :::
 
@@ -179,7 +179,7 @@ from the estimated covariance.
 * The error ellipses are now much smaller -- many can hardly be seen.
 * The bottom figure shows a zoomed view of the robot's actual and estimated
 path (moving from top to bottom).
-  - The error ellipses grow as the robot moves and then shrinks just afer a jg
+  - The error ellipses grow as the robot moves and then shrinks just after a jag
     in the estimated path.
   - This corresponds to the observation of a landmark.
   - New information, beyond odometry, has been used to correct the state in the
@@ -188,10 +188,10 @@ path (moving from top to bottom).
 
 ::: {.column width="40%"}
 <center>
-<img src="contents/assets/ekfpath_wmap.png" width="500" height="300" />
+<img src="contents/assets/ekfpath_wmap.png" width="90%" />
 </center>
 <center>
-<img src="contents/assets/ekfpath_wmap_closeup.png" width="500" height="300" />
+<img src="contents/assets/ekfpath_wmap_closeup.png" width="90%" />
 </center>
 :::
 
@@ -213,7 +213,7 @@ path (moving from top to bottom).
   - Notice the error is mostly within this envelope.
 * Below this is plotted the landmark observations
   - Notice that the confidence bounds are tight (indicating low uncertainty)
-    while landmarks are being observed
+    while landmarks are being observed.
   - They start to grow once observations stop.
   - As soon as an observation is made the uncertainty rapidly decreases.
 :::

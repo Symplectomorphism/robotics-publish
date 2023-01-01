@@ -10,7 +10,7 @@ components:
 * The robot's path is considered to be a sequence of distinct poses.
 * The task is to estimate those poses.
 * Constraints between the unknown poses are based on measurements from a variety
-of sensors including odometry, laset scanners and cameras.
+of sensors including odometry, laser scanners and cameras.
 
 <center>
 <img data-src="contents/assets/fig6_13.svg" />
@@ -111,7 +111,7 @@ measurement ${^i}\xi_j^\sharp$ and/or the node poses ${^0}\xi_i$ and ${^0}\xi_j$
 
 * There is insufficient information to determine where the error lies
   - Naively adjusting ${^0}\xi_i$ and ${^0}\xi_j$ to better explain the
-    measurement might increase the error in antoher part of the graph.
+    measurement might increase the error in another part of the graph.
   - We need to minimize the error consistently over the whole graph.
 :::
 

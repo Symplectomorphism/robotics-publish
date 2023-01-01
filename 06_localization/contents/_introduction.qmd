@@ -60,7 +60,7 @@ not even have a compass!
 ::: {.column width="70%"}
 * They navigated with crude dead reckoning but wherever possible they used
 _additional information_ to correct their position estimate.
-  - sigthings of islands and headlands
+  - sightings of islands and headlands
   - primitive maps and observations of the Sun and the Pole Star.
 :::
 

@@ -15,7 +15,7 @@ state vector comprises the estimated coordinates of the $M$ landmarks we have
 observed so far: $$ \hat{\bm{x}} = \left(x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)
 \in \mathbb{R}^{2M \times 1}. $$
 
-* The corresponding estiamted covariance $\hat{\bm{P}}$ will be a $2M \times 2M$
+* The corresponding estimated covariance $\hat{\bm{P}}$ will be a $2M \times 2M$
 matrix.
 
 * The state vector has variable length since we do now know in advance how many
@@ -52,8 +52,8 @@ $$
 \bm{g} \left(\bm{x}_v \langle k \rangle, \bm{z} \langle k \rangle \right)
 \end{pmatrix}.
 $$
-  - This appends the sensor-based estimate of the new landmark's coordinats to
-    those alsready in the map.
+  - This appends the sensor-based estimate of the new landmark's coordinates to
+    those already in the map.
   - The order of feature coordinates within $\hat{\bm{x}}$ therefore depends on
     the order in which they are observed.
 

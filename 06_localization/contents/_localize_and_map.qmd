@@ -1,11 +1,11 @@
 # Localization and Mapping
 
-## Simulatenous localization and mapping {.smaller}
+## Simultaneous localization and mapping {.smaller}
 
 * Feels like a ''chicken and egg'' problem
   - we need a map to localize and
   - we need to localize to make a map.
-* However, based on what we ahve learned so far this problem is now quite
+* However, based on what we have learned so far this problem is now quite
 straightforward to solve.
 
 * The state vector comprises the vehicle configuration _and_ the coordinates of
@@ -55,7 +55,7 @@ landmark observation, a $2$-vector, to update _every_ element of the state vecto
 
 :::{.callout-tip icon="false"}
 ## SLAM -- path
-Simulatenous localization and mapping showing the true (_blue_) and estimated
+Simultaneous localization and mapping showing the true (_blue_) and estimated
 (_red_) robot path superimposed on the true map (_black star marker_). The
 estimated map features are indicated by _black dots_ with $95\%$ confidence
 ellipses (_green_).
@@ -82,7 +82,7 @@ ellipses (_green_).
 
 :::{.callout-tip icon="false"}
 ## SLAM -- covariance
-The final covariance matrix is shown graphically on the right. the landmark
+The final covariance matrix is shown graphically on the right. The landmark
 uncertainties never increase. 
 
 The position prediction model is that they do not move, but they also never drop
@@ -95,5 +95,5 @@ below the initial uncertainty of the vehicle.
 
 * The correlations are used by the Kalman filter to connect the observation of
 any landmark to an improvement in the estimate of every other landmark in the
-map as well as the vehicle pose. It is as if all the states were connect by
+map as well as the vehicle pose. It is as if all the states were connected by
 springs.
