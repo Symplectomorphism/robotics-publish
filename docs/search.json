@@ -1,72 +1,212 @@
 [
   {
-    "objectID": "01_introduction.html#robotics-and-automated-systems",
-    "href": "01_introduction.html#robotics-and-automated-systems",
-    "title": "01_introduction",
+    "objectID": "06_localization.html#robotics-and-automated-systems",
+    "href": "06_localization.html#robotics-and-automated-systems",
+    "title": "06_localization",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nWelcome and Introduction\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  History  Definitions  Classifications"
+    "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping\nPose Graph SLAM"
   },
   {
-    "objectID": "01_introduction.html#lets-get-started",
-    "href": "01_introduction.html#lets-get-started",
-    "title": "01_introduction",
-    "section": "Let’s get started!",
-    "text": "Let’s get started!\n\n\n\n\n\nRobots are still far behind what many people expect them to be from movies.\n\n\n\nOne thing is certain: robotics will be an important technology in this century.\n\nVacuum cleaning robots have already been with us for over a decade.\nSelf driving cars are coming."
+    "objectID": "06_localization.html#localization",
+    "href": "06_localization.html#localization",
+    "title": "06_localization",
+    "section": "Localization",
+    "text": "Localization\n\n\n\nGPS makes outdoor localization easy; unfortunately GPS is far from perfect.\n\nrelies on very weak radio signals received from distant orbiting satellites.\nGPS cannot work where there is no line of sight radio reception.\n\nGPS has only been in use since 1995 yet humankind has been navigating the planet for many thousands of years!\nDead reckoning is the estimation of location based on estimated speed, direction and time of travel w.r.t. a previous estimate.\n\n\n\n\n\n\n\nGiven average compass heading over the previous hour and a distance traveled the position at 33 p.m. can be found using elementary geometry from the position at 22 p.m.\n\nMeasurements on which the update is based are subject to both systematic and random error.\nModern instruments are quite precise but 500 years ago clocks, compasses and speed measurements were primitive."
   },
   {
-    "objectID": "01_introduction.html#good-old-days",
-    "href": "01_introduction.html#good-old-days",
-    "title": "01_introduction",
-    "section": "Good-old days",
-    "text": "Good-old days\n\n\n \n\n\n18th18^{th} century Europe was fascinated by automata such as Vaucanson’s duck, which was complex by the standards of the day.\n\n\n\nJacquard extended these ideas and developed a loom, which was essentially a programmable weaving machine."
+    "objectID": "06_localization.html#localization-1",
+    "href": "06_localization.html#localization-1",
+    "title": "06_localization",
+    "section": "Localization",
+    "text": "Localization\n\n\n\nEstimates are recursive: each estimate is based on the previous one.\n\nerrors will accumulate over time\nfor sea voyages of many-years this approach was quite inadequate!\n\nThe Phonecians were navigating at sea more than 4,0004,000 years ago and they did not even have a compass!\n\n\n\n\n\n\n\nThey navigated with crude dead reckoning but wherever possible they used additional information to correct their position estimate.\n\nsightings of islands and headlands\nprimitive maps and observations of the Sun and the Pole Star.\n\n\n\n\n\n\n\nA landmark is a visible feature in the environment whose location is known w.r.t. some coordinate frame.\n\nA precise bearing measurement to two landmarks will therefore pinpoint our location, a process known as resectioning."
   },
   {
-    "objectID": "01_introduction.html#good-old-days-1",
-    "href": "01_introduction.html#good-old-days-1",
-    "title": "01_introduction",
-    "section": "Good-old days",
-    "text": "Good-old days\n\nThe term robot was first introduced by the Czech playwright Karel Čapek in his 19201920 play Rossum’s Universal Robots.\nThe word robota is the Czech word for worker.\n\n\n\n\n\nThe first patent for what we would now consider a robot was filed in 19541954 by George C. Devol.\nThe device comprised a mechanical arm with a gripper that was mounted on a track."
+    "objectID": "06_localization.html#localization-2",
+    "href": "06_localization.html#localization-2",
+    "title": "06_localization",
+    "section": "Localization",
+    "text": "Localization\n\n\n\nThis process is critically reliant on correctly associating the observed landmark with the feature on the map.\n\nMistaking one lighthouse for another, e.g. 𝐂\\bm{C} for 𝐁\\bm{B} leads to significant error in estimated position (𝐪\\bm{q} instead of 𝐩\\bm{p}).\n\nThis is a very common error and countless ships have foundered because of this fundamental data association error.\n\nThis is why lighthouses flash with a unique flashing pattern!\n\n\n\n\n\n\n\n\n\n\nLocalization Problem\n\n\nFind an estimate 𝐱̂\\hat{\\bm{x}} of the true, but unknown position, 𝐱\\bm{x} of the robot. We also wish to know the uncertainty of the estimate (standard deviation associated with the position estimate 𝐱̂\\hat{\\bm{x}}).\n\n\n\n\nIt is useful to describe a robot’s estimated position in terms of a pdf.\n\nallows for multiple hypotheses about the robot’s position."
   },
   {
-    "objectID": "01_introduction.html#mobile-robots",
-    "href": "01_introduction.html#mobile-robots",
-    "title": "01_introduction",
-    "section": "Mobile Robots",
-    "text": "Mobile Robots\n\nThe first generation robots were fixed in place and cannot move about the factory.\nBy contrast, mobile robots can move through the world using various forms of mobility.\n\n\n\n\n\nLocomote: over the ground using wheels or legs, fly thorugh the air using fixed wings or multiple rotors, move through the water or sail over it."
+    "objectID": "06_localization.html#dead-reckoning-1",
+    "href": "06_localization.html#dead-reckoning-1",
+    "title": "06_localization",
+    "section": "Dead reckoning",
+    "text": "Dead reckoning\n\nAn odometer is a sensor that measures distance traveled and sometimes also change in heading direction.\n\nFor wheeled devices, can be determined by measuring the angular rotation of the wheels.\nDirection of travel can be measured using a compass or\nChange in heading can be measured using a gyroscope.\n\nThese sensors are imperfect due to systematic errors\n\nincorrect wheel radius,\ngyroscope bias\n\nThey are also imperfect due to random errors such as slip between wheels and the ground.\nRobots w/o wheels, such as aerial robots, can use visual odometry based on observations of the world moving past the robot."
   },
   {
-    "objectID": "01_introduction.html#manufacturing-robots",
-    "href": "01_introduction.html#manufacturing-robots",
-    "title": "01_introduction",
-    "section": "Manufacturing robots",
-    "text": "Manufacturing robots\n\n\n\n\nTypically operate in factories and are the technological descendents of the first generation robots.\nArm-type manipulators on a fixed base that performs repetitive tasks within a local work cell."
+    "objectID": "06_localization.html#modeling-the-vehicle",
+    "href": "06_localization.html#modeling-the-vehicle",
+    "title": "06_localization",
+    "section": "Modeling the vehicle",
+    "text": "Modeling the vehicle\n\nThe first step in estimating the robot’s pose is to write a function, 𝐟(⋅)\\bm{f}(\\cdot), that describes how the vehicle’s configuration changes from one time step to the next.\nThe initial pose is represented in 𝐒𝐄(2)\\bm{SE}(2) as ξ⟨k⟩∼(cosθ⟨k⟩−sinθ⟨k⟩x⟨k⟩sinθ⟨k⟩cosθ⟨k⟩y⟨k⟩001)\n\\xi\\langle k \\rangle \\sim\n\\begin{pmatrix}\n\\cos{\\theta\\langle k \\rangle} & -\\sin{\\theta\\langle k \\rangle} & x\\langle k\n\\rangle \\\\ \n\\sin{\\theta\\langle k \\rangle} & \\cos{\\theta\\langle k \\rangle} & y\\langle k\n\\rangle \\\\ \n0 & 0 & 1\n\\end{pmatrix}\n\nMove forward in the vehicle xx-direction by δd\\delta_d and then rotate by δθ\\delta_\\theta giving the new configuration ξ⟨k⟩∼(cosθ⟨k⟩−sinθ⟨k⟩x⟨k⟩sinθ⟨k⟩cosθ⟨k⟩y⟨k⟩001)(10δd010001)(cosδθ−sinδθ0sinδθcosδθ0001)∼(cos(θ⟨k⟩+δθ)−sin(θ⟨k⟩+δθ)x⟨k⟩+δdcosθ⟨k⟩sin(θ⟨k⟩+δθ)cos(θ⟨k⟩+δθ)y⟨k⟩+δdsinθ⟨k⟩001)\n\\begin{aligned}\n\\xi\\langle k \\rangle &\\sim\n\\begin{pmatrix}\n\\cos{\\theta\\langle k \\rangle} & -\\sin{\\theta\\langle k \\rangle} & x\\langle k\n\\rangle \\\\ \n\\sin{\\theta\\langle k \\rangle} & \\cos{\\theta\\langle k \\rangle} & y\\langle k\n\\rangle \\\\ \n0 & 0 & 1\n\\end{pmatrix}\n\\begin{pmatrix}\n1 & 0 & \\delta_d \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1\n\\end{pmatrix}\n\\begin{pmatrix}\n\\cos{\\delta_\\theta} & -\\sin{\\delta_\\theta} & 0 \\\\\n\\sin{\\delta_\\theta} & \\cos{\\delta_\\theta} & 0 \\\\ \n0 & 0 & 1\n\\end{pmatrix} \\\\ \n&\\sim\n\\begin{pmatrix}\n\\cos{\\left(\\theta \\langle k \\rangle + \\delta_\\theta\\right)} &\n-\\sin{\\left(\\theta\\langle k \\rangle + \\delta_\\theta\\right)} & \nx\\langle k \\rangle + \\delta_d \\cos{\\theta\\langle k \\rangle} \\\\\n\\sin{\\left(\\theta \\langle k \\rangle + \\delta_\\theta\\right)} &\n\\cos{\\left(\\theta\\langle k \\rangle + \\delta_\\theta\\right)} & \ny\\langle k \\rangle + \\delta_d \\sin{\\theta\\langle k \\rangle} \\\\\n0 & 0 & 1\n\\end{pmatrix}\n\\end{aligned}"
   },
   {
-    "objectID": "01_introduction.html#service-robots",
-    "href": "01_introduction.html#service-robots",
-    "title": "01_introduction",
-    "section": "Service robots",
-    "text": "Service robots\n\n\n\nThey supply services to people such as cleaning, personal care, medical rehabilitation or fetching and carrying.\nMust operate and move in a complex, cluttered, and changing environment."
+    "objectID": "06_localization.html#modeling-the-vehicle-1",
+    "href": "06_localization.html#modeling-the-vehicle-1",
+    "title": "06_localization",
+    "section": "Modeling the vehicle",
+    "text": "Modeling the vehicle\n\nLet’s represent this succinctly as a 33-vector 𝐱=(x,y,θ)\\bm{x} = (x, y, \\theta) so that 𝐱⟨k+1⟩=(x⟨k⟩+δdcosθ⟨k⟩y⟨k⟩+δdcosθ⟨k⟩θ⟨k⟩+δθ)\n\\bm{x}\\langle k+1 \\rangle = \\begin{pmatrix}\nx\\langle k \\rangle + \\delta_d \\cos{\\theta\\langle k \\rangle} \\\\\ny\\langle k \\rangle + \\delta_d \\cos{\\theta\\langle k \\rangle} \\\\\n\\theta\\langle k \\rangle + \\delta_\\theta\n\\end{pmatrix}\n which gives the new configuration in terms of the previous configuration and the odometry.\nOdometry is not perfect and we model the error by imagining a random number generator (vd,vθ)(v_d, v_\\theta) that corrupts the output of a perfect odometer (sensor noise).\n\n\n\n\nRobot’s configuration at the next time step, including odometry error\n\n\n𝐱⟨k+1⟩=𝐟(𝐱⟨k⟩,δ⟨k⟩,𝐯⟨k⟩)=(x⟨k⟩+(δd+vd)cosθ⟨k⟩y⟨k⟩+(δd+vd)cosθ⟨k⟩θ⟨k⟩+δθ+vθ)\n\\bm{x}\\langle k+1 \\rangle = \\bm{f}\\left( \\bm{x}\\langle k \\rangle, \\delta \\langle\nk \\rangle, \\bm{v}\\langle k \\rangle \\right) = \\begin{pmatrix}\nx\\langle k \\rangle + (\\delta_d+v_d) \\cos{\\theta\\langle k \\rangle} \\\\\ny\\langle k \\rangle + (\\delta_d+v_d) \\cos{\\theta\\langle k \\rangle} \\\\\n\\theta\\langle k \\rangle + \\delta_\\theta + v_\\theta\n\\end{pmatrix}\n\n\n\n\n\nWe typically model the odometry noise as 𝐯=(vd,vθ)⊤∼𝒩(0,𝐕)\\bm{v} = \\left(v_d, v_\\theta\\right)^\\top \\sim \\mathcal{N}(0, \\bm{V}), a zero-mean multivariate Gaussian, with variance 𝐕=diag{σd2,σθ2}\\bm{V} = \\text{diag}\\left\\{\\sigma_d^2, \\sigma_\\theta^2 \\right\\}."
   },
   {
-    "objectID": "01_introduction.html#field-robots",
-    "href": "01_introduction.html#field-robots",
-    "title": "01_introduction",
-    "section": "Field robots",
-    "text": "Field robots\n\n\n\nThey work outdoors on tasks such as environmental monitoring, agriculture, mining, construction and forestry.\n\n\n\nMust operate and move in a complex, cluttered, and changing environment.\n\nMars rover must navigate rocks, small craters despite not having an accurate local map.\nSelf-driving cars must follow roads, avoid obstacles and obey traffic signals, and the rules of the road."
+    "objectID": "06_localization.html#estimating-pose",
+    "href": "06_localization.html#estimating-pose",
+    "title": "06_localization",
+    "section": "Estimating pose",
+    "text": "Estimating pose\n\n\n\nShip’s navigator problem\n\n\nHow to estimate our new pose given the previous pose and noise odometry?\n\n\n\n\nThe mathematical tool that we will use is the Kalman filter.\n\nprovides the optimal estimate of the system state assuming zero-mean Gaussian noise.\n\nThe filter is a recursive algorithm that updates, at each time step, the optimal estimate of the unknown true configuration and the uncertainty associated with that estimate.\nThe Kalman filter is formulated for linear systems but our model of the vehicle’s motion is nonlinear, so we’ll use the extended Kalman filter (EKF).\nFor this problem, the state vector is the vehicle’s configuration 𝐱=(xv,yv,θv) \\bm{x} =\n\\left(x_v, y_v, \\theta_v \\right)  and the prediction equations 𝐱̂+⟨k+1⟩=𝐟(𝐱̂⟨k⟩,𝐮̂⟨k⟩)𝐏̂+⟨k+1⟩=𝐅x𝐏̂⟨k⟩𝐅x⊤+𝐅v𝐕̂𝐅v⊤\n\\begin{aligned}\n\\hat{\\bm{x}}^+\\langle k+1 \\rangle &= \\bm{f}\\left(\\hat{\\bm{x}}\\langle k \\rangle,\n\\hat{\\bm{u}}\\langle k \\rangle \\right) \\\\\n\\hat{\\bm{P}}^+\\langle k+1 \\rangle &= \\bm{F}_x\\hat{\\bm{P}}\\langle k\n\\rangle \\bm{F}_x^\\top + \\bm{F}_v \\hat{\\bm{V}}\\bm{F}_v^\\top\n\\end{aligned}\n describe how the state and covariance evolve with time."
   },
   {
-    "objectID": "01_introduction.html#humanoid-robots",
-    "href": "01_introduction.html#humanoid-robots",
-    "title": "01_introduction",
-    "section": "Humanoid robots",
-    "text": "Humanoid robots\n\n\nThey have the physical form of a human being – they are both mobile robots and service robots."
+    "objectID": "06_localization.html#estimating-pose-1",
+    "href": "06_localization.html#estimating-pose-1",
+    "title": "06_localization",
+    "section": "Estimating pose",
+    "text": "Estimating pose\n𝐱̂+⟨k+1⟩=𝐟(𝐱̂⟨k⟩,𝐮̂⟨k⟩)𝐏̂+⟨k+1⟩=𝐅x𝐏̂⟨k⟩𝐅x⊤+𝐅v𝐕̂𝐅v⊤\n\\begin{aligned}\n\\hat{\\bm{x}}^+\\langle k+1 \\rangle &= \\bm{f}\\left(\\hat{\\bm{x}}\\langle k \\rangle,\n\\hat{\\bm{u}}\\langle k \\rangle \\right) \\\\\n\\hat{\\bm{P}}^+\\langle k+1 \\rangle &= \\bm{F}_x\\hat{\\bm{P}}\\langle k\n\\rangle \\bm{F}_x^\\top + \\bm{F}_v \\hat{\\bm{V}}\\bm{F}_v^\\top\n\\end{aligned}\n\n\n𝐮̂⟨k⟩\\hat{\\bm{u}}\\langle k \\rangle: input to the process; in this case is the measured odometry, so 𝐮̂⟨k⟩=δ⟨k⟩\\hat{\\bm{u}}\\langle k \\rangle = \\delta \\langle k \\rangle.\n𝐏̂∈ℝ3×3\\hat{\\bm{P}} \\in \\mathbb{R}^{3 \\times 3} is a covariance matrix representing the uncertainty in the estimated vehicle configuration.\n𝐕̂\\hat{\\bm{V}} is our estimate of the covariance of the odometry noise, which in reality, we do not know.\n𝐅x\\bm{F}_x and 𝐅v\\bm{F}_v are Jacobian matrices obtained by differentiating the equations of motion and evaluating the result at 𝐯=0\\bm{v} = 0, giving 𝐅x=∂𝐟∂𝐱|𝐯=0=(10−δdsinθv01δdcosθv001)𝐅v=∂𝐟∂𝐯|𝐯=0=(cosθv0sinθv001)\n\\begin{aligned}\n\\bm{F}_x &= \\frac{\\partial \\bm{f}}{\\partial \\bm{x}}\\vert_{\\bm{v}=0} =\n\\begin{pmatrix}\n1 & 0 & -\\delta_d \\sin{\\theta_v} \\\\ 0 & 1 & \\delta_d \\cos{\\theta_v} \\\\ 0 & 0 & 1\n\\end{pmatrix} \\\\\n\\bm{F}_v &= \\frac{\\partial \\bm{f}}{\\partial \\bm{v}}\\vert_{\\bm{v}=0} = \n\\begin{pmatrix}\n\\cos{\\theta_v} & 0 \\\\ \\sin{\\theta_v} & 0 \\\\ 0 & 1\n\\end{pmatrix}\n\\end{aligned}\n which are functions of the current state and odometry."
   },
   {
-    "objectID": "01_introduction.html#so-what-is-a-robot",
-    "href": "01_introduction.html#so-what-is-a-robot",
-    "title": "01_introduction",
-    "section": "So, what is a robot?",
-    "text": "So, what is a robot?\n\n\n\n\n\n\n\nOur definition of robot\n\n\nA robot is a goal-oriented machine that can sense, plan and act.\n\n\n\n\n\n\nA robot senses its environment and uses that information, together with a goal, to plan some action.\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "objectID": "06_localization.html#estimating-pose-2",
+    "href": "06_localization.html#estimating-pose-2",
+    "title": "06_localization",
+    "section": "Estimating pose",
+    "text": "Estimating pose\n\n\n\nThe true (blue) and estimated (red) robot path is shown in the figure to the right.\n\n95%95\\% confidence ellipses are indicated in green.\nThat is there is 95%95\\% chance that the robot’s xx- and yy-coordinate is within ±2σ\\pm 2\\sigma bound.\n\nThere are off-diagonal terms in the correlation matrix, which indicate that the uncertainties between the corresponding variables are related.\n\nFor example, the value P1,3=P3,1=−0.5575P_{1,3}=P_{3,1} = -0.5575 indicats the uncertainties in xx and θ\\theta are related.\n\nThe total uncertainty is given by det(𝐏̂)\\sqrt{\\det{(\\hat{\\bm{P}})}} and is plotted.\n\nIt never decreases because RHS of the 𝐏̂\\hat{\\bm{P}} eqn. is positive definite.\nMeans that 𝐏\\bm{P}, the position uncertainty can never decrease!"
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-1",
+    "href": "06_localization.html#localizing-with-a-map-1",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\nRecall: uncertainty in position grows without bound using dead-reckoning alone.\nThe solution, as the Phoenicians worked out 4,0004,000 years ago, is to bring in additional information from observations of known features in the world.\n\nIn the examples, we will use a map that contains NN fixed but randomly located landmarks whose positions are known.\n\nThe robot is equipped with a sensor that provides observations of the landmarks w.r.t. the robot, described by 𝐳=𝐡(𝐱,𝐩i), \\bm{z} = \\bm{h}(\\bm{x}, \\bm{p}_i),  where 𝐩i=(xi,yi)⊤\\bm{p}_i = \\left(x_i, y_i\\right)^\\top is the known location of the ithi^{\\text{th}} landmark in the world frame.\nTo make this concrete, let’s consider a common type of sensor that measures the range and bearing angle to a landmark in the environment\n\nsuch as radar or a scanning-laser rangefinder.\n\n\n\n\n\nObservation of the ithi^{\\text{th}} landmark\n\n\n𝐳=𝐡(𝐱,𝐩i)=((yi−yv)2+(xi−xv)2arctan(yi−yv,xi−xv)−θv)+(wrwβ)\n\\bm{z} = \\bm{h}(\\bm{x}, \\bm{p}_i) = \n\\begin{pmatrix}\n\\sqrt{ \\left(y_i - y_v \\right)^2 + \\left(x_i - x_v\\right)^2 } \\\\ \n\\arctan{\\left(y_i-y_v, x_i-x_v\\right)} - \\theta_v\n\\end{pmatrix} + \n\\begin{pmatrix} w_r \\\\ w_\\beta \\end{pmatrix}"
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-2",
+    "href": "06_localization.html#localizing-with-a-map-2",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\n\n\nObservation of the ithi^{\\text{th}} landmark\n\n\n𝐳=𝐡(𝐱,𝐩i)=((yi−yv)2+(xi−xv)2arctan(yi−yv,xi−xv)−θv)+(wrwβ)\n\\bm{z} = \\bm{h}(\\bm{x}, \\bm{p}_i) = \n\\begin{pmatrix}\n\\sqrt{ \\left(y_i - y_v \\right)^2 + \\left(x_i - x_v\\right)^2 } \\\\ \n\\arctan{\\left(y_i-y_v, x_i-x_v\\right)} - \\theta_v\n\\end{pmatrix} + \n\\begin{pmatrix} w_r \\\\ w_\\beta \\end{pmatrix}\n\n\n\n\n\n𝐳=(r,β)⊤\\bm{z} = (r, \\beta)^\\top, rr is the range, β\\beta is the bearing angle.\n𝐰=(wr,wβ)⊤∼𝒩(0,𝐖),𝐖=diag{σr2,σβ2}\\bm{w} = \\left(w_r, w_\\beta\\right)^\\top \\sim \\mathcal{N}(0, \\bm{W}), \\;\\; \\bm{W} = \\text{diag}\\{ \\sigma_r^2, \\sigma_\\beta^2 \\}: constant covariance matrix.\nIn implementation, this sensor return the range and bearing to some landmark along with its identity (to avoid data association problem).\n\nRecall: the location (xi,yi)(x_i, y_i) of the measured landmark is known in the world frame.\n\nUsing the equation above, the robot can estimate the range and bearing angle to the landmark based on its own estimated position and the known position of the landmark from the map.\nAny difference between the observation 𝐳♯\\bm{z}^\\sharp and the estimated observation indicates an error in the robot’s pose estimate 𝐱̂\\hat{\\bm{x}} – it isn’t where it thought it was!"
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-3",
+    "href": "06_localization.html#localizing-with-a-map-3",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\nThis difference\n\n\n\n\nObservation error\n\n\n𝛎=𝐳♯⟨k+1⟩−𝐡(𝐱̂⟨k+1⟩,𝐩i)\n\\bm{\\nu} = \\bm{z}^\\sharp \\langle k+1 \\rangle - \\bm{h}\\left(\\hat{{\\bm{x}}} \n\\langle k + 1 \\rangle, \\bm{p}_i \\right)\n\n\n\n\nis key to the operation of the Kalman filter.\n\nIt is called the innovation since it represents new information.\nKalman filter uses the innovation to correct the state estimate and update the uncertainty estimate in an optimal way.\nThe predicted state, computed earlier, is updated by\n\n\n\n\nKalman filter update equations\n\n\n𝐱̂⟨k+1⟩=𝐱̂+⟨k+1⟩+𝐊𝛎𝐏̂⟨k+1⟩=𝐏̂+⟨k+1⟩−𝐊𝐇x𝐏̂+⟨k+1⟩\n\\begin{aligned}\n\\hat{\\bm{x}} \\langle k+1 \\rangle &= \\hat{\\bm{x}}^+ \\langle k+1 \\rangle +\n\\bm{K}\\bm{\\nu} \\\\\n\\hat{\\bm{P}} \\langle k+1 \\rangle &= \\hat{\\bm{P}}^+ \\langle k+1 \\rangle -\n\\bm{K}\\bm{H}_x\\hat{\\bm{P}}^+ \\langle k+1 \\rangle\n\\end{aligned}"
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-4",
+    "href": "06_localization.html#localizing-with-a-map-4",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\n\n\nKalman filter update equations\n\n\n𝐱̂⟨k+1⟩=𝐱̂+⟨k+1⟩+𝐊𝛎𝐏̂⟨k+1⟩=𝐏̂+⟨k+1⟩−𝐊𝐇x𝐏̂+⟨k+1⟩\n\\begin{aligned}\n\\hat{\\bm{x}} \\langle k+1 \\rangle &= \\hat{\\bm{x}}^+ \\langle k+1 \\rangle +\n\\bm{K}\\bm{\\nu} \\\\\n\\hat{\\bm{P}} \\langle k+1 \\rangle &= \\hat{\\bm{P}}^+ \\langle k+1 \\rangle -\n\\bm{K}\\bm{H}_x\\hat{\\bm{P}}^+ \\langle k+1 \\rangle\n\\end{aligned}\n\n\n\n\n\nThese take the predicted values for the next tiem step, denoted with the +{~}^+ and compute the optimal estimate by applying landmark measurement from step k+1k+1.\n\n\n\n\nKalman gain\n\n\n𝐊=𝐏+⟨k+1⟩𝐇x⊤𝐒−1𝐒=𝐇x𝐏+⟨k+1⟩𝐇x⊤+𝐇w𝐖̂𝐇w⊤\n\\begin{aligned}\n\\bm{K} &= \\bm{P}^+ \\langle k+1 \\rangle \\bm{H}_x^\\top \\bm{S}^{-1} \\\\\n\\bm{S} &= \\bm{H}_x \\bm{P}^+ \\langle k+1 \\rangle \\bm{H}_x^\\top + \\bm{H}_w\n\\hat{\\bm{W}} \\bm{H}_w^\\top\n\\end{aligned}\n\n\n\n\nwhere 𝐖̂\\hat{\\bm{W}} is the estimated covariance of the sensor noise and 𝐇x\\bm{H}_x and 𝐇w\\bm{H}_w are Jacobians\n𝐇x=∂𝐡∂𝐱|𝐰=0=(−1r(xi−xv)−1r(yi−yv)01r(yi−yv)−1r(xi−xv)−1),𝐇w=∂𝐡∂𝐰|𝐰=0=(1001).\n\\bm{H}_x = \\frac{\\partial \\bm{h}}{\\partial \\bm{x}}\\vert_{\\bm{w}=0} = \n\\begin{pmatrix}\n-\\frac{1}{r}\\left(x_i - x_v\\right) & -\\frac{1}{r}\\left(y_i - y_v\\right) & 0 \\\\\n\\frac{1}{r}\\left(y_i - y_v\\right) & -\\frac{1}{r}\\left(x_i - x_v\\right) & -1\n\\end{pmatrix}, \\quad\\quad\n\\bm{H}_w = \\frac{\\partial \\bm{h}}{\\partial \\bm{w}}\\vert_{\\bm{w}=0} = \n\\begin{pmatrix}\n1 & 0 \\\\ 0 & 1\n\\end{pmatrix}."
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-5",
+    "href": "06_localization.html#localizing-with-a-map-5",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\n\n \n\nThe Kalman gain matrix 𝐊\\bm{K} distributes the innovation from the landmark observation, a 22-vector, to update every element of the state vector.\nNote that the second term in the covariance update equation is subtracted from the estimated covariance.\n\nThis provides a means for estimated covariance to decrease, which was not possible for the dead-reckoning case."
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-6",
+    "href": "06_localization.html#localizing-with-a-map-6",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\n\n\nEKF localization\n\nBlue: true path of the robot,\nRed: estimated path from odometry and landmarks,\nStars: landmarks.\n\nThe error ellipses are now much smaller – many can hardly be seen.\nThe bottom figure shows a zoomed view of the robot’s actual and estimated path (moving from top to bottom).\n\nThe error ellipses grow as the robot moves and then shrinks just after a jag in the estimated path.\nThis corresponds to the observation of a landmark.\nNew information, beyond odometry, has been used to correct the state in the Kalman filter update phase."
+  },
+  {
+    "objectID": "06_localization.html#localizing-with-a-map-7",
+    "href": "06_localization.html#localizing-with-a-map-7",
+    "title": "06_localization",
+    "section": "Localizing with a map",
+    "text": "Localizing with a map\n\n\n\nOverall uncertainty is no longer growing monotonically\n\nWhen the robot sees a landmark, it is able to dramatically reduce its estimated covariance.\n\nThe bottom figure shows the error associated with each component of pose\n\nThe pink background is estimated 95%95\\% confidence bound (derived from the covariance matrix).\nNotice the error is mostly within this envelope.\n\nBelow this is plotted the landmark observations\n\nNotice that the confidence bounds are tight (indicating low uncertainty) while landmarks are being observed.\nThey start to grow once observations stop.\nAs soon as an observation is made the uncertainty rapidly decreases."
+  },
+  {
+    "objectID": "06_localization.html#creating-a-map-1",
+    "href": "06_localization.html#creating-a-map-1",
+    "title": "06_localization",
+    "section": "Creating a map",
+    "text": "Creating a map\n\nSomebody or something has to create the maps we will use.\n\n\n\n\nAssumptions:\n\n\n\nSensor can determine the identity of each observed landmark.\nThe robot knows its own position perfectly (ideal localization).\n\n\n\n\n\nWe need to estimate the coordinates of the landmarks so for this problem, the state vector comprises the estimated coordinates of the MM landmarks we have observed so far: 𝐱̂=(x1,y1,x2,y2,…,xM,yM)∈ℝ2M×1. \\hat{\\bm{x}} = \\left(x_1, y_1, x_2, y_2, \\ldots, x_M, y_M \\right)\n\\in \\mathbb{R}^{2M \\times 1}. \nThe corresponding estimated covariance 𝐏̂\\hat{\\bm{P}} will be a 2M×2M2M \\times 2M matrix.\nThe state vector has variable length since we do now know in advance how many landmarks exist.\n\nInitially M=0M = 0 and is incremented every time a previously unseen landmark is observed."
+  },
+  {
+    "objectID": "06_localization.html#creating-a-map-2",
+    "href": "06_localization.html#creating-a-map-2",
+    "title": "06_localization",
+    "section": "Creating a map",
+    "text": "Creating a map\n\nThe prediction equation is straightforward since the landmarks are stationary. 𝐱̂⟨k+1⟩=𝐱̂⟨k⟩𝐏̂+⟨k+1⟩=𝐏̂⟨k⟩\n\\begin{aligned}\n\\hat{\\bm{x}} \\langle k+1 \\rangle &= \\hat{\\bm{x}} \\langle k \\rangle \\\\\n\\hat{\\bm{P}}^+ \\langle k+1 \\rangle &= \\hat{\\bm{P}} \\langle k \\rangle\n\\end{aligned}\n\nWe introduce the function 𝐠(⋅)\\bm{g}(\\cdot), the inverse of 𝐡(⋅)\\bm{h}(\\cdot), which gives the coordinates of the observed landmark based on the known vehicle pose and the sensor observation 𝐠(𝐱,𝐳)=(xv+rcos(θv+β)yv+rsin(θv+β)) \\bm{g}(\\bm{x}, \\bm{z}) = \\begin{pmatrix}\nx_v + r \\cos{\\left(\\theta_v + \\beta\\right)} \\\\\ny_v + r \\sin{\\left(\\theta_v + \\beta\\right)}\n\\end{pmatrix} \nSince 𝐱̂\\hat{\\bm{x}} has a variable length, we need to extend the state vector and the covariance matrix whenever we encounter a previously unseen landmark. 𝐱⟨k⟩′=𝐲(𝐱⟨k⟩,𝐱v⟨k⟩)=(𝐱⟨k⟩𝐠(𝐱v⟨k⟩,𝐳⟨k⟩)). \n\\bm{x} \\langle k \\rangle^\\prime = \\bm{y}\\left(\\bm{x} \\langle k \\rangle,\n\\bm{x}_v \\langle k \\rangle \\right) \n= \\begin{pmatrix}\n\\bm{x} \\langle k \\rangle \\\\\n\\bm{g} \\left(\\bm{x}_v \\langle k \\rangle, \\bm{z} \\langle k \\rangle \\right)\n\\end{pmatrix}.\n\n\nThis appends the sensor-based estimate of the new landmark’s coordinates to those already in the map.\nThe order of feature coordinates within 𝐱̂\\hat{\\bm{x}} therefore depends on the order in which they are observed."
+  },
+  {
+    "objectID": "06_localization.html#creating-a-map-3",
+    "href": "06_localization.html#creating-a-map-3",
+    "title": "06_localization",
+    "section": "Creating a map",
+    "text": "Creating a map\n\nThe covariance matrix also needs to be extended when a new landmark is observed and this is achieved by 𝐏̂⟨k⟩′=𝐘z(𝐏̂⟨k⟩00𝐖̂)𝐘z⊤ \\hat{\\bm{P}} \\langle k \\rangle^\\prime = \\bm{Y}_z \\begin{pmatrix}\n\\hat{\\bm{P}}\\langle k \\rangle & 0 \\\\ 0 & \\hat{\\bm{W}} \\end{pmatrix}\n\\bm{Y}_z^\\top  where 𝐘z\\bm{Y}_z is the insertion Jacobian 𝐘z=∂𝐲∂𝐳=(𝐈n×n0n×2𝐆x02×n−3𝐆z) \\bm{Y}_z =\n\\frac{\\partial \\bm{y}}{\\partial \\bm{z}} = \\begin{pmatrix} \\bm{I}_{n \\times n} &\n& \\bm{0}_{n \\times 2} \\\\ \\bm{G}_x & \\bm{0}_{2 \\times n-3} & \\bm{G}_z\n\\end{pmatrix}  that relates the rate of change of the extended state vector to the new observation.\nnn is the dimension of 𝐏̂\\hat{\\bm{P}} prior to being extended and 𝐆x=∂𝐠∂𝐱=(000000),𝐆z=∂𝐠∂𝐳=(cos(θv+β)−rsin(θv+β)sin(θv+β)rcos(θv+β))\n\\bm{G}_x = \\frac{\\partial \\bm{g}}{\\partial \\bm{x}} = \\begin{pmatrix} 0 & 0 & 0\n\\\\ 0 & 0 & 0 \\end{pmatrix}, \\quad\\quad\n\\bm{G}_z = \\frac{\\partial \\bm{g}}{\\partial \\bm{z}} = \\begin{pmatrix} \n\\cos{\\left(\\theta_v + \\beta\\right)} & -r\\sin{\\left(\\theta_v + \\beta\\right)} \\\\\n\\sin{\\left(\\theta_v + \\beta\\right)} & r\\cos{\\left(\\theta_v + \\beta\\right)}\n\\end{pmatrix}\n\nAn additional Jacobian that we will need later is the Jacobian for 𝐡(⋅)\\bm{h}(\\cdot) 𝐇pi=∂𝐡∂𝐩i=(1r(xi−xv)1r(yi−yv)−1r2(yi−yv)1r2(xi−xv)). \\bm{H}_{p_i} = \\frac{\\partial \\bm{h}}{\\partial \\bm{p}_i} = \\begin{pmatrix} \n\\frac{1}{r}\\left(x_i - x_v\\right) & \\frac{1}{r}\\left(y_i - y_v\\right) \\\\\n-\\frac{1}{r^2}\\left(y_i - y_v\\right) & \\frac{1}{r^2}\\left(x_i - x_v\\right)\n\\end{pmatrix}."
+  },
+  {
+    "objectID": "06_localization.html#creating-a-map-4",
+    "href": "06_localization.html#creating-a-map-4",
+    "title": "06_localization",
+    "section": "Creating a map",
+    "text": "Creating a map\n\n\n\n\n\n\nEKF mapping results\n\n\nThe estimated landmarks are indicated by black dots with 95%95\\% confidence ellipses (green, hard to see w/o zooming), the true location (black star marker) and the robot’s path (blue). The landmark estimates have not fully converged to their true values."
+  },
+  {
+    "objectID": "06_localization.html#simultaneous-localization-and-mapping",
+    "href": "06_localization.html#simultaneous-localization-and-mapping",
+    "title": "06_localization",
+    "section": "Simultaneous localization and mapping",
+    "text": "Simultaneous localization and mapping\n\nFeels like a ‘’chicken and egg’’ problem\n\nwe need a map to localize and\nwe need to localize to make a map.\n\nHowever, based on what we have learned so far this problem is now quite straightforward to solve.\nThe state vector comprises the vehicle configuration and the coordinates of the MM landmarks that have been observed so far 𝐱̂=(xv,yv,θv,x1,y1,x2,y2,…,xM,yM)⊤∈ℝ2M+3×1 \\hat{\\bm{x}} =\n\\left(x_v, y_v, \\theta_v, x_1, y_1, x_2, y_2, \\ldots, x_M, y_M \\right)^\\top \\in\n\\mathbb{R}^{2M+3 \\times 1} \nThe estimated covariance is a (2M+3)×(2M+3)(2M+3) \\times (2M+3) matrix and has the structure 𝐏̂=(𝐏̂vv𝐏̂vm𝐏̂vm⊤𝐏̂mm) \\hat{\\bm{P}} = \\begin{pmatrix} \\hat{\\bm{P}}_{vv} &\n\\hat{\\bm{P}}_{vm} \\\\ \\hat{\\bm{P}}_{vm}^\\top & \\hat{\\bm{P}}_{mm} \\end{pmatrix}  where 𝐏̂vv\\hat{\\bm{P}}_{vv} is the covariance of the vehicle pose, 𝐏̂mm\\hat{\\bm{P}}_{mm} the covariance of the map landmark positions, and 𝐏̂vm\\hat{\\bm{P}}_{vm} is the correlation between vehicle landmark states."
+  },
+  {
+    "objectID": "06_localization.html#slam",
+    "href": "06_localization.html#slam",
+    "title": "06_localization",
+    "section": "SLAM",
+    "text": "SLAM\n\nThe predicted vehicle state and covariances are as they were given in localization section with perfect map knowledge.\nWhen a new feature is observed the state vector is updated using the insertion Jacobian 𝐘z\\bm{Y}_z but in this case 𝐆x\\bm{G}_x is nonzero 𝐆x=∂𝐠∂𝐱=(10−rsin(θv+β)01rcos(θv+β)) \\bm{G}_x = \\frac{\\partial \\bm{g}}{\\partial \\bm{x}} = \\begin{pmatrix} \n1 & 0 & -r \\sin{\\left(\\theta_v + \\beta\\right)} \\\\\n0 & 1 & r \\cos{\\left(\\theta_v + \\beta\\right)} \\end{pmatrix}  since the estimate of the new landmark depends on the state vector which now contains the vehicle’s pose.\nFor SLAM, the Jacobian 𝐇x\\bm{H}_x describes how the landmark observation changes w.r.t. the state vector. The observation will depend on the position of the vehicle and on the position of the observed landmark 𝐇x=∂𝐡∂𝐱|w=0=(𝐇xv⋯0⋯𝐇pi⋯0)∈ℝ2×(2M+3). \\bm{H}_x =\n\\frac{\\partial \\bm{h}}{\\partial \\bm{x}}\\vert_{w=0} = \\begin{pmatrix}\n\\bm{H}_{x_v} & \\cdots & 0 & \\cdots & \\bm{H}_{p_i} & \\cdots & 0 \\end{pmatrix} \\in\n\\mathbb{R}^{2 \\times \\left(2M+3\\right)}. \nNow, the Kalman gain matrix 𝐊\\bm{K} distributes innovation from the landmark observation, a 22-vector, to update every element of the state vector – the pose of the vehicle and the position of every landmark in the map."
+  },
+  {
+    "objectID": "06_localization.html#slam-results",
+    "href": "06_localization.html#slam-results",
+    "title": "06_localization",
+    "section": "SLAM – results",
+    "text": "SLAM – results\n\n\n\n\n\nSLAM – path\n\n\nSimultaneous localization and mapping showing the true (blue) and estimated (red) robot path superimposed on the true map (black star marker). The estimated map features are indicated by black dots with 95%95\\% confidence ellipses (green).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLAM – covariance\n\n\nThe final covariance matrix is shown graphically on the right. The landmark uncertainties never increase.\nThe position prediction model is that they do not move, but they also never drop below the initial uncertainty of the vehicle.\n\n\n\n\n\n\nThe correlations are used by the Kalman filter to connect the observation of any landmark to an improvement in the estimate of every other landmark in the map as well as the vehicle pose. It is as if all the states were connected by springs."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-1",
+    "href": "06_localization.html#pose-graph-slam-1",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n \n\nAn alternative approach to the SLAM problem is to separate it into two components:\n\na front-end and a back-end\n\nThe robot’s path is considered to be a sequence of distinct poses.\nThe task is to estimate those poses.\nConstraints between the unknown poses are based on measurements from a variety of sensors including odometry, laser scanners and cameras."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-2",
+    "href": "06_localization.html#pose-graph-slam-2",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\n\nThe problem is formulated as a directed graph.\nA node corresponds to a robot pose or a landmark position.\nAn edge between two nodes represents a spatial constraint between the nodes derived from some sensor data.\n\n\n\n\nDead-reckoning example\n\n\nThe robot travels around a square. By the time the robot reaches node 44, the error is significant.\nHowever, when it makes a measurement of node 11, a consraint is added – the dashed edge – indicating that the nodes are closer than the estimated relative pose based on the chain of relative poses from odometry: 1ξ2♯⊕2ξ3♯⊕3ξ4♯{^1}\\xi_2^\\sharp \\oplus {^2}\\xi_3^\\sharp \\oplus {^3}\\xi_4^\\sharp.\nThe back-end algorithm will then pull all the nodes closer to their correct pose.\n\n\n\n\n\n\n\n\n\n\nPose-graph SLAM example\n\n\nPlaces are shown as circular nodes and have an associated pose.\nLandmarks are shown as star-shaped nodes and have an associated pose.\nEdges represent a measurement of a relative pose or position w.r.t. the node at the tail of the arrow."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-3",
+    "href": "06_localization.html#pose-graph-slam-3",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\nThe front-end adds new nodes as the robot travels as well as edges that define constraints between poses. E.g.:\n\nWhen moving from one place to another wheel odometry gives an estimate of distance and change in orientation, which is a constraint.\nThe robot’s exteroceptive sensors may observe the relative position of a landmark and this also adds a constraint.\n\nEvery measurement adds a constraint – an edge in the graph.\n\nThere is no limit to the number of edges entering or leaving a node.\n\n\n\nThe back-end adjusts the poses of the nodes so that the constraints are satisfied as well as possible\n\nThe sensor observations are explained optimally."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-4",
+    "href": "06_localization.html#pose-graph-slam-4",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\nCoordinate frames {i}\\{i\\} and {j}\\{j\\} are associated with robot poses ii and jj.\nWe seek to estimate 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j in the world coordinate frame.\n\n\nThe robot makes a measurement of the relative pose iξj♯{^i}\\xi_j^\\sharp which will, in general, be different than the relative pose iξj{^i}\\xi_j inferred from poses 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j.\nThe difference, or innovation, is caused by the error in the sensor measurement iξj♯{^i}\\xi_j^\\sharp and/or the node poses 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j.\n\nWe use it to adjust the poses of the nodes.\n\nThere is insufficient information to determine where the error lies\n\nNaively adjusting 0ξi{^0}\\xi_i and 0ξj{^0}\\xi_j to better explain the measurement might increase the error in another part of the graph.\nWe need to minimize the error consistently over the whole graph.\n\n\n\n\n\n\n\n\n\nPose graph notation\n\n\nThe light gray robot is the estimated pose of {j}\\{j\\} based on the sensor measurement iξj♯{^i}\\xi_j^\\sharp.\nThe yellow ellipse indicates the uncertainty associated with that measurement."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-5",
+    "href": "06_localization.html#pose-graph-slam-5",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\nThe first step is to express the error associated with the graph edge in terms of the sensor measurement and our best estimates of the node poses w.r.t. the world frame ξε=⊖iξj♯⊖0ξ̂i⊕0ξ̂j∈𝐒𝐄(2) \\xi_\\varepsilon = \\ominus {^i}\\xi_j^\\sharp \\ominus\n{^0}\\hat{\\xi}_i \\oplus {^0}\\hat{\\xi}_j \\in \\bm{SE}(2)  which is ideally zero.\n\n\n\n\nWe can formulate this as a minimization problem and attempt to find the poses of all the nodes 𝐱={ξ1,ξ2,…,ξN}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_N \\right\\} that minimizes the error across all the edges 𝐱*=argmin𝐱∑kFk(𝐱) \\bm{x}^* = \\arg \\min_\\bm{x} \\sum_k\nF_k(\\bm{x}) \n\n𝐱\\bm{x} is the state of the pose graph and contains the pose of every node.\nFk(𝐱)F_k(\\bm{x}) is a nonnegative scalar cost associated with the edge kk connecting node ii to node jj.\n\n\n\n\n\n\n\nIf we convert edge pose error to a vector representation ξε∼(x,y,θ)=𝐟k(𝐱)\\xi_\\varepsilon \\sim (x, y, \\theta) = \\bm{f}_k(\\bm{x}) then the scalar cost can be obtained as a quadratic expression 𝐅k(𝐱)=𝐟k⊤𝛀k𝐟k(𝐱). \\bm{F}_k(\\bm{x}) = \\bm{f}_k^\\top \\bm{\\Omega}_k\n\\bm{f}_k(\\bm{x})."
+  },
+  {
+    "objectID": "06_localization.html#pose-graph-slam-6",
+    "href": "06_localization.html#pose-graph-slam-6",
+    "title": "06_localization",
+    "section": "Pose Graph SLAM",
+    "text": "Pose Graph SLAM\n\n\n\nThe pose graph can also include landmarks as shown in the figure.\nLandmarks have a position 𝐏j∈ℝ2\\bm{P}_j \\in \\mathbb{R}^2, not a pose, and therefore differ from the nodes discussed so far.\nTo accommodate this, we redefine the state vector 𝐱={ξ1,ξ2,…,ξn|𝐏1,𝐏2,…,𝐏M}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_n \\vert \\bm{P}_1, \\bm{P}_2, \\ldots, \\bm{P}_M \\right\\}.\n\n\n\n\n\n\nThe robot at pose ii observes landmark jj at range and bearing 𝐳♯=(r♯,β♯)\\bm{z}^\\sharp = \\left( r^\\sharp, \\beta^\\sharp \\right) which is converted to Cartesian form in frame {i}\\{i\\} i𝐏j♯=(r♯cosβ♯,r♯sinβ♯)∈ℝ2. {^i}\\bm{P}_j^\\sharp = \\left( r^\\sharp\n\\cos{\\beta^\\sharp}, r^\\sharp \\sin{\\beta^\\sharp} \\right) \\in \\mathbb{R}^2. \nThe estimated position of the landmark in frame {i}\\{i\\} is i𝐏̂j=(⊖0ξi)•𝐏̂j∈ℝ2\n{^i}\\hat{\\bm{P}}_j = \\left( \\ominus {^0}\\xi_i \\right) \\bullet \\hat{\\bm{P}}_j \\in \\mathbb{R}^2  and the error vector is 𝐟k(𝐱)=ε=i𝐏̂j−i𝐏j♯∈ℝ2. \\bm{f}_k(\\bm{x}) = \\varepsilon = {^i}\\hat{\\bm{P}}_j -\n{^i}\\bm{P}_j^\\sharp \\in \\mathbb{R}^2. \n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]
