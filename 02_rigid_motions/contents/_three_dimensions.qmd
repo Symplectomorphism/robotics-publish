@@ -373,6 +373,65 @@ $$ e^{\hat{\bm{\omega}}\theta} = \bm{I} + \sin{(\theta)} \hat{\bm{\omega}} +
   \left(1 - \cos{(\theta)}\right)\hat{\bm{\omega}}^2. $$
 
 
+## Unit quaternions {.smaller}
+
+::: {.callout-tip icon="false"}
+## Quaternion -- extension of the complex number
+We write a quaternion as a scalar plus a vector:
+$$ \bm{q} = s + \bm{v} = s + v_1 i + v_2 j + v_3 k, $$
+where $s \in \mathbb{R}$ and $\bm{v} \in \mathbb{R}^3$ and the orthogonal complex
+numbers $i$, $j$, and $k$ are defined such that 
+$$ i^2 = j^2 = k^2 = ijk = -1 $$
+and we denote a quaternion as 
+$$ \bm{q} = s \langle v_1, v_2, v_3 \rangle. $$
+:::
+
+* Quaternions support addition and subtraction, performed element-wise,
+multiplication by a scalar and multiplication
+$$ \bm{q}_1 \circ \bm{q}_2 = s_1s_2 - \bm{v}_1 \cdot \bm{v}_2 \langle s_1
+\bm{v}_2 + s_2 \bm{v}_1 + \bm{v}_1 \times \bm{v}_2 \rangle, $$ which is known as
+the quaternion or Hamilton product.
+
+* If we write the quaternion as a $4$-vector $(s, v_1, v_2, v_3)$ then
+multiplication can be expressed as a matrix vector product
+$$
+\bm{q} \circ \bm{q}^\prime = \begin{pmatrix}
+s & -v_1 & -v_2 & -v_3 \\ v_1 & s & -v_3 & v_2 \\ v_2 & v_3 & s & -v_1 \\
+v_3 & -v_2 & v_1 & s
+\end{pmatrix}
+\begin{pmatrix}
+s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
+\end{pmatrix}
+$$
+
+
+## Unit quaternions {.smaller}
+
+* To represent rotations, we use unit-quaternions, denoted by $\mathring{\bm{q}}$, that is,
+$$ \left\| \bm{q} \right\| = s^2 + v_1^2 + v_2^2 + v_3^2 = 1. $$
+
+* They can be considered as a rotation of $\theta$ about the unit vector
+$\bm{v}$, which are related to the quaternions by $$ \mathring{\bm{q}} = 
+\cos{\frac{\theta}{2}} \langle \bm{v} \sin{\frac{\theta}{2}} \rangle. $$
+
+::: {.callout-warning icon="false"}
+## Concrete representation: $\xi \sim \mathring{\bm{q}} \in \mathbb{S}^3$
+
+* Composition: $\mathring{\bm{q}}_1 \oplus \mathring{\bm{q}}_2 \leftrightarrow
+\mathring{\bm{q}}_1 \circ \mathring{\bm{q}}_2$
+
+* Inversion: $\ominus \mathring{\bm{q}} \leftrightarrow \mathring{\bm{q}}^{-1} = s \langle -\bm{v}
+\rangle$ (also known as the quaternion conjugate).
+
+* The zero rotation:  $0 \leftrightarrow 1 \langle 0, 0, 0 \rangle$ (also known
+as the identity quaternion).
+
+* Action on vectors: $$\mathring{\bm{q}} \bullet \bm{v} \leftrightarrow
+\mathring{\bm{q}} \circ \mathring{\bm{v}} \circ \mathring{\bm{q}}^{-1}, $$ where 
+$\mathring{\bm{v}} = 0 \langle \bm{v} \rangle$ is known as a pure quaternion.
+:::
+
+
 
 ## Pose in three dimensions {.smaller}
 
