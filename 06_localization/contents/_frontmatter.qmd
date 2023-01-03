@@ -30,6 +30,7 @@ __Topics__: <br>
 * Creating a Map
 * Localization and Mapping
 * Pose Graph SLAM
+* Complementary filter
 
 :::
 

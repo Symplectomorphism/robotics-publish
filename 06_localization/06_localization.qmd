@@ -33,3 +33,4 @@ revealjs-plugins:
 {{< include contents/_creatingmap.qmd >}}
 {{< include contents/_localize_and_map.qmd >}}
 {{< include contents/_poseslam.qmd >}}
+{{< include contents/_complementary.qmd >}}

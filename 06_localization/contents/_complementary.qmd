@@ -1,0 +1,139 @@
+# Complementary Filter
+
+
+## Complementary filter {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* They provide a means to fuse multiple independent noisy measurements of the
+same signal that have complementary spectral characteristics.
+  - $\mu_1$: predominantly high frequency noise
+  - $\mu_2$: predominantly low frequency disturbance
+* Choose a pair of complementary transfer functions $$ F_1(s) + F_2(s) = 1 $$
+  - $F_1(s)$: low-pass transfer function
+  - $F_2(s)$: high-pass transfer function
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/complementary1.png" width="100%"/>
+</center>
+
+<center>
+<img data-src="contents/assets/complementary2.png" width="100%"/>
+</center>
+:::
+
+* The filtered estimate is given by 
+$$ \hat{X}(s) = F_1(s)Y_1 + F_2(s)Y_2 = X(s) + F_1(s)\mu_1(s) + F_2(s)\mu_2(s).
+$$
+
+* This type of filter is also known as _distorsionless filtering_ since the
+signal $x(t)$ is not distorted by the filter.
+
+::::
+
+
+## Complementary filter {.smaller}
+
+* Complementary filters are particularly well suited to fusing low bandwidth
+position measurements with high band widh rate measurements for first-order
+kinematic systems $$ \dot{x} = u $$ with typical measurement characteristics 
+$$ y_x = L(s)x + \mu_x, \qquad y_u = u + \mu_u + b(t) $$
+  - $L(s)$: low-pass filter associated with sensor characteristics,
+  - $\mu$: noise in both measurements,
+  - $b(t)$ is a deterministic perturbation dominated by low-frequency content.
+* $L(s) \approx 1$ over frequency range on which the measurement $y_x$ is of interest.
+* The rate measurement is integrated: $\frac{y_u}{s}$ to obtain an estimate of
+the state and the noise and bias characteristics of the signal are dominantly
+low frequency effects.
+* Now, choose:
+$$ F_1(s) = \frac{C(s)}{C(s) + s}, \qquad F_2(s) = 1 - F_1(s) = \frac{s}{C(s) +
+s} $$ 
+  - $C(s)$: all pass such that $L(s)F_1(s) \approx 1$ over the bandwidth of
+    $L(s)$. Then 
+$$ \hat{X}(s) \approx X(s) + F_1(s)\mu_x(s) + \frac{\mu_u(s) + b(s)}{C(s) +
+s}. $$
+
+
+## Complementary filter {.smaller}
+
+<center>
+<img data-src="contents/assets/blkdiag.png" width="50%"/>
+</center>
+
+* The filter structure is implemented by exploiting the complementary
+sensitivity structure of a linear feedback system subject to load disturbance.
+
+$$ \hat{x}(s) = \frac{C(s)}{s + C(s)} y_x(s) + \frac{s}{C(s) + s}
+\frac{y_u(s)}{s} = T(s)y_x(s) + S(s)\frac{y_u(s)}{s} $$ where $S(s)$ is the
+sensitivity function of the closed-loop system and $T(s)$ is the complementary
+sensitivity.
+
+* Simplest choice for feedback: $C(s) = k_p$. In this case, the CL-dynamics of
+the filter are given by
+$$ \dot{\hat{x}} = y_u + k_p(y_x - \hat{x}). $$
+
+* Associated complementary filters associated with this choice are 
+$$F_1(s) = \frac{k_p}{s+k_p}, \quad \text{ and } \quad  F_2(s) = \frac{s}{s + k_p}. $$
+
+
+## Complementary filter {.smaller}
+
+* If the rate measurement bias, $b(t) = b_0$, is a constant then it is natural
+to add an integrator to the compensator to make the system type I 
+$$ C(s) = k_p + \frac{k_i}{s}. $$
+
+* A type I system will reject the constant load disturbance $b_0$ from the
+output. 
+
+* The resulting dynamics are 
+$$ \dot{\hat{x}} = y_u - \hat{b} + k(y_x - \hat{x}), \qquad \dot{\hat{b}} =
+-k_i(y_x - \hat{x}). $$
+
+* Consider the Lyapunov function candidate 
+$$ \mathcal{L} = \frac{1}{2} \lvert x - \hat{x}\rvert^2 + \frac{1}{2k_i}\lvert b_0 - \hat{b} \rvert^2. $$
+
+  - Abusing the notation for the noise processes and using $\tilde{x} = x -
+    \hat{x}$ and $\tilde{b} = b_0 - \hat{b}$, one has
+$$ \frac{\text{d}}{\text{d}t} \mathcal{L} = -k_p \lvert \tilde{x} \rvert^2 -
+\mu_u \tilde{x} + \mu_x \left( \tilde{b} - k \tilde{x} \right). $$
+
+* In the absence of noise, one may apply Lyapunov's direct method to prove
+convergence of the state estimate.
+  - LaSalle's invariance principle may be used to show that $\hat{b} \rightarrow
+    b_0$.
+  - When the underlying system is linear, the linear form of the feedback and
+    adaptation law ensure that the CL system is linear and stability implies
+    exponential stability. 
+
+
+## Complementary filter on $\bm{SO}(3)$ {.smaller}
+
+&nbsp;
+
+* Estimation of the roll and pitch angles from IMU using the complementary
+filter
+  - $3$-axis linear accelerometer
+  - $3$-axis gyro rates
+  - $3$-axis magnetometer
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+&nbsp;
+
+<center>
+<img data-src="contents/assets/complementary_so3.png" width="100%"/>
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+<img data-src="contents/assets/roll_pitch.png" width="100%"/>
+</center>
+:::
+
+::::

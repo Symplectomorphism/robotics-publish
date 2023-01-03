@@ -4,7 +4,7 @@
     "href": "06_localization.html#robotics-and-automated-systems",
     "title": "06_localization",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping\nPose Graph SLAM"
+    "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping\nPose Graph SLAM\nComplementary filter"
   },
   {
     "objectID": "06_localization.html#localization",
@@ -207,6 +207,41 @@
     "href": "06_localization.html#pose-graph-slam-6",
     "title": "06_localization",
     "section": "Pose Graph SLAM",
-    "text": "Pose Graph SLAM\n\n\n\nThe pose graph can also include landmarks as shown in the figure.\nLandmarks have a position 𝐏j∈ℝ2\\bm{P}_j \\in \\mathbb{R}^2, not a pose, and therefore differ from the nodes discussed so far.\nTo accommodate this, we redefine the state vector 𝐱={ξ1,ξ2,…,ξn|𝐏1,𝐏2,…,𝐏M}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_n \\vert \\bm{P}_1, \\bm{P}_2, \\ldots, \\bm{P}_M \\right\\}.\n\n\n\n\n\n\nThe robot at pose ii observes landmark jj at range and bearing 𝐳♯=(r♯,β♯)\\bm{z}^\\sharp = \\left( r^\\sharp, \\beta^\\sharp \\right) which is converted to Cartesian form in frame {i}\\{i\\} i𝐏j♯=(r♯cosβ♯,r♯sinβ♯)∈ℝ2. {^i}\\bm{P}_j^\\sharp = \\left( r^\\sharp\n\\cos{\\beta^\\sharp}, r^\\sharp \\sin{\\beta^\\sharp} \\right) \\in \\mathbb{R}^2. \nThe estimated position of the landmark in frame {i}\\{i\\} is i𝐏̂j=(⊖0ξi)•𝐏̂j∈ℝ2\n{^i}\\hat{\\bm{P}}_j = \\left( \\ominus {^0}\\xi_i \\right) \\bullet \\hat{\\bm{P}}_j \\in \\mathbb{R}^2  and the error vector is 𝐟k(𝐱)=ε=i𝐏̂j−i𝐏j♯∈ℝ2. \\bm{f}_k(\\bm{x}) = \\varepsilon = {^i}\\hat{\\bm{P}}_j -\n{^i}\\bm{P}_j^\\sharp \\in \\mathbb{R}^2. \n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "text": "Pose Graph SLAM\n\n\n\nThe pose graph can also include landmarks as shown in the figure.\nLandmarks have a position 𝐏j∈ℝ2\\bm{P}_j \\in \\mathbb{R}^2, not a pose, and therefore differ from the nodes discussed so far.\nTo accommodate this, we redefine the state vector 𝐱={ξ1,ξ2,…,ξn|𝐏1,𝐏2,…,𝐏M}\\bm{x} = \\left\\{ \\xi_1, \\xi_2, \\ldots, \\xi_n \\vert \\bm{P}_1, \\bm{P}_2, \\ldots, \\bm{P}_M \\right\\}.\n\n\n\n\n\n\nThe robot at pose ii observes landmark jj at range and bearing 𝐳♯=(r♯,β♯)\\bm{z}^\\sharp = \\left( r^\\sharp, \\beta^\\sharp \\right) which is converted to Cartesian form in frame {i}\\{i\\} i𝐏j♯=(r♯cosβ♯,r♯sinβ♯)∈ℝ2. {^i}\\bm{P}_j^\\sharp = \\left( r^\\sharp\n\\cos{\\beta^\\sharp}, r^\\sharp \\sin{\\beta^\\sharp} \\right) \\in \\mathbb{R}^2. \nThe estimated position of the landmark in frame {i}\\{i\\} is i𝐏̂j=(⊖0ξi)•𝐏̂j∈ℝ2\n{^i}\\hat{\\bm{P}}_j = \\left( \\ominus {^0}\\xi_i \\right) \\bullet \\hat{\\bm{P}}_j \\in \\mathbb{R}^2  and the error vector is 𝐟k(𝐱)=ε=i𝐏̂j−i𝐏j♯∈ℝ2. \\bm{f}_k(\\bm{x}) = \\varepsilon = {^i}\\hat{\\bm{P}}_j -\n{^i}\\bm{P}_j^\\sharp \\in \\mathbb{R}^2."
+  },
+  {
+    "objectID": "06_localization.html#complementary-filter-1",
+    "href": "06_localization.html#complementary-filter-1",
+    "title": "06_localization",
+    "section": "Complementary filter",
+    "text": "Complementary filter\n\n\n\nThey provide a means to fuse multiple independent noisy measurements of the same signal that have complementary spectral characteristics.\n\nμ1\\mu_1: predominantly high frequency noise\nμ2\\mu_2: predominantly low frequency disturbance\n\nChoose a pair of complementary transfer functions F1(s)+F2(s)=1 F_1(s) + F_2(s) = 1 \n\nF1(s)F_1(s): low-pass transfer function\nF2(s)F_2(s): high-pass transfer function\n\n\n\n\n\n\n\n\n\n\nThe filtered estimate is given by X̂(s)=F1(s)Y1+F2(s)Y2=X(s)+F1(s)μ1(s)+F2(s)μ2(s). \\hat{X}(s) = F_1(s)Y_1 + F_2(s)Y_2 = X(s) + F_1(s)\\mu_1(s) + F_2(s)\\mu_2(s).\n\nThis type of filter is also known as distorsionless filtering since the signal x(t)x(t) is not distorted by the filter."
+  },
+  {
+    "objectID": "06_localization.html#complementary-filter-2",
+    "href": "06_localization.html#complementary-filter-2",
+    "title": "06_localization",
+    "section": "Complementary filter",
+    "text": "Complementary filter\n\nComplementary filters are particularly well suited to fusing low bandwidth position measurements with high band widh rate measurements for first-order kinematic systems ẋ=u \\dot{x} = u  with typical measurement characteristics yx=L(s)x+μx,yu=u+μu+b(t) y_x = L(s)x + \\mu_x, \\qquad y_u = u + \\mu_u + b(t) \n\nL(s)L(s): low-pass filter associated with sensor characteristics,\nμ\\mu: noise in both measurements,\nb(t)b(t) is a deterministic perturbation dominated by low-frequency content.\n\nL(s)≈1L(s) \\approx 1 over frequency range on which the measurement yxy_x is of interest.\nThe rate measurement is integrated: yus\\frac{y_u}{s} to obtain an estimate of the state and the noise and bias characteristics of the signal are dominantly low frequency effects.\nNow, choose: F1(s)=C(s)C(s)+s,F2(s)=1−F1(s)=sC(s)+s F_1(s) = \\frac{C(s)}{C(s) + s}, \\qquad F_2(s) = 1 - F_1(s) = \\frac{s}{C(s) +\ns} \n\nC(s)C(s): all pass such that L(s)F1(s)≈1L(s)F_1(s) \\approx 1 over the bandwidth of L(s)L(s). Then X̂(s)≈X(s)+F1(s)μx(s)+μu(s)+b(s)C(s)+s. \\hat{X}(s) \\approx X(s) + F_1(s)\\mu_x(s) + \\frac{\\mu_u(s) + b(s)}{C(s) +\ns}."
+  },
+  {
+    "objectID": "06_localization.html#complementary-filter-3",
+    "href": "06_localization.html#complementary-filter-3",
+    "title": "06_localization",
+    "section": "Complementary filter",
+    "text": "Complementary filter\n\n\n\n\nThe filter structure is implemented by exploiting the complementary sensitivity structure of a linear feedback system subject to load disturbance.\n\nx̂(s)=C(s)s+C(s)yx(s)+sC(s)+syu(s)s=T(s)yx(s)+S(s)yu(s)s \\hat{x}(s) = \\frac{C(s)}{s + C(s)} y_x(s) + \\frac{s}{C(s) + s}\n\\frac{y_u(s)}{s} = T(s)y_x(s) + S(s)\\frac{y_u(s)}{s}  where S(s)S(s) is the sensitivity function of the closed-loop system and T(s)T(s) is the complementary sensitivity.\n\nSimplest choice for feedback: C(s)=kpC(s) = k_p. In this case, the CL-dynamics of the filter are given by x̂̇=yu+kp(yx−x̂). \\dot{\\hat{x}} = y_u + k_p(y_x - \\hat{x}). \nAssociated complementary filters associated with this choice are F1(s)=kps+kp, and F2(s)=ss+kp.F_1(s) = \\frac{k_p}{s+k_p}, \\quad \\text{ and } \\quad  F_2(s) = \\frac{s}{s + k_p}."
+  },
+  {
+    "objectID": "06_localization.html#complementary-filter-4",
+    "href": "06_localization.html#complementary-filter-4",
+    "title": "06_localization",
+    "section": "Complementary filter",
+    "text": "Complementary filter\n\nIf the rate measurement bias, b(t)=b0b(t) = b_0, is a constant then it is natural to add an integrator to the compensator to make the system type I C(s)=kp+kis. C(s) = k_p + \\frac{k_i}{s}. \nA type I system will reject the constant load disturbance b0b_0 from the output.\nThe resulting dynamics are x̂̇=yu−b̂+k(yx−x̂),b̂̇=−ki(yx−x̂). \\dot{\\hat{x}} = y_u - \\hat{b} + k(y_x - \\hat{x}), \\qquad \\dot{\\hat{b}} =\n-k_i(y_x - \\hat{x}). \nConsider the Lyapunov function candidate ℒ=12|x−x̂|2+12ki|b0−b̂|2. \\mathcal{L} = \\frac{1}{2} \\lvert x - \\hat{x}\\rvert^2 + \\frac{1}{2k_i}\\lvert b_0 - \\hat{b} \\rvert^2. \n\nAbusing the notation for the noise processes and using x̃=x−x̂\\tilde{x} = x - \\hat{x} and b̃=b0−b̂\\tilde{b} = b_0 - \\hat{b}, one has ddtℒ=−kp|x̃|2−μux̃+μx(b̃−kx̃). \\frac{\\text{d}}{\\text{d}t} \\mathcal{L} = -k_p \\lvert \\tilde{x} \\rvert^2 -\n\\mu_u \\tilde{x} + \\mu_x \\left( \\tilde{b} - k \\tilde{x} \\right). \n\nIn the absence of noise, one may apply Lyapunov’s direct method to prove convergence of the state estimate.\n\nLaSalle’s invariance principle may be used to show that b̂→b0\\hat{b} \\rightarrow b_0.\nWhen the underlying system is linear, the linear form of the feedback and adaptation law ensure that the CL system is linear and stability implies exponential stability."
+  },
+  {
+    "objectID": "06_localization.html#complementary-filter-on-bmso3",
+    "href": "06_localization.html#complementary-filter-on-bmso3",
+    "title": "06_localization",
+    "section": "Complementary filter on 𝐒𝐎(3)\\bm{SO}(3)",
+    "text": "Complementary filter on 𝐒𝐎(3)\\bm{SO}(3)\n \n\nEstimation of the roll and pitch angles from IMU using the complementary filter\n\n33-axis linear accelerometer\n33-axis gyro rates\n33-axis magnetometer\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]
