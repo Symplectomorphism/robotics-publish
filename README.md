@@ -2,7 +2,7 @@
 
 This repository contains the slide decks for the Robotics course at Boise State.
 
-> The presentations are supposed to be viewed in Firefox.
+> The presentations are supposed to be viewed in Firefox.  
 > Chrome does not support MathML, therefore, will not render the math properly.
 
 
