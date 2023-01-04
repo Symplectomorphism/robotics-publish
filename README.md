@@ -9,4 +9,4 @@ This repository contains the slide decks for the Robotics course at Boise State.
 1. Install the [regular Fira Sans font](https://fonts.google.com/specimen/Fira+Sans).
 2. Pull the repository to your computer  
   `git clone git@github.com:Symplectomorphism/robotics-publish.git`
-3. Navigate into  the folder `slide deck > docs` and run ''index.html'' in Firefox.
+3. Navigate into  the folder `slide deck > docs` and run the file `index.html` in Firefox.
