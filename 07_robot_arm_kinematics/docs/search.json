@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "07_robot_arm_kinematics.html#robotics-and-automated-systems",
+    "href": "07_robot_arm_kinematics.html#robotics-and-automated-systems",
+    "title": "07_robot_arm_kinematics",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nRobot Arm Kinematics\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nForward Kinematics\nKinematic and Analytic Jacobian\nInverse Kinematics"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\nA robot manipulator is composed of a set of links connected together by joints.\n\nSimple: revolute or prismatic with one degree-of-freedom (DoF)\nComplex: universal or spherical with multiple DoF\n\nNo loss of generality considering only single DoF joints as multiple DoF joints can always be thought of as a succession of single DoF joints with links of length zero in between.\nThe action of each joint can be described by a single real number:\n\nthe angle of rotation in the case of a revolute joint\nthe displacement in the case of a prismatic joint\n\nA robot manipulator with nn joints will have n+1n+1 links, since each joint connects two links.\nNumber the joints from 11 to nn and the links from 00 to nn, starting from the base.\nJoint ii, which is fixed w.r.t. link i−1i-1, connects link i−1i-1 to link ii.\nWhen joint ii is actuated, link ii moves (hence, link 00 is fixed)."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-1",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\n\nWith the ithi^{\\text{th}} joint, we associate a joint variable, denoted by qiq_i.\n\nqi={θiif joint i is revolutediif joint i is prismatic\nq_i = \\begin{cases}\n    \\theta_i & \\mbox{if joint $i$ is revolute} \\\\\n    d_i & \\mbox{if joint $i$ is prismatic} \\\\\n\\end{cases}\n\n\nWe attach a coordinate frame rigidly to each link; i.e. Σi\\Sigma_i is attached to link ii.\n\nthe coordinates of each point on link ii are constant when expressed in Σi\\Sigma_i\nΣ0\\Sigma_0 is attached to the robot base, is referred to as the base frame, inertial frame, or world frame.\n\n\n\n\n\n\n\n\n\nCoordinate frames attached to the elbow manipulator.\n\n\n\n\nSuppose 𝐀i\\bm{A}_i is the homogeneous transformation matrix that gives the pose of Σi\\Sigma_i w.r.t. Σi−1\\Sigma_{i-1}.\n\nThe assumption that all joints are either revolute or prismatic means that\n\n𝐀i=𝐀i(qi). \\bm{A}_i = \\bm{A}_i(q_i)."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-2",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\n\nThe homogeneous transformation matrix that expresses the pose of Σj\\Sigma_j w.r.t. Σi\\Sigma_i is called a transformation matrix, and is denoted i𝐓j{^i}\\bm{T}_j.\n\n \n\nWe denote the pose of the end-effector w.r.t. the inertial frame by a 33-vector 0𝐨n{^0}\\bm{o}_n and the rotation matrix 0𝐑n{^0}\\bm{R}_n and define the homogeneous transformation matrix\n\n\ni𝐓j={𝐀i+1𝐀i+2⋯𝐀j−1𝐀jif i<jIif i=j(j𝐓i)−1if j>i\n{^i}\\bm{T}_j = \\begin{cases}\n    \\bm{A}_{i+1}\\bm{A}_{i+2}\\cdots \\bm{A}_{j-1}\\bm{A}_j & \\mbox{if } i < j\\\\\n    I & \\mbox{if } i = j \\\\\n    \\left( {^j}\\bm{T}_i \\right)^{-1} & \\mbox{if } j > i\n\\end{cases}\n\n𝐇=(0𝐑n0𝐨n01). \\bm{H} = \\begin{pmatrix} {^0}\\bm{R}_n & {^0}\\bm{o}_n \\\\ 0 & 1\n\\end{pmatrix}. \n\n\n\nThe pose of the end-effector in the inertial frame are is thus given by the product 𝐇=0𝐓n=𝐀1(q1)𝐀2(q2)⋯𝐀n(qn). \\bm{H} = {^0}\\bm{T}_n = \\bm{A}_1(q_1) \\bm{A}_2(q_2) \\cdots \\bm{A}_n(q_n). \nEach homogeneous transformation 𝐀i\\bm{A}_i is of the form 𝐀i=(i−1𝐑ii−1𝐨i01). \\bm{A}_i = \\begin{pmatrix} {^{i-1}}\\bm{R}_i & {^{i-1}}\\bm{o}_i \\\\ 0 & 1\n\\end{pmatrix}. \nHence, for i<ji < j, i𝐓j=𝐀i+1⋯𝐀j=(i𝐑ji𝐨j01). {^i}\\bm{T}_j = \\bm{A}_{i+1} \\cdots \\bm{A}_{j} = \n\\begin{pmatrix} {^i}\\bm{R}_j & {^i}\\bm{o}_j \\\\ 0 & 1 \\end{pmatrix}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-3",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-3",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\nThe matrix i𝐑j{^i}\\bm{R}_j expresses the orientation of Σj\\Sigma_j relative to Σi\\Sigma_i and is given by the rotational part of the 𝐀\\bm{A} matrices as\n\ni𝐑j=i𝐑i+1i+1𝐑i+2⋯j−1𝐑j. {^i}\\bm{R}_j = {^i}\\bm{R}_{i+1} {^{i+1}}\\bm{R}_{i+2} \\cdots {^{j-1}}\\bm{R}_j.\n\n\nThe coordinate vectors i𝐨j{^i}\\bm{o}_j are given recursively by the formula\n\ni𝐨j=i𝐨j−1+i𝐑j−1j−1𝐨j. {^i}\\bm{o}_j = {^i}\\bm{o}_{j-1} + {^i}\\bm{R}_{j-1}{j-1}\\bm{o}_j. \n\nIn principle, this is all there is to forward kinematics:\n\nDetermine the functions 𝐀(qi)\\bm{A}(q_i),\nMultiply them together as needed.\n\nThe Denavit-Hartenberg convention streamlines and simplifies this procedure."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#denavit-hartenberg-convention",
+    "href": "07_robot_arm_kinematics.html#denavit-hartenberg-convention",
+    "title": "07_robot_arm_kinematics",
+    "section": "Denavit-Hartenberg convention",
+    "text": "Denavit-Hartenberg convention\n\nIt is possible to carry out forward kinematic analysis even without respecting the Denavit-Hartenberg or DH convention.\nHowever, the kinematic analysis of an nn-link manipulator can be extremely complex and the conventions introduced below simplify the analysis considerably.\n\n\n\nIn the DH convention, each homogeneous transformation 𝐀i\\bm{A}_i is represented as a product of four basic transformations where the four quantities θi\\theta_i, aia_i, did_i and αi\\alpha_i are parameters associated with link ii and joint ii.\n\n\n\naia_i: link length\nαi\\alpha_i: link twist\n\n\n\ndid_i: link offset\nθi\\theta_i: joint angle\n\n\n\n\n𝐀i=ℛz,θi𝒯z,di𝒯x,aiℛx,αi=(cθi−sθicαisθisαiaicθisθicθicαi−cθisαiaisθi0sαicαidi0001)\n\\begin{aligned}\n    \\bm{A}_i &=\n    \\mathcal{R}_{z,\\theta_i}\\mathcal{T}_{z,d_i}\\mathcal{T}_{x,a_i}\\mathcal{R}_{x,\\alpha_i} \\\\\n    &= \\begin{pmatrix}\n        c_{\\theta_i} & -s_{\\theta_i}c_{\\alpha_i} & s_{\\theta_i}s_{\\alpha_i} & a_ic_{\\theta_i} \\\\ \n        s_{\\theta_i} & c_{\\theta_i}c_{\\alpha_i} & -c_{\\theta_i}s_{\\alpha_i} & a_is_{\\theta_i} \\\\ \n        0 & s_{\\alpha_i} & c_{\\alpha_i} & d_i \\\\ \n        0 & 0 & 0 & 1\n        \\end{pmatrix}\n\\end{aligned}\n\n\n\n\nRecall: the matrix 𝐀i\\bm{A}_i is a function of a single variable.\n\nThree of the above four quantities are constant for a given link,\nThe fourth parameter, θi\\theta_i for a revolute joint and did_i for a prismatic joint, is the joint variable."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#number-of-parameters",
+    "href": "07_robot_arm_kinematics.html#number-of-parameters",
+    "title": "07_robot_arm_kinematics",
+    "section": "Number of parameters",
+    "text": "Number of parameters\n\nWhen we discussed rigid-body motion, we learned that an arbitrary homogeneous transformation matrix can be characterized by 66 numbers: 33 for rotation, 33 for translation.\nIn the DH representation, there are only four parameters: how is this possible?\n\nAnswer: While frame ii is required to be rigidly attached to link ii, we have considerable freedom in choosing the origin and the coordinate axes of the frame.\nBy a clever choice of the origin and the coordinate axes, it is possible to cut down the number of parameters needed from 66 to 44.\n\n\n\n\n\n\n\nDenavit-Hartenberg Conditions\n\n\n\n\n(DH1) The axis 𝐱1\\bm{x}_1 is perpendicular to the axis 𝐳0\\bm{z}_0:\n(DH2) The axis 𝐱1\\bm{x}_1 intersects the axis 𝐳0\\bm{z}_0:\n\n𝐱1⊥𝐳0\\bm{x}_1 \\perp \\bm{z}_0.\n𝐱1⋔𝐳0\\bm{x}_1 \\pitchfork \\bm{z}_0.\n\n\n\n\n\n\naa: distance btw. axes 𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1, measured along 𝐱1\\bm{x}_1.\nα\\alpha: angle btw. 𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1, measured along 𝐱1\\bm{x}_1.\n\n\n\n\n\n\ndd: distance from o0o_0 to the intersection of the 𝐱1\\bm{x}_1-axis with 𝐳0\\bm{z}_0-axis, measured along the 𝐳0\\bm{z}_0-axis.\nθ\\theta: angle btw. 𝐱0\\bm{x}_0 and 𝐱1\\bm{x}_1, mesaured along 𝐳0\\bm{z}_0."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\nOne can always choose the frames Σ0,…,Σn\\Sigma_0, \\ldots, \\Sigma_n in such a way that (DH1) and (DH2) are satisfied.\nSometimes, this will require placing the origin oio_i of Σi\\Sigma_i in a location that may not be intuitively satisfying.\nThe choices of the coordinate frames are not unique!\n\nHowever, the end result, i.e. the matrix 0𝐓n{^0}\\bm{T}_n, will be the same! (assuming the choice of Σ0\\Sigma_0 and Σn\\Sigma_n coincide for the two different coordinate frame placements.)\n\nThe choice of 𝐳i\\bm{z}_i is arbitrary: First, we assign the axes 𝐳0,…,𝐳n−1\\bm{z}_0, \\ldots, \\bm{z}_{n-1} in an intuitively pleasing fashion: assign 𝐳i\\bm{z}_i to be the axis of actuation for joint i+1i+1.\n\nif joint i+1i+1 is revolute, 𝐳i\\bm{z}_i is the axis of revolution of joint i+1i+1;\nif joint i+1i+1 is prismatic, 𝐳i\\bm{z}_i is the axis of translation of joint i+1i+1.\n\nSecond we establish the base frame. This is nearly arbitrary.\n\nChoose o0o_0 to be any point on 𝐳0\\bm{z}_0.\nChoose 𝐱0\\bm{x}_0, 𝐲0\\bm{y}_0 in any convenient manner so long as Σ0\\Sigma_0 is right-handed.\n\nThird, we begin an iterative process in which we define Σi\\Sigma_i using frame Σi−1\\Sigma_{i-1} beginning with Σi\\Sigma_i. Three cases to consider: (i) 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i are not coplanar, (ii) 𝐳i−1∥𝐳i\\bm{z}_{i-1} \\parallel \\bm{z}_i, (iii) 𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-1",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\n\n\n\n\n𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i are not coplanar\n\n\n\nThere exists a unique shortest line segment from 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i perpendicular to both 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i.\nThis line segment defines 𝐱i\\bm{x}_i and the point where it intersects 𝐳i\\bm{z}_i is the origin oio_i.\nChoose an axis 𝐲i\\bm{y}_i to form a right-handed frame.\n\n\n\n\n\n\n\n𝐳i−1∥𝐳i\\bm{z}_{i-1} \\parallel \\bm{z}_i (𝐳i−1\\bm{z}_{i-1} is parallel to 𝐳i\\bm{z}_i, therefore αi=0\\alpha_i = 0)\n\n\n\nThere are infinitely many common normals between 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i.\nWe are free to choose the origin oio_i at any convenient point on the 𝐳i\\bm{z}_i-axis.\nThe axis 𝐱i\\bm{x}_i is chosen either to be directed from oio_i to 𝐳i−1\\bm{z}_{i-1} along the common normal, or as the opposite to this vector.\nCommon method: choose the normal that passes through oi−1o_{i-1} as the 𝐱i\\bm{x}_i-axis; oio_i is then the point at which this normal intersects 𝐳i\\bm{z}_i   ∴di=0\\therefore d_i = 0.\n\n\n\n\n\n\n\n\n\n\n\nDenavit-Hartenberg frame assignment\n\n\n\n \n\n\n\n𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i (𝐳i−1\\bm{z}_{i-1} intersects 𝐳i\\bm{z}_i)\n\n\n\nChoose 𝐱i\\bm{x}_i normal to the plane formed by 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i with a positive direction being arbitrary.\nChoose the origin oio_i at the point of intersection of 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i.\nIn this case ai=0a_i = 0."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-2",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\n\n\n\nTo complete the construction, it is necessary to specify Σn\\Sigma_n.\nΣn\\Sigma_n is commonly referred to as the end effector or tool frame.\nono_n is most often placed symmetrically between the fingers of the gripper.\nThe unit vectors along 𝐱n\\bm{x}_n, 𝐲n\\bm{y}_n, and 𝐳n\\bm{z}_n are labelled as 𝐧\\bm{n} (normal), 𝐬\\bm{s} (sliding), and 𝐚\\bm{a} (approach), respectively."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure",
+    "href": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure",
+    "title": "07_robot_arm_kinematics",
+    "section": "Summary of the DH procedure",
+    "text": "Summary of the DH procedure\nStep 1.   Locate and label the joint axes: 𝐳0,𝐳1,…,𝐳n−1\\bm{z}_0, \\bm{z}_1, \\ldots, \\bm{z}_{n-1}.\nStep 2.   Establish the base frame: set the origin anywhere along the 𝐳0\\bm{z}_0 axis. Choose 𝐱0\\bm{x}_0 and 𝐲0\\bm{y}_0 conveniently to form a right-handed frame.\n    For i=1,…,n−1i = 1, \\ldots, n-1, perform steps 33 to 55.\nStep 3.   Locate the origin oio_i where the common normal to 𝐳i\\bm{z}_i and 𝐳i−1\\bm{z}_{i-1} intersect 𝐳i\\bm{z}_i. If 𝐳i⋔𝐳i−1\\bm{z}_i \\pitchfork \\bm{z}_{i-1}, locate oio_i at this intersection. If 𝐳i∥𝐳i−1\\bm{z}_i \\parallel \\bm{z}_{i-1}, locate oio_i at any convenient position along 𝐳i\\bm{z}_i.\nStep 4.   Establish 𝐱i\\bm{x}_i along the common normal between 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i through oio_i, or in the direction normal to the 𝐳i−1−𝐳i\\bm{z}_{i-1}-\\bm{z}_i plane if 𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i.\nStep 5.   Establish the 𝐲i\\bm{y}_i to complete a right-handed frame.\nStep 6.   Establish Σn\\Sigma_n:\n\nIf the nthn^{\\text{th}} joint is revolute, set 𝐳n=𝐚\\bm{z}_n = \\bm{a} parallel to 𝐳n−1\\bm{z}_{n-1}. Establish the origin ono_n conveniently along 𝐳n\\bm{z}_n. Set 𝐲n=𝐬\\bm{y}_n = \\bm{s} in the direction of the gripper closure, and set 𝐱n=𝐧=𝐬×𝐚\\bm{x}_n = \\bm{n} = \\bm{s} \\times \\bm{a}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure-1",
+    "href": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Summary of the DH procedure",
+    "text": "Summary of the DH procedure\nStep 7.   Create a table of DH parameters aia_i, did_i, αi\\alpha_i, θi\\theta_i:\n\naia_i: distance along 𝐱i\\bm{x}_i from the axis 𝐳i−1\\bm{z}_{i-1} to the axis 𝐳i\\bm{z}_i.\ndid_i: distance along 𝐳i−1\\bm{z}_{i-1} from oi−1o_{i-1} to the intersection of the 𝐱i\\bm{x}_i and 𝐳i−1\\bm{z}_{i-1} axes. If joints ii is prismatic, did_i is a variable.\nαi\\alpha_i: the angle from 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i measured about 𝐱i\\bm{x}_i.\nθi\\theta_i: the angle from 𝐱i−1\\bm{x}_{i-1} to 𝐱i\\bm{x}_i measured about 𝐳i−1\\bm{z}_{i-1}. If joint ii is revolute, θi\\theta_i is a variable.\n\nStep 8.   Form the homogeneous transformation matrices 𝐀i\\bm{A}_i by substituting the above parameters into 𝐀i=ℛz,θi𝒯z,di𝒯x,aiℛx,αi\n\\bm{A}_i =\n\\mathcal{R}_{z,\\theta_i}\\mathcal{T}_{z,d_i}\\mathcal{T}_{x,a_i}\\mathcal{R}_{x,\\alpha_i}\n\nStep 9.   Form 0𝐓n=𝐀1𝐀2⋯𝐀n{^0}\\bm{T}_n = \\bm{A}_1 \\bm{A}_2 \\cdots \\bm{A}_n. This gives the pose of the tool frame expressed in the base coordinates.\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+  }
+]

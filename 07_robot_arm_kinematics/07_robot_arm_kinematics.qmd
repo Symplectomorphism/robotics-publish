@@ -1,0 +1,30 @@
+---
+pagetitle: "Robotics and Automated Systems"
+author-meta: "Aykut C. Satici"
+institute: "Boise State University"
+from: markdown+emoji
+format:
+  revealjs:
+    css: styles.css
+    html-math-method: mathml
+    controls: true
+    smaller: false
+    slide-number: true
+    footer: "Robotics and Automated Systems • Aykut C. Satici"
+    chalkboard:
+      buttons: false
+    preview-links: auto
+    theme: [white, custom.scss]
+    standalone: false
+    self-contained: false
+    embed-reseources: true
+    pointer:
+      pointerSize: 18
+      color: '#32cd32'
+revealjs-plugins:
+  - pointer
+---
+
+
+{{< include contents/_frontmatter.qmd >}}
+{{< include contents/_forward_kinematics.qmd >}}

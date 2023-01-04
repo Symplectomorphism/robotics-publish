@@ -1,0 +1,406 @@
+# Forward Kinematics
+
+## Kinematic chains {.smaller}
+
+::: {.incremental}
+
+* A robot manipulator is composed of a set of links connected together by
+joints.
+  - Simple: revolute or prismatic with one degree-of-freedom (DoF)
+  - Complex: universal or spherical with multiple DoF
+
+* No loss of generality considering only single DoF joints as multiple DoF
+joints can always be thought of as a succession of single DoF joints with links
+of length zero in between.
+
+* The action of each joint can be described by a _single real number_:
+  - the angle of rotation in the case of a revolute joint
+  - the displacement in the case of a prismatic joint
+
+* A robot manipulator with $n$ joints will have $n+1$ links, since each joint
+connects two links.
+
+* Number the joints from $1$ to $n$ and the links from $0$ to $n$, starting from
+the base.
+
+* Joint $i$, which is fixed w.r.t. link $i-1$, connects link $i-1$ to link $i$.
+
+* When joint $i$ is actuated, link $i$ moves (hence, link $0$ is fixed).
+
+:::
+
+
+## Kinematic chains {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* With the $i^{\text{th}}$ joint, we associate a __joint variable__, denoted by
+$q_i$. 
+
+$$
+q_i = \begin{cases}
+    \theta_i & \mbox{if joint $i$ is revolute} \\
+    d_i & \mbox{if joint $i$ is prismatic} \\
+\end{cases}
+$$
+
+* We attach a coordinate frame rigidly to each link; i.e. $\Sigma_i$ is attached
+to link $i$.
+  - the coordinates of each point on link $i$ are constant when expressed in
+    $\Sigma_i$
+  - $\Sigma_0$ is attached to the robot base, is referred to as the __base
+    frame__, __inertial frame__, or __world frame__.
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/elbow_manipulator.png" width="100%"/>
+</center>
+
+::: {.callout-tip appearance="minimal"}
+Coordinate frames attached to the elbow manipulator.
+:::
+
+:::
+
+* Suppose $\bm{A}_i$ is the homogeneous transformation matrix that gives the pose of
+$\Sigma_i$ w.r.t. $\Sigma_{i-1}$.
+  - The assumption that all joints are either revolute or prismatic means that 
+
+  $$ \bm{A}_i = \bm{A}_i(q_i). $$
+::::
+
+
+
+## Kinematic chains {.smaller}
+
+:::: {.columns}
+
+::: {.column width="65%"}
+* The homogeneous transformation matrix that expresses the pose of $\Sigma_j$
+w.r.t. $\Sigma_i$ is called a __transformation matrix__, and is denoted 
+${^i}\bm{T}_j$.
+
+&nbsp;
+
+* We denote the pose of the end-effector w.r.t. the inertial frame by a
+$3$-vector ${^0}\bm{o}_n$ and the rotation matrix ${^0}\bm{R}_n$ and define the homogeneous
+transformation matrix
+:::
+
+::: {.column width="35%"}
+$$
+{^i}\bm{T}_j = \begin{cases}
+    \bm{A}_{i+1}\bm{A}_{i+2}\cdots \bm{A}_{j-1}\bm{A}_j & \mbox{if } i < j\\
+    I & \mbox{if } i = j \\
+    \left( {^j}\bm{T}_i \right)^{-1} & \mbox{if } j > i
+\end{cases}
+$$
+
+ $$ \bm{H} = \begin{pmatrix} {^0}\bm{R}_n & {^0}\bm{o}_n \\ 0 & 1
+\end{pmatrix}. $$
+
+:::
+
+::::
+
+* The pose of the end-effector in the inertial frame are is thus given by the
+product $$ \bm{H} = {^0}\bm{T}_n = \bm{A}_1(q_1) \bm{A}_2(q_2) \cdots \bm{A}_n(q_n). $$
+
+* Each homogeneous transformation $\bm{A}_i$ is of the form
+$$ \bm{A}_i = \begin{pmatrix} {^{i-1}}\bm{R}_i & {^{i-1}}\bm{o}_i \\ 0 & 1
+\end{pmatrix}. $$
+
+* Hence, for $i < j$, $$ {^i}\bm{T}_j = \bm{A}_{i+1} \cdots \bm{A}_{j} = 
+\begin{pmatrix} {^i}\bm{R}_j & {^i}\bm{o}_j \\ 0 & 1 \end{pmatrix}. $$
+
+
+## Kinematic chains {.smaller}
+
+* The matrix ${^i}\bm{R}_j$ expresses the orientation of $\Sigma_j$ relative to 
+$\Sigma_i$ and is given by the rotational part of the $\bm{A}$ matrices as 
+
+$$ {^i}\bm{R}_j = {^i}\bm{R}_{i+1} {^{i+1}}\bm{R}_{i+2} \cdots {^{j-1}}\bm{R}_j.
+$$
+
+* The coordinate vectors ${^i}\bm{o}_j$ are given recursively by the formula 
+
+$$ {^i}\bm{o}_j = {^i}\bm{o}_{j-1} + {^i}\bm{R}_{j-1}{j-1}\bm{o}_j. $$
+
+* In principle, this is all there is to forward kinematics:
+  - Determine the functions $\bm{A}(q_i)$,
+  - Multiply them together as needed.
+
+* The Denavit-Hartenberg convention streamlines and simplifies this procedure.
+
+
+## Denavit-Hartenberg convention {.smaller}
+
+* It is possible to carry out forward kinematic analysis even without respecting
+the _Denavit-Hartenberg_ or _DH_ convention.
+
+* However, the kinematic analysis of an $n$-link manipulator can be extremely
+complex and the conventions introduced below simplify the analysis considerably.
+
+:::: {.columns}
+
+::: {.column width="60%"}
+In the DH convention, each homogeneous transformation $\bm{A}_i$ is
+represented as a product of four basic transformations where the four quantities
+$\theta_i$, $a_i$, $d_i$ and $\alpha_i$ are parameters associated with link $i$
+and joint $i$.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<center>
+  $a_i$: link length  
+  $\alpha_i$: link twist
+</center>
+:::
+::: {.column width="50%"}
+<center>
+  $d_i$: link offset  
+  $\theta_i$: joint angle
+</center>
+:::
+
+::::
+
+:::
+
+::: {.column width="40%"}
+$$
+\begin{aligned}
+    \bm{A}_i &=
+    \mathcal{R}_{z,\theta_i}\mathcal{T}_{z,d_i}\mathcal{T}_{x,a_i}\mathcal{R}_{x,\alpha_i} \\
+    &= \begin{pmatrix}
+        c_{\theta_i} & -s_{\theta_i}c_{\alpha_i} & s_{\theta_i}s_{\alpha_i} & a_ic_{\theta_i} \\ 
+        s_{\theta_i} & c_{\theta_i}c_{\alpha_i} & -c_{\theta_i}s_{\alpha_i} & a_is_{\theta_i} \\ 
+        0 & s_{\alpha_i} & c_{\alpha_i} & d_i \\ 
+        0 & 0 & 0 & 1
+        \end{pmatrix}
+\end{aligned}
+$$
+:::
+
+::::
+
+* Recall: the matrix $\bm{A}_i$ is a function of a single variable.
+  - Three of the above four quantities are constant for a given link,
+  - The fourth parameter, $\theta_i$ for a revolute joint and $d_i$ for a
+    prismatic joint, is the joint variable.
+
+
+## Number of parameters {.smaller}
+
+* When we discussed rigid-body motion, we learned that an arbitrary homogeneous
+transformation matrix can be characterized by $6$ numbers: $3$ for rotation,
+$3$ for translation.
+
+* In the DH representation, there are only four parameters: how is this
+possible?
+  - Answer: While frame $i$ is required to be rigidly attached to link $i$, we
+    have considerable freedom in choosing the origin and the coordinate axes of
+    the frame.
+  - By a clever choice of the origin and the coordinate axes, it is possible to
+    cut down the number of parameters needed from $6$ to $4$.
+
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+::: {.callout-important icon="false"}
+## Denavit-Hartenberg Conditions
+
+:::: {.columns}
+
+::: {.column width="70%"}
+(DH1) The axis $\bm{x}_1$ is perpendicular to the axis $\bm{z}_0$:  
+(DH2) The axis $\bm{x}_1$ intersects the axis $\bm{z}_0$:
+:::
+
+::: {.column width="30%"}
+$\bm{x}_1 \perp \bm{z}_0$.  
+$\bm{x}_1 \pitchfork \bm{z}_0$.
+:::
+
+::::
+
+:::
+
+* $a$: distance btw. axes $\bm{z}_0$ and $\bm{z}_1$, measured along
+$\bm{x}_1$.
+* $\alpha$: angle btw. $\bm{z}_0$ and $\bm{z}_1$, measured along $\bm{x}_1$.
+
+:::
+
+::: {.column width="40%"}
+<center>
+<img data-src="contents/assets/dh_axioms.png" width="60%"/>
+</center>
+:::
+
+* $d$: distance from $o_0$ to the intersection of the $\bm{x}_1$-axis with 
+$\bm{z}_0$-axis, measured along the $\bm{z}_0$-axis.
+* $\theta$: angle btw. $\bm{x}_0$ and $\bm{x}_1$, mesaured along $\bm{z}_0$.
+
+::::
+
+
+
+## Assigning the coordinate frames {.smaller}
+
+* One can always choose the frames $\Sigma_0, \ldots, \Sigma_n$ in such a way
+that (DH1) and (DH2) are satisfied.
+* Sometimes, this will require placing the origin $o_i$ of $\Sigma_i$ in a
+location that may not be intuitively satisfying.
+* The choices of the coordinate frames are _not_ unique!
+  - However, the end result, i.e. the matrix ${^0}\bm{T}_n$, will be the same!
+    (assuming the choice of $\Sigma_0$ and $\Sigma_n$ coincide for the two
+    different coordinate frame placements.)
+* The choice of $\bm{z}_i$ is _arbitrary_: __First__, we assign the axes
+$\bm{z}_0, \ldots, \bm{z}_{n-1}$ in an intuitively pleasing fashion: assign 
+$\bm{z}_i$ to be the axis of actuation for joint $i+1$.
+  - if joint $i+1$ is revolute, $\bm{z}_i$ is the axis of revolution of joint
+    $i+1$;
+  - if joint $i+1$ is prismatic, $\bm{z}_i$ is the axis of translation of joint
+    $i+1$.
+* __Second__ we establish the base frame. This is nearly arbitrary.
+  - Choose $o_0$ to be any point on $\bm{z}_0$.
+  - Choose $\bm{x}_0$, $\bm{y}_0$ in any convenient manner so long as $\Sigma_0$
+    is right-handed.
+* __Third__, we begin an iterative process in which we define $\Sigma_i$ using
+frame $\Sigma_{i-1}$ beginning with $\Sigma_i$. Three cases to consider: (i)
+$\bm{z}_{i-1}$ and $\bm{z}_i$ are not coplanar, (ii) $\bm{z}_{i-1} \parallel
+\bm{z}_i$, (iii) $\bm{z}_{i-1} \pitchfork \bm{z}_i$.
+
+
+
+## Assigning the coordinate frames {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.callout-note icon="false"}
+## $\bm{z}_{i-1}$ and $\bm{z}_i$ are not coplanar
+* There exists a unique shortest line segment from $\bm{z}_{i-1}$ to $\bm{z}_i$
+perpendicular to both $\bm{z}_{i-1}$ to $\bm{z}_i$.
+* This line segment defines $\bm{x}_i$ and the point where it intersects
+$\bm{z}_i$ is the origin $o_i$.
+* Choose an axis $\bm{y}_i$ to form a right-handed frame.
+:::
+
+::: {.callout-note icon="false"}
+## $\bm{z}_{i-1} \parallel \bm{z}_i$ ($\bm{z}_{i-1}$ is parallel to $\bm{z}_i$, therefore $\alpha_i = 0$)
+* There are infinitely many common normals between $\bm{z}_{i-1}$ and
+$\bm{z}_i$.
+* We are free to choose the origin $o_i$ at any convenient point on the
+$\bm{z}_i$-axis.
+* The axis $\bm{x}_i$ is chosen either to be directed from $o_i$ to
+$\bm{z}_{i-1}$ along the common normal, or as the opposite to this vector.
+* Common method: choose the normal that passes through $o_{i-1}$ as the
+$\bm{x}_i$-axis; $o_i$ is then the point at which this normal intersects
+$\bm{z}_i$ &nbsp; $\therefore d_i = 0$.
+:::
+
+:::
+
+::: {.column width="50%"}
+<center>
+<img data-src="contents/assets/dh_frame_assignment.png" width="100%"/>
+</center>
+
+::: {.callout-tip appearance="minimal"}
+Denavit-Hartenberg frame assignment
+:::
+
+&nbsp;
+
+::: {.callout-note icon="false"}
+## $\bm{z}_{i-1} \pitchfork \bm{z}_i$ ($\bm{z}_{i-1}$ intersects $\bm{z}_i$)
+* Choose $\bm{x}_i$ normal to the plane formed by $\bm{z}_{i-1}$ and $\bm{z}_i$
+with a positive direction being arbitrary.
+* Choose the origin $o_i$ at the point of intersection of $\bm{z}_{i-1}$ and
+$\bm{z}_i$.
+* In this case $a_i = 0$.
+:::
+
+:::
+
+::::
+
+
+
+## Assigning the coordinate frames {.smaller}
+
+<center>
+<img data-src="contents/assets/tool_frame_assignment.png" width="50%"/>
+</center>
+
+* To complete the construction, it is necessary to specify $\Sigma_n$.
+* $\Sigma_n$ is commonly referred to as the __end effector__ or __tool frame__.
+* $o_n$ is most often placed symmetrically between the fingers of the gripper.
+* The unit vectors along $\bm{x}_n$, $\bm{y}_n$, and $\bm{z}_n$ are labelled as 
+$\bm{n}$ (normal), $\bm{s}$ (sliding), and $\bm{a}$ (approach), respectively.
+
+
+## Summary of the DH procedure {.smaller}
+
+Step 1. &nbsp; Locate and label the joint axes: $\bm{z}_0, \bm{z}_1, \ldots,
+\bm{z}_{n-1}$.  
+
+Step 2. &nbsp; Establish the base frame: set the origin anywhere along the
+$\bm{z}_0$ axis. Choose $\bm{x}_0$ and $\bm{y}_0$ conveniently to form a
+right-handed frame.
+
+&nbsp; &nbsp; For $i = 1, \ldots, n-1$, perform steps $3$ to $5$.
+
+Step 3. &nbsp; Locate the origin $o_i$ where the common normal to $\bm{z}_i$ and
+$\bm{z}_{i-1}$ intersect $\bm{z}_i$. If $\bm{z}_i \pitchfork \bm{z}_{i-1}$,
+locate $o_i$ at this intersection. If $\bm{z}_i \parallel \bm{z}_{i-1}$, locate
+$o_i$ at any convenient position along $\bm{z}_i$.
+
+
+Step 4. &nbsp; Establish $\bm{x}_i$ along the common normal between
+$\bm{z}_{i-1}$ and $\bm{z}_i$ through $o_i$, or in the direction normal to the
+$\bm{z}_{i-1}-\bm{z}_i$ plane if $\bm{z}_{i-1} \pitchfork \bm{z}_i$.
+
+
+Step 5. &nbsp; Establish the $\bm{y}_i$ to complete a right-handed frame.
+
+Step 6. &nbsp; Establish $\Sigma_n$:
+
+> If the $n^{\text{th}}$ joint is revolute, set $\bm{z}_n = \bm{a}$
+> parallel to $\bm{z}_{n-1}$. Establish the origin $o_n$ conveniently along
+> $\bm{z}_n$. Set $\bm{y}_n = \bm{s}$ in the direction of the gripper closure, and 
+> set $\bm{x}_n = \bm{n} = \bm{s} \times \bm{a}$.
+
+
+## Summary of the DH procedure {.smaller}
+
+Step 7. &nbsp; Create a table of DH parameters $a_i$, $d_i$, $\alpha_i$,
+$\theta_i$:
+
+* $a_i$: distance along $\bm{x}_i$ from the axis $\bm{z}_{i-1}$ to the axis
+$\bm{z}_i$.
+* $d_i$: distance along $\bm{z}_{i-1}$ from $o_{i-1}$ to the intersection of the
+$\bm{x}_i$ and $\bm{z}_{i-1}$ axes. If joints $i$ is prismatic, $d_i$ is a
+variable.
+* $\alpha_i$: the angle from $\bm{z}_{i-1}$ to $\bm{z}_i$ measured about
+$\bm{x}_i$.
+* $\theta_i$: the angle from $\bm{x}_{i-1}$ to $\bm{x}_i$ measured about
+$\bm{z}_{i-1}$. If joint $i$ is revolute, $\theta_i$ is a variable.
+
+Step 8. &nbsp; Form the homogeneous transformation matrices $\bm{A}_i$ by
+substituting the above parameters into 
+$$
+\bm{A}_i =
+\mathcal{R}_{z,\theta_i}\mathcal{T}_{z,d_i}\mathcal{T}_{x,a_i}\mathcal{R}_{x,\alpha_i}
+$$
+
+Step 9. &nbsp; Form ${^0}\bm{T}_n = \bm{A}_1 \bm{A}_2 \cdots \bm{A}_n$. This
+gives the pose of the tool frame expressed in the base coordinates.

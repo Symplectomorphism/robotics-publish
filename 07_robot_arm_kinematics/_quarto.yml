@@ -1,0 +1,6 @@
+project:
+  title: "07_robot_arm_kinematics"
+  type: website
+  output-dir: docs
+
+
