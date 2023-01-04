@@ -2,9 +2,11 @@
 
 This repository contains the slide decks for the Robotics course at Boise State.
 
-* Pull the repository to your computer  
+> The presentations are supposed to be viewed in Firefox.
+> Chrome does not support MathML, therefore, will not render the math properly.
+
+
+1. Install the [regular Fira Sans font](https://fonts.google.com/specimen/Fira+Sans).
+2. Pull the repository to your computer  
   `git clone git@github.com:Symplectomorphism/robotics-publish.git`
-* The presentations are supposed to be viewed in Firefox.
-  * Chrome does not support MathML, therefore, will not render the math properly.
-* Install the [regular Fira Sans font](https://fonts.google.com/specimen/Fira+Sans).
-* Go to the slide deck's folder-> docs and run ''index.html'' in Firefox.
+3. Go to the slide deck's folder-> docs and run ''index.html'' in Firefox.
