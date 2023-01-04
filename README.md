@@ -1,4 +1,4 @@
-# robotics-course
+# Boise State's ME 467/564 -- ECE 464/564: Robotics and Automated Systems
 
 This repository contains the slide decks for the Robotics course at Boise State.
 
