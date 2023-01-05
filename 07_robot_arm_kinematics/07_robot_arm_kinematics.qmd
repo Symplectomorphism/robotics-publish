@@ -28,3 +28,5 @@ revealjs-plugins:
 
 {{< include contents/_frontmatter.qmd >}}
 {{< include contents/_forward_kinematics.qmd >}}
+{{< include contents/_jacobian.qmd >}}
+{{< include contents/_inverse_kinematics.qmd >}}

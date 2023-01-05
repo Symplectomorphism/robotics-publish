@@ -126,7 +126,7 @@ $$
 
 * The coordinate vectors ${^i}\bm{o}_j$ are given recursively by the formula 
 
-$$ {^i}\bm{o}_j = {^i}\bm{o}_{j-1} + {^i}\bm{R}_{j-1}{j-1}\bm{o}_j. $$
+$$ {^i}\bm{o}_j = {^i}\bm{o}_{j-1} + {^i}\bm{R}_{j-1}{^{j-1}}\bm{o}_j. $$
 
 * In principle, this is all there is to forward kinematics:
   - Determine the functions $\bm{A}(q_i)$,
@@ -376,8 +376,11 @@ Step 6. &nbsp; Establish $\Sigma_n$:
 
 > If the $n^{\text{th}}$ joint is revolute, set $\bm{z}_n = \bm{a}$
 > parallel to $\bm{z}_{n-1}$. Establish the origin $o_n$ conveniently along
-> $\bm{z}_n$. Set $\bm{y}_n = \bm{s}$ in the direction of the gripper closure, and 
-> set $\bm{x}_n = \bm{n} = \bm{s} \times \bm{a}$.
+> $\bm{z}_n$, preferably at the center of the gripper or at the tip of any tool
+> that manipulator may be carrying. Set $\bm{y}_n = \bm{s}$ in the direction of 
+> the gripper closure, and set $\bm{x}_n = \bm{n} = \bm{s} \times \bm{a}$. If
+> the tool is not a simple gripper, set $\bm{x}_n$ and $\bm{y}_n$ conveniently
+> to form a right-handed frame.
 
 
 ## Summary of the DH procedure {.smaller}
@@ -404,3 +407,416 @@ $$
 
 Step 9. &nbsp; Form ${^0}\bm{T}_n = \bm{A}_1 \bm{A}_2 \cdots \bm{A}_n$. This
 gives the pose of the tool frame expressed in the base coordinates.
+
+
+## Example 1: planar elbow manipulator {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* The joint axes $\bm{z}_0$ and $\bm{z}_1$ are normal to the page.
+* Establish the base frame $\Sigma_0$ by choosing the origin at the point of
+intersection of the $\bm{z}_0$-axis with the page and the $\bm{x}_0$-axis in
+the horizontal direction.
+* $o_1$ is located at the intersection of $\bm{z}_1$ and the page. $\bm{x}_1$ is
+the opposite of the vector directed from $o_1$ to $\bm{z}_0$.
+* The final frame $\Sigma_2$ is fixed by choosing $o_2$ at the end of link $2$.
+
+$$
+\bm{A}_1 = \begin{pmatrix}
+c_1 & -s_1 & 0 & a_1c_1 \\ s_1 & c_1 & 0 & a_1s_1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0
+& 1
+\end{pmatrix}, \qquad 
+\bm{A}_2 = \begin{pmatrix}
+c_2 & -s_2 & 0 & a_2c_2 \\ s_2 & c_2 & 0 & a_2s_2 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0
+& 1
+\end{pmatrix}.
+$$
+
+The $\bm{T}$ matrices are given by 
+
+$$ {^0}\bm{T}_1 = \bm{A}_1, \qquad
+{^0}\bm{T}_2 = \bm{A}_1\bm{A}_2. $$
+
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/two_link_planar_manipulator.png" width="100%"/>
+</center>
+
+
+| Link | $a_i$ | $\alpha_i$ | $d_i$ | $\theta_i$   |
+| :--: | :---: | :--------: | :---: | :----------: |
+| $1$  | $a_1$ | $0$        | $0$   | $\theta_1^*$ |
+| $2$  | $a_2$ | $0$        | $0$   | $\theta_2^*$ |
+
+::: {.callout-tip appearance="minimal"}
+DH parameters: $\theta_1$ and $\theta_2$ are the joint variables.
+:::
+
+:::
+
+::::
+
+
+## Example 2: three-link cylindrical manipulator {.smaller}
+
+:::: {.columns}
+
+::: {.column width="75%"}
+* Placement of $o_0$ along $\bm{z}_0$ and the direction of $\bm{x}_0$ are arbitrary. 
+* $\bm{z}_0$ and $\bm{z}_1$ coincide and the origin $o_1$ is chosen at joint $2$.
+* Since $\bm{z}_2 \pitchfork \bm{z}_1$, $o_2$ is placed at this intersection.
+* The direction of $\bm{x}_2$ is chosen parallel to $\bm{x}_1, \;\; \therefore
+\theta_2 = 0$.
+* Finally, $\Sigma_3$ is chosen at the end of link $3$ as shown.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+$$
+\bm{A}_1 = \begin{pmatrix}
+c_1 & -s_1 & 0 & 0 \\ s_1 & c_1 & 0 & 0 \\ 0 & 0 & 1 & d_1 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_2 = \begin{pmatrix}
+1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & -1 & 0 & d_2 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_3 = \begin{pmatrix}
+1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & d_3 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+The $\bm{T}$ matrix is thus given by
+
+$$
+{^0}\bm{T}_3 = \bm{A}_1\bm{A}_2\bm{A}_3 = 
+\begin{pmatrix}
+c_1 & 0 & -s_1 & -d_3s_1 \\ s_1 & 0 & c_1 & d_3c_1 \\ 0 & -1 & 0 & d_1+d_2 \\ 
+0 & 0 & 0 & 1
+\end{pmatrix}.
+$$
+
+::::
+
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/three_link_cylindrical_manipulator.png" width="100%"/>
+</center>
+
+
+| Link | $a_i$ | $\alpha_i$ | $d_i$   | $\theta_i$   |
+| :--: | :---: | :--------: | :-----: | :----------: |
+| $1$  | $0$ | $0$          | $d_1$   | $\theta_1^*$ |
+| $2$  | $0$ | $-90^\circ$  | $d_2^*$ | $0$ |
+| $3$  | $0$ | $0$          | $d_3^*$ | $0$ |
+
+::: {.callout-tip appearance="minimal"}
+DH parameters: $\theta_1$, $d_2$, and $d_3$ are the joint variables.
+:::
+
+:::
+
+::::
+
+
+
+## Example 3: the spherical wrist {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+:::: {.columns}
+
+::: {.column width="33%"}
+$$
+\bm{A}_4 = \begin{pmatrix}
+c_4 & 0 & -s_4 & 0 \\ s_4 & 0 & c_4 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_4 = \begin{pmatrix}
+c_5 & 0 & s_5 & 0 \\ s_5 & 0 & -c_5 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_6 = \begin{pmatrix}
+c_6 & -s_6 & 0 & 0 \\ s_6 & c_6 & 0 & 0 \\ 0 & 0 & 1 & d_6 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+The $\bm{T}$ matrix is thus given by
+
+$$
+{^3}\bm{T}_6 = \bm{A}_4\bm{A}_5\bm{A}_6 = 
+\begin{pmatrix}
+c_4c_5c_6-s_4s_6 & -c_4c_5s_6-s_4c_6 & c_4s_5 & d_6c_4s_5 \\
+s_4c_5c_6+c_4s_6 & -s_4c_5s_6+c_4c_6 & s_4s_5 & d_6s_4s_5 \\
+-s_5c_6 & s_5s_6 & c_5 & d_6c_5 \\
+0 & 0 & 0 & 1
+\end{pmatrix}.
+$$
+
+$\theta_4$, $\theta_5$, and $\theta_6$ can be identified with the ZYZ-Euler
+angles $\phi$, $\theta$, $\psi$ w.r.t. the coordinate frame $\Sigma_3$.
+
+::::
+
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/spherical_wrist_dh.png" width="100%"/>
+</center>
+
+
+| Link | $a_i$ | $\alpha_i$   | $d_i$   | $\theta_i$   |
+| :--: | :---: | :----------: | :-----: | :----------: |
+| $4$  | $0$   | $-90^\circ$  | $0$     | $\theta_4^*$ |
+| $5$  | $0$   | $90^\circ$   | $0$     | $\theta_5^*$ |
+| $6$  | $0$   | $0$          | $d_6$ | $\theta_6^*$ |
+
+::: {.callout-tip appearance="minimal"}
+DH parameters: $\theta_4$ through $\theta_6$ are the joint variables.
+:::
+
+* The joint axes $\bm{z}_3$, $\bm{z}_4$ and $\bm{z}_5$ intersect at $o$.
+* The point $o$ is called the __wrist center__.
+
+:::
+
+::::
+
+
+
+## <span style="font-size: 82%"> Example 4: Cylindrical manipulator with spherical wrist</span> {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+* We attach a spherical wrist to the cylindrical manipulator.
+* Axis of rotation of joint $4$ is $\parallel$ to $\bm{z}_2$ and thus coincides
+with the axis $\bm{z}_3$ of the cylindrical manipulator.
+* Implication: we can combine the $\bm{T}$ matrices for the cylindrical
+manipulator and the spherical wrist.
+
+$$
+{^0}\bm{T}_6 = {^0}\bm{T}_3{^3}\bm{T}_6 = \begin{pmatrix}\bm{R} & \bm{d} \\
+\bm{0} & 1 \end{pmatrix}.
+$$
+
+$$
+\begin{aligned}
+d_x &= c_1c_4s_5d_6 - s_1c_5d_6 - s_1d_3 \\
+d_y &= s_1c_4s_5d_6 + c_1c_5d_6 + c_1d_3 \\
+d_z &= -s_4s_5d_6 + d_1 + d_2.
+\end{aligned}
+$$
+
+:::
+
+::: {.column width="40%"}
+<center>
+<img data-src="contents/assets/cylindrical_w_spherical_wrist.png" width="100%"/>
+</center>
+
+$$
+\begin{aligned}
+r_{11} &= c_1c_4c_5c_6 - c_1s_4s_6 + s_1s_5c_6, \\
+r_{21} &= s_1c_4c_5c_6 - s_1s_4s_6 - c_1s_5c_6, \\
+r_{31} &= -s_4c_5c_6 - c_4s_6, \\
+r_{12} &= -c_1c_4c_5s_6 - c_1s_4c_6 - s_1s_5c_6, \\
+r_{22} &= -s_1c_4c_5s_6 - s_1s_4s_6 + c_1s_5c_6, \\
+r_{32} &= s_4c_5c_6 - c_4c_6, \\
+r_{13} &= c_1c_4s_5 - s_1c_5, \\
+r_{23} &= s_1c_4s_5 + c_1c_5, \\
+r_{33} &= -s_4s_5.
+\end{aligned}
+$$
+
+:::
+
+::::
+
+
+
+
+## Example 5: Stanford manipulator {.smaller}
+
+:::: {.columns}
+
+::: {.column width="75%"}
+
+:::: {.columns}
+
+::: {.column width="33%"}
+$$
+\bm{A}_1 = \begin{pmatrix}
+c_1 & 0 & -s_1 & 0 \\ s_1 & 0 & c_1 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+
+$$
+\bm{A}_4 = \begin{pmatrix}
+c_4 & 0 & -s_4 & 0 \\ s_4 & 0 & c_4 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_2 = \begin{pmatrix}
+c_2 & 0 & s_2 & 0 \\ s_2 & 0 & -c_2 & 0 \\ 0 & 1 & 0 & d_2 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+
+$$
+\bm{A}_5 = \begin{pmatrix}
+c_5 & s_5 & 0 & 0 \\ s_5 & -c_5 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::: {.column width="33%"}
+$$
+\bm{A}_3 = \begin{pmatrix}
+1  & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & d_3 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+
+$$
+\bm{A}_6 = \begin{pmatrix}
+c_6 & -s_6 & 0 & 0 \\ s_6 & c_6 & 0 & 0 \\ 0 & 0 & 1 & d_6 \\ 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+:::
+
+::::
+
+:::: {.columns}
+
+<center>
+::: {.column width="50%"}
+| Link | $a_i$ | $\alpha_i$   | $d_i$   | $\theta_i$   |
+| :--: | :---: | :----------: | :-----: | :----------: |
+| $1$  | $0$   | $-90^\circ$  | $0$     | $\theta_1^*$ |
+| $2$  | $0$   | $90^\circ$   | $d_2$   | $\theta_2^*$ |
+| $3$  | $0$   | $0$          | $d_3^*$ | $0$          |
+:::
+
+::: {.column width="50%"}
+| Link | $a_i$ | $\alpha_i$   | $d_i$   | $\theta_i$   |
+| :--: | :---: | :----------: | :-----: | :----------: |
+| $4$  | $0$   | $-90^\circ$  | $0$     | $\theta_4^*$ |
+| $5$  | $0$   | $90^\circ$   | $0$     | $\theta_5^*$ |
+| $6$  | $0$   | $0$          | $d_6^*$ | $\theta_6^*$ |
+:::
+</center>
+
+::::
+
+
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/stanford_manipulator.png" width="100%"/>
+</center>
+:::
+
+::::
+
+
+
+## Example 6: SCARA manipulator {.smaller}
+
+
+:::: {.columns}
+
+::: {.column width="65%"}
+* All joint axes are parallel so we have some freedom in the placement of the
+origins: placed as shown for convenience.
+* Establish the $\bm{x}_0$ axis in the plane of the page.
+  - This choice is arbitrary, but does determine the __home position__ of the
+    manipulator.
+  - This is the position of the manipulator when the joint variables are all
+    zero.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$$
+\bm{A}_1 = \begin{pmatrix}
+c_1 & -s_1 & 0 & a_1c_1 \\ s_1 & c_1 & 0 & a_1s_1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0
+& 1 \end{pmatrix}
+$$
+
+$$
+\bm{A}_3 = \begin{pmatrix}
+1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & d_3 \\ 0 & 0 & 0 & 1 \end{pmatrix}
+$$
+:::
+
+::: {.column width="50%"}
+$$
+\bm{A}_2 = \begin{pmatrix}
+c_2 & s_1 & 0 & a_2c_2 \\ s_2 & -c_2 & 0 & a_2s_2 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0
+& 1 \end{pmatrix}
+$$
+
+$$
+\bm{A}_4 = \begin{pmatrix}
+c_4 & -s_4 & 0 & 0 \\ s_4 & c_4 & 0 & 0 \\ 0 & 0 & 1 & d_4 \\ 0 & 0 & 0 & 1 
+\end{pmatrix}
+$$
+:::
+
+::::
+
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/scara_manipulator.png" width="100%"/>
+</center>
+
+| Link | $a_i$ | $\alpha_i$   | $d_i$   | $\theta_i$   |
+| :--: | :---: | :----------: | :-----: | :----------: |
+| $1$  | $a_1$ | $0$          | $0$     | $\theta_1^*$ |
+| $2$  | $a_2$ | $180^\circ$  | $0$     | $\theta_2^*$ |
+| $3$  | $0$   | $0$          | $d_3^*$ | $0$          |
+| $4$  | $0$   | $0$          | $d_4$   | $\theta_4^*$ |
+
+::: {.callout-tip appearance="minimal"}
+DH parameters: $\theta_1$, $\theta_2$, $d_3$, and $\theta_4$ are joint
+variables.
+:::
+
+$$
+{^0}\bm{T}_4 = \bm{A}_1\bm{A}_2\bm{A}_3\bm{A}_4.
+$$
+
+:::
+
+::::

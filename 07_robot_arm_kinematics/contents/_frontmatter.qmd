@@ -3,7 +3,7 @@
 
 <hr>
 
-*Robot Arm Kinematics*
+### Robot Arm Kinematics
 
 <br/>
 

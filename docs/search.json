@@ -1,72 +1,338 @@
 [
   {
-    "objectID": "01_introduction.html#robotics-and-automated-systems",
-    "href": "01_introduction.html#robotics-and-automated-systems",
-    "title": "01_introduction",
+    "objectID": "07_robot_arm_kinematics.html#robotics-and-automated-systems",
+    "href": "07_robot_arm_kinematics.html#robotics-and-automated-systems",
+    "title": "07_robot_arm_kinematics",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nWelcome and Introduction\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  History  Definitions  Classifications"
+    "text": "Robotics and Automated Systems\n\n\nRobot Arm Kinematics\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nForward Kinematics\nKinematic and Analytic Jacobian\nInverse Kinematics"
   },
   {
-    "objectID": "01_introduction.html#lets-get-started",
-    "href": "01_introduction.html#lets-get-started",
-    "title": "01_introduction",
-    "section": "Let’s get started!",
-    "text": "Let’s get started!\n\n\n\n\n\nRobots are still far behind what many people expect them to be from movies.\n\n\n\nOne thing is certain: robotics will be an important technology in this century.\n\nVacuum cleaning robots have already been with us for over a decade.\nSelf driving cars are coming."
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\nA robot manipulator is composed of a set of links connected together by joints.\n\nSimple: revolute or prismatic with one degree-of-freedom (DoF)\nComplex: universal or spherical with multiple DoF\n\nNo loss of generality considering only single DoF joints as multiple DoF joints can always be thought of as a succession of single DoF joints with links of length zero in between.\nThe action of each joint can be described by a single real number:\n\nthe angle of rotation in the case of a revolute joint\nthe displacement in the case of a prismatic joint\n\nA robot manipulator with nn joints will have n+1n+1 links, since each joint connects two links.\nNumber the joints from 11 to nn and the links from 00 to nn, starting from the base.\nJoint ii, which is fixed w.r.t. link i−1i-1, connects link i−1i-1 to link ii.\nWhen joint ii is actuated, link ii moves (hence, link 00 is fixed)."
   },
   {
-    "objectID": "01_introduction.html#good-old-days",
-    "href": "01_introduction.html#good-old-days",
-    "title": "01_introduction",
-    "section": "Good-old days",
-    "text": "Good-old days\n\n\n \n\n\n18th18^{th} century Europe was fascinated by automata such as Vaucanson’s duck, which was complex by the standards of the day.\n\n\n\nJacquard extended these ideas and developed a loom, which was essentially a programmable weaving machine."
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-1",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\n\nWith the ithi^{\\text{th}} joint, we associate a joint variable, denoted by qiq_i.\n\nqi={θiif joint i is revolutediif joint i is prismatic\nq_i = \\begin{cases}\n    \\theta_i & \\mbox{if joint $i$ is revolute} \\\\\n    d_i & \\mbox{if joint $i$ is prismatic} \\\\\n\\end{cases}\n\n\nWe attach a coordinate frame rigidly to each link; i.e. Σi\\Sigma_i is attached to link ii.\n\nthe coordinates of each point on link ii are constant when expressed in Σi\\Sigma_i\nΣ0\\Sigma_0 is attached to the robot base, is referred to as the base frame, inertial frame, or world frame.\n\n\n\n\n\n\n\n\n\nCoordinate frames attached to the elbow manipulator.\n\n\n\n\nSuppose 𝐀i\\bm{A}_i is the homogeneous transformation matrix that gives the pose of Σi\\Sigma_i w.r.t. Σi−1\\Sigma_{i-1}.\n\nThe assumption that all joints are either revolute or prismatic means that\n\n𝐀i=𝐀i(qi). \\bm{A}_i = \\bm{A}_i(q_i)."
   },
   {
-    "objectID": "01_introduction.html#good-old-days-1",
-    "href": "01_introduction.html#good-old-days-1",
-    "title": "01_introduction",
-    "section": "Good-old days",
-    "text": "Good-old days\n\nThe term robot was first introduced by the Czech playwright Karel Čapek in his 19201920 play Rossum’s Universal Robots.\nThe word robota is the Czech word for worker.\n\n\n\n\n\nThe first patent for what we would now consider a robot was filed in 19541954 by George C. Devol.\nThe device comprised a mechanical arm with a gripper that was mounted on a track."
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-2",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\n\n\nThe homogeneous transformation matrix that expresses the pose of Σj\\Sigma_j w.r.t. Σi\\Sigma_i is called a transformation matrix, and is denoted i𝐓j{^i}\\bm{T}_j.\n\n \n\nWe denote the pose of the end-effector w.r.t. the inertial frame by a 33-vector 0𝐨n{^0}\\bm{o}_n and the rotation matrix 0𝐑n{^0}\\bm{R}_n and define the homogeneous transformation matrix\n\n\ni𝐓j={𝐀i+1𝐀i+2⋯𝐀j−1𝐀jif i<jIif i=j(j𝐓i)−1if j>i\n{^i}\\bm{T}_j = \\begin{cases}\n    \\bm{A}_{i+1}\\bm{A}_{i+2}\\cdots \\bm{A}_{j-1}\\bm{A}_j & \\mbox{if } i < j\\\\\n    I & \\mbox{if } i = j \\\\\n    \\left( {^j}\\bm{T}_i \\right)^{-1} & \\mbox{if } j > i\n\\end{cases}\n\n𝐇=(0𝐑n0𝐨n01). \\bm{H} = \\begin{pmatrix} {^0}\\bm{R}_n & {^0}\\bm{o}_n \\\\ 0 & 1\n\\end{pmatrix}. \n\n\n\nThe pose of the end-effector in the inertial frame are is thus given by the product 𝐇=0𝐓n=𝐀1(q1)𝐀2(q2)⋯𝐀n(qn). \\bm{H} = {^0}\\bm{T}_n = \\bm{A}_1(q_1) \\bm{A}_2(q_2) \\cdots \\bm{A}_n(q_n). \nEach homogeneous transformation 𝐀i\\bm{A}_i is of the form 𝐀i=(i−1𝐑ii−1𝐨i01). \\bm{A}_i = \\begin{pmatrix} {^{i-1}}\\bm{R}_i & {^{i-1}}\\bm{o}_i \\\\ 0 & 1\n\\end{pmatrix}. \nHence, for i<ji < j, i𝐓j=𝐀i+1⋯𝐀j=(i𝐑ji𝐨j01). {^i}\\bm{T}_j = \\bm{A}_{i+1} \\cdots \\bm{A}_{j} = \n\\begin{pmatrix} {^i}\\bm{R}_j & {^i}\\bm{o}_j \\\\ 0 & 1 \\end{pmatrix}."
   },
   {
-    "objectID": "01_introduction.html#mobile-robots",
-    "href": "01_introduction.html#mobile-robots",
-    "title": "01_introduction",
-    "section": "Mobile Robots",
-    "text": "Mobile Robots\n\nThe first generation robots were fixed in place and cannot move about the factory.\nBy contrast, mobile robots can move through the world using various forms of mobility.\n\n\n\n\n\nLocomote: over the ground using wheels or legs, fly thorugh the air using fixed wings or multiple rotors, move through the water or sail over it."
+    "objectID": "07_robot_arm_kinematics.html#kinematic-chains-3",
+    "href": "07_robot_arm_kinematics.html#kinematic-chains-3",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic chains",
+    "text": "Kinematic chains\n\nThe matrix i𝐑j{^i}\\bm{R}_j expresses the orientation of Σj\\Sigma_j relative to Σi\\Sigma_i and is given by the rotational part of the 𝐀\\bm{A} matrices as\n\ni𝐑j=i𝐑i+1i+1𝐑i+2⋯j−1𝐑j. {^i}\\bm{R}_j = {^i}\\bm{R}_{i+1} {^{i+1}}\\bm{R}_{i+2} \\cdots {^{j-1}}\\bm{R}_j.\n\n\nThe coordinate vectors i𝐨j{^i}\\bm{o}_j are given recursively by the formula\n\ni𝐨j=i𝐨j−1+i𝐑j−1j−1𝐨j. {^i}\\bm{o}_j = {^i}\\bm{o}_{j-1} + {^i}\\bm{R}_{j-1}{^{j-1}}\\bm{o}_j. \n\nIn principle, this is all there is to forward kinematics:\n\nDetermine the functions 𝐀(qi)\\bm{A}(q_i),\nMultiply them together as needed.\n\nThe Denavit-Hartenberg convention streamlines and simplifies this procedure."
   },
   {
-    "objectID": "01_introduction.html#manufacturing-robots",
-    "href": "01_introduction.html#manufacturing-robots",
-    "title": "01_introduction",
-    "section": "Manufacturing robots",
-    "text": "Manufacturing robots\n\n\n\n\nTypically operate in factories and are the technological descendents of the first generation robots.\nArm-type manipulators on a fixed base that performs repetitive tasks within a local work cell."
+    "objectID": "07_robot_arm_kinematics.html#denavit-hartenberg-convention",
+    "href": "07_robot_arm_kinematics.html#denavit-hartenberg-convention",
+    "title": "07_robot_arm_kinematics",
+    "section": "Denavit-Hartenberg convention",
+    "text": "Denavit-Hartenberg convention\n\nIt is possible to carry out forward kinematic analysis even without respecting the Denavit-Hartenberg or DH convention.\nHowever, the kinematic analysis of an nn-link manipulator can be extremely complex and the conventions introduced below simplify the analysis considerably.\n\n\n\nIn the DH convention, each homogeneous transformation 𝐀i\\bm{A}_i is represented as a product of four basic transformations where the four quantities θi\\theta_i, aia_i, did_i and αi\\alpha_i are parameters associated with link ii and joint ii.\n\n\n\naia_i: link length\nαi\\alpha_i: link twist\n\n\n\ndid_i: link offset\nθi\\theta_i: joint angle\n\n\n\n\n𝐀i=ℛz,θi𝒯z,di𝒯x,aiℛx,αi=(cθi−sθicαisθisαiaicθisθicθicαi−cθisαiaisθi0sαicαidi0001)\n\\begin{aligned}\n    \\bm{A}_i &=\n    \\mathcal{R}_{z,\\theta_i}\\mathcal{T}_{z,d_i}\\mathcal{T}_{x,a_i}\\mathcal{R}_{x,\\alpha_i} \\\\\n    &= \\begin{pmatrix}\n        c_{\\theta_i} & -s_{\\theta_i}c_{\\alpha_i} & s_{\\theta_i}s_{\\alpha_i} & a_ic_{\\theta_i} \\\\ \n        s_{\\theta_i} & c_{\\theta_i}c_{\\alpha_i} & -c_{\\theta_i}s_{\\alpha_i} & a_is_{\\theta_i} \\\\ \n        0 & s_{\\alpha_i} & c_{\\alpha_i} & d_i \\\\ \n        0 & 0 & 0 & 1\n        \\end{pmatrix}\n\\end{aligned}\n\n\n\n\nRecall: the matrix 𝐀i\\bm{A}_i is a function of a single variable.\n\nThree of the above four quantities are constant for a given link,\nThe fourth parameter, θi\\theta_i for a revolute joint and did_i for a prismatic joint, is the joint variable."
   },
   {
-    "objectID": "01_introduction.html#service-robots",
-    "href": "01_introduction.html#service-robots",
-    "title": "01_introduction",
-    "section": "Service robots",
-    "text": "Service robots\n\n\n\nThey supply services to people such as cleaning, personal care, medical rehabilitation or fetching and carrying.\nMust operate and move in a complex, cluttered, and changing environment."
+    "objectID": "07_robot_arm_kinematics.html#number-of-parameters",
+    "href": "07_robot_arm_kinematics.html#number-of-parameters",
+    "title": "07_robot_arm_kinematics",
+    "section": "Number of parameters",
+    "text": "Number of parameters\n\nWhen we discussed rigid-body motion, we learned that an arbitrary homogeneous transformation matrix can be characterized by 66 numbers: 33 for rotation, 33 for translation.\nIn the DH representation, there are only four parameters: how is this possible?\n\nAnswer: While frame ii is required to be rigidly attached to link ii, we have considerable freedom in choosing the origin and the coordinate axes of the frame.\nBy a clever choice of the origin and the coordinate axes, it is possible to cut down the number of parameters needed from 66 to 44.\n\n\n\n\n\n\n\nDenavit-Hartenberg Conditions\n\n\n\n\n(DH1) The axis 𝐱1\\bm{x}_1 is perpendicular to the axis 𝐳0\\bm{z}_0:\n(DH2) The axis 𝐱1\\bm{x}_1 intersects the axis 𝐳0\\bm{z}_0:\n\n𝐱1⊥𝐳0\\bm{x}_1 \\perp \\bm{z}_0.\n𝐱1⋔𝐳0\\bm{x}_1 \\pitchfork \\bm{z}_0.\n\n\n\n\n\n\naa: distance btw. axes 𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1, measured along 𝐱1\\bm{x}_1.\nα\\alpha: angle btw. 𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1, measured along 𝐱1\\bm{x}_1.\n\n\n\n\n\n\ndd: distance from o0o_0 to the intersection of the 𝐱1\\bm{x}_1-axis with 𝐳0\\bm{z}_0-axis, measured along the 𝐳0\\bm{z}_0-axis.\nθ\\theta: angle btw. 𝐱0\\bm{x}_0 and 𝐱1\\bm{x}_1, mesaured along 𝐳0\\bm{z}_0."
   },
   {
-    "objectID": "01_introduction.html#field-robots",
-    "href": "01_introduction.html#field-robots",
-    "title": "01_introduction",
-    "section": "Field robots",
-    "text": "Field robots\n\n\n\nThey work outdoors on tasks such as environmental monitoring, agriculture, mining, construction and forestry.\n\n\n\nMust operate and move in a complex, cluttered, and changing environment.\n\nMars rover must navigate rocks, small craters despite not having an accurate local map.\nSelf-driving cars must follow roads, avoid obstacles and obey traffic signals, and the rules of the road."
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\nOne can always choose the frames Σ0,…,Σn\\Sigma_0, \\ldots, \\Sigma_n in such a way that (DH1) and (DH2) are satisfied.\nSometimes, this will require placing the origin oio_i of Σi\\Sigma_i in a location that may not be intuitively satisfying.\nThe choices of the coordinate frames are not unique!\n\nHowever, the end result, i.e. the matrix 0𝐓n{^0}\\bm{T}_n, will be the same! (assuming the choice of Σ0\\Sigma_0 and Σn\\Sigma_n coincide for the two different coordinate frame placements.)\n\nThe choice of 𝐳i\\bm{z}_i is arbitrary: First, we assign the axes 𝐳0,…,𝐳n−1\\bm{z}_0, \\ldots, \\bm{z}_{n-1} in an intuitively pleasing fashion: assign 𝐳i\\bm{z}_i to be the axis of actuation for joint i+1i+1.\n\nif joint i+1i+1 is revolute, 𝐳i\\bm{z}_i is the axis of revolution of joint i+1i+1;\nif joint i+1i+1 is prismatic, 𝐳i\\bm{z}_i is the axis of translation of joint i+1i+1.\n\nSecond we establish the base frame. This is nearly arbitrary.\n\nChoose o0o_0 to be any point on 𝐳0\\bm{z}_0.\nChoose 𝐱0\\bm{x}_0, 𝐲0\\bm{y}_0 in any convenient manner so long as Σ0\\Sigma_0 is right-handed.\n\nThird, we begin an iterative process in which we define Σi\\Sigma_i using frame Σi−1\\Sigma_{i-1} beginning with Σi\\Sigma_i. Three cases to consider: (i) 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i are not coplanar, (ii) 𝐳i−1∥𝐳i\\bm{z}_{i-1} \\parallel \\bm{z}_i, (iii) 𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i."
   },
   {
-    "objectID": "01_introduction.html#humanoid-robots",
-    "href": "01_introduction.html#humanoid-robots",
-    "title": "01_introduction",
-    "section": "Humanoid robots",
-    "text": "Humanoid robots\n\n\nThey have the physical form of a human being – they are both mobile robots and service robots."
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-1",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\n\n\n\n\n𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i are not coplanar\n\n\n\nThere exists a unique shortest line segment from 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i perpendicular to both 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i.\nThis line segment defines 𝐱i\\bm{x}_i and the point where it intersects 𝐳i\\bm{z}_i is the origin oio_i.\nChoose an axis 𝐲i\\bm{y}_i to form a right-handed frame.\n\n\n\n\n\n\n\n𝐳i−1∥𝐳i\\bm{z}_{i-1} \\parallel \\bm{z}_i (𝐳i−1\\bm{z}_{i-1} is parallel to 𝐳i\\bm{z}_i, therefore αi=0\\alpha_i = 0)\n\n\n\nThere are infinitely many common normals between 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i.\nWe are free to choose the origin oio_i at any convenient point on the 𝐳i\\bm{z}_i-axis.\nThe axis 𝐱i\\bm{x}_i is chosen either to be directed from oio_i to 𝐳i−1\\bm{z}_{i-1} along the common normal, or as the opposite to this vector.\nCommon method: choose the normal that passes through oi−1o_{i-1} as the 𝐱i\\bm{x}_i-axis; oio_i is then the point at which this normal intersects 𝐳i\\bm{z}_i   ∴di=0\\therefore d_i = 0.\n\n\n\n\n\n\n\n\n\n\n\nDenavit-Hartenberg frame assignment\n\n\n\n \n\n\n\n𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i (𝐳i−1\\bm{z}_{i-1} intersects 𝐳i\\bm{z}_i)\n\n\n\nChoose 𝐱i\\bm{x}_i normal to the plane formed by 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i with a positive direction being arbitrary.\nChoose the origin oio_i at the point of intersection of 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i.\nIn this case ai=0a_i = 0."
   },
   {
-    "objectID": "01_introduction.html#so-what-is-a-robot",
-    "href": "01_introduction.html#so-what-is-a-robot",
-    "title": "01_introduction",
-    "section": "So, what is a robot?",
-    "text": "So, what is a robot?\n\n\n\n\n\n\n\nOur definition of robot\n\n\nA robot is a goal-oriented machine that can sense, plan and act.\n\n\n\n\n\n\nA robot senses its environment and uses that information, together with a goal, to plan some action.\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "objectID": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-2",
+    "href": "07_robot_arm_kinematics.html#assigning-the-coordinate-frames-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Assigning the coordinate frames",
+    "text": "Assigning the coordinate frames\n\n\n\n\nTo complete the construction, it is necessary to specify Σn\\Sigma_n.\nΣn\\Sigma_n is commonly referred to as the end effector or tool frame.\nono_n is most often placed symmetrically between the fingers of the gripper.\nThe unit vectors along 𝐱n\\bm{x}_n, 𝐲n\\bm{y}_n, and 𝐳n\\bm{z}_n are labelled as 𝐧\\bm{n} (normal), 𝐬\\bm{s} (sliding), and 𝐚\\bm{a} (approach), respectively."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure",
+    "href": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure",
+    "title": "07_robot_arm_kinematics",
+    "section": "Summary of the DH procedure",
+    "text": "Summary of the DH procedure\nStep 1.   Locate and label the joint axes: 𝐳0,𝐳1,…,𝐳n−1\\bm{z}_0, \\bm{z}_1, \\ldots, \\bm{z}_{n-1}.\nStep 2.   Establish the base frame: set the origin anywhere along the 𝐳0\\bm{z}_0 axis. Choose 𝐱0\\bm{x}_0 and 𝐲0\\bm{y}_0 conveniently to form a right-handed frame.\n    For i=1,…,n−1i = 1, \\ldots, n-1, perform steps 33 to 55.\nStep 3.   Locate the origin oio_i where the common normal to 𝐳i\\bm{z}_i and 𝐳i−1\\bm{z}_{i-1} intersect 𝐳i\\bm{z}_i. If 𝐳i⋔𝐳i−1\\bm{z}_i \\pitchfork \\bm{z}_{i-1}, locate oio_i at this intersection. If 𝐳i∥𝐳i−1\\bm{z}_i \\parallel \\bm{z}_{i-1}, locate oio_i at any convenient position along 𝐳i\\bm{z}_i.\nStep 4.   Establish 𝐱i\\bm{x}_i along the common normal between 𝐳i−1\\bm{z}_{i-1} and 𝐳i\\bm{z}_i through oio_i, or in the direction normal to the 𝐳i−1−𝐳i\\bm{z}_{i-1}-\\bm{z}_i plane if 𝐳i−1⋔𝐳i\\bm{z}_{i-1} \\pitchfork \\bm{z}_i.\nStep 5.   Establish the 𝐲i\\bm{y}_i to complete a right-handed frame.\nStep 6.   Establish Σn\\Sigma_n:\n\nIf the nthn^{\\text{th}} joint is revolute, set 𝐳n=𝐚\\bm{z}_n = \\bm{a} parallel to 𝐳n−1\\bm{z}_{n-1}. Establish the origin ono_n conveniently along 𝐳n\\bm{z}_n, preferably at the center of the gripper or at the tip of any tool that manipulator may be carrying. Set 𝐲n=𝐬\\bm{y}_n = \\bm{s} in the direction of the gripper closure, and set 𝐱n=𝐧=𝐬×𝐚\\bm{x}_n = \\bm{n} = \\bm{s} \\times \\bm{a}. If the tool is not a simple gripper, set 𝐱n\\bm{x}_n and 𝐲n\\bm{y}_n conveniently to form a right-handed frame."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure-1",
+    "href": "07_robot_arm_kinematics.html#summary-of-the-dh-procedure-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Summary of the DH procedure",
+    "text": "Summary of the DH procedure\nStep 7.   Create a table of DH parameters aia_i, did_i, αi\\alpha_i, θi\\theta_i:\n\naia_i: distance along 𝐱i\\bm{x}_i from the axis 𝐳i−1\\bm{z}_{i-1} to the axis 𝐳i\\bm{z}_i.\ndid_i: distance along 𝐳i−1\\bm{z}_{i-1} from oi−1o_{i-1} to the intersection of the 𝐱i\\bm{x}_i and 𝐳i−1\\bm{z}_{i-1} axes. If joints ii is prismatic, did_i is a variable.\nαi\\alpha_i: the angle from 𝐳i−1\\bm{z}_{i-1} to 𝐳i\\bm{z}_i measured about 𝐱i\\bm{x}_i.\nθi\\theta_i: the angle from 𝐱i−1\\bm{x}_{i-1} to 𝐱i\\bm{x}_i measured about 𝐳i−1\\bm{z}_{i-1}. If joint ii is revolute, θi\\theta_i is a variable.\n\nStep 8.   Form the homogeneous transformation matrices 𝐀i\\bm{A}_i by substituting the above parameters into 𝐀i=ℛz,θi𝒯z,di𝒯x,aiℛx,αi\n\\bm{A}_i =\n\\mathcal{R}_{z,\\theta_i}\\mathcal{T}_{z,d_i}\\mathcal{T}_{x,a_i}\\mathcal{R}_{x,\\alpha_i}\n\nStep 9.   Form 0𝐓n=𝐀1𝐀2⋯𝐀n{^0}\\bm{T}_n = \\bm{A}_1 \\bm{A}_2 \\cdots \\bm{A}_n. This gives the pose of the tool frame expressed in the base coordinates."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-1-planar-elbow-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-1-planar-elbow-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 1: planar elbow manipulator",
+    "text": "Example 1: planar elbow manipulator\n\n\n\nThe joint axes 𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1 are normal to the page.\nEstablish the base frame Σ0\\Sigma_0 by choosing the origin at the point of intersection of the 𝐳0\\bm{z}_0-axis with the page and the 𝐱0\\bm{x}_0-axis in the horizontal direction.\no1o_1 is located at the intersection of 𝐳1\\bm{z}_1 and the page. 𝐱1\\bm{x}_1 is the opposite of the vector directed from o1o_1 to 𝐳0\\bm{z}_0.\nThe final frame Σ2\\Sigma_2 is fixed by choosing o2o_2 at the end of link 22.\n\n𝐀1=(c1−s10a1c1s1c10a1s100100001),𝐀2=(c2−s20a2c2s2c20a2s200100001).\n\\bm{A}_1 = \\begin{pmatrix}\nc_1 & -s_1 & 0 & a_1c_1 \\\\ s_1 & c_1 & 0 & a_1s_1 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0\n& 1\n\\end{pmatrix}, \\qquad \n\\bm{A}_2 = \\begin{pmatrix}\nc_2 & -s_2 & 0 & a_2c_2 \\\\ s_2 & c_2 & 0 & a_2s_2 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0\n& 1\n\\end{pmatrix}.\n\nThe 𝐓\\bm{T} matrices are given by\n0𝐓1=𝐀1,0𝐓2=𝐀1𝐀2. {^0}\\bm{T}_1 = \\bm{A}_1, \\qquad\n{^0}\\bm{T}_2 = \\bm{A}_1\\bm{A}_2. \n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n11\na1a_1\n00\n00\nθ1*\\theta_1^*\n\n\n22\na2a_2\n00\n00\nθ2*\\theta_2^*\n\n\n\n\n\n\nDH parameters: θ1\\theta_1 and θ2\\theta_2 are the joint variables."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-2-three-link-cylindrical-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-2-three-link-cylindrical-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 2: three-link cylindrical manipulator",
+    "text": "Example 2: three-link cylindrical manipulator\n\n\n\nPlacement of o0o_0 along 𝐳0\\bm{z}_0 and the direction of 𝐱0\\bm{x}_0 are arbitrary.\n𝐳0\\bm{z}_0 and 𝐳1\\bm{z}_1 coincide and the origin o1o_1 is chosen at joint 22.\nSince 𝐳2⋔𝐳1\\bm{z}_2 \\pitchfork \\bm{z}_1, o2o_2 is placed at this intersection.\nThe direction of 𝐱2\\bm{x}_2 is chosen parallel to 𝐱1,∴θ2=0\\bm{x}_1, \\;\\; \\therefore \\theta_2 = 0.\nFinally, Σ3\\Sigma_3 is chosen at the end of link 33 as shown.\n\n\n\n𝐀1=(c1−s100s1c100001d10001)\n\\bm{A}_1 = \\begin{pmatrix}\nc_1 & -s_1 & 0 & 0 \\\\ s_1 & c_1 & 0 & 0 \\\\ 0 & 0 & 1 & d_1 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀2=(100000100−10d20001)\n\\bm{A}_2 = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & -1 & 0 & d_2 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀3=(10000100001d30001)\n\\bm{A}_3 = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & d_3 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\nThe 𝐓\\bm{T} matrix is thus given by0𝐓3=𝐀1𝐀2𝐀3=(c10−s1−d3s1s10c1d3c10−10d1+d20001).\n{^0}\\bm{T}_3 = \\bm{A}_1\\bm{A}_2\\bm{A}_3 = \n\\begin{pmatrix}\nc_1 & 0 & -s_1 & -d_3s_1 \\\\ s_1 & 0 & c_1 & d_3c_1 \\\\ 0 & -1 & 0 & d_1+d_2 \\\\ \n0 & 0 & 0 & 1\n\\end{pmatrix}.\n\n\n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n11\n00\n00\nd1d_1\nθ1*\\theta_1^*\n\n\n22\n00\n−90∘-90^\\circ\nd2*d_2^*\n00\n\n\n33\n00\n00\nd3*d_3^*\n00\n\n\n\n\n\n\nDH parameters: θ1\\theta_1, d2d_2, and d3d_3 are the joint variables."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-3-the-spherical-wrist",
+    "href": "07_robot_arm_kinematics.html#example-3-the-spherical-wrist",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 3: the spherical wrist",
+    "text": "Example 3: the spherical wrist\n\n\n\n\n𝐀4=(c40−s40s40c400−1000001)\n\\bm{A}_4 = \\begin{pmatrix}\nc_4 & 0 & -s_4 & 0 \\\\ s_4 & 0 & c_4 & 0 \\\\ 0 & -1 & 0 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀4=(c50s50s50−c5001000001)\n\\bm{A}_4 = \\begin{pmatrix}\nc_5 & 0 & s_5 & 0 \\\\ s_5 & 0 & -c_5 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀6=(c6−s600s6c600001d60001)\n\\bm{A}_6 = \\begin{pmatrix}\nc_6 & -s_6 & 0 & 0 \\\\ s_6 & c_6 & 0 & 0 \\\\ 0 & 0 & 1 & d_6 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\nThe 𝐓\\bm{T} matrix is thus given by3𝐓6=𝐀4𝐀5𝐀6=(c4c5c6−s4s6−c4c5s6−s4c6c4s5d6c4s5s4c5c6+c4s6−s4c5s6+c4c6s4s5d6s4s5−s5c6s5s6c5d6c50001).\n{^3}\\bm{T}_6 = \\bm{A}_4\\bm{A}_5\\bm{A}_6 = \n\\begin{pmatrix}\nc_4c_5c_6-s_4s_6 & -c_4c_5s_6-s_4c_6 & c_4s_5 & d_6c_4s_5 \\\\\ns_4c_5c_6+c_4s_6 & -s_4c_5s_6+c_4c_6 & s_4s_5 & d_6s_4s_5 \\\\\n-s_5c_6 & s_5s_6 & c_5 & d_6c_5 \\\\\n0 & 0 & 0 & 1\n\\end{pmatrix}.\nθ4\\theta_4, θ5\\theta_5, and θ6\\theta_6 can be identified with the ZYZ-Euler angles ϕ\\phi, θ\\theta, ψ\\psi w.r.t. the coordinate frame Σ3\\Sigma_3.\n\n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n44\n00\n−90∘-90^\\circ\n00\nθ4*\\theta_4^*\n\n\n55\n00\n90∘90^\\circ\n00\nθ5*\\theta_5^*\n\n\n66\n00\n00\nd6d_6\nθ6*\\theta_6^*\n\n\n\n\n\n\nDH parameters: θ4\\theta_4 through θ6\\theta_6 are the joint variables.\n\n\n\n\nThe joint axes 𝐳3\\bm{z}_3, 𝐳4\\bm{z}_4 and 𝐳5\\bm{z}_5 intersect at oo.\nThe point oo is called the wrist center."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-4-cylindrical-manipulator-with-spherical-wrist",
+    "href": "07_robot_arm_kinematics.html#example-4-cylindrical-manipulator-with-spherical-wrist",
+    "title": "07_robot_arm_kinematics",
+    "section": " Example 4: Cylindrical manipulator with spherical wrist",
+    "text": "Example 4: Cylindrical manipulator with spherical wrist\n\n\n\nWe attach a spherical wrist to the cylindrical manipulator.\nAxis of rotation of joint 44 is ∥\\parallel to 𝐳2\\bm{z}_2 and thus coincides with the axis 𝐳3\\bm{z}_3 of the cylindrical manipulator.\nImplication: we can combine the 𝐓\\bm{T} matrices for the cylindrical manipulator and the spherical wrist.\n\n0𝐓6=0𝐓33𝐓6=(𝐑𝐝01).\n{^0}\\bm{T}_6 = {^0}\\bm{T}_3{^3}\\bm{T}_6 = \\begin{pmatrix}\\bm{R} & \\bm{d} \\\\\n\\bm{0} & 1 \\end{pmatrix}.\n\ndx=c1c4s5d6−s1c5d6−s1d3dy=s1c4s5d6+c1c5d6+c1d3dz=−s4s5d6+d1+d2.\n\\begin{aligned}\nd_x &= c_1c_4s_5d_6 - s_1c_5d_6 - s_1d_3 \\\\\nd_y &= s_1c_4s_5d_6 + c_1c_5d_6 + c_1d_3 \\\\\nd_z &= -s_4s_5d_6 + d_1 + d_2.\n\\end{aligned}\n\n\n\n\n\nr11=c1c4c5c6−c1s4s6+s1s5c6,r21=s1c4c5c6−s1s4s6−c1s5c6,r31=−s4c5c6−c4s6,r12=−c1c4c5s6−c1s4c6−s1s5c6,r22=−s1c4c5s6−s1s4s6+c1s5c6,r32=s4c5c6−c4c6,r13=c1c4s5−s1c5,r23=s1c4s5+c1c5,r33=−s4s5.\n\\begin{aligned}\nr_{11} &= c_1c_4c_5c_6 - c_1s_4s_6 + s_1s_5c_6, \\\\\nr_{21} &= s_1c_4c_5c_6 - s_1s_4s_6 - c_1s_5c_6, \\\\\nr_{31} &= -s_4c_5c_6 - c_4s_6, \\\\\nr_{12} &= -c_1c_4c_5s_6 - c_1s_4c_6 - s_1s_5c_6, \\\\\nr_{22} &= -s_1c_4c_5s_6 - s_1s_4s_6 + c_1s_5c_6, \\\\\nr_{32} &= s_4c_5c_6 - c_4c_6, \\\\\nr_{13} &= c_1c_4s_5 - s_1c_5, \\\\\nr_{23} &= s_1c_4s_5 + c_1c_5, \\\\\nr_{33} &= -s_4s_5.\n\\end{aligned}"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-5-stanford-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-5-stanford-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 5: Stanford manipulator",
+    "text": "Example 5: Stanford manipulator\n\n\n\n\n𝐀1=(c10−s10s10c100−1000001)\n\\bm{A}_1 = \\begin{pmatrix}\nc_1 & 0 & -s_1 & 0 \\\\ s_1 & 0 & c_1 & 0 \\\\ 0 & -1 & 0 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n𝐀4=(c40−s40s40c400−1000001)\n\\bm{A}_4 = \\begin{pmatrix}\nc_4 & 0 & -s_4 & 0 \\\\ s_4 & 0 & c_4 & 0 \\\\ 0 & -1 & 0 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀2=(c20s20s20−c20010d20001)\n\\bm{A}_2 = \\begin{pmatrix}\nc_2 & 0 & s_2 & 0 \\\\ s_2 & 0 & -c_2 & 0 \\\\ 0 & 1 & 0 & d_2 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n𝐀5=(c5s500s5−c50000−100001)\n\\bm{A}_5 = \\begin{pmatrix}\nc_5 & s_5 & 0 & 0 \\\\ s_5 & -c_5 & 0 & 0 \\\\ 0 & 0 & -1 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n𝐀3=(10000100001d30001)\n\\bm{A}_3 = \\begin{pmatrix}\n1  & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & d_3 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n𝐀6=(c6−s600s6c600001d60001)\n\\bm{A}_6 = \\begin{pmatrix}\nc_6 & -s_6 & 0 & 0 \\\\ s_6 & c_6 & 0 & 0 \\\\ 0 & 0 & 1 & d_6 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n11\n00\n−90∘-90^\\circ\n00\nθ1*\\theta_1^*\n\n\n22\n00\n90∘90^\\circ\nd2d_2\nθ2*\\theta_2^*\n\n\n33\n00\n00\nd3*d_3^*\n00\n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n44\n00\n−90∘-90^\\circ\n00\nθ4*\\theta_4^*\n\n\n55\n00\n90∘90^\\circ\n00\nθ5*\\theta_5^*\n\n\n66\n00\n00\nd6*d_6^*\nθ6*\\theta_6^*"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-6-scara-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-6-scara-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 6: SCARA manipulator",
+    "text": "Example 6: SCARA manipulator\n\n\n\nAll joint axes are parallel so we have some freedom in the placement of the origins: placed as shown for convenience.\nEstablish the 𝐱0\\bm{x}_0 axis in the plane of the page.\n\nThis choice is arbitrary, but does determine the home position of the manipulator.\nThis is the position of the manipulator when the joint variables are all zero.\n\n\n\n\n𝐀1=(c1−s10a1c1s1c10a1s100100001)\n\\bm{A}_1 = \\begin{pmatrix}\nc_1 & -s_1 & 0 & a_1c_1 \\\\ s_1 & c_1 & 0 & a_1s_1 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0\n& 1 \\end{pmatrix}\n\n𝐀3=(10000100001d30001)\n\\bm{A}_3 = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & d_3 \\\\ 0 & 0 & 0 & 1 \\end{pmatrix}\n\n\n𝐀2=(c2s10a2c2s2−c20a2s200−100001)\n\\bm{A}_2 = \\begin{pmatrix}\nc_2 & s_1 & 0 & a_2c_2 \\\\ s_2 & -c_2 & 0 & a_2s_2 \\\\ 0 & 0 & -1 & 0 \\\\ 0 & 0 & 0\n& 1 \\end{pmatrix}\n\n𝐀4=(c4−s400s4c400001d40001)\n\\bm{A}_4 = \\begin{pmatrix}\nc_4 & -s_4 & 0 & 0 \\\\ s_4 & c_4 & 0 & 0 \\\\ 0 & 0 & 1 & d_4 \\\\ 0 & 0 & 0 & 1 \n\\end{pmatrix}\n\n\n\n\n\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n11\na1a_1\n00\n00\nθ1*\\theta_1^*\n\n\n22\na2a_2\n180∘180^\\circ\n00\nθ2*\\theta_2^*\n\n\n33\n00\n00\nd3*d_3^*\n00\n\n\n44\n00\n00\nd4d_4\nθ4*\\theta_4^*\n\n\n\n\n\n\nDH parameters: θ1\\theta_1, θ2\\theta_2, d3d_3, and θ4\\theta_4 are joint variables.\n\n\n\n0𝐓4=𝐀1𝐀2𝐀3𝐀4.\n{^0}\\bm{T}_4 = \\bm{A}_1\\bm{A}_2\\bm{A}_3\\bm{A}_4."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#derivation-of-the-jacobian",
+    "href": "07_robot_arm_kinematics.html#derivation-of-the-jacobian",
+    "title": "07_robot_arm_kinematics",
+    "section": "Derivation of the Jacobian",
+    "text": "Derivation of the Jacobian\n\n\n\nConsider an nn-link manipulator with joint variables q1,…,qnq_1, \\ldots, q_n and let 0𝐓n{^0}\\bm{T}_n denote the transformation from the end-effector frame Σn\\Sigma_n to the base frame Σ0\\Sigma_0.\n\n\n0𝐓n=(0𝐑n(𝐪)0𝐨n(𝐪)01)\n{^0}\\bm{T}_n = \\begin{pmatrix}\n{^0}\\bm{R}_n(\\bm{q}) & {^0}\\bm{o}_n(\\bm{q}) \\\\ \\bm{0} & 1\n\\end{pmatrix}\n\n\n\n\nThe objective is to relate the linear and angular velocity (the twist) of the end-effector Σn\\Sigma_n to the vector of joint rates or velocities 𝐪̇(t)\\dot{\\bm{q}}(t).\n\n\n\n\n\n\n\nWith 𝐉v,𝐉ω∈ℝ3×n\\bm{J}_v, \\bm{J}_\\omega \\in \\mathbb{R}^{3\\times n}, we seek expressions of the form\n\n\n\n\n\nWith 𝐉\\bm{J} denoting the manipulator Jacobian or Jacobian, together they can be written as 𝛈=𝐉𝐪̇\\bm{\\eta} = \\bm{J}\\dot{\\bm{q}}.\n\n\n0𝐯n=𝐉v𝐪̇0𝛚n=𝐉ω𝐪̇\n\\begin{aligned}\n{^0}\\bm{v}_n &= \\bm{J}_v \\dot{\\bm{q}} \\\\\n{^0}\\bm{\\omega}_n &= \\bm{J}_\\omega \\dot{\\bm{q}}\n\\end{aligned}\n\n𝛈=(0𝐯n0𝛚n)and𝐉=(𝐉v𝐉ω)6×n\n\\bm{\\eta} = \\begin{pmatrix}\n{^0}\\bm{v}_n \\\\ {^0}\\bm{\\omega}_n\n\\end{pmatrix} \\quad \\text{and} \\quad\n\\bm{J} = \\begin{pmatrix}\n\\bm{J}_v \\\\ \\bm{J}_\\omega\n\\end{pmatrix}_{6 \\times n}\n\n\nThis twist 𝛈\\bm{\\eta} is NOT the derivative of a pose variable, since the angular velocity vector is tno the derivative of any particular time-varying quantity."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#angular-velocity",
+    "href": "07_robot_arm_kinematics.html#angular-velocity",
+    "title": "07_robot_arm_kinematics",
+    "section": "Angular velocity",
+    "text": "Angular velocity\n\nWe can determine 0𝛚0,n{^0}\\bm{\\omega}_{0,n} by expressing the angular velocity contributed by each joint in Σ0\\Sigma_0 and then summing these.\n\nIf joint ii is revolute, then the ithi^\\text{th} variable qi=θiq_i = \\theta_i and the axis of rotation is 𝐳i−1\\bm{z}_{i-1}.\nRecall: i−1𝛚i−1,i{^{i-1}}\\bm{\\omega}_{i-1,i} is the angular velocity of link ii that is imparted by the rotation of joint ii, expressed relative to Σi−1\\Sigma_{i-1}. With 𝐤=(001)⊤\\bm{k} = \\begin{pmatrix} 0 & 0 & 1 \\end{pmatrix}^\\top we have i−1𝛚i−1,i=q̇ii−1𝐳i−1=q̇i𝐤.{^{i-1}}\\bm{\\omega}_{i-1, i} = \\dot{q}_i{^{i-1}}\\bm{z}_{i-1} =\n\\dot{q}_i \\bm{k}.\nIf the joint ii is prismatic, then the motion of Σi\\Sigma_i w.r.t. Σi−1\\Sigma_{i-1} is a pure translation and i−1𝛚i−1,i=0. {^{i-1}}\\bm{\\omega}_{i-1,i} =\n\\bm{0}. \n\nTherefore, the overall angular velocity of the end-effector 0𝛚0,n{^0}\\bm{\\omega}_{0,n} is determined by 0𝛚0,n=0𝛚0,1+0𝐑11𝛚1,2+0𝐑22𝛚2,3+⋯+0𝐑nn−1𝛚n−1,n=ρ1q̇1𝐤+ρ2q̇20𝐑1𝐤+⋯+ρnq̇n0𝐑n−1𝐤=∑i=1nρiq̇−i0𝐳i−1,\n\\begin{aligned}\n{^0}\\bm{\\omega}_{0,n} &= {^0}\\bm{\\omega}_{0, 1} + {^0}\\bm{R}_1{^1}\\bm{\\omega}_{1,\n2} + {^0}\\bm{R}_2{^2}\\bm{\\omega}_{2,3} + \\cdots +\n{^0}\\bm{R}_n{^{n-1}}\\bm{\\omega}_{n-1, n} \\\\ \n&= \\rho_1\\dot{q}_1\\bm{k} + \\rho_2\\dot{q}_2{^0}\\bm{R}_1\\bm{k} + \\cdots +\n\\rho_n\\dot{q}_n{^0}\\bm{R}_{n-1}\\bm{k} = \\sum_{i=1}^n\n\\rho_i\\dot{q}-i{^0}\\bm{z}_{i-1},\n\\end{aligned}\n since 0𝐳i−1=0𝐑i−1𝐤{^0}\\bm{z}_{i-1} = {^0}\\bm{R}_{i-1}\\bm{k}, where ρi\\rho_i is equal to 11 if joint ii is revolute and 00 if it is prismatic.\nHence, we have found 𝐉ω\\bm{J}_\\omega as\n\n𝐉ω=(ρ1𝐳0ρ2𝐳1⋯ρn𝐳n−1). \\bm{J}_\\omega = \\begin{pmatrix} \\rho_1\\bm{z}_0 & \\rho_2\\bm{z}_1 & \\cdots &\n\\rho_n \\bm{z}_{n-1} \\end{pmatrix}.  where all 𝐳\\bm{z}-axes are expressed in the world frame Σ0\\Sigma_0."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#linear-velocity",
+    "href": "07_robot_arm_kinematics.html#linear-velocity",
+    "title": "07_robot_arm_kinematics",
+    "section": "Linear velocity",
+    "text": "Linear velocity\n \n \n\n\n\nBy the chain rule for differentiation\n\n0𝐨̇n=∑i=1n∂0𝐨n∂qiq̇i.{^0}\\dot{\\bm{o}}_n = \\sum_{i=1}^n \\frac{\\partial {^0}\\bm{o}_n}{\\partial q_i}\\dot{q}_i.\n\n\nThus, the ithi^{\\text{th}} column, 𝐉vi\\bm{J}_{v_i} of 𝐉v\\bm{J}_v is given by\n\n𝐉vi=∂0𝐨n∂qi.\\bm{J}_{v_i} = \\frac{\\partial {^0}\\bm{o}_n}{\\partial q_i}.\n \nNote that the ithi^{\\text{th}} column, 𝐉vi\\bm{J}_{v_i}, of the Jacobian may be generated by holding all joints but the ithi^{\\text{th}} one fixed and actuating the ithi^{\\text{th}} at unit velocity."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#linear-velocity-1",
+    "href": "07_robot_arm_kinematics.html#linear-velocity-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Linear velocity",
+    "text": "Linear velocity\n\n\n\nIf joint ii is prismatic, it imparts a pure translation to the end-effector.\nThe direction of this translation is ∥\\parallel to 𝐳i−1\\bm{z}_{i-1} and the magnitude is ḋi\\dot{d}_i.\nThus, expressed in Σ0\\Sigma_0, we obtain 0𝐨̇n=ḋi0𝐑i−1(001)⊤=ḋi0𝐳i−1,\n{^0}\\dot{\\bm{o}}_n = \\dot{d}_i{^0}\\bm{R}_{i-1}\\begin{pmatrix} 0 & 0 & 1\n\\end{pmatrix}^\\top = \\dot{d}_i{^0}\\bm{z}_{i-1},\n in which did_i is the joint variable for the prismatic joint ii.\nAfter dropping the superscripts, we have\n\n𝐉vi=𝐳i−1. \\bm{J}_{v_i} = \\bm{z}_{i-1}. \n\n\n\n\n\n\n\n\n\nIf joint ii revolute, we have qi=θiq_i = \\theta_i.\nWe observe that the linear velocity of the end-effector is sipmly of the form 𝛚×𝐫\\bm{\\omega} \\times \\bm{r}, where 𝛚=θ̇i𝐳i−1and𝐫=𝐨n−𝐨i−1. \\bm{\\omega} = \\dot{\\theta}_i\\bm{z}_{i-1}\n\\qquad \\text{and} \\qquad \\bm{r} = \\bm{o}_n - \\bm{o}_{i-1}. \nPutting these together and expressing the coordinates relative to Σ0\\Sigma_0, for a revolute joint we obtain\n\n𝐉vi=𝐳i−1×(𝐨n−𝐨i−1).\n\\bm{J}_{v_i} = \\bm{z}_{i-1} \\times (\\bm{o}_n - \\bm{o}_{i-1})."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#combining-linear-and-angular-velocity-jacobians",
+    "href": "07_robot_arm_kinematics.html#combining-linear-and-angular-velocity-jacobians",
+    "title": "07_robot_arm_kinematics",
+    "section": "Combining linear and angular velocity Jacobians ",
+    "text": "Combining linear and angular velocity Jacobians \n\n\n\nThe upper half, 𝐉v\\bm{J}_v, of the Jacobian 𝐉\\bm{J} is given as\n\n𝐉v=(𝐉v1𝐉v2⋯𝐉vn) \\bm{J}_v = \\begin{pmatrix} \\bm{J}_{v_1} & \\bm{J}_{v_2} & \\cdots &\n\\bm{J}_{v_n} \\end{pmatrix} \n\n\n\n\nThe lower half, 𝐉ω\\bm{J}_\\omega, of the Jacobian 𝐉\\bm{J} is given as\n\n𝐉ω=(𝐉ω1𝐉ω2⋯𝐉ωn) \\bm{J}_\\omega = \\begin{pmatrix} \\bm{J}_{\\omega_1} & \\bm{J}_{\\omega_2} & \\cdots &\n\\bm{J}_{\\omega_n} \\end{pmatrix} \n\n\nThe ithi^{\\text{th}} column 𝐉vi\\bm{J}_{v_i} is 𝐉vi={𝐳i−1×(𝐨n−𝐨i−1)for revolute joint i𝐳i−1for prismatic joint i\n\\bm{J}_{v_i} = \n\\begin{cases}\n  \\bm{z}_{i-1} \\times (\\bm{o}_n - \\bm{o}_{i-1}) & \\mbox{for revolute joint $i$} \\\\\n  \\bm{z}_{i-1} & \\mbox{for prismatic joint $i$}\n\\end{cases}\n\nThe ithi^{\\text{th}} column of 𝐉ωi\\bm{J}_{\\omega_i} is 𝐉ωi={𝐳i−1for revolute joint i0for prismatic joint i\n\\bm{J}_{\\omega_i} = \n\\begin{cases}\n  \\bm{z}_{i-1} & \\mbox{for revolute joint $i$} \\\\\n  0 & \\mbox{for prismatic joint $i$}\n\\end{cases}\n\n\n\nThe only quantities needed to compute the Jacobian are the unit vectors 𝐳i\\bm{z}_i and the coordinates of the origins o1,…,ono_1, \\ldots, o_n.\nThe coordinates for 𝐳i\\bm{z}_i w.r.t. Σ0\\Sigma_0 are given by the first three elements in the third column of 0𝐓i{^0}\\bm{T}_i.\n0𝐨i{^0}\\bm{o}_i is given by the first three elements of the fourth column of 0𝐓i{^0}\\bm{T}_i.\nThis procedure works not only for computing the velocity of the end-effector but also for computing the velocity of any point on the manipulator."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-1-two-link-planar-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-1-two-link-planar-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 1: Two-link planar manipulator",
+    "text": "Example 1: Two-link planar manipulator\n\n\n\nSince both joints are revolute, the Jacobian matrix is of the form\n\nJ(q)=(𝐳0×(𝐨2−𝐨0)𝐳1×(𝐨2−𝐨1)𝐳0𝐳1)\nJ(q) = \\begin{pmatrix}\n    \\bm{z}_0 \\times (\\bm{o}_2-\\bm{o}_0) & \\bm{z}_1 \\times (\\bm{o}_2-\\bm{o}_1) \\\\ \n    \\bm{z}_0 & \\bm{z}_1\n\\end{pmatrix}\n\n\nThe various quantities are:   𝐳0=𝐳1=(001)⊤\\bm{z}_0 = \\bm{z}_1 = \\begin{pmatrix} 0 & 0 & 1 \\end{pmatrix}^\\top and 𝐨0=0,𝐨1=(a1c1a1s10)⊤,𝐨2=(a1c1+a2c12a1s1+a2s120). \\bm{o}_0 = \\bm{0}, \\;\\; \\bm{o}_1 = \\begin{pmatrix} a_1c_1 & a_1s_1 & 0\n\\end{pmatrix}^\\top, \\;\\; \\bm{o}_2 = \\begin{pmatrix} a_1c_1 + a_2c_{12} & a_1s_1 + a_2s_{12} & 0 \\end{pmatrix}. \n\n\n\n\n\n\n\n\n\n\nThe first two rows give the linear velocity of the origin o2o_2 relative to the base.\nThe third row is the linear velocity of o2o_2 in the direction of 𝐳0\\bm{z}_0.\nThe last three rows represent the angular velocity of the final frame Σ2\\Sigma_2, which is basic rotation about the vertical axis at the rate θ̇1+θ̇2\\dot{\\theta}_1 + \\dot{\\theta}_2.\n\n\n𝐉=(−a1s1−a2s12−a2s12a1c1+a2c12a2c1200000011)\n\\bm{J} = \n\\begin{pmatrix}\n-a_1s_1 - a_2s_{12} & -a_2s_{12} \\\\\na_1c_1 + a_2c_{12} & a_2c_{12} \\\\\n0 & 0 \\\\\n0 & 0 \\\\\n0 & 0 \\\\\n1 & 1\n\\end{pmatrix}"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-2-jacobian-for-an-arbitrary-point-on-a-link",
+    "href": "07_robot_arm_kinematics.html#example-2-jacobian-for-an-arbitrary-point-on-a-link",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 2: Jacobian for an arbitrary point on a link ",
+    "text": "Example 2: Jacobian for an arbitrary point on a link \n \n\n\n\nSuppose we wish to compute the linear velocity 𝐯\\bm{v} of the center of link 22 as shown.\n\n𝐉(q)=(𝐳0×(𝐨c−𝐨0)𝐳1×(𝐨c−𝐨1)0𝐳0𝐳10)\n\\bm{J}(q) = \\begin{pmatrix}\n    \\bm{z}_0 \\times (\\bm{o}_c-\\bm{o}_0) & \\bm{z}_1 \\times (\\bm{o}_c-\\bm{o}_1) & 0\\\\ \n    \\bm{z}_0 & \\bm{z}_1 & 0\n\\end{pmatrix}\n\nwhich is merely the Jacobian of oco_c in place of ono_n.\n \n\nThe third column of the Jacobian is zero since the velocity of the second link is unaffected by the motion of the third link.\n\n\n\n\n\n \n\n\n\nVelocity of link 22 of a 33-link planar robot\n\n\nIn this case the vector 0𝐨c{^0}\\bm{o}_c must be computed as it is not given directly by the 𝐓\\bm{T} matrices."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-3-stanford-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-3-stanford-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 3: Stanford manipulator",
+    "text": "Example 3: Stanford manipulator\n\nJoint 33 is prismatic and o3=o4=o5o_3 = o_4 = o_5 as a consequence of the spherical wrist and frame assignments.\nDenoting this common origin by 𝐨\\bm{o}, we see that the columns of the Jacobian have the form\n\n𝐉i=(𝐳i−1×(𝐨6−𝐨i−1)𝐳i−1),i=1,2,𝐉3=(𝐳20),𝐉i=(𝐳i−1×(𝐨6−𝐨)𝐳i−1),i=4,5,6.\n\\begin{aligned}\n    \\bm{J}_i &= \\begin{pmatrix}\n    \\bm{z}_{i-1} \\times (\\bm{o}_6 - \\bm{o}_{i-1}) \\\\ \\bm{z}_{i-1}\n    \\end{pmatrix}, \\; \\; i = 1,2, \\\\\n    \\bm{J}_3 &= \\begin{pmatrix}\\bm{z}_2 \\\\ 0 \\end{pmatrix}, \\\\\n    \\bm{J}_i &= \\begin{pmatrix} \\bm{z}_{i-1} \\times (\\bm{o}_6 - \\bm{o}) \\\\ \\bm{z}_{i-1}\n    \\end{pmatrix}, \\; \\; i = 4,5,6.\n\\end{aligned}"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-4-scara-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-4-scara-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example 4: SCARA manipulator",
+    "text": "Example 4: SCARA manipulator\n\nThis Jacobian is a 6×46 \\times 4 matrix since SCARA has only four degrees of freedom.\nWe need only compute the matrices 0𝐓j=𝐀1⋯𝐀j{^0}\\bm{T}_j = \\bm{A}_1 \\cdots \\bm{A}_j.\nJoints 11, 22, and 44 are revolut and joint 33 is prismatic so\n\n𝐉=(𝐳0×(𝐨4−𝐨0)𝐳1×(𝐨4−𝐨1)𝐳20𝐳0𝐳10𝐳3)=(−a1s1−a2s12−a2s1200a1c1+a2c12a2c120000−1000000000110−1).\n\\bm{J} = \\begin{pmatrix}\n    \\bm{z}_0 \\times (\\bm{o}_4 - \\bm{o}_0) & \\bm{z}_1 \\times (\\bm{o}_4 - \\bm{o}_1) & \\bm{z}_2 & 0 \\\\ \n    \\bm{z}_0 & \\bm{z}_1 & 0 & \\bm{z}_3\n\\end{pmatrix}\n= \\begin{pmatrix}\n    -a_1s_1 - a_2s_{12} & -a_2s_{12} & 0 & 0 \\\\\n    a_1c_1 + a_2c_{12} & a_2c_{12} & 0 & 0 \\\\\n    0 & 0 & -1 & 0 \\\\\n    0 & 0 & 0 & 0 \\\\\n    0 & 0 & 0 & 0 \\\\\n    1 & 1 & 0 & -1\n\\end{pmatrix}.\n\nwhere we used the fact that 𝐨4−𝐨3∥𝐳3\\bm{o}_4 -\\bm{o}_3 \\parallel \\bm{z}_3 and thus 𝐳3×(𝐨4−𝐨3)=0. \\bm{z}_3 \\times (\\bm{o}_4 - \\bm{o}_3) = \\bm{0}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#the-general-inverse-kinematics-problem",
+    "href": "07_robot_arm_kinematics.html#the-general-inverse-kinematics-problem",
+    "title": "07_robot_arm_kinematics",
+    "section": "The general inverse kinematics problem",
+    "text": "The general inverse kinematics problem\n\nGiven a 4×44 \\times 4 homogeneous transformation 𝐇=(𝐑𝐝01)∈𝐒𝐄(3)\\bm{H} = \\begin{pmatrix} \\bm{R} & \\bm{d} \\\\ \\bm{0} & 1 \\end{pmatrix} \\in \\bm{SE}(3), find a solution, or possibly multiple solutions of the equation 0𝐓n(q1,…,qn)=𝐀1(q1)⋯𝐀(qn)=𝐇. {^0}\\bm{T}_n(q_1, \\ldots, q_n) = \\bm{A}_1(q_1) \\cdots \\bm{A}(q_n) = \\bm{H}.\n\nThis matrix equation has sixteen scalar equations to be solved for nn variables q1,…,qnq_1, \\ldots, q_n.\nFour of these equations are trivial (last row of 𝐇\\bm{H}) so the remaining twelve equations are 𝐭ij(q1,…,qn)=𝐡ij, for\ni=1,2,3,j=1,2,3,4.\\bm{t}_{ij}(q_1, \\ldots, q_n) = \\bm{h}_{ij}, \\text{  for\n} \\quad i = 1, 2, 3, \\; \\; j = 1, 2, 3, 4. \nTypically these equations are much too difficult to solve directly in closed-form.\n\nkinematic structure of the manipulator must be exploited to get a closed-form solution.\n\nUnlike the forward kinematics problem, the inverse kinematics problem may or may not have a solution.\n\nEven if a solution exists, it may or may not be unique.\nSince the forward kinematic equations are in general complicated nonlinear functions of the joint variables, the solutions may be difficult to obtain even when they do exist.\n\nOnce a solution is identified, it must be further checked to see whether or not it satisfies all constraints on ther anges of possible joint motions."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-stanford-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-stanford-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: Stanford manipulator",
+    "text": "Example: Stanford manipulator\n\n\n\nSuppose that d2=0.154d_2 = 0.154, d6=0.263d_6 = 0.263 and the desired pose of the final frame is given by 𝐇\\bm{H}.\nFind the joint variables θ1\\theta_1, θ2\\theta_2, d3d_3, θ4\\theta_4, θ5\\theta_5, θ6\\theta_6.\nOne solution to the eqns below is: θ1=θ2=θ4=θ6=π2\\theta_1 = \\theta_2 = \\theta_4 = \\theta_6 = \\frac{\\pi}{2} and θ5=0\\theta_5 = 0, d3=12d_3 = \\frac{1}{2}.\n\n\n𝐇=(010−0.1540010.76310000001)\n\\bm{H} = \\begin{pmatrix}\n0 & 1 & 0 & -0.154 \\\\ 0 & 0 & 1 & 0.763 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 1\n\\end{pmatrix}\n\n\n\n\nc1[c2(c4c5c6−s4s6)−s2s5c6]−s1(s4c5c6+c4s6)=0s1[c2(c4c5c6−s4s6)−s2s5c6]+c1(s4c5c6+c4s6)=0−s2(c4c5c6−s4s6)−c2s5c6=1c1[−c2(c4c5c6+s4s6)+s2s5s6]−s1(−s4c5s6+c4c6)=1s1[−c2(c4c5c6+s4s6)+s2s5s6]+c1(−s4c5s6+c4c6)=0s2(c4c5c6+s4c6)+c2s5s6=0c1(c2c4s5+s2c5)−s1s4s5=0s1(c2c4s5+s2c5)+c1s4s5=1−s2c4s5+c2c5=0c1s2d3−s1d2+d6(c1c2c4s5+c1c5s2−s1s4s5)=−0.154s1s2d3+c1d2+d6(c1s4s5+c2c4s1s5+c5s1s2)=0.763c2d3+d6(c2c5−c4s2s5)=0\n\\begin{aligned}\nc_1\\left[ c_2(c_4c_5c_6 - s_4s_6) - s_2s_5c_6 \\right] - s_1(s_4c_5c_6 + c_4s_6) &= 0 \\\\\ns_1\\left[ c_2(c_4c_5c_6 - s_4s_6) - s_2s_5c_6 \\right] + c_1(s_4c_5c_6 + c_4s_6) &= 0 \\\\\n-s_2(c_4c_5c_6 - s_4s_6) - c_2s_5c_6 &= 1 \\\\\nc_1\\left[ -c_2(c_4c_5c_6 + s_4s_6) + s_2s_5s_6 \\right] - s_1(-s_4c_5s_6 + c_4c_6) &= 1 \\\\\ns_1\\left[ -c_2(c_4c_5c_6 + s_4s_6) + s_2s_5s_6 \\right] + c_1(-s_4c_5s_6 + c_4c_6) &= 0 \\\\\ns_2(c_4c_5c_6 + s_4c_6) + c_2s_5s_6 &= 0 \\\\\nc_1(c_2c_4s_5 + s_2c_5) - s_1s_4s_5 &= 0 \\\\\ns_1(c_2c_4s_5 + s_2c_5) + c_1s_4s_5 &= 1 \\\\\n-s_2c_4s_5 + c_2c_5 &= 0 \\\\\nc_1s_2d_3 - s_1d_2 + d_6(c_1c_2c_4s_5 + c_1c_5s_2 - s_1s_4s_5) &= -0.154 \\\\ \ns_1s_2d_3 + c_1d_2 + d_6(c_1s_4s_5 + c_2c_4s_1s_5 + c_5s_1s_2) &= 0.763 \\\\ \nc_2d_3 + d_6(c_2c_5 - c_4s_2s_5) &= 0\n\\end{aligned}"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#numerical-inverse-kinematics",
+    "href": "07_robot_arm_kinematics.html#numerical-inverse-kinematics",
+    "title": "07_robot_arm_kinematics",
+    "section": "Numerical inverse kinematics",
+    "text": "Numerical inverse kinematics\n\nLet’s consider an iterative, numerical algorithms for the computation of inverse kinematics.\n\nThey are increasingly popular due to the availability of high-performance computation and the advent of open-source software.\nWhen closed-form solutions do not exist or if the manipulator is redundant, a recourse to numerical methods may be the better option.\n\nLet 𝐱d∈ℝm\\bm{x}^d \\in \\mathbb{R}^m be a vector of Cartesian coordinates: 𝐱d\\bm{x}^d could represent\n\nthe wrist center point (m=3m=3),\nthe end-effector pose using a minimal representation (m=6m=6).\n\nLet 𝐟:ℝn→ℝm\\bm{f}: \\mathbb{R}^n \\rightarrow \\mathbb{R}^m be the forward kinematics map for an nn-link manipulator and set 𝐠(𝐪)=𝐱d−𝐟(𝐪). \\bm{g}(\\bm{q}) = \\bm{x}^d - \\bm{f}(\\bm{q}). \n\nThen a solution to the inverse kinematics is a configuration 𝐪d\\bm{q}^d satisfying 𝐠(𝐪d)=𝐱d−𝐟(𝐪d)=0. \\bm{g}(\\bm{q}^d) = \\bm{x}^d - \\bm{f}(\\bm{q}^d) = \\bm{0}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#jacobian-inverse-method",
+    "href": "07_robot_arm_kinematics.html#jacobian-inverse-method",
+    "title": "07_robot_arm_kinematics",
+    "section": "Jacobian inverse method",
+    "text": "Jacobian inverse method\n\nWe expand the forward kinematics map 𝐟(𝐪)\\bm{f}(\\bm{q}) in a Taylor series about a configuration 𝐪d\\bm{q}^d, such that 𝐱d=𝐟(𝐪d)\\bm{x}^d = \\bm{f}(\\bm{q}^d) to obtain 𝐟(𝐪)=𝐟(𝐪d)+𝐉(𝐪d)(𝐪−𝐪d)+h.o.t., \\bm{f}(\\bm{q}) = \\bm{f}(\\bm{q}^d) + \\bm{J}(\\bm{q}^d)(\\bm{q} - \\bm{q}^d) +\n\\text{h.o.t.},  where we take 𝐉=𝐉a(𝐪)\\bm{J} = \\bm{J}_a(\\bm{q}) as the analytic Jacobian.\nNeglecting h.o.t., we have 𝐪d−𝐪=𝐉−1(𝐪)(𝐱d−𝐟(𝐪))\\bm{q}^d - \\bm{q} = \\bm{J}^{-1}(\\bm{q}) \\left(\\bm{x}^d - \\bm{f}(\\bm{q}) \\right) assuming that the Jacobian is invertible.\nTo find a solution for 𝐪d\\bm{q}^d, we begin with an initial guess, 𝐪0\\bm{q}_0 and form a sequence of successive estimates, 𝐪0,𝐪1,𝐪2,…\\bm{q}_0, \\bm{q}_1, \\bm{q}_2, \\ldots, as 𝐪k=𝐪k−1+αk𝐉−1(𝐱d−𝐟(𝐪k−1)),k=1,2,….\\bm{q}_k = \\bm{q}_{k-1} + \\alpha_k \\bm{J}^{-1} \\left(\\bm{x}^d -\n\\bm{f}(\\bm{q}_{k-1}) \\right), \\;\\; k= 1,2,\\ldots. \n\nThe step size αk>0\\alpha_k > 0 can be adjusted over each iteration to aid convergence.\nIf the Jacobian is not invertible, then one may use the pseudoinverse 𝐉†\\bm{J}^\\dagger.\nFor m≤nm \\leq n, we define the right pseudoinverse as 𝐉†≜𝐉⊤(𝐉𝐉⊤)−1\\bm{J}^\\dagger \\triangleq \\bm{J}^\\top \\left(\\bm{J}\\bm{J}^\\top\\right)^{-1}\n\n\n\n\n\nThis equation is based on a first-order approximation of the inverse kinematics so only local convergence can be expected."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#jacobian-transpose-method",
+    "href": "07_robot_arm_kinematics.html#jacobian-transpose-method",
+    "title": "07_robot_arm_kinematics",
+    "section": "Jacobian transpose method",
+    "text": "Jacobian transpose method\n\nWe define an optimization problem:   min𝐪𝐅(𝐪)=min𝐪12(𝐟(𝐪)−𝐱d)⊤(𝐟(𝐪)−𝐱d)\\min_\\bm{q} \\bm{F}(\\bm{q}) = \\min_\\bm{q} \\frac{1}{2}\\left( \\bm{f}(\\bm{q}) - \\bm{x}^d \\right)^\\top \\left( \\bm{f}(\\bm{q}) - \\bm{x}^d \\right).\nThe gradient of the above cost function 𝐅(𝐪)\\bm{F}(\\bm{q}) is given by:   ∇𝐅(𝐪)=𝐉⊤(𝐪)(𝐟(𝐪)−𝐱d).\\nabla \\bm{F}(\\bm{q}) = \\bm{J}^\\top(\\bm{q}) \\left( \\bm{f}(\\bm{q}) - \\bm{x}^d \\right).\nA gradient descent algorithm to minimize 𝐅(𝐪)\\bm{F}(\\bm{q}) is then 𝐪k=𝐪k−1−αk∇𝐅(𝐪)=𝐪k−1+αk𝐉⊤(𝐱d−𝐟(𝐪k−1)),k=1,2,….\\bm{q}_k = \\bm{q}_{k-1} - \\alpha_k \\; \\nabla\\bm{F}(\\bm{q}) = \\bm{q}_{k-1} + \n\\alpha_k \\bm{J}^{\\top} \\left(\\bm{x}^d - \\bm{f}(\\bm{q}_{k-1}) \\right), \\;\\; \nk= 1,2,\\ldots. \n\n\n\n\nComparison of inverse and transpose methods\n\n\n\nJacobian transpose is easier to compute than the Jacobian inverse.\nJacobian transpose does not suffer from configuration singularities.\nThe converge of the Jacobian transpose method, in terms of number of iterations, may be slower than the Jacobian inverse method."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-jacobian-inverse-and-jacobian-transpose",
+    "href": "07_robot_arm_kinematics.html#example-jacobian-inverse-and-jacobian-transpose",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: Jacobian inverse and Jacobian transpose",
+    "text": "Example: Jacobian inverse and Jacobian transpose\n\nDesired end-effector coordinates are 𝐱d=(0.2,1.3)⊤\\bm{x}^d = (0.2, 1.3)^\\top.\nThe joint variables 𝐪d\\bm{q}^d corresponding to 𝐱d\\bm{x}^d are θ1d=0.5650\\theta_1^d = 0.5650, θ2d=1.7062\\theta_2^d = 1.7062.\nThe initial guess is θ1=0.25\\theta_1 = 0.25, θ2=0.75\\theta_2 = 0.75.\nThe step size was chosen as αk=0.75\\alpha_k = 0.75 for all kk.\n\n\n\n\n\n\n\n\n\nInverse kinematics solution using the Jacobian inverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nInverse kinematics solution using the Jacobian transpose"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-decoupling",
+    "href": "07_robot_arm_kinematics.html#kinematic-decoupling",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic decoupling",
+    "text": "Kinematic decoupling\n\nFor manipulators with three consecutive joint axes intersecting at a point (e.g. Stanford manip.), it is possible to decouple the inverse kinematics problem into two simpler problems\n\ninverse position kinematics,\ninverse orientation kinematics.\n\nFor a six-DoF manipulator with a spherical wrist the inverse kinematics problem may be separated into two simpler problems:\n\nFirst finding the position of the intersection of the wrist axes (wrist center),\nThen finding the orientation of the wrist.\n\n\n\n\n\nWe express the general inverse kinematics problem as two sets of equations representing the rotational and positional kinematics where 𝐨\\bm{o} and 𝐑\\bm{R} are the desired position and orientation of the tool frame, expressed w.r.t. Σ0\\Sigma_0.\n\n\n0𝐑6(q1,…,q6)=𝐑,0𝐨6(q1,…,q6)=𝐨.\n\\begin{aligned}\n{^0}\\bm{R}_6(q_1, \\ldots, q_6) &= \\bm{R}, \\\\\n{^0}\\bm{o}_6(q_1, \\ldots, q_6) &= \\bm{o}.\n\\end{aligned}\n\n\n\n\nWe are given 𝐨\\bm{o} and 𝐑\\bm{R} and the inverse kinematics problem is to solve for q1,…,q6q_1, \\ldots, q_6.\nWith a spherical wrist, the axes 𝐳3\\bm{z}_3, 𝐳4\\bm{z}_4, and 𝐳5\\bm{z}_5 intersect at oco_c and hence o4=o5=oco_4 = o_5 = o_c.\nOften o3o_3 will also be at oco_c but this is not necessary."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-decoupling-1",
+    "href": "07_robot_arm_kinematics.html#kinematic-decoupling-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic decoupling",
+    "text": "Kinematic decoupling\n\nWhat is important is that the motion of the final three joints will NOT change the position of oco_c and thus the position of the wrist center is a function of only the first three joint variables.\nThe origin of the tool frame (whose desired location is given by 𝐨\\bm{o}) is simply obtained by a translation of distance d6d_6 along 𝐳5\\bm{z}_5 from oco_c.\n𝐳5=𝐳6\\bm{z}_5 = \\bm{z}_6 and the third column of 𝐑\\bm{R} expressed the direction 𝐳6\\bm{z}_6 w.r.t. Σ0\\Sigma_0. Therefore we have 𝐨=0𝐨c+d6𝐑[001]⊤. \\bm{o} = {^0}\\bm{o}_c + d_6 \\bm{R} \n\\;\\begin{bmatrix} 0 & 0 & 1 \\end{bmatrix}^\\top. \n\n\n\n\nIn order to have the end-effector of the robot at the point with coordinates given by 𝐨\\bm{o} and with the orientation given by 𝐑\\bm{R}, it is necessary and sufficient that the wrist center oco_c have the coordinates\n\nand the orientation of the frame Σ6\\Sigma_6 w.r.t. Σ0\\Sigma_0 be given by 𝐑\\bm{R}.\n\nIf the components of 𝐨\\bm{o} are denoted oxo_x, oyo_y, ozo_z and the components of 0𝐨c{^0}\\bm{o}_c are denoted by xcx_c, ycy_c, zcz_c, then we must have\n\n\n0𝐨c=𝐨−d6𝐑(001)\n{^0}\\bm{o}_c = \\bm{o} - d^6 \\bm{R} \\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}\n\n(xcyczc)=(ox−d6r13oy−d6r23oz−d6r33).\n\\begin{pmatrix} x_c \\\\ y_c \\\\ z_c \\end{pmatrix} = \\begin{pmatrix}\no_x - d_6r_{13} \\\\ o_y - d_6r_{23} \\\\ o_z - d_6r_{33}\n\\end{pmatrix}.\n\n\n\n\nUsing this equation, we may find the values of the first three joint variables.\n\nThis determines the orientation transformation 0𝐑3{^0}\\bm{R}_3, which depends only on these first three joint variables."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#kinematic-decoupling-2",
+    "href": "07_robot_arm_kinematics.html#kinematic-decoupling-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Kinematic decoupling",
+    "text": "Kinematic decoupling\n\n\n \n\nNow that we have the rotation matrix 0𝐑3{^0}\\bm{R}_3 as a repercussion of the location of the wrist center oco_c from our previous discussion.\nWe can now determine the orientation of the end-effector relative to the frame Σ3\\Sigma_3 from the expression 𝐑=0𝐑33𝐑6\n\\bm{R} = {^0}\\bm{R}_3{^3}\\bm{R}_6\n as\n\n3𝐑6=(0𝐑3)−1𝐑=(0𝐑3)⊤𝐑\n{^3}\\bm{R}_6 = \\left({^0}\\bm{R}_3\\right)^{-1}\\bm{R} = \\left({^0}\\bm{R}_3\\right)^\\top \\bm{R}\n\n\nThe final three joint angles can then be found as a set of Euler angles corresponding to 3𝐑6{^3}\\bm{R}_6.\n\n\n\n\n\n\n\n\nGeometry of kinematic decoupling\n\n\nThe vector 𝐨c\\bm{o}_c is the position of the wrist center and 𝐨6\\bm{o}_6 is the position of the end-effector both w.r.t the base frame.\nThe wrist center point coordinates do not depend on the wrist orientation variables θ4\\theta_4, θ5\\theta_5, and θ6\\theta_6."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#inverse-position-a-geometric-approach",
+    "href": "07_robot_arm_kinematics.html#inverse-position-a-geometric-approach",
+    "title": "07_robot_arm_kinematics",
+    "section": "Inverse position: a geometric approach",
+    "text": "Inverse position: a geometric approach\n\nMost six-DoF manipulator designs are kinematically simple rendering the geometric approach simple and effective.\n\nIt is partly due to the difficulty of the general inverse kinematics problem that manipulator designs have evolved to their present state.\n\nThe complexity of the inverse kinematics problem increases with the number of nonzero DH parameters.\n\nFor most manipulators, many of the aia_i, did_i are zero, the αi\\alpha_i are 00 or ±π2\\pm \\frac{\\pi}{2}, etc.\nIn these cases especially, a geometric approach is simplest and most natural.\n\nThe general idea of the geometric approach is to solve for the joint variable qiq_i by projecting the manipulator onto the 𝐱i−1−𝐲i−1\\bm{x}_{i-1}-\\bm{y}_{i-1} plane and solving a simple trigonometry problem.\n\nFor example, to solve for θ1\\theta_1, we project the arm onto the 𝐱0\\bm{x}_0-𝐲0\\bm{y}_0 plane and use trigonometry to find θ1\\theta_1.\nWe will illustrate this method with two important examples: the spherical (RRP) and the articulated (RRR) arms."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#spherical-configuration",
+    "href": "07_robot_arm_kinematics.html#spherical-configuration",
+    "title": "07_robot_arm_kinematics",
+    "section": "Spherical configuration",
+    "text": "Spherical configuration\n\n\n\nProjecting 𝐨c\\bm{o}_c onto the 𝐱0−𝐲0\\bm{x}_0-\\bm{y}_0 plane, we see that θ1=arctan2(yc,xc)orθ1=π+arctan2(yc,xc). \\theta_1 = \\arctan_2{(y_c, x_c)} \\quad \\text{or} \\quad \\theta_1 = \\pi +\n\\arctan_2{(y_c, x_c)}. \nThese solutions for θ1\\theta_1 are valid unless xc=yc=0x_c = y_c = 0, i.e., the manipulator is in a Singular configuration.\n\nIn this case 𝐨c⋔𝐳0\\bm{o}_c \\pitchfork \\bm{z}_0 as shown in bottom right.\nThen any value of θ1\\theta_1 leaves 𝐨c\\bm{o}_c fixed.\n\nWith r2=xc2+yc2r^2 = x_c^2 + y_c^2 and s=zc−d1s = z_c - d_1, the angle θ2\\theta_2 is found from the top figure as θ2=arctan2(s,r)+π2. \\theta_2 = \\arctan_2{(s, r)} + \\frac{\\pi}{2}. \nThe linear distance d3d_3 is found as d3=r2+s2=xc2+yc2+(zc−d1)2. d_3 = \\sqrt{r^2 + s^2} = \\sqrt{x_c^2 + y_c^2 + (z_c -d_1)^2}. \nThus, we obtain two solutions to the inverse position kinematics as long as the wrist center does not intersect 𝐳0\\bm{z}_0.\n\n\n\n\n\n\n\n\nFirst three joints of a spherical manipulator.\n\n\n\n\n\n\n\n\n\nSingular configuration\n\n\nThe wrist center lies on the 𝐳0\\bm{z}_0-axis."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#articulated-configuration",
+    "href": "07_robot_arm_kinematics.html#articulated-configuration",
+    "title": "07_robot_arm_kinematics",
+    "section": "Articulated configuration",
+    "text": "Articulated configuration\n\n\n\nSimilar to the spherical manipulator, if xcyc≠0x_cy_c \\neq 0: θ1=arctan2(yc,xc)orθ1=π+arctan2(yc,xc). \\theta_1 = \\arctan_2{(y_c, x_c)} \\quad \\text{or} \\quad \\theta_1 = \\pi +\n\\arctan_2{(y_c, x_c)}. \nIf xc=yc=0x_c = y_c = 0 the configuration is singular and θ1\\theta_1 can take any value.\nIf there is an offset d≠0d \\neq 0 as shown, then the wrist center cannot intersect 𝐳0\\bm{z}_0.\n\nIn this case, we will have d2=dd_2 = d or d3=dd_3 = d and there will, in general, be only two solutions for θ1\\theta_1.\n\n\n\n\n\n\n\n\nElbow manipulator with shoulder offset.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst three joints of an elbow manipulator.\n\n\n\n\n\n\n\n\n\nSingular configuration\n\n\nThe wrist center lies on the 𝐳0\\bm{z}_0-axis."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#articulated-configuration-1",
+    "href": "07_robot_arm_kinematics.html#articulated-configuration-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Articulated configuration",
+    "text": "Articulated configuration\n\n\n\n\n\nLeft arm configuration\n\n\n\n\n\n\nDefine: ϕ=arctan2(yc,xc),α=arctan2(d,r2−d2)=arctan2(d,xc2+yc2−d2).\n\\begin{aligned}\n\\phi &= \\arctan_2(y_c, x_c), \\\\\n\\alpha &= \\arctan_2{\\left(d, \\sqrt{r^2 - d_2}\\right)} \\\\ \n&= \\arctan_2{\\left(d, \\sqrt{x_c^2+y_c^2-d^2}\\right)}.\n\\end{aligned}\n\nThen, θ1=ϕ−α\\theta_1 = \\phi - \\alpha.\n\n\n\n\nRight arm configuration\n\n\n\n\n\n\nDefine: α=arctan2(yc,xc),β=γ+π,γ=arctan2(d,r2−d2).\n\\begin{aligned}\n\\alpha &= \\arctan_2(y_c, x_c), \\\\\n\\beta &= \\gamma + \\pi, \\\\\n\\gamma &= \\arctan_2{\\left(d, \\sqrt{r^2 - d^2} \\right)}.\n\\end{aligned}\n\nThen, θ1=α+β\\theta_1 = \\alpha + \\beta."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#articulated-configuration-2",
+    "href": "07_robot_arm_kinematics.html#articulated-configuration-2",
+    "title": "07_robot_arm_kinematics",
+    "section": "Articulated configuration",
+    "text": "Articulated configuration\n\n\n\nTo find the angles θ2\\theta_2 and θ3\\theta_3 for the elbow manipulator for a given θ1\\theta_1, consider the plane formed by the second and third llinks as shown in the figure.\nWith r2=xc2+yc2−d2r^2 = x_c^2 + y_c^2 - d^2 and s=zc−d1s=z_c - d_1, apply the law of cosines to obtain cosθ3=12a2a3(r2+s2−a22−a32)=:D\n\\cos{\\theta_3} = \\frac{1}{2a_2a_3}\\left(r^2 + s^2 - a_2^2 - a_3^2\\right) =: D\n\nHence, θ3=arctan2(±1−D2,D)\\theta_3 = \\arctan_2{\\left(\\pm\\sqrt{1-D^2}, D\\right)}.\nOnce we know θ3\\theta_3, we can use it to compute θ2\\theta_2: θ2=arctan2(s,r)−arctan2(a3s3,a2+a3c3)=arctan2(zc−d1,xc2+yc2−d2)saflasjf−arctan2(a3s3,a2+a3c3).\n\\begin{aligned}\n\\theta_2 &= \\arctan_2(s, r) - \\arctan_2{(a_3s_3, a_2 + a_3c_3)} \\\\\n&= \\arctan_2{\\left(z_c - d_1, \\sqrt{x_c^2+y_c^2-d^2}\\right)} \\\\ \n&\\phantom{saflasjf} - \\arctan_2{(a_3s_3, a_2+a_3c_3)}.\n\\end{aligned}\n\n\n\n\n\n\n\n\n\nProjecting onto the plane formed by links 22 and 33."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-puma-manipulator-articulated",
+    "href": "07_robot_arm_kinematics.html#example-puma-manipulator-articulated",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: PUMA manipulator (articulated)",
+    "text": "Example: PUMA manipulator (articulated)\n\n\n\nThere are four solutions to the inverse position kinematics.\nThese correspond to the situations:\n\nleft arm – elbow up,\nleft arm – elbow down,\nright arm – elbow up,\nright arm – elbow down.\n\nWe will see that there are two solutions for the wrist orientation.\nThus, a total of eight solutions of the inverse kinematics problem exists for the PUMA manipulator."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#inverse-orientation",
+    "href": "07_robot_arm_kinematics.html#inverse-orientation",
+    "title": "07_robot_arm_kinematics",
+    "section": "Inverse orientation",
+    "text": "Inverse orientation\n \n \n\nThe inverse orientation problem is one of finding the values of the final three joint variables corresponding to a given orientation w.r.t. the frame Σ3\\Sigma_3.\nFor a spherical wrist, this can be interpreted as the problem of finding a set of Euler angles corresponding to a given rotation matrix 𝐑\\bm{R}.\nWe can therefore use the method developed all the way back in your youth, in Chapter 02, to solve for the three Euler angles ϕ\\phi, θ\\theta, ψ\\psi, and then use the mapping\n\nϕ↦θ4,θ↦θ5,ψ↦θ6. \n\\phi \\mapsto \\theta_4, \\;\\; \\theta \\mapsto \\theta_5, \\;\\; \\psi \\mapsto \\theta_6."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-articulated-manipulator-with-spherical-wrist",
+    "href": "07_robot_arm_kinematics.html#example-articulated-manipulator-with-spherical-wrist",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: articulated manipulator with spherical wrist ",
+    "text": "Example: articulated manipulator with spherical wrist \n\n\n\nFor the articulated manipulator, by the product 𝐀1𝐀2𝐀3\\bm{A}_1\\bm{A}_2\\bm{A}_3: 0𝐑3=(c1c23−c1s23s1s1c23−s1s23−c1s23c230). {^0}\\bm{R}_3 = \\begin{pmatrix}\nc_1c_{23} & -c_1s_{23} & s_1 \\\\ s_1c_{23} & -s_1s_{23} & -c_1 \\\\ s_{23} & c_{23}\n& 0\n\\end{pmatrix}.\n\nThe matrix 3𝐑6{^3}\\bm{R}_6 comes from the product 𝐀4𝐀5𝐀6\\bm{A}_4\\bm{A}_5\\bm{A}_6:\n\n3𝐑6=(c4c5c6−s4s6−c4c5s6−s4c6c4s5s4c5c6+c4s6−s4c5s6+c4c6s4s5−s5c6s5s6c5).\n{^3}\\bm{R}_6 = \\begin{pmatrix}\nc_4c_5c_6 - s_4s_6 & -c_4c_5s_6 - s_4c_6 & c_4s_5 \\\\\ns_4c_5c_6 + c_4s_6 & -s_4c_5s_6 + c_4c_6 & s_4s_5 \\\\\n-s_5c_6 & s_5s_6 & c_5\n\\end{pmatrix}.\n\n\nThe three equations given by the third comlumn in the above matrix equation are\n\n\n\n\n\nLink\naia_i\nαi\\alpha_i\ndid_i\nθi\\theta_i\n\n\n\n\n11\n00\n90∘90^\\circ\nd1d_1\nθ1*\\theta_1^*\n\n\n22\na2a_2\n00\n00\nθ2*\\theta_2^*\n\n\n33\na3a_3\n00\n00\nθ3*\\theta_3^*\n\n\n\n\nThe equation to be solved for the final three joint variables is therefore 3𝐑6=(0𝐑3)⊤𝐑. {^3}\\bm{R}_6 = \\left({^0}\\bm{R}_3\\right)^\\top \\bm{R}. \n\nc4s5=c1c23r13+s1c23r23+s23r33s4s5=−c1s23r13−s1s23r23+c23r33c5=s1r13−c1r23\n\\begin{aligned}\n    c_4s_5 &= c_1c_{23}r_{13} + s_1c_{23}r_{23} + s_{23}r_{33} \\\\\n    s_4s_5 &= -c_1s_{23}r_{13} - s_1s_{23}r_{23} + c_{23}r_{33} \\\\\n    c_5 &= s_1r_{13} - c_1r_{23}\n\\end{aligned}"
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-articulated-manipulator-with-spherical-wrist-1",
+    "href": "07_robot_arm_kinematics.html#example-articulated-manipulator-with-spherical-wrist-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: articulated manipulator with spherical wrist ",
+    "text": "Example: articulated manipulator with spherical wrist \n\nHence, if both of the top two equations are not zero, we obtain θ5=arctan2(±1−(s1r13−c1r23)2,s1r13−c1r23). \\theta_5 = \\arctan_2{\\left( \\pm \\sqrt{1 - (s_1r_{13} - c_1r_{23})^2},\ns_1r_{13} - c_1r_{23} \\right)}. \nIf the positive square root is chosen in this equation, then θ4\\theta_4 and θ6\\theta_6 are given as θ4=arctan2(−c1s23r13−s1s23r23+c23r33,c1c23r13+s1c23r23+s23r33),θ6=arctan2(s1r12−c1r22,−s1r11+c1r21).\n\\begin{aligned}\n  \\theta_4 &= \\arctan_2{(-c_1s_{23}r_{13}-s_1s_{23}r_{23}+c_{23}r_{33}, c_1c_{23}r_{13} + s_1c_{23}r_{23} + s_{23}r_{33})}, \\\\\n  \\theta_6 &= \\arctan_2{(s_1r_{12} - c_1r_{22}, -s_1r_{11}+c_1r_{21})}.\n\\end{aligned}\n\nThe other solutions are obtained analogously.\nIf s5=0s_5 = 0, then the joint axes 𝐳3\\bm{z}_3 and 𝐳5\\bm{z}_5 are collinear.\nThis is a singular configuration and in this case only the sum θ4+θ6\\theta_4 + \\theta_6 can be determined.\nOne solution is to choose θ4\\theta_4 arbitrarily and then determine θ6\\theta_6."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-elbow-manipulator-complete-solution",
+    "href": "07_robot_arm_kinematics.html#example-elbow-manipulator-complete-solution",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: Elbow manipulator – complete solution ",
+    "text": "Example: Elbow manipulator – complete solution \n\n\nGiven:     𝐨=(oxoyoz),𝐑=(r11r12r13r21r22r23r31r32r33)\\bm{o} = \\begin{pmatrix} o_x \\\\ o_y \\\\ o_z \\end{pmatrix}, \\quad \\bm{R} = \\begin{pmatrix} r_{11} & r_{12} & r_{13} \\\\ r_{21} & r_{22} & r_{23} \\\\ r_{31} & r_{32} & r_{33} \\end{pmatrix}\n\nwith:     xc=ox−d6r13yc=oy−d6r23zc=oz−d6r33\\begin{aligned}  x_c &= o_x - d_6 r_{13} \\\\  y_c &= o_y - d_6 r_{23} \\\\  z_c &= o_z - d_6 r_{33} \\end{aligned}\n\n\nA set of DH joint variables is given by\nθ1=arctan2(yc,xc),θ2=arctan2(zc−d1,xc2+yc2−d2)−arctan2(a3s3,a2+a3c3),θ3=arctan2(±1−D2,D),θ4=arctan2(−c1s23r13−s1s23r23+c23r33,c1c23r13+s1c23r23+s23r33),θ5=arctan2(±1−(s1r13−c1r23)2,s1r13−c1r23),θ6=arctan2(s1r12−c1r22,−s1r11+c1r21),\n\\begin{aligned}\n    \\theta_1 &= \\arctan_2{(y_c, x_c)}, \\\\\n    \\theta_2 &= \\arctan_2{\\left( z_c-d_1, \\sqrt{x_c^2 + y_c^2 - d^2} \\right)} - \\arctan_2{(a_3s_3, a_2+a_3c_3)}, \\\\\n    \\theta_3 &= \\arctan_2{\\left( \\pm \\sqrt{1-D^2}, D \\right)}, \\\\\n    \\theta_4 &= \\arctan_2{(-c_1s_{23}r_{13}-s_1s_{23}r_{23}+c_{23}r_{33}, c_1c_{23}r_{13} + s_1c_{23}r_{23} + s_{23}r_{33})}, \\\\\n    \\theta_5 &= \\arctan_2{\\left( \\pm \\sqrt{1 - (s_1r_{13} - c_1r_{23})^2}, s_1r_{13} - c_1r_{23} \\right)}, \\\\\n    \\theta_6 &= \\arctan_2{(s_1r_{12} - c_1r_{22}, -s_1r_{11}+c_1r_{21})},\n\\end{aligned}\n\nwhere D=xc2+yc2−d2+(zc−d1)2−a22−a322a2a3D = \\frac{x_c^2 + y_c^2 - d^2 + (z_c - d_1)^2 - a_2^2 - a_3^2}{2a_2a_3}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-scara-manipulator",
+    "href": "07_robot_arm_kinematics.html#example-scara-manipulator",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: SCARA manipulator",
+    "text": "Example: SCARA manipulator\n\n\n\nThe inverse kinematics solution is given as the set of solutions to the equation\n\n𝐓40=(𝐑𝐨01)=(c12c4+s12s4s12c4−c12s40a1c1+a2c12s12c4−c12s4−c12c4−s12s40a1s1+a2s1200−1−d3−d40001).\n\\bm{T}_4^0 = \\begin{pmatrix}\n\\bm{R} & \\bm{o} \\\\ 0 & 1\n\\end{pmatrix} = \\begin{pmatrix}\n    c_{12}c_4 + s_{12}s_4 & s_{12}c_4 - c_{12}s_4 & 0 & a_1c_1 + a_2c_{12} \\\\\n    s_{12}c_4 - c_{12}s_4 & -c_{12}c_4 - s_{12}s_4 & 0 & a_1s_1 + a_2s_{12} \\\\\n    0 & 0 & -1 & -d_3-d_4 \\\\ \n    0 & 0 & 0 & 1\n\\end{pmatrix}.\n\n\nSince SCARA has only four-DoF, a solution of this equation does not exist for all 𝐇∈𝐒𝐄(3)\\bm{H} \\in \\bm{SE}(3).\n\nIn fact, we can easily see that there is no solution unless 𝐑\\bm{R} is of the form\n\nIf this is the case, we must have:\n\n\n\n\n\n\n\n\nFirst three joints of a SCARA manipulator.\n\n\n\n𝐑=(cαsα0sα−cα000−1).\n\\bm{R} = \n\\begin{pmatrix}\nc_\\alpha & s_\\alpha & 0 \\\\ s_\\alpha & -c_\\alpha & 0 \\\\ 0 & 0 & -1\n\\end{pmatrix}.\n\nθ1+θ2−θ4=α=arctan2(r12,r11)\\theta_1 + \\theta_2 - \\theta_4 = \\alpha = \\arctan_2{(r_{12}, r_{11})}\n\n\n\nProjecting the manipulator configuration onto the 𝐱0−𝐲0\\bm{x}_0-\\bm{y}_0-plane yields the geometry shown in the figure. Using law of cosines, c2=ox2+oy2−a12−a222a1a2⇒θ2=arctan2(±1−c22,c2).\nc_2 = \\frac{o_x^2 + o_y^2 - a_1^2 -a_2^2}{2a_1a_2} \\; \\Longrightarrow\n      \\; \\theta_2 = \\arctan_2{\\left( \\pm \\sqrt{1 - c_2^2}, c_2 \\right)}."
+  },
+  {
+    "objectID": "07_robot_arm_kinematics.html#example-scara-manipulator-1",
+    "href": "07_robot_arm_kinematics.html#example-scara-manipulator-1",
+    "title": "07_robot_arm_kinematics",
+    "section": "Example: SCARA manipulator",
+    "text": "Example: SCARA manipulator\n\n\n\n\nThe values of θ1\\theta_1 and θ4\\theta_4 are then obtained as\n\nθ1=arctan2(oy,ox)−arctan2(a2s2,a1+a2c2),θ4=θ1+θ2−α=θ1+θ2−arctan2(r12,r11).\n\\begin{aligned}\n    \\theta_1 &= \\arctan_2{(o_y, o_x)} - \\arctan_2{(a_2s_2, a_1 + a_2c_2)}, \\\\\n    \\theta_4 &= \\theta_1 + \\theta_2 - \\alpha = \\theta_1 + \\theta_2 - \\arctan_2{(r_{12}, r_{11})}.\n\\end{aligned}\n\n\nFinally, d3d_3 is given by\n\nd3=d1−oz−d4.\nd_3 = d_1 - o_z - d_4.\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]
