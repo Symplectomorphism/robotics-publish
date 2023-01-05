@@ -7,22 +7,22 @@
     "text": "Robotics and Automated Systems\n\n\nLocalization\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nDead Reckoning\nLocalizing with a Map\nCreating a Map\nLocalization and Mapping\nPose Graph SLAM\nComplementary filter"
   },
   {
-    "objectID": "06_localization.html#localization",
-    "href": "06_localization.html#localization",
+    "objectID": "06_localization.html#localization-1",
+    "href": "06_localization.html#localization-1",
     "title": "06_localization",
     "section": "Localization",
     "text": "Localization\n\n\n\nGPS makes outdoor localization easy; unfortunately GPS is far from perfect.\n\nrelies on very weak radio signals received from distant orbiting satellites.\nGPS cannot work where there is no line of sight radio reception.\n\nGPS has only been in use since 1995 yet humankind has been navigating the planet for many thousands of years!\nDead reckoning is the estimation of location based on estimated speed, direction and time of travel w.r.t. a previous estimate.\n\n\n\n\n\n\n\nGiven average compass heading over the previous hour and a distance traveled the position at 33 p.m. can be found using elementary geometry from the position at 22 p.m.\n\nMeasurements on which the update is based are subject to both systematic and random error.\nModern instruments are quite precise but 500 years ago clocks, compasses and speed measurements were primitive."
   },
   {
-    "objectID": "06_localization.html#localization-1",
-    "href": "06_localization.html#localization-1",
+    "objectID": "06_localization.html#localization-2",
+    "href": "06_localization.html#localization-2",
     "title": "06_localization",
     "section": "Localization",
     "text": "Localization\n\n\n\nEstimates are recursive: each estimate is based on the previous one.\n\nerrors will accumulate over time\nfor sea voyages of many-years this approach was quite inadequate!\n\nThe Phonecians were navigating at sea more than 4,0004,000 years ago and they did not even have a compass!\n\n\n\n\n\n\n\nThey navigated with crude dead reckoning but wherever possible they used additional information to correct their position estimate.\n\nsightings of islands and headlands\nprimitive maps and observations of the Sun and the Pole Star.\n\n\n\n\n\n\n\nA landmark is a visible feature in the environment whose location is known w.r.t. some coordinate frame.\n\nA precise bearing measurement to two landmarks will therefore pinpoint our location, a process known as resectioning."
   },
   {
-    "objectID": "06_localization.html#localization-2",
-    "href": "06_localization.html#localization-2",
+    "objectID": "06_localization.html#localization-3",
+    "href": "06_localization.html#localization-3",
     "title": "06_localization",
     "section": "Localization",
     "text": "Localization\n\n\n\nThis process is critically reliant on correctly associating the observed landmark with the feature on the map.\n\nMistaking one lighthouse for another, e.g. 𝐂\\bm{C} for 𝐁\\bm{B} leads to significant error in estimated position (𝐪\\bm{q} instead of 𝐩\\bm{p}).\n\nThis is a very common error and countless ships have foundered because of this fundamental data association error.\n\nThis is why lighthouses flash with a unique flashing pattern!\n\n\n\n\n\n\n\n\n\n\nLocalization Problem\n\n\nFind an estimate 𝐱̂\\hat{\\bm{x}} of the true, but unknown position, 𝐱\\bm{x} of the robot. We also wish to know the uncertainty of the estimate (standard deviation associated with the position estimate 𝐱̂\\hat{\\bm{x}}).\n\n\n\n\nIt is useful to describe a robot’s estimated position in terms of a pdf.\n\nallows for multiple hypotheses about the robot’s position."

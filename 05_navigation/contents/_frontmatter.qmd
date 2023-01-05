@@ -3,7 +3,7 @@
 
 <hr>
 
-*Navigation*
+### Navigation
 
 <br/>
 
