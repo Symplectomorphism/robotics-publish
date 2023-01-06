@@ -43,7 +43,7 @@ $\{B\}$ is rotated and translated w.r.t. $\{A\}$.
 :::: {.columns}
 
 ::: {.column width="70%"}
-* First, we create an auxiliary frame $\{V\}$ whose axes are paraellel to those 
+* First, we create an auxiliary frame $\{V\}$ whose axes are parallel to those 
 of $\{A\}$ but whose origin is the same as $\{B\}$.
 * Express the point $\bm{P}$ in both $\{V\}$ and $\{B\}$:
 $$ \bm{p} = x_b \bm{x}_B + y_b \bm{y}_B = x_v \bm{x}_V + y_v \bm{y}_V. $$

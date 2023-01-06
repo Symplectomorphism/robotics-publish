@@ -487,7 +487,7 @@ Then, $\theta_1 = \alpha + \beta$.
 
 ::: {.column width="60%"}
 * To find the angles $\theta_2$ and $\theta_3$ for the elbow manipulator for a
-given $\theta_1$, consider the plane formed by the second and third llinks as
+given $\theta_1$, consider the plane formed by the second and third links as
 shown in the figure.
 * With $r^2 = x_c^2 + y_c^2 - d^2$ and $s=z_c - d_1$, apply the law of cosines 
 to obtain
@@ -590,7 +590,7 @@ s_4c_5c_6 + c_4s_6 & -s_4c_5s_6 + c_4c_6 & s_4s_5 \\
 \end{pmatrix}.
 $$
 
-* The three equations given by the third comlumn in the above matrix equation
+* The three equations given by the third column in the above matrix equation
 are
 
 :::

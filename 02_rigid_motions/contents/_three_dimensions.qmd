@@ -16,7 +16,7 @@ coordinate frame $\{A\}$.
 $\bm{t} = (x, y, z)$ and then rotated in some complex fashion.
 
 * Our approach is again to consider an arbitrary point $\bm{P}$ w.r.t. each of 
-the coordinate frames and tod etermine the relationship between ${^A}\bm{p}$ 
+the coordinate frames and to determine the relationship between ${^A}\bm{p}$ 
 and ${^B}\bm{p}$.
 
 * Rotation is much more complex for the $3$D case so we'll spend a good amount 

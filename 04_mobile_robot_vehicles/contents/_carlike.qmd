@@ -8,7 +8,7 @@
 * A commonly used model for the low-speed behavior of a four-wheeled car-like 
 vehicle is the kinematic bicycle model.
 * The velocity of each wheel is in the plane of the wheel and the wheel rools
-w/o slipping sideways: $$ {^B}\bm{v} = (v, 0). $$
+without slipping sideways: $$ {^B}\bm{v} = (v, 0). $$
 * The _configuration_ of the vehicle is represented by the generalized
 coordinates $\bm{q} = (x, y, \theta) \in \mathcal{C} = \mathbb{R}^2 \times
 \mathbb{S}^1$.
