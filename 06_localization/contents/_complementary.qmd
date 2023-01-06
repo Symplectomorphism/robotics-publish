@@ -38,7 +38,7 @@ signal $x(t)$ is not distorted by the filter.
 ## Complementary filter {.smaller}
 
 * Complementary filters are particularly well suited to fusing low bandwidth
-position measurements with high band widh rate measurements for first-order
+position measurements with high bandwidth rate measurements for first-order
 kinematic systems $$ \dot{x} = u $$ with typical measurement characteristics 
 $$ y_x = L(s)x + \mu_x, \qquad y_u = u + \mu_u + b(t) $$
   - $L(s)$: low-pass filter associated with sensor characteristics,
