@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with EazyDraw for Mac ( http://www.eazydraw.com/ ) -->
+
+<svg
+    version="1.1"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+    width="159.309"
+    height="157.18"
+    viewBox="0, 0, 159.309, 157.18"
+    preserveAspectRatio="none"
+    id="svg2">
+   <defs
+       id="defs_E5E2AAB1">
+      <filter
+          id="filter_118C2F3F"
+          width="2.188668165106"
+          height="2.205343356782"
+          x="-0.1"
+          y="-0.1">
+         <feGaussianBlur
+             id="filter_118C2F3F_blur"
+             in="SourceAlpha"
+             stdDeviation="1.32"
+             result="blur"/>
+         <feColorMatrix
+             id="filter_118C2F3F_ColorMatrix"
+             result="bluralpha"
+             type="matrix"
+             values="0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 0.4 0      0 0 0 1 0"/>
+         <feOffset
+             id="filter_118C2F3F_Offset"
+             in="bluralpha"
+             dx="1.486092946519"
+             dy="1.6301666026"
+             result="offsetBlur"/>
+         <feMerge
+             id="filter_118C2F3F_Merge">
+            <feMergeNode id="filter_118C2F3F_MergeNode_a" in="offsetBlur"/>
+            <feMergeNode id="filter_118C2F3F_MergeNode_b" in="SourceGraphic"/>
+         </feMerge>
+      </filter>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="618C2F3F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="618C2F3F_end_arrow_path"
+             style="fill:#FF0000;fill-opacity:1;stroke:#FF0000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.15349275;stroke-miterlimit:10"
+             d="M0,0 L-7.517540966287,2.736161146605 L-4.64609583401,0 L-7.517540966287,-2.736161146605 z"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="A18C2F3F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="A18C2F3F_end_arrow_path"
+             style="fill:none;stroke:#000000;stroke-opacity:1;stroke-linecap:square;stroke-linejoin:miter;stroke-width:2.069853;stroke-miterlimit:10"
+             d="M-7.517540966287,-2.736161146605 L0,0 L-7.517540966287,2.736161146605"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="C18C2F3F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="C18C2F3F_end_arrow_path"
+             style="fill:none;stroke:#FF0000;stroke-opacity:1;stroke-linecap:square;stroke-linejoin:miter;stroke-width:2.069853;stroke-miterlimit:10"
+             d="M-9.728012785039,-3.540707092315 L0,0 L-9.728012785039,3.540707092315"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="D18C2F3F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="D18C2F3F_end_arrow_path"
+             style="fill:none;stroke:#FF0000;stroke-opacity:1;stroke-linecap:square;stroke-linejoin:miter;stroke-width:2.069853;stroke-miterlimit:10"
+             d="M-7.517540966287,-2.736161146605 L0,0 L-7.517540966287,2.736161146605"/>
+      </marker>
+      <marker
+          orient="auto"
+          refX="0.0"
+          refY="0.0"
+          id="428C2F3F_end_arrow"
+          style="overflow:visible"
+          markerUnits="userSpaceOnUse">
+         <path
+             id="428C2F3F_end_arrow_path"
+             style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.335478;stroke-miterlimit:10"
+             d="M0,0 L-7.517540966287,2.736161146605 L-7.517540966287,-2.736161146605 z"/>
+      </marker>
+   </defs>
+   <metadata
+       id="metadata7">
+      <rdf:RDF>
+         <cc:Work
+             rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <g
+       id="layer_Paper"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;fill-rule:nonzero;stroke-linecap:square;stroke-linejoin:miter;stroke-width:1;stroke-miterlimit:10">
+      <g
+          id="85696E86"
+          transform="matrix(0.891006524188,0.45399049974,-0.45399049974,0.891006524188,35.3953500881,-32.1879921089)">
+         <rect
+             style="fill:#E6E6E6;stroke:none"
+             id="14112A86"
+             x="64.89147111"
+             y="15.102435738"
+             width="39.685044"
+             height="85.03938"/>
+         <rect
+             style="fill:#B3B3B3;stroke:none"
+             id="9B1E2C86"
+             x="56.38753311"
+             y="23.606373738"
+             width="8.503938"
+             height="22.677168"/>
+         <rect
+             style="fill:#B3B3B3;stroke:none"
+             id="CA4E6D86"
+             x="104.57651511"
+             y="23.606373738"
+             width="8.503938"
+             height="22.677168"/>
+         <rect
+             style="fill:#B3B3B3;stroke:none"
+             id="33737D86"
+             x="104.57651511"
+             y="71.795355738"
+             width="8.503938"
+             height="22.677168"/>
+         <rect
+             style="fill:#B3B3B3;stroke:none"
+             id="2E587D86"
+             x="56.38753311"
+             y="71.795355738"
+             width="8.503938"
+             height="22.677168"/>
+      </g>
+      <circle
+          style="fill:#666666;stroke:none;filter:url(#filter_118C2F3F)"
+          id="118C2F3F"
+          cx="115.359727"
+          cy="48.038179"
+          r="4.32"/>
+      <circle
+          style="fill:#666666;stroke:none;filter:url(#filter_118C2F3F)"
+          id="318C2F3F"
+          cx="52.997515"
+          cy="67.880701"
+          r="4.32"/>
+      <circle
+          style="fill:#666666;stroke:none;filter:url(#filter_118C2F3F)"
+          id="418C2F3F"
+          cx="121.029019"
+          cy="28.195657"
+          r="4.32"/>
+      <circle
+          style="fill:#666666;stroke:none;filter:url(#filter_118C2F3F)"
+          id="518C2F3F"
+          cx="72.840037"
+          cy="25.361011"
+          r="4.32"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:0.613971;marker-end:url(#618C2F3F_end_arrow)"
+          id="618C2F3F"
+          x1="68.871925"
+          y1="85.342212"
+          x2="72.840037"
+          y2="25.361011"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:0.613971;marker-end:url(#618C2F3F_end_arrow)"
+          id="718C2F3F"
+          x1="68.871925"
+          y1="85.342212"
+          x2="52.997515"
+          y2="67.880701"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:0.613971;marker-end:url(#618C2F3F_end_arrow)"
+          id="818C2F3F"
+          x1="69.797615"
+          y1="85.076923"
+          x2="121.029019"
+          y2="28.195657"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:0.613971;marker-end:url(#618C2F3F_end_arrow)"
+          id="918C2F3F"
+          x1="69.797615"
+          y1="85.076923"
+          x2="113.874373"
+          y2="49.387471"/>
+      <line
+          style="fill:none;stroke-width:2.069853;marker-end:url(#A18C2F3F_end_arrow)"
+          id="A18C2F3F"
+          x1="4.600761"
+          y1="152.051364"
+          x2="117.986625"
+          y2="152.051364"/>
+      <line
+          style="fill:none;stroke-width:2.069853;marker-end:url(#A18C2F3F_end_arrow)"
+          id="B18C2F3F"
+          x1="4.600761"
+          y1="152.051364"
+          x2="4.600761"
+          y2="38.665515"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:2.069853;marker-end:url(#C18C2F3F_end_arrow)"
+          id="C18C2F3F"
+          x1="68.520037"
+          y1="85.733901"
+          x2="105.370424"
+          y2="15.371719"/>
+      <line
+          style="fill:none;stroke:#FF0000;stroke-width:2.069853;marker-end:url(#D18C2F3F_end_arrow)"
+          id="D18C2F3F"
+          x1="68.871925"
+          y1="85.342243"
+          x2="138.258354"
+          y2="121.681598"/>
+      <text
+          id="E18C2F3F"
+          style="fill:#FF0000;stroke:none"
+          font-family="Symbol"
+          font-size="12"
+          font-weight="normal"
+          font-style="normal">
+         <tspan x="61.655" y="105.137">{</tspan>
+         <tspan font-family="Lucida Grande">B</tspan>
+         <tspan>}</tspan>
+      </text>
+      <image
+          style="fill:none;stroke:none"
+          id="F18C2F3F"
+          x="123.143"
+          y="147.18"
+          width="10"
+          height="10"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI5JREFUGBlj
+YCATiAL1mSDp5QKydZH4DIxAznsg/g/FCkAapADGB8mjAEEgDyQJ0yQNZKuhqEDiwExRQBLDyrwA
+FAUpxrAOWTXI8TATQc6AAyY4C8L4CqSWQ8VsoDTcjaDgaADizUDcA8QgADL1IBCDnOELxGB3gMJO
+Hog/AfEtIAYBkCl8QPwciJ8CMQMAv+gZ0j5wGegAAAAASUVORK5CYII="/>
+      <image
+          style="fill:none;stroke:none"
+          id="028C2F3F"
+          x="142.309"
+          y="116.413"
+          width="17"
+          height="13"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAAAXNSR0IArs4c6QAAASZJREFUKBWN
+UjlOA0EQrEVIRmROSJxsREbmkC/wB2Jycj+Ad/AB84H9AQkRx26AkBwYS4iASzJVM13L4JUMK/V2
+T3VV90zPAMW3BnZp+4YYV+Xa+DZfLYEVReuw+hU4KtY728SD3BUwDrGLTrg+NJFx5fhPvyh2VZKf
+eOQvoIlGLf01TQ0nJa+P7zNBRxx0vwGOiSs3kqDNhVe92IG6BlHksXH7TeHm2jzc5W6XUexECcae
+UfWc83NiajgL3jQV+ACmAj8BES4EhqB5z8dMBVugDqF4Mu16loro1wHnATYGb3+IqbBwXkLimdMB
+Z6Hr3522n4ZnEr0e4i/sId/Q3BzO04Ovjf3Hj6L7qchq4mdi8eCKnSg9hRroHu2N9kI7oD1S3NGn
+7xtMLZWmXlWFpwAAAABJRU5ErkJggg=="/>
+      <image
+          style="fill:none;stroke:none"
+          id="128C2F3F"
+          x="108.224"
+          y="0"
+          width="17"
+          height="14"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAYAAAAi2ky3AAAAAXNSR0IArs4c6QAAAT5JREFUKBWt
+U7FKA1EQnByBgwMLCyubVHZ2KVP6DamvTm9/v+EP+AP5gvyBjdh5EUEIghEtFeLM7ZvnIwoS8GCZ
+fbOzs+/2EuA/nx0wYhwzzpXbm/mUUfv8J34AHRt2KVo1MJexuN4GzPMQc79hQ0M1bl18jwFLnZ+A
+5hNYsT6YE2+kZZxan/EBWCZhI3INLHi+sOAWmKX68Lp9GOfB1mmqhVORm5g+tmC/cf9snbBOr7d4
+Bs44fVUURy9hrFs3DO91GFroIn2M994mw/I2EzZrPzLyCrofBiZodJ0a5uaEfM1L8ebWsT8ZD/s0
+n7EH2rLBhfu46fAFxRX7nFhTYvUW1z8qSea1zBmteGKdPgTT9DCrGCc63oV45pqQtfErf5REGQm9
+nyvmVdayuUuiPDEXD0nkytDf4dv9EIOk/QI9sKG39JmikQAAAABJRU5ErkJggg=="/>
+      <image
+          style="fill:none;stroke:none"
+          id="228C2F3F"
+          x="0"
+          y="20.781"
+          width="9"
+          height="14"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAAXNSR0IArs4c6QAAAK1JREFUKBWV
+kTEKwkAURKMEBCGQFB7DTqw8R+o9yl4hl8gF4glsPYS9jWBhJei85X/csGkcmJ358/9udklV/YGV
+ZjtxL+IdB5mNF1HmYwxSwCayG4VjK0P48EAaxWmdBS/5s9iKbAB3cUguW07ynMZdAL6uk/0tV7NH
+6VO8iG/LZsKdYDpl1smK0Qb6LCtssKGi4QGv5TONB640dlYwwAsLRCU0YRAXwUn8AnQRX45uHWof
+I9ZLAAAAAElFTkSuQmCC"/>
+      <image
+          style="fill:none;stroke:none"
+          id="328C2F3F"
+          x="44.083"
+          y="107.322"
+          width="15.9999"
+          height="19"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATCAYAAAB2pebxAAAAAXNSR0IArs4c6QAAATJJREFUOBGV
+kz0OwjAMhfmTkJAYmFk6IyEYGBk5A3NndvYsHIILcAFOwAlgYe4RYGWC95W4SkVpmye92k4cxz9N
+v1NGr2zGW1sdeYsrcSw6cSNGIZP3RdyLBINnMQonedvhm/S07elB4HiVPhOXwVq0Shb0AtDgkZfY
+rUE5D5G+WFnI1uBmO5hJJxh9YVKtYAGaJtGti+a0ye11oD9WJr5kSbZTMQdlJF+19rvWLr5D70VQ
+AuVT8GuN4iCPp/iq8iQ6EeciI4YTMXxH9AM/+kZpTsQuGk99LFSRYCARLQiB0J1YgBqpryqI8172
+nrzZ2Xl/svoLGzsvG1Bu+AtYkxM2Q1A3IyMzaiUzdIieisBs1n5gKVpZTh480ExkDWn9OEovGs/t
+Bqay8MZdMv8HbLNOfgC9sFNRKF0ImwAAAABJRU5ErkJggg=="/>
+      <line
+          style="fill:none;stroke-width:1.341912;marker-end:url(#428C2F3F_end_arrow)"
+          id="428C2F3F"
+          x1="4.600761"
+          y1="152.051364"
+          x2="68.871925"
+          y2="85.342243"/>
+   </g>
+</svg>
