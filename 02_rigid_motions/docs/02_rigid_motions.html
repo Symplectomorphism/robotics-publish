@@ -7,7 +7,7 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.2.280">
+  <meta name="generator" content="quarto-1.2.313">
 
   <meta name="author" content="Aykut C. Satici">
   <title>Robotics and Automated Systems</title>
@@ -680,11 +680,11 @@ c_\theta &amp; -s_\theta \\ s_\theta &amp; c_\theta
 <p><strong>Definition</strong></p>
 </div>
 <div class="callout-content">
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>R</mi><mi>B</mi></msub><mo>≜</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>A</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>A</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
-{^A}R_B \triangleq
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mi>B</mi></msub><mo>≜</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐀</mi></msub></mstyle></mtd></mtr><mtr><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐀</mi></msub></mstyle></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+{^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-  x_B \cdot x_A &amp; y_B \cdot x_A \\
-  x_B \cdot y_A &amp; y_B \cdot y_A
+  \bm{x_B} \cdot \bm{x_A} &amp; \bm{y_B} \cdot \bm{x_A} \\
+  \bm{x_B} \cdot \bm{y_A} &amp; \bm{y_B} \cdot \bm{y_A}
 \end{bmatrix}
 </annotation></semantics></math></p>
 </div>
@@ -923,12 +923,12 @@ y\bm{y}+ z\bm{z}.</annotation></semantics></math></p></li>
 <p><strong>Definition</strong></p>
 </div>
 <div class="callout-content">
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mi>B</mi></msub><mo>≜</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>z</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>x</mi><mi>A</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>z</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>A</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>B</mi></msub><mo>⋅</mo><msub><mi>z</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>z</mi><mi>A</mi></msub></mtd><mtd columnalign="center"><msub><mi>z</mi><mi>b</mi></msub><mo>⋅</mo><msub><mi>z</mi><mi>A</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mi>B</mi></msub><mo>≜</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐀</mi></msub></mstyle></mtd></mtr><mtr><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐀</mi></msub></mstyle></mtd></mtr><mtr><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐱</mi><mi>𝐁</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐲</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐀</mi></msub></mstyle></mtd><mtd columnalign="center"><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐛</mi></msub></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><msub><mi>𝐳</mi><mi>𝐀</mi></msub></mstyle></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
 {^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-x_B \cdot x_A &amp; y_b \cdot x_A &amp; z_b \cdot x_A \\
-x_B \cdot y_A &amp; y_b \cdot y_A &amp; z_b \cdot y_A \\
-x_B \cdot z_A &amp; y_b \cdot z_A &amp; z_b \cdot z_A
+\bm{x_B} \cdot \bm{x_A} &amp; \bm{y_b} \cdot \bm{x_A} &amp; \bm{z_b} \cdot \bm{x_A} \\
+\bm{x_B} \cdot \bm{y_A} &amp; \bm{y_b} \cdot \bm{y_A} &amp; \bm{z_b} \cdot \bm{y_A} \\
+\bm{x_B} \cdot \bm{z_A} &amp; \bm{y_b} \cdot \bm{z_A} &amp; \bm{z_b} \cdot \bm{z_A}
 \end{bmatrix}
 </annotation></semantics></math></p>
 <p>The matrix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">{^A}\bm{R}_B</annotation></semantics></math> transforms the components of a vector defined w.r.t. some frame <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>B</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{B\}</annotation></semantics></math> to its components w.r.t. frame <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>A</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{A\}</annotation></semantics></math>.</p>

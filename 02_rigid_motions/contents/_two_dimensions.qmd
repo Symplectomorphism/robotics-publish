@@ -88,10 +88,10 @@ Rotated coordinate frames in $2$D.
 ::: {.callout-note}
 ## Definition
 $$
-{^A}R_B \triangleq
+{^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-  x_B \cdot x_A & y_B \cdot x_A \\
-  x_B \cdot y_A & y_B \cdot y_A
+  \bm{x_B} \cdot \bm{x_A} & \bm{y_B} \cdot \bm{x_A} \\
+  \bm{x_B} \cdot \bm{y_A} & \bm{y_B} \cdot \bm{y_A}
 \end{bmatrix}
 $$
 :::

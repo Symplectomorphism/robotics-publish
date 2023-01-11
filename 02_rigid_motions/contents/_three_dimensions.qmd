@@ -80,9 +80,9 @@ $\frac{\pi}{2}$ about the $y$-axis. Bottom row: reverse order.
 $$
 {^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-x_B \cdot x_A & y_b \cdot x_A & z_b \cdot x_A \\
-x_B \cdot y_A & y_b \cdot y_A & z_b \cdot y_A \\
-x_B \cdot z_A & y_b \cdot z_A & z_b \cdot z_A
+\bm{x_B} \cdot \bm{x_A} & \bm{y_b} \cdot \bm{x_A} & \bm{z_b} \cdot \bm{x_A} \\
+\bm{x_B} \cdot \bm{y_A} & \bm{y_b} \cdot \bm{y_A} & \bm{z_b} \cdot \bm{y_A} \\
+\bm{x_B} \cdot \bm{z_A} & \bm{y_b} \cdot \bm{z_A} & \bm{z_b} \cdot \bm{z_A}
 \end{bmatrix}
 $$
 
