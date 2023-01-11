@@ -90,8 +90,8 @@ Rotated coordinate frames in $2$D.
 $$
 {^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-  \bm{x_B} \cdot \bm{x_A} & \bm{y_B} \cdot \bm{x_A} \\
-  \bm{x_B} \cdot \bm{y_A} & \bm{y_B} \cdot \bm{y_A}
+  \bm{x}_B \cdot \bm{x}_A & \bm{y}_B \cdot \bm{x}_A \\
+  \bm{x}_B \cdot \bm{y}_A & \bm{y}_B \cdot \bm{y}_A
 \end{bmatrix}
 $$
 :::
