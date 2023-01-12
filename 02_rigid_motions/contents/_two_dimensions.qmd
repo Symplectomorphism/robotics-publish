@@ -6,7 +6,7 @@
 
 ::: {.column width="60%"}
 * A point is represented by its $\bm{x}$- and $\bm{y}$-coordinates $(x,y)$ or 
-as a bound vector $$ \bm{p} = x\bm{x} + y\bm{y}.$$
+as a bound vector $$ \bm{t} = x\bm{x} + y\bm{y}.$$
 
 * We wish to describe the red coordinate frame $\{B\}$ with respect to the blue 
 coordinate frame $\{A\}$.
@@ -88,10 +88,10 @@ Rotated coordinate frames in $2$D.
 ::: {.callout-note}
 ## Definition
 $$
-{^A}R_B \triangleq
+{^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-  x_B \cdot x_A & y_B \cdot x_A \\
-  x_B \cdot y_A & y_B \cdot y_A
+  \bm{x}_B \cdot \bm{x}_A & \bm{y}_B \cdot \bm{x}_A \\
+  \bm{x}_B \cdot \bm{y}_A & \bm{y}_B \cdot \bm{y}_A
 \end{bmatrix}
 $$
 :::
@@ -134,10 +134,9 @@ Rotated coordinate frames in $2$D.
 
 :::: {.columns}
 
-::: {.column width="70%"}
+::: {.column width="75%"}
 * Let's account for the translation btw. the origins of $\{A\}$ and $\{B\}$.
 * Since the axes $\{V\}$ and $\{A\}$ are parallel, we can add
-
 $$
 \begin{aligned}
 \begin{pmatrix}
@@ -162,7 +161,7 @@ x \\ y
 c_\theta & -s_\theta & x \\ s_\theta & c_\theta & y
 \end{bmatrix}
 \begin{pmatrix}
-x_b \\ y_b
+x_b \\ y_b \\ 1
 \end{pmatrix}
 \end{aligned}
 $$
@@ -180,7 +179,7 @@ x_b \\ y_b \\ 1
 \end{pmatrix}.
 $$
 
-* This representation is called the __homogeneous representation__ and we write:
+* This is called the __homogeneous representation__ and we write:
 $$ 
 {^A}\bm{p} = 
 \begin{bmatrix}
@@ -191,7 +190,7 @@ $$
 
 :::
 
-::: {.column width="30%"}
+::: {.column width="25%"}
 <img src="contents/assets/fig2_6.svg" width="500" heigth="500" />
 
 <img src="contents/assets/fig2_7.svg" width="500" heigth="500" />
@@ -234,7 +233,7 @@ $$
 \bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 2} & 1
 \end{bmatrix}
 \begin{bmatrix}
-\bm{R}_1\bm{R}_2 & \bm{t}_1 + R_1t_2 \\ \bm{0}_{1 \times 2} & 1
+\bm{R}_1\bm{R}_2 & \bm{t}_1 + \bm{R}_1t_2 \\ \bm{0}_{1 \times 2} & 1
 \end{bmatrix}.
 $$
 

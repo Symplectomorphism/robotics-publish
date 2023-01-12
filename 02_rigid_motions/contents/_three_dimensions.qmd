@@ -6,7 +6,7 @@
 
 ::: {.column width="60%"}
 * A point $\bm{P}$ is represented by its $\bm{x}$-,  $\bm{y}$-, and
-$\bm{z}$-coordinates $(x,y,z)$ or as a bound vector $$ \bm{p} = x\bm{x} +
+$\bm{z}$-coordinates $(x,y,z)$ or as a bound vector $$ \bm{t} = x\bm{x} +
 y\bm{y}+ z\bm{z}.$$
 
 * We wish to describe the red coordinate frame $\{B\}$ with respect to the blue 
@@ -80,9 +80,9 @@ $\frac{\pi}{2}$ about the $y$-axis. Bottom row: reverse order.
 $$
 {^A}\bm{R}_B \triangleq
 \begin{bmatrix}
-x_B \cdot x_A & y_b \cdot x_A & z_b \cdot x_A \\
-x_B \cdot y_A & y_b \cdot y_A & z_b \cdot y_A \\
-x_B \cdot z_A & y_b \cdot z_A & z_b \cdot z_A
+\bm{x}_B \cdot \bm{x}_A & \bm{y}_B \cdot \bm{x}_A & \bm{z}_B \cdot \bm{x}_A \\
+\bm{x}_B \cdot \bm{y}_A & \bm{y}_B \cdot \bm{y}_A & \bm{z}_B \cdot \bm{y}_A \\
+\bm{x}_B \cdot \bm{z}_A & \bm{y}_B \cdot \bm{z}_A & \bm{z}_B \cdot \bm{z}_A
 \end{bmatrix}
 $$
 
@@ -499,7 +499,7 @@ $$
 \bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 3} & 1
 \end{bmatrix}
 \begin{bmatrix}
-\bm{R}_1\bm{R}_2 & \bm{t}_1 + R_1t_2 \\ \bm{0}_{1 \times 3} & 1
+\bm{R}_1\bm{R}_2 & \bm{t}_1 + \bm{R}_1t_2 \\ \bm{0}_{1 \times 3} & 1
 \end{bmatrix}.
 $$
 
