@@ -6,7 +6,7 @@
 
 ::: {.column width="60%"}
 * A point $\bm{P}$ is represented by its $\bm{x}$-,  $\bm{y}$-, and
-$\bm{z}$-coordinates $(x,y,z)$ or as a bound vector $$ \bm{p} = x\bm{x} +
+$\bm{z}$-coordinates $(x,y,z)$ or as a bound vector $$ \bm{t} = x\bm{x} +
 y\bm{y}+ z\bm{z}.$$
 
 * We wish to describe the red coordinate frame $\{B\}$ with respect to the blue 
