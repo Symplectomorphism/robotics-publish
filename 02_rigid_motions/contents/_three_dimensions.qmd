@@ -361,7 +361,7 @@ The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{11}, -r_{12} \right) }. $$
 ::: {.column width="75%"}
 * $\bm{R}$ described as a product of successive rotations about the principal 
 coordinate axes $z$, $y^\prime$, and $x^{\prime\prime}$ taken in a specific order.
-  - First a _yaw_ about $z_0$ through an angle $\psi$,
+  - First a _yaw_ about $z$ through an angle $\psi$,
   - Then _pitch_ about the _current_ $y^\prime$ by an angle $\theta$,
   - Finally _roll_ about the _current_ $x^{\prime\prime}$ by an angle $\phi$.
 * The resulting transformation matrix is given by
@@ -378,7 +378,7 @@ $\phi$: roll, $\;\theta$: pitch, $\;\psi$: yaw
 
 :::
 
-
+<p style="font-size:75%">
 $$
 \begin{aligned}
 \bm{R} &= \bm{R}_{z,\psi}\bm{R}_{y,\theta}\bm{R}_{x,\phi} = 
@@ -398,6 +398,7 @@ s_\psi c_\theta & c_\psi c_\phi + s_\psi s_\theta s_\phi & -c_\psi s_\phi + s_\p
 \end{pmatrix}
 \end{aligned}
 $$
+</p>
 
 * The three angles $\psi$, $\theta$, and $\phi$ can be obtained for a given
 rotation matrix using a method that is similar to that used to derive the
@@ -411,22 +412,25 @@ Euler angles above.
 
 :::: {.columns}
 
-::: {.column width="76%"}
+::: {.column width="75%"}
 * Rotations: not always performed about the principal coordinate axes.
   - Let the axis $\bm{k} = \begin{pmatrix} k_x & k_y & k_z \end{pmatrix}^\top$,
     expressed in $\{0\}$, be a unit vector.
-* Derive a rotation matrix $\bm{R}_{k,\theta}$ representing a rotation
-    of $\theta$ about axis $\bm{k}$.
+* Find a rotation matrix $\bm{R}_{k,\theta}$ representing a rotation
+    of $\theta$ about axis $\bm{k}$
   - The rotational transformation $\bm{R} = \bm{R}_{z,\alpha}\bm{R}_{y,\beta}$ 
     brings the world $z$-axis into alignmend with the vector $\bm{k}$.
   - A rotation about the axis $\bm{k}$ is computed using a similarity
     transformation as
+<p style="font-size:90%">
 $$ \bm{R}_{k,\theta} = \bm{R}\bm{R}_{z,\theta}\bm{R}^{-1} =
 \bm{R}_{z,\alpha}\bm{R}_{y,\beta}\bm{R}_{z,\theta}\bm{R}_{y,-\beta}\bm{R}_{z,-\alpha}
 = \bm{R}_{-k,-\theta}.
 $$
+</p>
 * After some lengthy calculation (homework) and with $v_\theta = \text{vers}\;{\theta} = 1-c_\theta$,
 
+<p style="font-size:95%">
 $$
 \bm{R}_{k,\theta} = \begin{pmatrix}
 k_x^2v_\theta + c_\theta & k_xk_yv_\theta - k_zs_\theta & k_xk_zv_\theta + k_ys_\theta \\
@@ -434,13 +438,15 @@ k_xk_yv_\theta + k_zs_\theta & k_y^2v_\theta +c_\theta & k_yk_zv_\theta - k_xs_\
 k_xk_zv_\theta - k_ys_\theta & k_yk_zv_\theta + k_xs_\theta & k_z^2v_\theta + c_\theta
 \end{pmatrix}
 $$
+</p>
 :::
 
-::: {.column width="24%"}
+::: {.column width="25%" h-align="right"}
 <center>
 <img data-src="contents/assets/rotation_arbitrary_axis.png" width="100%"/>
 </center>
 
+<p style="font-size:90%">
 $$
 \begin{aligned}
 \sin{\alpha} &= \frac{k_y}{\sqrt{k_x^2+k_y^2}}, \;\; \cos{\alpha} =
@@ -448,11 +454,13 @@ $$
 \sin{\beta} &= \sqrt{k_x^2+k_y^2}, \;\; \cos{\beta} = k_z.
 \end{aligned}
 $$
+</p>
 
 &nbsp;
 
 <u>Given $\bm{R}$, find: $\theta$ and $\bm{k}$</u>
 
+<p style="font-size:90%">
 $$ 
 \begin{aligned}
 \theta &= \arccos{\left( \frac{1}{2}\left(\text{tr} \; \bm{R} - 1\right) \right)}, \\
@@ -460,6 +468,7 @@ $$
 r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix}.
 \end{aligned}
 $$
+</p>
 
 :::
 
@@ -501,6 +510,7 @@ do **NOT**).
   - a rotation of $90^\circ$ about $\bm{z}_0$,
   - a rotation of $30^\circ$ about $\bm{y}_0$,
   - a rotation of $60^\circ$ about $\bm{x}_0$.
+<p style="font-size:95%">
 $$
 \bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
 \begin{pmatrix}
@@ -509,15 +519,16 @@ $$
 \frac{\sqrt{3}}{2} & \frac{1}{4} & \frac{\sqrt{3}}{4}
 \end{pmatrix}
 $$
+</p>
 
 * We see that $\;\text{tr}\;\bm{R} = 0\;$ hence $\theta =
 \arccos{\left(-\frac{1}{2})} = 120^\circ$.
 
 * The equivalent axis is given as 
 $$ \bm{k} = \begin{pmatrix} 
-\frac{1}{\sqrt{3}} \\ \frac{1}{2\sqrt{3}}-\frac{1}{2} \\
+\frac{1}{\sqrt{3}} & \frac{1}{2\sqrt{3}}-\frac{1}{2} & 
 \frac{1}{2\sqrt{3}}+\frac{1}{2}
-\end{pmatrix}$$
+\end{pmatrix}^\top$$
 :::
 
 ::::
@@ -709,6 +720,8 @@ computer graphics, and computer vision.
 
 ## Example problem {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="70%"}
@@ -720,6 +733,7 @@ ${^1}\bm{T}_2$.
 :::
 
 ::: {.fragment fragment-index=5}
+<p style="font-size:85%">
 $$
 \begin{aligned}
 {^0}\bm{T}_1{^1}\bm{T}_2 &= \begin{pmatrix}
@@ -735,6 +749,7 @@ $$
 \end{pmatrix} = {^0}\bm{T}_2.
 \end{aligned}
 $$
+</p>
 :::
 
 :::
@@ -754,6 +769,7 @@ $$
 :::: {.columns}
 
 ::: {.column width="33%" .fragment fragment-index=2}
+<p style="font-size:85%">
 $$
 \begin{aligned}
 {^0}\bm{T}_1 &= \begin{pmatrix}
@@ -762,10 +778,12 @@ $$
 {^0}\bm{t}_1 &= \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}^\top.
 \end{aligned}
 $$
+</p>
 
 :::
 
 ::: {.column width="33%" .fragment fragment-index=3}
+<p style="font-size:85%">
 $$
 \begin{aligned}
 {^0}\bm{T}_2 &= \begin{pmatrix}
@@ -774,10 +792,12 @@ $$
 {^0}\bm{t}_2 &= \begin{pmatrix} 0 & 1 & 0 \end{pmatrix}^\top.
 \end{aligned}
 $$
+</p>
 
 :::
 
 ::: {.column width="33%" .fragment fragment-index=4}
+<p style="font-size:85%">
 $$
 \begin{aligned}
 {^1}\bm{T}_2 &= \begin{pmatrix}
@@ -786,6 +806,7 @@ $$
 {^1}\bm{t}_2 &= \begin{pmatrix} 1 & 0 & -1 \end{pmatrix}^\top.
 \end{aligned}
 $$
+</p>
 
 :::
 
