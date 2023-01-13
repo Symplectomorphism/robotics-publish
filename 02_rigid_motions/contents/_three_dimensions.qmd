@@ -617,7 +617,7 @@ $$ e^{\hat{\bm{\omega}}\theta} = \bm{I} + \sin{(\theta)} \hat{\bm{\omega}} +
 :::: {.columns}
 
 ::: {.column width="70%"}
-* Let's account for the trnaslation btw. the origins of $\{A\}$ and $\{B\}$.
+* Let's account for the translation btw. the origins of $\{A\}$ and $\{B\}$.
 
 * $\bm{t} \in \mathbb{R}^3$ is a vector defining the origin of frame $\{B\}$ 
 w.r.t. frame $\{A\}$ and $\bm{R}$ is the rotation matrix describing the 
