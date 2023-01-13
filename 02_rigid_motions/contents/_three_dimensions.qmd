@@ -2,6 +2,8 @@
 
 ## Working in three dimensions ($3$D) {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="60%"}
@@ -168,6 +170,8 @@ sequence of three rotation angles and associated rotation axes.
 # Parametrization of rotations
 
 ## Constraints in the rotation matrix
+
+&nbsp;
 
 ::: {.fragment fragment-index=1}
 
@@ -348,7 +352,62 @@ The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{11}, -r_{12} \right) }. $$
 :::
 
 
-## Angle-axis representation {.smaller}
+## Roll-pitch-yaw angles {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="75%"}
+* $\bm{R}$ described as a product of successive rotations about the principal 
+coordinate axes $z$, $y^\prime$, and $x^{\prime\prime}$ taken in a specific order.
+  - First a _yaw_ about $z_0$ through an angle $\psi$,
+  - Then _pitch_ about the _current_ $y^\prime$ by an angle $\theta$,
+  - Finally _roll_ about the _current_ $x^{\prime\prime}$ by an angle $\phi$.
+* The resulting transformation matrix is given by
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/roll-pitch-yaw.svg" width="100%"/>
+</center>
+
+::: {.callout-tip appearance="minimal"}
+$\phi$: roll, $\;\theta$: pitch, $\;\psi$: yaw
+:::
+
+:::
+
+
+$$
+\begin{aligned}
+\bm{R} &= \bm{R}_{z,\psi}\bm{R}_{y,\theta}\bm{R}_{x,\phi} = 
+\begin{pmatrix}
+c_\psi & -s_\psi & 0 \\ s_\psi & c_\psi & 0 \\ 0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+c_\theta & 0 & s_\theta \\ 0 & 1 & 0 \\ -s_\theta & 0 & c_\theta
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 \\ 0 & c_\phi & -s_\phi \\ 0 & s_\phi & c_\phi
+\end{pmatrix} = 
+\begin{pmatrix}
+c_\psi c_\theta & - s_\psi c_\phi + c_\psi s_\theta s_\phi & s_\psi s_\phi + c_\psi s_\theta c_\phi \\
+s_\psi c_\theta & c_\psi c_\phi + s_\psi s_\theta s_\phi & -c_\psi s_\phi + s_\psi s_\theta c_\phi \\
+-s_\theta & c_\theta s_\phi & c_\theta c_\phi
+\end{pmatrix}
+\end{aligned}
+$$
+
+* The three angles $\psi$, $\theta$, and $\phi$ can be obtained for a given
+rotation matrix using a method that is similar to that used to derive the
+Euler angles above.
+
+::::
+
+
+
+## Axis-angle representation {.smaller}
 
 :::: {.columns}
 
@@ -370,9 +429,9 @@ $$
 
 $$
 \bm{R}_{k,\theta} = \begin{pmatrix}
-k_x^2v_\theta + c_\theta & k_xk_yv_\theta - k_zs_\theta & k_xk_yv_\theta + k_ys_\theta \\
+k_x^2v_\theta + c_\theta & k_xk_yv_\theta - k_zs_\theta & k_xk_zv_\theta + k_ys_\theta \\
 k_xk_yv_\theta + k_zs_\theta & k_y^2v_\theta +c_\theta & k_yk_zv_\theta - k_xs_\theta \\
-k_xk_yv_\theta - k_ys_\theta & k_yk_zv_\theta + k_xs_\theta & k_z^2v_\theta + c_\theta
+k_xk_zv_\theta - k_ys_\theta & k_yk_zv_\theta + k_xs_\theta & k_z^2v_\theta + c_\theta
 \end{pmatrix}
 $$
 :::
@@ -407,13 +466,13 @@ $$
 ::::
 
 
-## Angle-axis representation {.smaller}
+## Axis-angle representation {.smaller}
 
 
 :::: {.columns}
 
 ::: {.column width="55%"}
-* Angle-axis representation characterizes a given rotation by four quantities:
+* Axis-angle representation characterizes a given rotation by four quantities:
   - Three components of the equivalent axis $\bm{k}$,
   - The equivalent angle $\theta$.
 * $\bm{k}$ is given as a unit vector so only two of its components are
@@ -425,9 +484,9 @@ $$ r = \begin{pmatrix} r_x & r_y & r_z \end{pmatrix}^\top = \begin{pmatrix}
 * The direction of $\bm{r}$ is equal to the axis $\bm{k}$.
 
 
-::: {.callout-tip icon="false"}
+::: {.callout-caution icon="true"}
 ## CAUTION
-Two angle-axis representations may **NOT** be combined using standard rules of
+Two axis-angle representations may **NOT** be combined using standard rules of
 vector algebra! Doing so would imply that rotations commute (which we know they
 do **NOT**).
 :::
@@ -443,7 +502,7 @@ do **NOT**).
   - a rotation of $30^\circ$ about $\bm{y}_0$,
   - a rotation of $60^\circ$ about $\bm{x}_0$.
 $$
-\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,30^\circ} = 
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
 \begin{pmatrix}
 0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\
 \frac{1}{2} & -\frac{\sqrt{3}}{4} & -\frac{3}{4} \\
@@ -603,6 +662,8 @@ $\{B\}$ is rotated and translated w.r.t. $\{A\}$.
 
 ## Homogeneous transformations in $3$D {.smaller}
 
+&nbsp;
+
 ::: {.callout-tip icon="false"}
 ## Properties of homogeneous transformations
 
@@ -643,3 +704,90 @@ Finally, for a point $\bm{p}$ in homogeneous representation, we have $\bm{T}
 
 The $4 \times 4$ homogeneous transformation is very commonly used in robotics,
 computer graphics, and computer vision. 
+
+
+
+## Example problem {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+::: {.fragment fragment-index=1}
+1. Find the homogeneous transformations ${^0}\bm{T}_1$, ${^0}\bm{T}_2$,
+${^1}\bm{T}_2$.
+2. Show that ${^0}\bm{T}_2 = {^0}\bm{T}_1{^1}\bm{T}_2$.
+:::
+
+::: {.fragment fragment-index=5}
+$$
+\begin{aligned}
+{^0}\bm{T}_1{^1}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}\bm{R}_{y,-90^\circ}\bm{R}_{x,90^\circ} & 
+{^0}\bm{t}_1 + \bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}{^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} \\
+&= \begin{pmatrix}
+{^0}\bm{R}_2 & 
+{^0}\bm{t}_1 + \bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}{^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} = 
+\begin{pmatrix}
+{^0}\bm{R}_2 & {^0}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} = {^0}\bm{T}_2.
+\end{aligned}
+$$
+:::
+
+:::
+
+::: {.column width="30%"}
+::: {.fragment fragment-index=1}
+<center>
+<img data-src="contents/assets/problem_diagram.png" width="100%"/>
+</center>
+:::
+:::
+
+::::
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="33%" .fragment fragment-index=2}
+$$
+\begin{aligned}
+{^0}\bm{T}_1 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ} & {^0}\bm{t}_1 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^0}\bm{t}_1 &= \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}^\top.
+\end{aligned}
+$$
+
+:::
+
+::: {.column width="33%" .fragment fragment-index=3}
+$$
+\begin{aligned}
+{^0}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{x,90^\circ} & {^0}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^0}\bm{t}_2 &= \begin{pmatrix} 0 & 1 & 0 \end{pmatrix}^\top.
+\end{aligned}
+$$
+
+:::
+
+::: {.column width="33%" .fragment fragment-index=4}
+$$
+\begin{aligned}
+{^1}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{y,-90^\circ}\bm{R}_{x,90^\circ} & {^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^1}\bm{t}_2 &= \begin{pmatrix} 1 & 0 & -1 \end{pmatrix}^\top.
+\end{aligned}
+$$
+
+:::
+
+
+::::

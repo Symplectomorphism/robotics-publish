@@ -40,6 +40,8 @@ $\{B\}$ is rotated and translated w.r.t. $\{A\}$.
 
 ## Orientation in two dimensions {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="70%"}
@@ -80,6 +82,8 @@ Rotated coordinate frames in $2$D.
 ::::
 
 ## Orientation in two dimensions {.smaller}
+
+&nbsp;
 
 :::: {.columns}
 
