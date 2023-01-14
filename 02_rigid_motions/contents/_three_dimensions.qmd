@@ -268,8 +268,8 @@ $$
 ::: {.fragment fragment-index=1}
 $$
 \begin{aligned}
-  \theta &= \arctan_2{ \left( r_{33}, \sqrt{1-r_{33}^2} \right) } \\
-  \theta &= \arctan_2{ \left( r_{33}, -\sqrt{1-r_{33}^2} \right) }
+  \theta &= \arctan_2{ \left( \sqrt{1-r_{33}^2}, r_{33} \right) } \\
+  \theta &= \arctan_2{ \left( -\sqrt{1-r_{33}^2}, r_{33} \right) }
 \end{aligned}
 $$
 :::
@@ -277,8 +277,8 @@ $$
 ::: {.fragment fragment-index=2 layout-valign="top"}
 $$
 \begin{aligned}
-  \phi &= \arctan_2{ \left( r_{13}, r_{23} \right) } \\
-  \phi &= \arctan_2{ \left( -r_{13}, -r_{23} \right) }
+  \phi &= \arctan_2{ \left( r_{23}, r_{13} \right) } \\
+  \phi &= \arctan_2{ \left( -r_{23}, -r_{13} \right) }
 \end{aligned}
 $$
 :::
@@ -286,8 +286,8 @@ $$
 ::: {.fragment fragment-index=3}
 $$
 \begin{aligned}
-  \psi &= \arctan_2{ \left( -r_{31}, r_{32} \right) } \\
-  \psi &= \arctan_2{ \left( r_{31}, -r_{32} \right) }
+  \psi &= \arctan_2{ \left( -r_{32}, r_{31} \right) } \\
+  \psi &= \arctan_2{ \left( r_{32}, -r_{31} \right) }
 \end{aligned}
 $$
 :::
