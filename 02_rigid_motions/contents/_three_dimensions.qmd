@@ -219,7 +219,7 @@ unknowns.
 
 $$
 \begin{aligned}
-\bm{R}_{ZYZ} = \bm{R}_{z,\phi}\bm{R}_{y,\phi}\bm{R}_{z,\psi} &= 
+\bm{R}_{ZYZ} = \bm{R}_{z,\phi}\bm{R}_{y,\theta}\bm{R}_{z,\psi} &= 
 \begin{bmatrix}
 c_\phi& -s_\phi& 0 \\ s_\phi & c_\phi & 0 \\ 0 & 0 & 1
 \end{bmatrix}
