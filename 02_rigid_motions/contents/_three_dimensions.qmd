@@ -419,7 +419,7 @@ Euler angles above.
 * Find a rotation matrix $\bm{R}_{k,\theta}$ representing a rotation
     of $\theta$ about axis $\bm{k}$
   - The rotational transformation $\bm{R} = \bm{R}_{z,\alpha}\bm{R}_{y,\beta}$ 
-    brings the world $z$-axis into alignmend with the vector $\bm{k}$.
+    brings the world $z$-axis into alignment with the vector $\bm{k}$.
   - A rotation about the axis $\bm{k}$ is computed using a similarity
     transformation as
 <p style="font-size:90%">
