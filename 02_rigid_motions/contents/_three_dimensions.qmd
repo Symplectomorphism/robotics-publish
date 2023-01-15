@@ -644,10 +644,10 @@ $$
 \arccos{\left(-\frac{1}{2})} = 120^\circ$.
 
 * The equivalent axis is given as 
-$$ \bm{k} = \begin{pmatrix} 
-\frac{1}{\sqrt{3}} \\ \frac{1}{2\sqrt{3}}\left(1-\sqrt{3}\right) \\
-\frac{1}{2\sqrt{3}}\left(1+\sqrt{3}\right)
-\end{pmatrix}^\top. $$
+$$ \bm{k} = \frac{1}{\sqrt{3}} \begin{pmatrix} 
+1 \\ \frac{1}{2}\left(1-\sqrt{3}\right) \\
+\frac{1}{2}\left(1+\sqrt{3}\right)
+\end{pmatrix}. $$
 :::
 
 :::
