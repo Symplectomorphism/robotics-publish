@@ -797,7 +797,7 @@ $$
 * Note: $\;\;\bm{x}_0 = 4s\mathring{\bm{q}}, \;\; \bm{x}_1 = 4v_1\mathring{\bm{q}}, 
 \;\; \bm{x}_2 = 4v_2\mathring{\bm{q}}, \;\; \bm{x}_3 = 4v_3\mathring{\bm{q}}$.
 
-* Choose index $i$ by $i = \arg \max \{s^2, v_1^2, v_2^2, v_3^2 \}$, where if
+* Choose index $i$ by $i = \arg \max \left\{s^2, v_1^2, v_2^2, v_3^2 \right\}$, where if
 $s$ is the maximum, the index is assigned $0$ and so on.
 
 * The unit quaternion is computed as $\;\; \mathring{\bm{q}} =
