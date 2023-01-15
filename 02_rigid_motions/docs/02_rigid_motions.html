@@ -1035,21 +1035,23 @@ r_{1i}r_{1j} + r_{2i}r_{2j} + r_{3i}r_{3j} &amp;= 0, \quad i \neq j.
 <section id="euler-angles-zyz" class="slide level2 smaller">
 <h2>Euler angles (ZYZ)</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:50%;">
 <ol type="1">
 <li>First rotate by the angle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math> about the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>-axis,</li>
 <li>Next rotate by the angle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math> about the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-axis,</li>
 <li>Finally rotate by the angle <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math> about the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>-axis.</li>
 </ol>
-</div><div class="column" style="width:60%;">
+</div><div class="column" style="width:50%;">
 <center>
 <img src="contents/assets/euler_angle_repr.png" width="700" heigth="700">
 </center>
 </div>
 </div>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>Z</mi><mi>Y</mi><mi>Z</mi></mrow></msub><mo>=</mo><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><mi>ϕ</mi></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>y</mi><mo>,</mo><mi>θ</mi></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="left"><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>θ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"></mtd><mtd columnalign="left"><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
-\begin{aligned}
-\bm{R}_{ZYZ} = \bm{R}_{z,\phi}\bm{R}_{y,\theta}\bm{R}_{z,\psi} &amp;= 
+<p style="font-size:70%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>Z</mi><mi>Y</mi><mi>Z</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>11</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>22</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>31</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>33</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><mi>ϕ</mi></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>y</mi><mo>,</mo><mi>θ</mi></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><mi>ψ</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>θ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\bm{R}_{ZYZ} = \begin{bmatrix} r_{11} &amp; r_{12} &amp; r_{13} \\ 
+r_{12} &amp; r_{22} &amp; r_{23} \\ r_{31} &amp; r_{32} &amp; r_{33} \end{bmatrix} = 
+\bm{R}_{z,\phi}\bm{R}_{y,\theta}\bm{R}_{z,\psi} = 
 \begin{bmatrix}
 c_\phi&amp; -s_\phi&amp; 0 \\ s_\phi &amp; c_\phi &amp; 0 \\ 0 &amp; 0 &amp; 1
 \end{bmatrix}
@@ -1058,32 +1060,16 @@ c_\theta &amp; 0 &amp; s_\theta \\ 0 &amp; 1 &amp; 0 \\ -s_\theta &amp; 0 &amp; 
 \end{bmatrix}
 \begin{bmatrix}
 c_\psi&amp; -s_\psi&amp; 0 \\ s_\psi &amp; c_\psi &amp; 0 \\ 0 &amp; 0 &amp; 1
-\end{bmatrix} \\ 
-&amp;= \begin{bmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 c_\phi c_\theta c_\psi - s_\phi s_\psi &amp; -c_\phi c_\theta s_\psi - s_\phi c_\psi &amp; c_\phi s_\theta \\
 s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_\psi &amp; s_\phi s_\theta \\
 -s_\theta c_\psi &amp; s_\theta s_\psi &amp; c_\theta
 \end{bmatrix}.
-\end{aligned}
-</annotation></semantics></math></p>
-</section>
-<section id="zyz-euler-angles-inverse-problem" class="slide level2 smaller">
-<h2>ZYZ Euler angles: inverse problem</h2>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p>For a given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>∈</mo><mstyle mathvariant="bold"><mi>𝐒</mi><mi>𝐎</mi></mstyle><mrow><mo stretchy="true" form="prefix">(</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{R} \in \bm{SO}(3)</annotation></semantics></math>, find a set of Euler angles <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math> that satisfy</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>s</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mi>θ</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
-\bm{R} = 
-\begin{bmatrix}
-c_\phi c_\theta c_\psi - s_\phi s_\psi &amp; -c_\phi c_\theta s_\psi - s_\phi c_\psi &amp; c_\phi s_\theta \\
-s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_\psi &amp; s_\phi s_\theta \\
--s_\theta c_\psi &amp; s_\theta s_\psi &amp; c_\theta
-\end{bmatrix}.
-</annotation></semantics></math></p>
-</div>
-</div>
-</div>
+</annotation></semantics></math>
+</p>
+<div class="r-stack">
+<div class="fragment fade-in-then-out">
 <div class="callout callout-important no-icon callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -1097,7 +1083,7 @@ s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_
 </ul>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="fragment quarto-layout-cell" data-fragment-index="1" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mi>θ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msubsup><mi>r</mi><mn>33</mn><mn>2</mn></msubsup></mrow></msqrt><mo>,</mo><msub><mi>r</mi><mn>33</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>θ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msubsup><mi>r</mi><mn>33</mn><mn>2</mn></msubsup></mrow></msqrt><mo>,</mo><msub><mi>r</mi><mn>33</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
   \theta &amp;= \arctan_2{ \left( \sqrt{1-r_{33}^2}, r_{33} \right) } \\
@@ -1105,7 +1091,7 @@ s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_
 \end{aligned}
 </annotation></semantics></math></p>
 </div>
-<div class="fragment quarto-layout-cell" data-fragment-index="2" data-layout-valign="top" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-layout-cell" data-layout-valign="top" style="flex-basis: 33.3%;justify-content: center;">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mi>ϕ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>23</mn></msub><mo>,</mo><msub><mi>r</mi><mn>13</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>ϕ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>r</mi><mn>23</mn></msub><mo>,</mo><mo>−</mo><msub><mi>r</mi><mn>13</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
   \phi &amp;= \arctan_2{ \left( r_{23}, r_{13} \right) } \\
@@ -1113,7 +1099,7 @@ s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_
 \end{aligned}
 </annotation></semantics></math></p>
 </div>
-<div class="fragment quarto-layout-cell" data-fragment-index="3" style="flex-basis: 33.3%;justify-content: center;">
+<div class="fade-in quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mi>ψ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>r</mi><mn>32</mn></msub><mo>,</mo><msub><mi>r</mi><mn>31</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>ψ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>32</mn></msub><mo>,</mo><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
   \psi &amp;= \arctan_2{ \left( -r_{32}, r_{31} \right) } \\
@@ -1126,9 +1112,10 @@ s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_
 </div>
 </div>
 </div>
-</section>
-<section id="zyz-euler-angles-inverse-problem-1" class="slide level2 smaller">
-<h2>ZYZ Euler angles: inverse problem</h2>
+</div>
+<div class="fragment fade-in-then-out">
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="callout callout-important no-icon callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -1136,23 +1123,11 @@ s_\phi c_\theta c_\psi + c_\phi s_\psi &amp; -s_\phi c_\theta s_\psi + c_\phi c_
 </div>
 <div class="callout-content">
 <ul>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math> has the form</li>
+<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>33</mn></msub><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{33} = +1</annotation></semantics></math>, then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>θ</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_\theta = 1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>θ</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">s_\theta = 0</annotation></semantics></math> so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta = 0</annotation></semantics></math> and</li>
 </ul>
 <center>
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>11</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>22</mn></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>±</mo><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{R} = \begin{bmatrix} r_{11} &amp; r_{12} &amp; 0 \\ 
-r_{12} &amp; r_{22} &amp; 0 \\ 0 &amp; 0 &amp; \pm 1 \end{bmatrix}. </annotation></semantics></math>
-</center>
-<ul>
-<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>33</mn></msub><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{33} = +1</annotation></semantics></math>, then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>θ</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_\theta = 1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>θ</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">s_\theta = 0</annotation></semantics></math> so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta = 0</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math> becomes</li>
-</ul>
-<center>
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mi>ϕ</mi></msub><msub><mi>s</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>c</mi><mi>ϕ</mi></msub><msub><mi>c</mi><mi>ψ</mi></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
 \bm{R} = 
-\begin{bmatrix}
-  c_\phi c_\psi - s_\phi s_\psi &amp; -c_\phi s_\psi - s_\phi c_\psi &amp; 0 \\
-  s_\phi c_\psi + c_\phi s_\psi &amp; -s_\phi s_\psi + c_\phi c_\psi &amp; 0 \\
-  0 &amp; 0 &amp; 1
-\end{bmatrix} = 
 \begin{bmatrix}
   c_{\phi+\psi} &amp; -s_{\phi+\psi} &amp; 0 \\
   s_{\phi+\psi} &amp; c_{\phi+\psi} &amp; 0 \\
@@ -1162,8 +1137,18 @@ r_{12} &amp; r_{22} &amp; 0 \\ 0 &amp; 0 &amp; \pm 1 \end{bmatrix}. </annotation
 </center>
 <p>Thus, the sum can be determined as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>+</mo><mi>ψ</mi><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>11</mn></msub><mo>,</mo><msub><mi>r</mi><mn>21</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>11</mn></msub><mo>,</mo><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex"> \phi + \psi = \arctan_2{ \left( r_{11}, 
 r_{21} \right) } = \arctan_2{ \left( r_{11}, -r_{12} \right) }. </annotation></semantics></math></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-important no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Case 2. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>13</mn></msub><mo>=</mo><msub><mi>r</mi><mn>23</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r_{13} = r_{23} = 0</annotation></semantics></math> so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>33</mn></msub><mo>=</mo><mo>±</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{33} = \pm 1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>31</mn></msub><mo>=</mo><msub><mi>r</mi><mn>32</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r_{31} = r_{32} = 0</annotation></semantics></math>.</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>33</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{33} = -1</annotation></semantics></math>, then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>θ</mi></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_\theta = -1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>θ</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">s_\theta = 0</annotation></semantics></math> so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mi>π</mi></mrow><annotation encoding="application/x-tex">\theta = \pi</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math> becomes</li>
+<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>33</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{33} = -1</annotation></semantics></math>, then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>θ</mi></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_\theta = -1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>θ</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">s_\theta = 0</annotation></semantics></math> so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mi>π</mi></mrow><annotation encoding="application/x-tex">\theta = \pi</annotation></semantics></math> and</li>
 </ul>
 <center>
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><mo>−</mo><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>−</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mo>−</mo><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>−</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>s</mi><mrow><mi>ϕ</mi><mo>−</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><msub><mi>c</mi><mrow><mi>ϕ</mi><mo>−</mo><mi>ψ</mi></mrow></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>−</mo></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>11</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub></mtd><mtd columnalign="center"><msub><mi>r</mi><mn>22</mn></msub></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>−</mo><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
@@ -1179,6 +1164,64 @@ r_{21} \right) } = \arctan_2{ \left( r_{11}, -r_{12} \right) }. </annotation></s
 </annotation></semantics></math>
 </center>
 <p>The solution is<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>−</mo><mi>ψ</mi><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>r</mi><mn>11</mn></msub><mo>,</mo><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex"> \phi - \psi = \arctan_2{ \left( -r_{11}, -r_{12} \right) }. </annotation></semantics></math></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Running example</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Suppose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math> is generated by
+<ul>
+<li>a rotation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>90</mn><mo>∘</mo></msup><annotation encoding="application/x-tex">90^\circ</annotation></semantics></math> about <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝐳</mi></mstyle><mn>0</mn></msub><annotation encoding="application/x-tex">\bm{z}_0</annotation></semantics></math>,</li>
+<li>a rotation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>30</mn><mo>∘</mo></msup><annotation encoding="application/x-tex">30^\circ</annotation></semantics></math> about <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝐲</mi></mstyle><mn>0</mn></msub><annotation encoding="application/x-tex">\bm{y}_0</annotation></semantics></math>,</li>
+<li>a rotation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>60</mn><mo>∘</mo></msup><annotation encoding="application/x-tex">60^\circ</annotation></semantics></math> about <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub><annotation encoding="application/x-tex">\bm{x}_0</annotation></semantics></math>.
+<p style="font-size:95%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>x</mi><mo>,</mo><msup><mn>60</mn><mo>∘</mo></msup></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>y</mi><mo>,</mo><msup><mn>30</mn><mo>∘</mo></msup></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><msup><mn>90</mn><mo>∘</mo></msup></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>−</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac></mtd></mtr><mtr><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mo>−</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mo>−</mo><mfrac><mn>3</mn><mn>4</mn></mfrac></mtd></mtr><mtr><mtd columnalign="center"><mfrac><msqrt><mn>3</mn></msqrt><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 &amp; -\frac{\sqrt{3}}{2} &amp; \frac{1}{2} \\
+\frac{1}{2} &amp; -\frac{\sqrt{3}}{4} &amp; -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} &amp; \frac{1}{4} &amp; \frac{\sqrt{3}}{4}
+\end{pmatrix}
+</annotation></semantics></math>
+</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Running example</strong></p>
+</div>
+<div class="callout-content">
+<p>Not both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mn>13</mn></msub><annotation encoding="application/x-tex">r_{13}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mn>23</mn></msub><annotation encoding="application/x-tex">r_{23}</annotation></semantics></math> are zero. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mphantom><mrow><mi>j</mi><mi>d</mi><mi>f</mi><mi>s</mi><mi>f</mi><mi>j</mi><mi>a</mi><mi>s</mi><mi>i</mi><mi>f</mi><mi>h</mi><mi>a</mi><mi>n</mi><mi>p</mi><mi>i</mi><mi>u</mi><mi>v</mi><mi>n</mi><mi>b</mi><mi>q</mi><mi>p</mi><mi>i</mi><mi>u</mi><mi>w</mi><mi>e</mi><mi>g</mi><mi>n</mi><mi>e</mi><mi>w</mi><mi>p</mi><mi>u</mi><mi>i</mi><mi>f</mi><mi>g</mi><mi>n</mi><mi>a</mi><mi>e</mi><mi>w</mi><mi>p</mi><mi>u</mi><mi>i</mi><mi>f</mi><mi>g</mi><mi>h</mi><mi>a</mi><mi>p</mi><mi>i</mi><mi>u</mi><mi>g</mi><mi>h</mi><mi>a</mi><mi>i</mi><mi>f</mi><mi>h</mi><mi>i</mi><mi>a</mi><mi>u</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>f</mi><mi>k</mi><mi>j</mi><mi>a</mi><mi>s</mi><mi>h</mi><mi>f</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>f</mi><mi>g</mi><mi>f</mi><mi>s</mi><mi>a</mi><mi>a</mi></mrow></mphantom><annotation encoding="application/x-tex">\phantom{jdfsfjasifhanpiuvnbqpiuwegnewpuifgnaewpuifghapiughaifhiaudasfkjashfianfgfsaa}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mo>tan</mo><mi>θ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mo>,</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mi>θ</mi><mo>≈</mo><msup><mn>64.34</mn><mo>∘</mo></msup><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mo>tan</mo><mi>ϕ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>23</mn></msub><mo>,</mo><msub><mi>r</mi><mn>13</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mi>ϕ</mi><mo>≈</mo><mo>−</mo><msup><mn>56.31</mn><mo>∘</mo></msup><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mo>tan</mo><mi>ψ</mi></mtd><mtd columnalign="left"><mo>=</mo><msub><mo>arctan</mo><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>32</mn></msub><mo>,</mo><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mi>ψ</mi><mo>≈</mo><msup><mn>163.90</mn><mo>∘</mo></msup><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+\tan{\theta} &amp;= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
+\frac{\sqrt{3}}{4}\right)} \Rightarrow \theta \approx 64.34^\circ, \\
+\tan{\phi} &amp;= \arctan_2{\left(r_{23}, r_{13} \right)} \Rightarrow \phi \approx
+-56.31^\circ, \\
+\tan{\psi} &amp;= \arctan_2{\left(r_{32}, -r_{31} \right)} \Rightarrow \psi \approx
+163.90^\circ.
+\end{aligned}
+</annotation></semantics></math></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1227,7 +1270,10 @@ s_\psi c_\theta &amp; c_\psi c_\phi + s_\psi s_\theta s_\phi &amp; -c_\psi s_\ph
 \end{pmatrix}
 \end{aligned}
 </annotation></semantics></math></p><ul>
-<li>The three angles <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math> can be obtained for a given rotation matrix using a method that is similar to that used to derive the Euler angles above.</li>
+<li>The three angles <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math> can be obtained for a given rotation matrix using a method that is similar to that used to derive the Euler angles above.
+<ul>
+<li>Running example: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>≈</mo><mo>−</mo><msup><mn>60</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\theta \approx -60^\circ</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>≈</mo><msup><mn>30</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\phi \approx 30^\circ</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi><mo>≈</mo><msup><mn>90</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\psi \approx 90^\circ</annotation></semantics></math>.</li>
+</ul></li>
 </ul>
 </div>
 </section>
@@ -1330,12 +1376,13 @@ k_xk_zv_\theta - k_ys_\theta &amp; k_yk_zv_\theta + k_xs_\theta &amp; k_z^2v_\th
 </p>
 <p>&nbsp;</p>
 <p><u>Given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math>, find: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><annotation encoding="application/x-tex">\bm{k}</annotation></semantics></math></u></p>
-<p style="font-size:90%">
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mi>θ</mi></mtd><mtd columnalign="left"><mo>=</mo><mo>arccos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">tr</mtext><mspace width="0.278em"></mspace><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle></mtd><mtd columnalign="left"><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>sin</mo><mi>θ</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub><mo>−</mo><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex"> 
+<p style="font-size:80%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mi>θ</mi></mtd><mtd columnalign="left"><mo>=</mo><mo>arccos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">tr</mtext><mspace width="0.278em"></mspace><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle></mtd><mtd columnalign="left"><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>sin</mo><mi>θ</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub><mo>−</mo><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> or </mtext><mspace width="0.333em"></mspace></mrow><mover><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><mo accent="true">̂</mo></mover><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>sin</mo><mi>θ</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>−</mo><msup><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mi>⊤</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex"> 
 \begin{aligned}
 \theta &amp;= \arccos{\left( \frac{1}{2}\left(\text{tr} \; \bm{R} - 1\right) \right)}, \\
 \bm{k} &amp;= \frac{1}{2 \sin{\theta}} \begin{pmatrix} r_{32} - r_{23} \\
-r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix}.
+r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix} \text{ or } \hat{\bm{k}} =
+\frac{1}{2\sin{\theta}}\left(\bm{R}-\bm{R}^\top\right).
 \end{aligned}
 </annotation></semantics></math>
 </p>
@@ -1376,7 +1423,7 @@ r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix}.
 <div class="callout callout-note no-icon callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
-<p><strong>Example</strong></p>
+<p><strong>Running example</strong></p>
 </div>
 <div class="callout-content">
 <ul>
@@ -1408,8 +1455,8 @@ r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix}.
 </div>
 </div>
 </section>
-<section id="unit-quaternions" class="slide level2 smaller">
-<h2>Unit quaternions</h2>
+<section id="quaternions" class="slide level2 smaller">
+<h2>Quaternions</h2>
 <div class="callout callout-tip no-icon callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -1434,13 +1481,17 @@ s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
 </annotation></semantics></math></p></li>
 </ul>
 </section>
-<section id="unit-quaternions-1" class="slide level2 smaller">
+<section id="unit-quaternions" class="slide level2 smaller">
 <h2>Unit quaternions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
-<li><p>To represent rotations, we use unit-quaternions, denoted by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><annotation encoding="application/x-tex">\mathring{\bm{q}}</annotation></semantics></math>, that is, <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">∥</mo><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo stretchy="true" form="postfix">∥</mo></mrow><mo>=</mo><msup><mi>s</mi><mn>2</mn></msup><mo>+</mo><msubsup><mi>v</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>v</mi><mn>2</mn><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>v</mi><mn>3</mn><mn>2</mn></msubsup><mo>=</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex"> \left\| \bm{q} \right\| = s^2 + v_1^2 + v_2^2 + v_3^2 = 1. </annotation></semantics></math></p></li>
-<li><p>They can be considered as a rotation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math> about the unit vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><annotation encoding="application/x-tex">\bm{v}</annotation></semantics></math>, which are related to the quaternions by <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mo>cos</mo><mfrac><mi>θ</mi><mn>2</mn></mfrac><mo stretchy="false" form="prefix">⟨</mo><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo>sin</mo><mfrac><mi>θ</mi><mn>2</mn></mfrac><mo stretchy="false" form="postfix">⟩</mo><mi>.</mi></mrow><annotation encoding="application/x-tex"> \mathring{\bm{q}} = 
-\cos{\frac{\theta}{2}} \langle \bm{v} \sin{\frac{\theta}{2}} \rangle. </annotation></semantics></math></p></li>
+<li><p>Rotations: represented by unit-quaternions, denoted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><annotation encoding="application/x-tex">\mathring{\bm{q}}</annotation></semantics></math>, so that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">∥</mo><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo stretchy="true" form="postfix">∥</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\left\| \bm{q} \right\| = 1</annotation></semantics></math>.</p></li>
+<li><p>Considered as a rotation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math> about the unit vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><annotation encoding="application/x-tex">\bm{k}</annotation></semantics></math>: related to unit quaternions by <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mo>cos</mo><mfrac><mi>θ</mi><mn>2</mn></mfrac><mo stretchy="false" form="prefix">⟨</mo><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><mo>sin</mo><mfrac><mi>θ</mi><mn>2</mn></mfrac><mo stretchy="false" form="postfix">⟩</mo><mi>.</mi></mrow><annotation encoding="application/x-tex"> \mathring{\bm{q}} = 
+\cos{\frac{\theta}{2}} \langle \bm{k} \sin{\frac{\theta}{2}} \rangle. </annotation></semantics></math></p></li>
 </ul>
+<div class="r-stack">
+<div class="fragment fade-in-then-out">
 <div class="callout callout-warning no-icon callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
@@ -1454,6 +1505,82 @@ s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
 <li><p>Action on vectors: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>•</mo><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo>↔</mo><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>∘</mo><mover><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo accent="true">̊</mo></mover><mo>∘</mo><msup><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathring{\bm{q}} \bullet \bm{v} \leftrightarrow
 \mathring{\bm{q}} \circ \mathring{\bm{v}} \circ \mathring{\bm{q}}^{-1}, </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mn>0</mn><mo stretchy="false" form="prefix">⟨</mo><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo stretchy="false" form="postfix">⟩</mo></mrow><annotation encoding="application/x-tex">\mathring{\bm{v}} = 0 \langle \bm{v} \rangle</annotation></semantics></math> is known as a pure quaternion.</p></li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Running example</strong></p>
+</div>
+<div class="callout-content">
+<p style="font-size:95%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>x</mi><mo>,</mo><msup><mn>60</mn><mo>∘</mo></msup></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>y</mi><mo>,</mo><msup><mn>30</mn><mo>∘</mo></msup></mrow></msub><msub><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mrow><mi>z</mi><mo>,</mo><msup><mn>90</mn><mo>∘</mo></msup></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>−</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac></mtd></mtr><mtr><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mo>−</mo><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mo>−</mo><mfrac><mn>3</mn><mn>4</mn></mfrac></mtd></mtr><mtr><mtd columnalign="center"><mfrac><msqrt><mn>3</mn></msqrt><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mfrac><msqrt><mn>3</mn></msqrt><mn>4</mn></mfrac></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 &amp; -\frac{\sqrt{3}}{2} &amp; \frac{1}{2} \\
+\frac{1}{2} &amp; -\frac{\sqrt{3}}{4} &amp; -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} &amp; \frac{1}{4} &amp; \frac{\sqrt{3}}{4}
+\end{pmatrix}
+</annotation></semantics></math>
+</p>
+<p>We compute <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub><annotation encoding="application/x-tex">\bm{x}_0</annotation></semantics></math> to find</p>
+<p style="font-size:95%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>1</mn></mtd><mtd columnalign="center"><mn>1</mn></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><msqrt><mn>3</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">
+\bm{x}_0 = \begin{pmatrix} 1 &amp; 1 &amp; \frac{1}{2}\left(1-\sqrt{3}\right) &amp;
+\frac{1}{2}\left(1+\sqrt{3}\right)\end{pmatrix}^\top
+</annotation></semantics></math>
+</p>
+<p>with the norm <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">∥</mo><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub><mo stretchy="true" form="postfix">∥</mo></mrow><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\left\|\bm{x}_0\right\| = 2</annotation></semantics></math>. Hence</p>
+<p style="font-size:95%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">⟨</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>,</mo><mspace width="0.278em"></mspace><mfrac><mn>1</mn><mn>4</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msqrt><mn>3</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="0.278em"></mspace><mfrac><mn>1</mn><mn>4</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><msqrt><mn>3</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">⟩</mo></mrow><mo>=</mo><mo>cos</mo><msup><mn>60</mn><mo>∘</mo></msup><mrow><mo stretchy="true" form="prefix">⟨</mo><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><mo>sin</mo><msup><mn>60</mn><mo>∘</mo></msup><mo stretchy="true" form="postfix">⟩</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">
+\mathring{\bm{q}} = \frac{1}{2}\left\langle \frac{1}{2},\;
+\frac{1}{4}\left(1-\sqrt{3}\right),\; \frac{1}{4}\left(1+\sqrt{3}\right)
+\right\rangle = \cos{60^\circ}\left\langle \bm{k} \sin{60^\circ} \right\rangle,
+</annotation></semantics></math>
+</p>
+<p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐤</mi></mstyle><annotation encoding="application/x-tex">\bm{k}</annotation></semantics></math> is the unit vector from the axis-angle slide.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end of .r-stack -->
+</div><!-- end of column --><div class="column" style="width:50%;">
+<div class="callout callout-warning no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Unit quaternion and rotation matrix</strong></p>
+</div>
+<div class="callout-content">
+<p>Given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mi>s</mi><mo stretchy="false" form="prefix">⟨</mo><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo stretchy="false" form="postfix">⟩</mo></mrow><annotation encoding="application/x-tex">\mathring{\bm{q}} = s\langle \bm{v}\rangle</annotation></semantics></math>, the corresponding rotation matrix is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>s</mi><mn>2</mn></msup><mo>−</mo><msup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>⊤</mi></msup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><mstyle mathvariant="bold"><mi>𝐈</mi></mstyle><mo>+</mo><mn>2</mn><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><msup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>⊤</mi></msup><mo>+</mo><mn>2</mn><mi>s</mi><mover><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mo accent="true">̂</mo></mover><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{R} = \left(s^2 -\bm{v}^\top\bm{v} \right)\bm{I} +
+2\bm{v}\bm{v}^\top + 2s \hat{\bm{v}}. </annotation></semantics></math></p>
+Given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle><annotation encoding="application/x-tex">\bm{R}</annotation></semantics></math>, the to find the corresponding <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><annotation encoding="application/x-tex">\mathring{\bm{q}}</annotation></semantics></math>, we set up the following quaternions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mrow><mo stretchy="true" form="prefix">{</mo><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mi>i</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mn>3</mn></msubsup><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mi>s</mi></mtd><mtd columnalign="center"><msub><mi>v</mi><mn>1</mn></msub></mtd><mtd columnalign="center"><msub><mi>v</mi><mn>2</mn></msub></mtd><mtd columnalign="center"><msub><mi>v</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">\left\{\bm{x}_i\right\}_{i=0}^3 = \begin{pmatrix} s &amp; v_1 &amp; v_2 &amp; v_3 \end{pmatrix}^\top</annotation></semantics></math>.
+<p style="font-size:75%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub></mtd><mtd columnalign="left"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>1</mn><mo>+</mo><mtext mathvariant="normal">tr</mtext><mspace width="0.278em"></mspace><mstyle mathvariant="bold"><mi>𝐑</mi></mstyle></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub><mo>−</mo><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace></mtd><mtd columnalign="right"><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>1</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub><mo>−</mo><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><mn>1</mn><mo>+</mo><msub><mi>r</mi><mn>11</mn></msub><mo>−</mo><msub><mi>r</mi><mn>22</mn></msub><mo>−</mo><msub><mi>r</mi><mn>33</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>12</mn></msub><mo>+</mo><msub><mi>r</mi><mn>21</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub><mo>+</mo><msub><mi>r</mi><mn>31</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>2</mn></msub></mtd><mtd columnalign="left"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>13</mn></msub><mo>−</mo><msub><mi>r</mi><mn>31</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub><mo>+</mo><msub><mi>r</mi><mn>12</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><mn>1</mn><mo>+</mo><msub><mi>r</mi><mn>22</mn></msub><mo>−</mo><msub><mi>r</mi><mn>33</mn></msub><mo>−</mo><msub><mi>r</mi><mn>11</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>23</mn></msub><mo>+</mo><msub><mi>r</mi><mn>32</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace></mtd><mtd columnalign="right"><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>3</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>21</mn></msub><mo>−</mo><msub><mi>r</mi><mn>12</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>31</mn></msub><mo>+</mo><msub><mi>r</mi><mn>13</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><msub><mi>r</mi><mn>32</mn></msub><mo>+</mo><msub><mi>r</mi><mn>23</mn></msub></mtd></mtr><mtr><mtd columnalign="center"><mn>1</mn><mo>+</mo><msub><mi>r</mi><mn>33</mn></msub><mo>−</mo><msub><mi>r</mi><mn>11</mn></msub><mo>−</mo><msub><mi>r</mi><mn>22</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+\bm{x}_0 &amp;= \begin{pmatrix} 1 + \text{tr}\;\bm{R} \\ r_{32}-r_{23} \\
+r_{13}-r_{31} \\ r_{21}-r_{12} \end{pmatrix}, \;\; 
+&amp;\bm{x}_1 = \begin{pmatrix} r_{32}-r_{23} \\ 1 + r_{11}-r_{22}-r_{33} \\ r_{12}
++ r_{21} \\ r_{13}+r_{31}
+\end{pmatrix}, \\
+\bm{x}_2 &amp;= \begin{pmatrix} r_{13}-r_{31} \\ r_{21}+r_{12} \\
+1+r_{22}-r_{33}-r_{11} \\ r_{23}+r_{32} \end{pmatrix}, \;\; 
+&amp;\bm{x}_3 = \begin{pmatrix} r_{21}-r_{12} \\  r_{31}+r_{13} \\ r_{32}+r_{23} \\
+1 + r_{33} - r_{11} - r_{22}
+\end{pmatrix}.
+\end{aligned}
+</annotation></semantics></math>
+</p>
+<ul>
+<li><p>Note: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>0</mn></msub><mo>=</mo><mn>4</mn><mi>s</mi><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>,</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>1</mn></msub><mo>=</mo><mn>4</mn><msub><mi>v</mi><mn>1</mn></msub><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>,</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>2</mn></msub><mo>=</mo><mn>4</mn><msub><mi>v</mi><mn>2</mn></msub><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>,</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mn>3</mn></msub><mo>=</mo><mn>4</mn><msub><mi>v</mi><mn>3</mn></msub><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover></mrow><annotation encoding="application/x-tex">\;\;\bm{x}_0 = 4s\mathring{\bm{q}}, \;\; \bm{x}_1 = 4v_1\mathring{\bm{q}}, \;\; \bm{x}_2 = 4v_2\mathring{\bm{q}}, \;\; \bm{x}_3 = 4v_3\mathring{\bm{q}}</annotation></semantics></math>.</p></li>
+<li><p>Choose index <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mo>arg</mo><mo>max</mo><mo stretchy="false" form="prefix">{</mo><msup><mi>s</mi><mn>2</mn></msup><mo>,</mo><msubsup><mi>v</mi><mn>1</mn><mn>2</mn></msubsup><mo>,</mo><msubsup><mi>v</mi><mn>2</mn><mn>2</mn></msubsup><mo>,</mo><msubsup><mi>v</mi><mn>3</mn><mn>2</mn></msubsup><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">i = \arg \max \{s^2, v_1^2, v_2^2, v_3^2 \}</annotation></semantics></math>, where if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> is the maximum, the index is assigned <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> and so on.</p></li>
+<li><p>The unit quaternion is computed as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mover><mstyle mathvariant="bold"><mi>𝐪</mi></mstyle><mo accent="true">̊</mo></mover><mo>=</mo><mfrac><mrow><mo>±</mo><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mi>i</mi></msub></mrow><mrow><mo stretchy="true" form="prefix">∥</mo><msub><mstyle mathvariant="bold"><mi>𝐱</mi></mstyle><mi>i</mi></msub><mo stretchy="true" form="postfix">∥</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\;\; \mathring{\bm{q}} = \frac{\pm \bm{x}_i}{\left\|\bm{x}_i\right\|}</annotation></semantics></math>.</p></li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
