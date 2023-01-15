@@ -112,11 +112,11 @@
     "text": "Basic rotation matrices\nThe rotation matrices representing a rotation of θ\\theta about the xx-, yy-, and zz-axes are\n\n\n\n𝐑x,θ=[1000cθ−sθ0sθcθ]\n\\bm{R}_{x,\\theta} = \n\\begin{bmatrix}\n1 & 0 & 0 \\\\ 0 & c_\\theta & -s_\\theta \\\\ 0 & s_\\theta & c_\\theta\n\\end{bmatrix}\n\n\n\n𝐑y,θ=[cθ0sθ010−sθ0cθ]\n\\bm{R}_{y,\\theta} = \n\\begin{bmatrix}\nc_\\theta & 0 & s_\\theta \\\\ 0 & 1 & 0 \\\\ -s_\\theta & 0 & c_\\theta\n\\end{bmatrix}\n\n\n\n𝐑z,θ=[cθ−sθ0sθcθ0001]\n\\bm{R}_{z,\\theta} = \n\\begin{bmatrix}\nc_\\theta & -s_\\theta & 0 \\\\ s_\\theta & c_\\theta & 0 \\\\ 0 & 0 & 1\n\\end{bmatrix}\n\n\n\n\n\n\nRecall from Euler’s rotation theorem that any rotation can be represented by not more than three rotations about coordinate axes.\nThis means that an arbitrary rotation between frames can be decomposed into a sequence of three rotation angles and associated rotation axes."
   },
   {
-    "objectID": "02_rigid_motions.html#constraints-in-the-rotation-matrix",
-    "href": "02_rigid_motions.html#constraints-in-the-rotation-matrix",
+    "objectID": "02_rigid_motions.html#constraints-in-the-rotation-matrix1",
+    "href": "02_rigid_motions.html#constraints-in-the-rotation-matrix1",
     "title": "02_rigid_motions",
-    "section": "Constraints in the rotation matrix",
-    "text": "Constraints in the rotation matrix\n \n\n\nThe nine elements rijr_{ij} in an arbitrary rotational transformation 𝐑∈𝐒𝐎(3)\\bm{R} \\in \\bm{SO}(3) are not independent quantities:\nColumns of 𝐑\\bm{R} are unit vectors and they are mutually orthogonal:\n\n∑irij2=1,j∈{1,2,3},r1ir1j+r2ir2j+r3ir3j=0,i≠j.\n\\begin{aligned}\n\\sum_{i}r_{ij}^2 &= 1, \\quad j \\in \\{1, 2, 3\\}, \\\\\nr_{1i}r_{1j} + r_{2i}r_{2j} + r_{3i}r_{3j} &= 0, \\quad i \\neq j.\n\\end{aligned}\n\n\n\n\n\n\nThere are three free parameters!\n\n\nTogether, these constraints define six independent equations with nine unknowns."
+    "section": "Constraints in the rotation matrix1",
+    "text": "Constraints in the rotation matrix1\n \n\n\nThe nine elements rijr_{ij} in an arbitrary rotational transformation 𝐑∈𝐒𝐎(3)\\bm{R} \\in \\bm{SO}(3) are not independent quantities:\nColumns of 𝐑\\bm{R} are unit vectors and they are mutually orthogonal:\n\n∑irij2=1,j∈{1,2,3},r1ir1j+r2ir2j+r3ir3j=0,i≠j.\n\\begin{aligned}\n\\sum_{i}r_{ij}^2 &= 1, \\quad j \\in \\{1, 2, 3\\}, \\\\\nr_{1i}r_{1j} + r_{2i}r_{2j} + r_{3i}r_{3j} &= 0, \\quad i \\neq j.\n\\end{aligned}\n\n\n\n\n\n\nThere are three free parameters!\n\n\nTogether, these constraints define six independent equations with nine unknowns.\n\n\n\n\nExcellent resource"
   },
   {
     "objectID": "02_rigid_motions.html#euler-angles-zyz",

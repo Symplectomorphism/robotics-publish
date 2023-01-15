@@ -169,7 +169,10 @@ sequence of three rotation angles and associated rotation axes.
 
 # Parametrization of rotations
 
-## Constraints in the rotation matrix
+## Constraints in the rotation matrix[^1]
+
+[^1]: [Excellent resource](https://en.wikipedia.org/wiki/Rotation_formalisms_in_three_dimensions)
+
 
 &nbsp;
 
