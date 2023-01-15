@@ -684,6 +684,10 @@ v_3 & -v_2 & v_1 & s
 \end{pmatrix}
 \begin{pmatrix}
 s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
+\end{pmatrix} = \left( s\bm{I} + \begin{pmatrix}
+0 & -\bm{v}^\top \\ \bm{v} & \hat{\bm{v}}
+\end{pmatrix}\right) \begin{pmatrix}
+s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
 \end{pmatrix}
 $$
 
