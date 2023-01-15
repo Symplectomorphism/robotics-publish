@@ -312,8 +312,8 @@ $$
 $$
 </center>
 
-Thus, the sum can be determined as $$ \phi + \psi = \arctan_2{ \left( r_{11}, 
-r_{21} \right) } = \arctan_2{ \left( r_{11}, -r_{12} \right) }. $$
+Thus, the sum can be determined as $$ \phi + \psi = \arctan_2{ \left( r_{21}, 
+r_{11} \right) } = \arctan_2{ \left( -r_{12}, r_{11} \right) }. $$
 
 :::
 :::
@@ -339,7 +339,8 @@ $$
 $$
 </center>
 
-The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{11}, -r_{12} \right) }. $$
+The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{12}, -r_{11} \right) } = 
+\arctan_2{ \left( r_{21}, r_{22} \right) }. $$
 :::
 :::
 
