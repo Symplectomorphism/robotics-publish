@@ -151,20 +151,91 @@ $$
 
 :::
 
-::: {.fragment fragment-index=4}
+::: {.r-stack}
+::: {.fragment fragment-index=4 .fade-in-then-out}
 * Recall from Euler's rotation theorem that _any_ rotation can be represented 
 by _not more than three_ rotations about coordinate axes.
 
 * This means that an arbitrary rotation between frames can be decomposed into a 
 sequence of three rotation angles and associated rotation axes.
+:::
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.r-stack}
+::: {.fragment fragment-index=6 .fade-in-then-out}
+::: {.callout-tip icon="false"}
+## Method 1
+* Imagine a sequence of basic rotations that place frame $\{0\}$ triad onto
+frame $\{1\}$.
+  - First apply a initial rotation of $\bm{R}_{x,-90^\circ}$,
+  - Then apply a rotation of $\bm{R}_{z,-45^\circ}$ to the current axes.
+
+<p style="font-size:85%">
+$$
+{^0}\bm{R}_1 = \bm{R}_{x,-90^\circ}\bm{R}_{z,-45^\circ} = \begin{pmatrix}
+1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 1
+\end{pmatrix} = 
+\begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 1 \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+\end{pmatrix}.
+$$
+</p>
+:::
+:::
+
+::: {.fragment fragment-index=7}
+::: {.callout-tip icon="false"}
+## Method 2
+Using the definition of a rotation matrix, compute the direction cosines.
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^0}\bm{R}_1 =
+\begin{bmatrix}
+\bm{x}_1 \cdot \bm{x}_0 & \bm{y}_1 \cdot \bm{x}_0 & \bm{z}_1 \cdot \bm{x}_0 \\
+\bm{x}_1 \cdot \bm{y}_0 & \bm{y}_1 \cdot \bm{y}_0 & \bm{z}_1 \cdot \bm{y}_0 \\
+\bm{x}_1 \cdot \bm{z}_0 & \bm{y}_1 \cdot \bm{z}_0 & \bm{z}_1 \cdot \bm{z}_0
+\end{bmatrix} &= 
+\begin{bmatrix}
+\cos{45^\circ} & \cos{45^\circ} & \cos{90^\circ} \\
+\cos{90^\circ} & \cos{90^\circ} & \cos{0^\circ} \\
+\cos{45^\circ} & \cos{135^\circ} & \cos{90^\circ}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+0 & 0 & 1 \\
+\frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+\end{bmatrix}
+\end{aligned}
+$$
+</p>
+:::
+:::
+:::
+<!-- end of inner .r-stack -->
 
 :::
 
+::: {.column width="50%"}
 ::: {.fragment fragment-index=5}
 <center>
-<img src="contents/assets/example_2.2.png" width="300" heigth="300" />
+<img src="contents/assets/example_2.2.png" width="100%"/>
 </center>
 :::
+:::
+
+::::
+
+:::
+<!-- end of outer .r-stack -->
 
 
 # Parametrization of rotations
