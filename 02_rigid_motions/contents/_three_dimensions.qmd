@@ -313,7 +313,10 @@ $$
 </center>
 
 Thus, the sum can be determined as $$ \phi + \psi = \arctan_2{ \left( r_{21}, 
-r_{11} \right) } = \arctan_2{ \left( -r_{12}, r_{11} \right) }. $$
+r_{11} \right) } = \arctan_2{ \left( -r_{12}, r_{11} \right) } = 
+\begin{bmatrix}
+  r_{11} & r_{12} & 0 \\ r_{21} & r_{22} & 0 \\ 0 & 0 & 1
+\end{bmatrix}. $$
 
 :::
 :::
