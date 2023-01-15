@@ -774,7 +774,7 @@ Given $\mathring{\bm{q}} = s\langle \bm{v}\rangle$, the corresponding rotation
 matrix is $$ \bm{R} = \left(s^2 -\bm{v}^\top\bm{v} \right)\bm{I} +
 2\bm{v}\bm{v}^\top + 2s \hat{\bm{v}}. $$
 
-Given $\bm{R}$, the to find the corresponding $\mathring{\bm{q}}$, we set up the
+Given $\bm{R}$, to find the corresponding $\mathring{\bm{q}}$, we set up the
 following quaternions $\left\{\bm{x}_i\right\}_{i=0}^3 = \begin{pmatrix} s & v_1
 & v_2 & v_3 \end{pmatrix}^\top$.
 <p style="font-size:75%">
