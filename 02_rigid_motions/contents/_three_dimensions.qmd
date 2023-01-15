@@ -645,9 +645,9 @@ $$
 
 * The equivalent axis is given as 
 $$ \bm{k} = \begin{pmatrix} 
-\frac{1}{\sqrt{3}} \\ \frac{1}{2\sqrt{3}}-\frac{1}{2} \\
-\frac{1}{2\sqrt{3}}+\frac{1}{2}
-\end{pmatrix}^\top$$
+\frac{1}{\sqrt{3}} \\ \frac{1}{2\sqrt{3}}\left(1-\sqrt{3}\right) \\
+\frac{1}{2\sqrt{3}}\left(1+\sqrt{3}\right)
+\end{pmatrix}^\top. $$
 :::
 
 :::
