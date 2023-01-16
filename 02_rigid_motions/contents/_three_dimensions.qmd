@@ -560,6 +560,33 @@ $\{j\}$.
 
 ::: {.column width="45%"}
 
+::: {.r-stack}
+::: {.fragment .fade-in-then-out}
+::: {.callout-important icon="false"}
+## Proof
+Let $\bm{x}$ be a point of $\mathbb{R}^3$ and $\bm{Ax}$ the transformed point,
+both expressed in frame $\{j\}$.
+
+On the other hand, let $\bm{y}$ be the same point of $\mathbb{R}^3$ and
+$\bm{By}$ the same transformed point, both expressed in frame $\{k\}$.
+
+Recall that $\bm{x}$ and $\bm{y}$ are related by $\bm{x} = {^j}\bm{R}_k \bm{y}$.
+
+Similarly, since $\bm{By}$ and $\bm{Ax}$ are physically the same point, but
+expressed in different frames, they are related by $\bm{Ax} = {^j}\bm{R}_k
+\bm{By}$.
+
+Substituting for $\bm{y}$, we obtain
+$$ \bm{Ax} = {^j}\bm{R}_k \; \bm{B} \; \left( {^j}\bm{R}_k \right)^{-1} \bm{x}. $$
+for all $\bm{x} \in \mathbb{R}^3$. Therefore,
+
+$$
+\bm{A} = {^j}\bm{R}_k \; \bm{B} \; \left( {^j}\bm{R}_k \right)^{-1}.
+$$
+:::
+:::
+
+::: {.fragment}
 ::: {.callout-note icon="false"}
 ## Example
 Suppose frames $\{0\}$ and $\{1\}$ are related by the rotation 
@@ -587,6 +614,8 @@ This is not surprising because we can read from the third column of
 ${^0}\bm{R}_1$ that 
 
 $$\bm{x}_1 = -\bm{z}_0.$$
+:::
+:::
 :::
 :::
 
