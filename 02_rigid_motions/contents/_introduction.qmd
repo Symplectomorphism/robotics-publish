@@ -86,6 +86,8 @@ ${^A}\xi_B$.
 
 ## Coordinate frames {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="65%"}

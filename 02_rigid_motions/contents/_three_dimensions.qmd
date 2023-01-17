@@ -2,6 +2,8 @@
 
 ## Working in three dimensions ($3$D) {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="60%"}
@@ -149,25 +151,101 @@ $$
 
 :::
 
-::: {.fragment fragment-index=4}
+::: {.r-stack}
+::: {.fragment fragment-index=4 .fade-in-then-out}
 * Recall from Euler's rotation theorem that _any_ rotation can be represented 
 by _not more than three_ rotations about coordinate axes.
 
 * This means that an arbitrary rotation between frames can be decomposed into a 
 sequence of three rotation angles and associated rotation axes.
+:::
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.r-stack}
+::: {.fragment fragment-index=6 .fade-in-then-out}
+::: {.callout-tip icon="false"}
+## Method 1
+* Imagine a sequence of basic rotations that place frame $\{0\}$ triad onto
+frame $\{1\}$.
+  - First apply a initial rotation of $\bm{R}_{x,-90^\circ}$,
+  - Then apply a rotation of $\bm{R}_{z,-45^\circ}$ to the current axes.
+
+<p style="font-size:85%">
+$$
+{^0}\bm{R}_1 = \bm{R}_{x,-90^\circ}\bm{R}_{z,-45^\circ} = \begin{pmatrix}
+1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 1
+\end{pmatrix} = 
+\begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 1 \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+\end{pmatrix}.
+$$
+</p>
+:::
+:::
+
+::: {.fragment fragment-index=7}
+::: {.callout-tip icon="false"}
+## Method 2
+Using the definition of a rotation matrix, compute the direction cosines.
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^0}\bm{R}_1 =
+\begin{bmatrix}
+\bm{x}_1 \cdot \bm{x}_0 & \bm{y}_1 \cdot \bm{x}_0 & \bm{z}_1 \cdot \bm{x}_0 \\
+\bm{x}_1 \cdot \bm{y}_0 & \bm{y}_1 \cdot \bm{y}_0 & \bm{z}_1 \cdot \bm{y}_0 \\
+\bm{x}_1 \cdot \bm{z}_0 & \bm{y}_1 \cdot \bm{z}_0 & \bm{z}_1 \cdot \bm{z}_0
+\end{bmatrix} &= 
+\begin{bmatrix}
+\cos{45^\circ} & \cos{45^\circ} & \cos{90^\circ} \\
+\cos{90^\circ} & \cos{90^\circ} & \cos{0^\circ} \\
+\cos{45^\circ} & \cos{135^\circ} & \cos{90^\circ}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+0 & 0 & 1 \\
+\frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+\end{bmatrix}
+\end{aligned}
+$$
+</p>
+:::
+:::
+:::
+<!-- end of inner .r-stack -->
 
 :::
 
+::: {.column width="50%"}
 ::: {.fragment fragment-index=5}
 <center>
-<img src="contents/assets/example_2.2.png" width="300" heigth="300" />
+<img src="contents/assets/example_2.2.png" width="100%"/>
 </center>
 :::
+:::
+
+::::
+
+:::
+<!-- end of outer .r-stack -->
 
 
 # Parametrization of rotations
 
-## Constraints in the rotation matrix
+## Constraints in the rotation matrix[^1]
+
+[^1]: [Excellent resource](https://en.wikipedia.org/wiki/Rotation_formalisms_in_three_dimensions)
+
+
+&nbsp;
 
 ::: {.fragment fragment-index=1}
 
@@ -201,21 +279,21 @@ unknowns.
 
 :::: {.columns}
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 1. First rotate by the angle $\phi$ about the $z$-axis,
 2. Next rotate by the angle $\theta$ about the $y$-axis,
 3. Finally rotate by the angle $\psi$ about the $z$-axis.
 :::
 
-::: {.column width="60%"}
+::: {.column width="50%"}
 <center><img src="contents/assets/euler_angle_repr.png" width="700" heigth="700" /></center>
 :::
-
 ::::
-
+<p style="font-size:70%">
 $$
-\begin{aligned}
-\bm{R}_{ZYZ} = \bm{R}_{z,\phi}\bm{R}_{y,\phi}\bm{R}_{z,\psi} &= 
+\bm{R}_{ZYZ} = \begin{bmatrix} r_{11} & r_{12} & r_{13} \\ 
+r_{12} & r_{22} & r_{23} \\ r_{31} & r_{32} & r_{33} \end{bmatrix} = 
+\bm{R}_{z,\phi}\bm{R}_{y,\theta}\bm{R}_{z,\psi} = 
 \begin{bmatrix}
 c_\phi& -s_\phi& 0 \\ s_\phi & c_\phi & 0 \\ 0 & 0 & 1
 \end{bmatrix}
@@ -224,32 +302,18 @@ c_\theta & 0 & s_\theta \\ 0 & 1 & 0 \\ -s_\theta & 0 & c_\theta
 \end{bmatrix}
 \begin{bmatrix}
 c_\psi& -s_\psi& 0 \\ s_\psi & c_\psi & 0 \\ 0 & 0 & 1
-\end{bmatrix} \\ 
-&= \begin{bmatrix}
-c_\phi c_\theta c_\psi - s_\phi s_\psi & -c_\phi c_\theta s_\psi - s_\phi c_\psi & c_\phi s_\theta \\
-s_\phi c_\theta c_\psi + c_\phi s_\psi & -s_\phi c_\theta s_\psi + c_\phi c_\psi & s_\phi s_\theta \\
--s_\theta c_\psi & s_\theta s_\psi & c_\theta
-\end{bmatrix}.
-\end{aligned}
-$$
-
-
-## ZYZ Euler angles: inverse problem {.smaller}
-
-::: {.callout-note appearance="minimal"}
-For a given $\bm{R} \in \bm{SO}(3)$, find a set of Euler angles $\phi$, 
-$\theta$, and $\psi$ that satisfy
-
-$$
-\bm{R} = 
-\begin{bmatrix}
+\end{bmatrix}
+= \begin{bmatrix}
 c_\phi c_\theta c_\psi - s_\phi s_\psi & -c_\phi c_\theta s_\psi - s_\phi c_\psi & c_\phi s_\theta \\
 s_\phi c_\theta c_\psi + c_\phi s_\psi & -s_\phi c_\theta s_\psi + c_\phi c_\psi & s_\phi s_\theta \\
 -s_\theta c_\psi & s_\theta s_\psi & c_\theta
 \end{bmatrix}.
 $$
-:::
+</p>
 
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out}
 ::: {.callout-important icon="false"}
 ## Case 1. Not both $r_{13}$, $r_{23}$ are zero.
 
@@ -261,73 +325,79 @@ $$
 
 ::: {layout-ncol="3" layout-align="center" layout-valign="bottom"}
 
-::: {.fragment fragment-index=1}
+::: {}
+
 $$
 \begin{aligned}
-  \theta &= \arctan_2{ \left( r_{33}, \sqrt{1-r_{33}^2} \right) } \\
-  \theta &= \arctan_2{ \left( r_{33}, -\sqrt{1-r_{33}^2} \right) }
+  \theta &= \arctan_2{ \left( \sqrt{1-r_{33}^2}, r_{33} \right) } \\
+  \theta &= \arctan_2{ \left( -\sqrt{1-r_{33}^2}, r_{33} \right) }
 \end{aligned}
 $$
+
 :::
 
-::: {.fragment fragment-index=2 layout-valign="top"}
+::: {layout-valign="top"}
+
 $$
 \begin{aligned}
-  \phi &= \arctan_2{ \left( r_{13}, r_{23} \right) } \\
-  \phi &= \arctan_2{ \left( -r_{13}, -r_{23} \right) }
+  \phi &= \arctan_2{ \left( r_{23}, r_{13} \right) } \\
+  \phi &= \arctan_2{ \left( -r_{23}, -r_{13} \right) }
 \end{aligned}
 $$
+
 :::
 
-::: {.fragment fragment-index=3}
+::: {.fade-in}
+
 $$
 \begin{aligned}
-  \psi &= \arctan_2{ \left( -r_{31}, r_{32} \right) } \\
-  \psi &= \arctan_2{ \left( r_{31}, -r_{32} \right) }
+  \psi &= \arctan_2{ \left( -r_{32}, r_{31} \right) } \\
+  \psi &= \arctan_2{ \left( r_{32}, -r_{31} \right) }
 \end{aligned}
 $$
-:::
 
 :::
-
+:::
+:::
 :::
 
 
-## ZYZ Euler angles: inverse problem {.smaller}
+::: {.fragment .fade-in-then-out}
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ::: {.callout-important icon="false"}
 ## Case 2. $r_{13} = r_{23} = 0$ so that $r_{33} = \pm 1$ and $r_{31} = r_{32} = 0$.
-* $\bm{R}$ has the form 
-
-<center>
-$$ \bm{R} = \begin{bmatrix} r_{11} & r_{12} & 0 \\ 
-r_{12} & r_{22} & 0 \\ 0 & 0 & \pm 1 \end{bmatrix}. $$
-</center>
-
 * If $r_{33} = +1$, then $c_\theta = 1$ and $s_\theta = 0$ so that $\theta = 0$
-and $\bm{R}$ becomes
+and
 
 <center>
 $$
 \bm{R} = 
 \begin{bmatrix}
-  c_\phi c_\psi - s_\phi s_\psi & -c_\phi s_\psi - s_\phi c_\psi & 0 \\
-  s_\phi c_\psi + c_\phi s_\psi & -s_\phi s_\psi + c_\phi c_\psi & 0 \\
-  0 & 0 & 1
-\end{bmatrix} = 
-\begin{bmatrix}
   c_{\phi+\psi} & -s_{\phi+\psi} & 0 \\
   s_{\phi+\psi} & c_{\phi+\psi} & 0 \\
   0 & 0 & 1
+\end{bmatrix} = 
+\begin{bmatrix}
+  r_{11} & r_{12} & 0 \\ r_{21} & r_{22} & 0 \\ 0 & 0 & 1
 \end{bmatrix}.
 $$
 </center>
 
-Thus, the sum can be determined as $$ \phi + \psi = \arctan_2{ \left( r_{11}, 
-r_{21} \right) } = \arctan_2{ \left( r_{11}, -r_{12} \right) }. $$
+Thus, the sum can be determined as $$ \phi + \psi = \arctan_2{ \left( r_{21}, 
+r_{11} \right) } = \arctan_2{ \left( -r_{12}, r_{11} \right) }. $$
+
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-important icon="false"}
+## Case 2. $r_{13} = r_{23} = 0$ so that $r_{33} = \pm 1$ and $r_{31} = r_{32} = 0$.
 
 * If $r_{33} = -1$, then $c_\theta = -1$ and $s_\theta = 0$ so that $\theta = \pi$
-and $\bm{R}$ becomes
+and
 
 <center>
 $$
@@ -343,37 +413,350 @@ $$
 $$
 </center>
 
-The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{11}, -r_{12} \right) }. $$
+The solution is$$ \phi - \psi = \arctan_2{ \left( -r_{12}, -r_{11} \right) } = 
+\arctan_2{ \left( r_{21}, r_{22} \right) }. $$
+:::
+:::
+
+::::
+:::
+
+
+::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.callout-note icon="false"}
+## Running example
+* Suppose $\bm{R}$ is generated by 
+  - a rotation of $90^\circ$ about $\bm{z}_0$,
+  - a rotation of $30^\circ$ about $\bm{y}_0$,
+  - a rotation of $60^\circ$ about $\bm{x}_0$.
+<p style="font-size:95%">
+$$
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\
+\frac{1}{2} & -\frac{\sqrt{3}}{4} & -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} & \frac{1}{4} & \frac{\sqrt{3}}{4}
+\end{pmatrix}
+$$
+</p>
+:::
+
+:::
+
+::: {.column width="50%"}
+::: {.callout-note icon="false"}
+## Running example
+Not both $r_{13}$ and $r_{23}$ are zero.
+$\phantom{jdfsfjasifhanpiuvnbqpiuwegnewpuifgnaewpuifghapiughaifhiaudasfkjashfianfgfsaa}$
+
+$$
+\begin{aligned}
+\tan{\theta} &= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
+\frac{\sqrt{3}}{4}\right)} \Rightarrow \theta \approx 64.34^\circ, \\
+\tan{\phi} &= \arctan_2{\left(r_{23}, r_{13} \right)} \Rightarrow \phi \approx
+-56.31^\circ, \\
+\tan{\psi} &= \arctan_2{\left(r_{32}, -r_{31} \right)} \Rightarrow \psi \approx
+163.90^\circ.
+\end{aligned}
+$$
+:::
+:::
+
+::::
 
 :::
 
 
-## Rotation about an arbitrary vector {.smaller}
-
-* Two coordinate frames of arbitrary orientation can also be thought of as being 
-related by a _single_ rotation (of angle $\theta$) about some axis, 
-$\bm{\omega} \in \mathbb{R}^3$, in space.
-
-* Recall that a rotation matrix $\bm{R}$ always has the eigenvalue $1$: 
-$$  \bm{R}\bm{\omega} = \bm{\omega}. $$
-  - implies that the corresponding eigenvector $\bm{\bm{\omega}}$ is _unchanged_ 
-  by the rotation.
-  - there is only _one_ such vector and that is the _axis of rotation_.
-
-* Given an angle and a vector, we can find the rotation matrix that is generated 
-by using the matrix exponential: $$ \bm{R} = e^{\hat{\bm{\omega}}\theta}, $$ 
-where the _hat operator_ turns a vector to a skew-symmetric matrix:
-$$ \hat{~}: \mathbb{R}^3 \rightarrow \mathfrak{so}(3); \quad 
-\bm{\omega} \mapsto \begin{bmatrix} 0 & -\bm{\omega}_3 & \bm{\omega}_2 \\ 
-\bm{\omega}_3 & 0 & -\bm{\omega}_1 \\
--\bm{\omega}_2 & \bm{\omega}_1 & 0 \end{bmatrix}.$$
-
-* The Rodrigues rotation formula gives us an easy way to evaluate the matrix exponential:
-$$ e^{\hat{\bm{\omega}}\theta} = \bm{I} + \sin{(\theta)} \hat{\bm{\omega}} + 
-  \left(1 - \cos{(\theta)}\right)\hat{\bm{\omega}}^2. $$
+:::
 
 
-## Unit quaternions {.smaller}
+## Roll-pitch-yaw angles {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="75%"}
+* $\bm{R}$ described as a product of successive rotations about the principal 
+coordinate axes $z$, $y^\prime$, and $x^{\prime\prime}$ taken in a specific order.
+  - First a _yaw_ about $z$ through an angle $\psi$,
+  - Then _pitch_ about the _current_ $y^\prime$ by an angle $\theta$,
+  - Finally _roll_ about the _current_ $x^{\prime\prime}$ by an angle $\phi$.
+* The resulting transformation matrix is given by
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/roll-pitch-yaw.svg" width="100%"/>
+</center>
+
+::: {.callout-tip appearance="minimal"}
+$\phi$: roll, $\;\theta$: pitch, $\;\psi$: yaw
+:::
+
+:::
+
+<p style="font-size:75%">
+$$
+\begin{aligned}
+\bm{R} &= \bm{R}_{z,\psi}\bm{R}_{y,\theta}\bm{R}_{x,\phi} = 
+\begin{pmatrix}
+c_\psi & -s_\psi & 0 \\ s_\psi & c_\psi & 0 \\ 0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+c_\theta & 0 & s_\theta \\ 0 & 1 & 0 \\ -s_\theta & 0 & c_\theta
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 \\ 0 & c_\phi & -s_\phi \\ 0 & s_\phi & c_\phi
+\end{pmatrix} = 
+\begin{pmatrix}
+c_\psi c_\theta & - s_\psi c_\phi + c_\psi s_\theta s_\phi & s_\psi s_\phi + c_\psi s_\theta c_\phi \\
+s_\psi c_\theta & c_\psi c_\phi + s_\psi s_\theta s_\phi & -c_\psi s_\phi + s_\psi s_\theta c_\phi \\
+-s_\theta & c_\theta s_\phi & c_\theta c_\phi
+\end{pmatrix}
+\end{aligned}
+$$
+</p>
+
+* The three angles $\psi$, $\theta$, and $\phi$ can be obtained for a given
+rotation matrix using a method that is similar to that used to derive the
+Euler angles above.
+  - Running example: $\theta \approx -60^\circ$, $\phi \approx 30^\circ$, and
+    $\psi \approx 90^\circ$.
+
+::::
+
+## Similarity transformations {.smaller}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+* A coordinate frame is defined by a set of __basis vectors__.
+  - A rotation matrix, as a coordinate transformation, can be viewed as defining
+    a change of basis from one frame to another.
+  - The matrix representation of a general linear transformation is transformed
+    from one frame to another using a so-called
+
+::: {.callout-tip icon="false"}
+## Similarity Transformation
+If $\bm{A}$ is the matrix representation of a given linear transformation in frame
+$\{j\}$ and $\bm{B}$ is the representation of the same linear transformation in
+$\{k\}$, then $\bm{A}$ and $\bm{B}$ are related as 
+
+$$ \bm{B} = \left({^j}\bm{R}_k\right)^{-1} \; \bm{A} \; {^j}\bm{R}_k \qquad
+\text{ or } \qquad \bm{A} = {^j}\bm{R}_k \; \bm{B} \;
+\left({^j}\bm{R}_k\right)^{-1}. $$
+
+where ${^j}\bm{R}_k$ is the coordinate transformation between frames $\{k\}$ and
+$\{j\}$.
+:::
+
+:::
+
+::: {.column width="45%"}
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out}
+::: {.callout-important icon="false"}
+## Proof
+Let $\bm{x}$ be a point of $\mathbb{R}^3$ and $\bm{Ax}$ the transformed point,
+both expressed in frame $\{j\}$.
+
+On the other hand, let $\bm{y}$ be the same point of $\mathbb{R}^3$ and
+$\bm{By}$ the same transformed point, both expressed in frame $\{k\}$.
+
+Recall that $\bm{x}$ and $\bm{y}$ are related by $\bm{x} = {^j}\bm{R}_k \bm{y}$.
+
+Similarly, since $\bm{By}$ and $\bm{Ax}$ are physically the same point, but
+expressed in different frames, they are related by $\bm{Ax} = {^j}\bm{R}_k
+\bm{By}$.
+
+Substituting for $\bm{y}$, we obtain
+$$ \bm{Ax} = {^j}\bm{R}_k \; \bm{B} \; \left( {^j}\bm{R}_k \right)^{-1} \bm{x}. $$
+for all $\bm{x} \in \mathbb{R}^3$. Therefore,
+
+$$
+\bm{A} = {^j}\bm{R}_k \; \bm{B} \; \left( {^j}\bm{R}_k \right)^{-1}.
+$$
+:::
+:::
+
+::: {.fragment}
+::: {.callout-note icon="false"}
+## Example
+Suppose frames $\{0\}$ and $\{1\}$ are related by the rotation 
+
+$$
+{^0}\bm{R}_1 = \begin{pmatrix}
+0 & 0 & 1 \\ 0 & 1 & 0 \\ -1 & 0 & 0
+\end{pmatrix}.
+$$
+
+If $\bm{A} = \bm{R}_{z,\theta}$ relative to the frame $\{0\}$, then, relative to
+frame $\{1\}$ we have
+
+$$
+\bm{B} = \left({^0}\bm{R}_1\right)^{-1} \bm{A} {^0}\bm{R}_1 = \begin{pmatrix}
+1 & 0 & 0 \\ 0 & c_\theta & s_\theta \\ 0 & -s_\theta & c_\theta
+\end{pmatrix}.
+$$
+
+In other words, $\bm{B}$ is a rotation about the $\bm{z}_0$-axis, but expressed
+relative to frame $\{1\}$. Note that, in frame $\{1\}$, it is represented by a
+rotation by $\theta$ about the $-\bm{x}_1$-axis. 
+
+This is not surprising because we can read from the third column of
+${^0}\bm{R}_1$ that 
+
+$$\bm{x}_1 = -\bm{z}_0.$$
+:::
+:::
+:::
+:::
+
+::::
+
+
+
+## Axis-angle representation {.smaller}
+
+:::: {.columns}
+
+::: {.column width="75%"}
+* Rotations: not always performed about the principal coordinate axes.
+  - Let the axis $\bm{k} = \begin{pmatrix} k_x & k_y & k_z \end{pmatrix}^\top$,
+    expressed in $\{0\}$, be a unit vector.
+* Find a rotation matrix $\bm{R}_{k,\theta}$ representing a rotation
+    of $\theta$ about axis $\bm{k}$
+  - The rotational transformation $\bm{R} = \bm{R}_{z,\alpha}\bm{R}_{y,\beta}$ 
+    brings the world $z$-axis into alignment with the vector $\bm{k}$.
+  - A rotation about the axis $\bm{k}$ is computed using a similarity
+    transformation as
+<p style="font-size:90%">
+$$ \bm{R}_{k,\theta} = \bm{R}\bm{R}_{z,\theta}\bm{R}^{-1} =
+\bm{R}_{z,\alpha}\bm{R}_{y,\beta}\bm{R}_{z,\theta}\bm{R}_{y,-\beta}\bm{R}_{z,-\alpha}
+= \bm{R}_{-k,-\theta}.
+$$
+</p>
+* After some lengthy calculation (homework) and with $v_\theta = \text{vers}\;{\theta} = 1-c_\theta$,
+
+<p style="font-size:95%">
+$$
+\bm{R}_{k,\theta} = \begin{pmatrix}
+k_x^2v_\theta + c_\theta & k_xk_yv_\theta - k_zs_\theta & k_xk_zv_\theta + k_ys_\theta \\
+k_xk_yv_\theta + k_zs_\theta & k_y^2v_\theta +c_\theta & k_yk_zv_\theta - k_xs_\theta \\
+k_xk_zv_\theta - k_ys_\theta & k_yk_zv_\theta + k_xs_\theta & k_z^2v_\theta + c_\theta
+\end{pmatrix}
+$$
+</p>
+:::
+
+::: {.column width="25%" h-align="right"}
+<center>
+<img data-src="contents/assets/rotation_arbitrary_axis.png" width="100%"/>
+</center>
+
+<p style="font-size:90%">
+$$
+\begin{aligned}
+\sin{\alpha} &= \frac{k_y}{\sqrt{k_x^2+k_y^2}}, \;\; \cos{\alpha} =
+\frac{k_x}{\sqrt{k_x^2+k_y^2}} \\
+\sin{\beta} &= \sqrt{k_x^2+k_y^2}, \;\; \cos{\beta} = k_z.
+\end{aligned}
+$$
+</p>
+
+&nbsp;
+
+<u>Given $\bm{R}$, find: $\theta$ and $\bm{k}$</u>
+
+<p style="font-size:80%">
+$$ 
+\begin{aligned}
+\theta &= \arccos{\left( \frac{1}{2}\left(\text{tr} \; \bm{R} - 1\right) \right)}, \\
+\bm{k} &= \frac{1}{2 \sin{\theta}} \begin{pmatrix} r_{32} - r_{23} \\
+r_{13}-r_{31} \\ r_{21} - r_{12} \end{pmatrix} \text{ or } \hat{\bm{k}} =
+\frac{1}{2\sin{\theta}}\left(\bm{R}-\bm{R}^\top\right).
+\end{aligned}
+$$
+</p>
+
+:::
+
+::::
+
+
+## Axis-angle representation {.smaller}
+
+
+:::: {.columns}
+
+::: {.column width="56%"}
+* Axis-angle representation characterizes a given rotation by four quantities:
+  - Three components of the equivalent axis $\bm{k}$,
+  - The equivalent angle $\theta$.
+* $\bm{k}$ is given as a unit vector so only two of its components are
+independent.
+* We can represent the equivalent angle-axis by a single vector $\bm{r}$ as 
+$$ r = \begin{pmatrix} r_x & r_y & r_z \end{pmatrix}^\top = \begin{pmatrix}
+\theta k_x & \theta k_y & \theta k_z \end{pmatrix}^\top. $$
+* Since $\left\|\bm{k}\right\| = 1$, $\left\|\bm{r}\right\| = \theta$.
+* The direction of $\bm{r}$ is equal to the axis $\bm{k}$.
+
+
+::: {.callout-caution icon="true"}
+## CAUTION
+Two axis-angle representations may **NOT** be combined using standard rules of
+vector algebra! Doing so would imply that rotations commute (which we know they
+do **NOT**).
+:::
+
+:::
+
+
+::: {.column width="44%"}
+
+&nbsp;
+
+::: {.callout-note icon="false"}
+## Running example
+* Suppose $\bm{R}$ is generated by 
+  - a rotation of $90^\circ$ about $\bm{z}_0$,
+  - a rotation of $30^\circ$ about $\bm{y}_0$,
+  - a rotation of $60^\circ$ about $\bm{x}_0$.
+<p style="font-size:95%">
+$$
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\
+\frac{1}{2} & -\frac{\sqrt{3}}{4} & -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} & \frac{1}{4} & \frac{\sqrt{3}}{4}
+\end{pmatrix}
+$$
+</p>
+
+* We see that $\;\text{tr}\;\bm{R} = 0\;$ hence $\theta =
+\arccos{\left(-\frac{1}{2})} = 120^\circ$.
+
+* The equivalent axis is given as 
+$$ \bm{k} = \frac{1}{\sqrt{3}} \begin{pmatrix} 
+1 \\ \frac{1}{2}\left(1-\sqrt{3}\right) \\
+\frac{1}{2}\left(1+\sqrt{3}\right)
+\end{pmatrix}. $$
+:::
+
+:::
+
+::::
+
+
+
+## Quaternions {.smaller}
 
 ::: {.callout-tip icon="false"}
 ## Quaternion -- extension of the complex number
@@ -401,19 +784,29 @@ v_3 & -v_2 & v_1 & s
 \end{pmatrix}
 \begin{pmatrix}
 s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
+\end{pmatrix} = \left( s\bm{I} + \begin{pmatrix}
+0 & -\bm{v}^\top \\ \bm{v} & \hat{\bm{v}}
+\end{pmatrix}\right) \begin{pmatrix}
+s^\prime \\ v_1^\prime \\ v_2^\prime \\ v_3^\prime
 \end{pmatrix}
 $$
 
 
 ## Unit quaternions {.smaller}
 
-* To represent rotations, we use unit-quaternions, denoted by $\mathring{\bm{q}}$, that is,
-$$ \left\| \bm{q} \right\| = s^2 + v_1^2 + v_2^2 + v_3^2 = 1. $$
+:::: {.columns}
 
-* They can be considered as a rotation of $\theta$ about the unit vector
-$\bm{v}$, which are related to the quaternions by $$ \mathring{\bm{q}} = 
-\cos{\frac{\theta}{2}} \langle \bm{v} \sin{\frac{\theta}{2}} \rangle. $$
+::: {.column width="50%"}
 
+* Rotations: represented by unit-quaternions, denoted $\mathring{\bm{q}}$, so
+that $\left\| \bm{q} \right\| = 1$.
+
+* Considered as a rotation of $\theta$ about the unit vector
+$\bm{k}$: related to unit quaternions by $$ \mathring{\bm{q}} = 
+\cos{\frac{\theta}{2}} \langle \bm{k} \sin{\frac{\theta}{2}} \rangle. $$
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out}
 ::: {.callout-warning icon="false"}
 ## Concrete representation: $\xi \sim \mathring{\bm{q}} \in \mathbb{S}^3$
 
@@ -430,6 +823,120 @@ as the identity quaternion).
 \mathring{\bm{q}} \circ \mathring{\bm{v}} \circ \mathring{\bm{q}}^{-1}, $$ where 
 $\mathring{\bm{v}} = 0 \langle \bm{v} \rangle$ is known as a pure quaternion.
 :::
+:::
+
+::: {.fragment}
+::: {.callout-note icon="false"}
+## Running example
+<p style="font-size:95%">
+$$
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\
+\frac{1}{2} & -\frac{\sqrt{3}}{4} & -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} & \frac{1}{4} & \frac{\sqrt{3}}{4}
+\end{pmatrix}
+$$
+</p>
+
+We compute $\bm{x}_0$ to find
+
+<p style="font-size:95%">
+$$
+\bm{x}_0 = \begin{pmatrix} 1 & 1 & \frac{1}{2}\left(1-\sqrt{3}\right) &
+\frac{1}{2}\left(1+\sqrt{3}\right)\end{pmatrix}^\top
+$$
+</p>
+
+with the norm $\left\|\bm{x}_0\right\| = 2$. Hence
+
+<p style="font-size:95%">
+$$
+\mathring{\bm{q}} = \frac{1}{2}\left\langle \frac{1}{2},\;
+\frac{1}{4}\left(1-\sqrt{3}\right),\; \frac{1}{4}\left(1+\sqrt{3}\right)
+\right\rangle = \cos{60^\circ}\left\langle \bm{k} \sin{60^\circ} \right\rangle,
+$$
+</p>
+
+where $\bm{k}$ is the unit vector from the axis-angle slide.
+
+:::
+:::
+
+
+:::
+<!-- end of .r-stack -->
+
+:::
+<!-- end of column -->
+
+
+::: {.column width="50%"}
+::: {.callout-warning icon="false"}
+## Unit quaternion and rotation matrix
+Given $\mathring{\bm{q}} = s\langle \bm{v}\rangle$, the corresponding rotation
+matrix is $$ \bm{R} = \left(s^2 -\bm{v}^\top\bm{v} \right)\bm{I} +
+2\bm{v}\bm{v}^\top + 2s \hat{\bm{v}}. $$
+
+Given $\bm{R}$, to find the corresponding $\mathring{\bm{q}}$, we set up the
+following quaternions $\left\{\bm{x}_i\right\}_{i=0}^3 = \begin{pmatrix} s & v_1
+& v_2 & v_3 \end{pmatrix}^\top$.
+<p style="font-size:75%">
+$$
+\begin{aligned}
+\bm{x}_0 &= \begin{pmatrix} 1 + \text{tr}\;\bm{R} \\ r_{32}-r_{23} \\
+r_{13}-r_{31} \\ r_{21}-r_{12} \end{pmatrix}, \;\; 
+&\bm{x}_1 = \begin{pmatrix} r_{32}-r_{23} \\ 1 + r_{11}-r_{22}-r_{33} \\ r_{12}
++ r_{21} \\ r_{13}+r_{31}
+\end{pmatrix}, \\
+\bm{x}_2 &= \begin{pmatrix} r_{13}-r_{31} \\ r_{21}+r_{12} \\
+1+r_{22}-r_{33}-r_{11} \\ r_{23}+r_{32} \end{pmatrix}, \;\; 
+&\bm{x}_3 = \begin{pmatrix} r_{21}-r_{12} \\  r_{31}+r_{13} \\ r_{32}+r_{23} \\
+1 + r_{33} - r_{11} - r_{22}
+\end{pmatrix}.
+\end{aligned}
+$$
+</p>
+
+* Note: $\;\;\bm{x}_0 = 4s\mathring{\bm{q}}, \;\; \bm{x}_1 = 4v_1\mathring{\bm{q}}, 
+\;\; \bm{x}_2 = 4v_2\mathring{\bm{q}}, \;\; \bm{x}_3 = 4v_3\mathring{\bm{q}}$.
+
+* Choose index $i$ by $i = \arg \max \left\{s^2, v_1^2, v_2^2, v_3^2 \right\}$, where if
+$s$ is the maximum, the index is assigned $0$ and so on.
+
+* The unit quaternion is computed as $\;\; \mathring{\bm{q}} =
+\frac{\pm \bm{x}_i}{\left\|\bm{x}_i\right\|}$.
+:::
+:::
+
+::::
+
+
+
+## <span style="font-size: 96%">Exponential coordinates -- Rodrigues's formula</span> {.smaller}
+
+* Two coordinate frames of arbitrary orientation can also be thought of as being 
+related by a _single_ rotation (of angle $\theta$) about some axis, 
+$\bm{\omega} \in \mathbb{R}^3$, in space.
+
+* Recall that a rotation matrix $\bm{R}$ always has the eigenvalue $1$: 
+$$  \bm{R}\bm{\omega} = \bm{\omega}. $$
+  - implies that the corresponding eigenvector $\bm{\bm{\omega}}$ is _unchanged_ 
+  by the rotation.
+  - there is only _one_ such vector and that is the _axis of rotation_.
+
+* Given an angle and a vector, we can find the rotation matrix that is generated 
+by using the matrix exponential: $$ \bm{R} = e^{\hat{\bm{\omega}}\theta}, $$ 
+where the _hat operator_ turns a vector to a skew-symmetric matrix:
+$$ \hat{~}: \mathbb{R}^3 \rightarrow \mathfrak{so}(3); \quad 
+\bm{\omega} \mapsto \begin{bmatrix} 0 & -\bm{\omega}_3 & \bm{\omega}_2 \\ 
+\bm{\omega}_3 & 0 & -\bm{\omega}_1 \\
+-\bm{\omega}_2 & \bm{\omega}_1 & 0 \end{bmatrix}.$$
+
+* The Rodrigues rotation formula gives us an easy way to evaluate the matrix exponential:
+$$ e^{\hat{\bm{\omega}}\theta} = \bm{I} + \sin{(\theta)} \hat{\bm{\omega}} + 
+  \left(1 - \cos{(\theta)}\right)\hat{\bm{\omega}}^2. $$
+
 
 
 
@@ -438,7 +945,7 @@ $\mathring{\bm{v}} = 0 \langle \bm{v} \rangle$ is known as a pure quaternion.
 :::: {.columns}
 
 ::: {.column width="70%"}
-* Let's account for the trnaslation btw. the origins of $\{A\}$ and $\{B\}$.
+* Let's account for the translation btw. the origins of $\{A\}$ and $\{B\}$.
 
 * $\bm{t} \in \mathbb{R}^3$ is a vector defining the origin of frame $\{B\}$ 
 w.r.t. frame $\{A\}$ and $\bm{R}$ is the rotation matrix describing the 
@@ -483,6 +990,8 @@ $\{B\}$ is rotated and translated w.r.t. $\{A\}$.
 
 ## Homogeneous transformations in $3$D {.smaller}
 
+&nbsp;
+
 ::: {.callout-tip icon="false"}
 ## Properties of homogeneous transformations
 
@@ -499,7 +1008,7 @@ $$
 \bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 3} & 1
 \end{bmatrix}
 \begin{bmatrix}
-\bm{R}_1\bm{R}_2 & \bm{t}_1 + R_1t_2 \\ \bm{0}_{1 \times 3} & 1
+\bm{R}_1\bm{R}_2 & \bm{t}_1 + \bm{R}_1t_2 \\ \bm{0}_{1 \times 3} & 1
 \end{bmatrix}.
 $$
 
@@ -523,3 +1032,100 @@ Finally, for a point $\bm{p}$ in homogeneous representation, we have $\bm{T}
 
 The $4 \times 4$ homogeneous transformation is very commonly used in robotics,
 computer graphics, and computer vision. 
+
+
+
+## Example problem {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+::: {.fragment fragment-index=1}
+1. Find the homogeneous transformations ${^0}\bm{T}_1$, ${^0}\bm{T}_2$,
+${^1}\bm{T}_2$.
+2. Show that ${^0}\bm{T}_2 = {^0}\bm{T}_1{^1}\bm{T}_2$.
+:::
+
+::: {.fragment fragment-index=5}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^0}\bm{T}_1{^1}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}\bm{R}_{y,-90^\circ}\bm{R}_{x,90^\circ} & 
+{^0}\bm{t}_1 + \bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}{^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} \\
+&= \begin{pmatrix}
+{^0}\bm{R}_2 & 
+{^0}\bm{t}_1 + \bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ}{^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} = 
+\begin{pmatrix}
+{^0}\bm{R}_2 & {^0}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix} = {^0}\bm{T}_2.
+\end{aligned}
+$$
+</p>
+:::
+
+:::
+
+::: {.column width="30%"}
+::: {.fragment fragment-index=1}
+<center>
+<img data-src="contents/assets/problem_diagram.png" width="100%"/>
+</center>
+:::
+:::
+
+::::
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="33%" .fragment fragment-index=2}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^0}\bm{T}_1 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{y,90^\circ} & {^0}\bm{t}_1 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^0}\bm{t}_1 &= \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}^\top.
+\end{aligned}
+$$
+</p>
+
+:::
+
+::: {.column width="33%" .fragment fragment-index=3}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^0}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{z,-90^\circ}\bm{R}_{x,90^\circ} & {^0}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^0}\bm{t}_2 &= \begin{pmatrix} 0 & 1 & 0 \end{pmatrix}^\top.
+\end{aligned}
+$$
+</p>
+
+:::
+
+::: {.column width="33%" .fragment fragment-index=4}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+{^1}\bm{T}_2 &= \begin{pmatrix}
+\bm{R}_{y,-90^\circ}\bm{R}_{x,90^\circ} & {^1}\bm{t}_2 \\ \bm{0} & 1
+\end{pmatrix}, \\
+{^1}\bm{t}_2 &= \begin{pmatrix} 1 & 0 & -1 \end{pmatrix}^\top.
+\end{aligned}
+$$
+</p>
+
+:::
+
+
+::::

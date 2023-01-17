@@ -40,6 +40,8 @@ $\{B\}$ is rotated and translated w.r.t. $\{A\}$.
 
 ## Orientation in two dimensions {.smaller}
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="70%"}
@@ -80,6 +82,8 @@ Rotated coordinate frames in $2$D.
 ::::
 
 ## Orientation in two dimensions {.smaller}
+
+&nbsp;
 
 :::: {.columns}
 
@@ -207,6 +211,8 @@ Rotated coordinate frames in $2$D.
 
 ## Homogeneous transformations in $2$D {.smaller}
 
+::: {.r-stack}
+::: {.fragment fragment-index=1 .fade-in-then-out}
 * The matrix ${^A}\bm{T}_B$ has a very specific structure and belongs to the special 
 Euclidean group of dimension $2$ or $\bm{T} \in \bm{SE}(2)$.
 * This matrix is often referred to as a _rigid-body motion_.
@@ -233,7 +239,7 @@ $$
 \bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 2} & 1
 \end{bmatrix}
 \begin{bmatrix}
-\bm{R}_1\bm{R}_2 & \bm{t}_1 + R_1t_2 \\ \bm{0}_{1 \times 2} & 1
+\bm{R}_1\bm{R}_2 & \bm{t}_1 + \bm{R}_1t_2 \\ \bm{0}_{1 \times 2} & 1
 \end{bmatrix}.
 $$
 
@@ -247,4 +253,82 @@ Another rule was that $\xi \ominus \xi = 0$. We know for matrices that $\bm{T}
 
 Finally, for a point $\bm{p}$ in homogeneous representation, we have $\bm{T} 
 \bullet \bm{p} \leftrightarrow \bm{Tp}$, which is a standard matrix-vector product.
+:::
+:::
+
+::: {.fragment fragment-index=2}
+::: {.callout-note icon="false"}
+## Example
+:::: {.columns}
+
+::: {.column width="64%"}
+::: {.fragment fragment-index=3}
+:::: {.columns}
+::: {.column width="49%"}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+\bm{T}_1 &= \mathcal{T}_{x,1}\mathcal{T}_{y,2}\mathcal{R}_{z,30^\circ} =
+\begin{pmatrix}
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & 1 \\ \frac{1}{2} & \frac{\sqrt{3}}{2} & 2 \\
+0 & 0 & 1
+\end{pmatrix}, \\
+{^0}\bm{T}_3 &= \bm{T}_1\bm{T}_2 = \begin{pmatrix}
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & \frac{1}{2} + \sqrt{3} \\ \frac{1}{2} & \frac{\sqrt{3}}{2}
+& 3 + \frac{\sqrt{3}}{2} \\
+0 & 0 & 1
+\end{pmatrix},
+\end{aligned}
+$$
+</p>
+:::
+::: {.column width="49%"}
+<p style="font-size:85%">
+$$
+\begin{aligned}
+\bm{T}_2 &= \mathcal{T}_{x,2}\mathcal{T}_{y,1}=
+\begin{pmatrix}
+1 & 0 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 1
+\end{pmatrix}, \\
+{^0}\bm{T}_4 &= \bm{T}_2\bm{T}_1 = \begin{pmatrix}
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & 3 \\ \frac{1}{2} & \frac{\sqrt{3}}{2} & 3 \\
+0 & 0 & 1
+\end{pmatrix}
+\end{aligned}
+$$
+</p>
+:::
+::::
+
+To determine the coordinates of the point $P$ w.r.t., say, $\{1\}$ we write
+$$
+{^0}\bm{p} = {^0}\xi_1 \bullet {^1}\bm{p} \;\; \Longrightarrow \;\;
+{^1}\bm{p} = {^1}\xi_0 \bullet {^0}\bm{p} = \left({^0}\xi_1\right)^{-1} \bullet {^0}\bm{p}
+$$
+Concretely, we have
+$$
+{^1}\bm{p} = \bm{T}_1^{-1} \begin{pmatrix} 3 \\ 2 \\ 1 \end{pmatrix} 
+= \begin{pmatrix}
+\frac{\sqrt{3}}{2} & \frac{1}{2} & -1 - \frac{\sqrt{3}}{2} \\ -\frac{1}{2} &
+\frac{\sqrt{3}}{2} & \frac{1}{2} - \sqrt{3} \\
+0 & 0 & 1
+\end{pmatrix}\begin{pmatrix} 3 \\ 2 \\ 1\end{pmatrix} =
+\begin{pmatrix}
+\sqrt{3} \\ -1 \\ 1
+\end{pmatrix}
+$$
+:::
+:::
+:::
+<!-- end of column 64% -->
+
+::: {.column width="34%"}
+<center>
+<img data-src="contents/assets/rigid_comp_2d.png" width="100%"/>
+</center>
+:::
+
+::::
+:::
+
 :::
