@@ -262,6 +262,7 @@ Finally, for a point $\bm{p}$ in homogeneous representation, we have $\bm{T}
 :::: {.columns}
 
 ::: {.column width="64%"}
+::: {.fragment fragment-index=3}
 :::: {.columns}
 ::: {.column width="49%"}
 <p style="font-size:85%">
@@ -318,7 +319,8 @@ $$
 $$
 :::
 :::
-<!-- end of column 65% -->
+:::
+<!-- end of column 64% -->
 
 ::: {.column width="34%"}
 <center>
