@@ -930,10 +930,10 @@ $$
 \sin{30^\circ}, \; 0, \; 0 \rangle = \frac{\sqrt{3}}{2}\left\langle \frac{1}{2}, \;
 0, \; 0 \right\rangle \\
 \bm{R}_{y,30^\circ} &\sim \mathring{\bm{q}}_2 = \cos{15^\circ}\langle
-\sin{15^\circ}, \; 0, \; 0 \rangle = \frac{\sqrt{3}+1}{2\sqrt{2}}\left\langle 0, \;
+0, \; \sin{15^\circ}, \; 0 \rangle = \frac{\sqrt{3}+1}{2\sqrt{2}}\left\langle 0, \;
 \frac{\sqrt{3}-1}{2\sqrt{2}}, \; 0 \right\rangle \\
 \bm{R}_{z,90^\circ} &\sim \mathring{\bm{q}}_3 = \cos{45^\circ}\langle
-\sin{45^\circ}, \; 0, \; 0 \rangle = \frac{\sqrt{2}}{2}\left\langle 0, \;
+0, \; 0, \; \sin{45^\circ} \rangle = \frac{\sqrt{2}}{2}\left\langle 0, \;
 0, \; \frac{\sqrt{2}}{2} \right\rangle \\
 \end{aligned}
 $$
