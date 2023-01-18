@@ -14,6 +14,7 @@ format:
     chalkboard:
       buttons: false
     preview-links: auto
+    pdf-separate-fragments: true
     theme: [white, custom.scss]
     standalone: false
     self-contained: false
