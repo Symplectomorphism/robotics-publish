@@ -456,11 +456,11 @@ $\phantom{jdfsfjasifhanpiuvnbqpiuwegnewpuifgnaewpuifghapiughaifhiaudasfkjashfian
 
 $$
 \begin{aligned}
-\tan{\theta} &= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
-\frac{\sqrt{3}}{4}\right)} \Rightarrow \theta \approx 64.34^\circ, \\
-\tan{\phi} &= \arctan_2{\left(r_{23}, r_{13} \right)} \Rightarrow \phi \approx
+\theta &= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
+\frac{\sqrt{3}}{4}\right)} \approx 64.34^\circ, \\
+\phi &= \arctan_2{\left(r_{23}, r_{13} \right)} \approx
 -56.31^\circ, \\
-\tan{\psi} &= \arctan_2{\left(r_{32}, -r_{31} \right)} \Rightarrow \psi \approx
+\psi &= \arctan_2{\left(r_{32}, -r_{31} \right)} \approx
 163.90^\circ.
 \end{aligned}
 $$
@@ -526,8 +526,8 @@ $$
 * The three angles $\psi$, $\theta$, and $\phi$ can be obtained for a given
 rotation matrix using a method that is similar to that used to derive the
 Euler angles above.
-  - Running example: $\theta \approx -60^\circ$, $\phi \approx 30^\circ$, and
-    $\psi \approx 90^\circ$.
+  - Running example: $\theta = -60^\circ$, $\phi = 30^\circ$, and
+    $\psi = 90^\circ$.
 
 ::::
 
@@ -741,7 +741,7 @@ $$
 </p>
 
 * We see that $\;\text{tr}\;\bm{R} = 0\;$ hence $\theta =
-\arccos{\left(-\frac{1}{2})} = 120^\circ$.
+\arccos{\left(-\frac{1}{2}\right)} = 120^\circ$.
 
 * The equivalent axis is given as 
 $$ \bm{k} = \frac{1}{\sqrt{3}} \begin{pmatrix} 
