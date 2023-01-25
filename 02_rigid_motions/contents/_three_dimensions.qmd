@@ -1049,7 +1049,7 @@ $$
 \end{bmatrix}
 \begin{bmatrix}
 \bm{R}_2 & \bm{t}_2 \\ \bm{0}_{1 \times 3} & 1
-\end{bmatrix}
+\end{bmatrix} = 
 \begin{bmatrix}
 \bm{R}_1\bm{R}_2 & \bm{t}_1 + \bm{R}_1t_2 \\ \bm{0}_{1 \times 3} & 1
 \end{bmatrix}.
