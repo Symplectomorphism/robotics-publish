@@ -456,11 +456,11 @@ $\phantom{jdfsfjasifhanpiuvnbqpiuwegnewpuifgnaewpuifghapiughaifhiaudasfkjashfian
 
 $$
 \begin{aligned}
-\tan{\theta} &= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
-\frac{\sqrt{3}}{4}\right)} \Rightarrow \theta \approx 64.34^\circ, \\
-\tan{\phi} &= \arctan_2{\left(r_{23}, r_{13} \right)} \Rightarrow \phi \approx
+\theta &= \arctan_2{\left(\sqrt{1-\left(\frac{\sqrt{3}}{4}\right)^2},
+\frac{\sqrt{3}}{4}\right)} \approx 64.34^\circ, \\
+\phi &= \arctan_2{\left(r_{23}, r_{13} \right)} \approx
 -56.31^\circ, \\
-\tan{\psi} &= \arctan_2{\left(r_{32}, -r_{31} \right)} \Rightarrow \psi \approx
+\psi &= \arctan_2{\left(r_{32}, -r_{31} \right)} \approx
 163.90^\circ.
 \end{aligned}
 $$
@@ -526,8 +526,8 @@ $$
 * The three angles $\psi$, $\theta$, and $\phi$ can be obtained for a given
 rotation matrix using a method that is similar to that used to derive the
 Euler angles above.
-  - Running example: $\theta \approx -60^\circ$, $\phi \approx 30^\circ$, and
-    $\psi \approx 90^\circ$.
+  - Running example: $\theta = -60^\circ$, $\phi = 30^\circ$, and
+    $\psi = 90^\circ$.
 
 ::::
 
@@ -627,8 +627,8 @@ $$\bm{x}_1 = -\bm{z}_0.$$
 
 :::: {.columns}
 
-::: {.column width="75%"}
-* Rotations: not always performed about the principal coordinate axes.
+::: {.column width="70%"}
+* Rotations: not always performed about the coordinate axes.
   - Let the axis $\bm{k} = \begin{pmatrix} k_x & k_y & k_z \end{pmatrix}^\top$,
     expressed in $\{0\}$, be a unit vector.
 * Find a rotation matrix $\bm{R}_{k,\theta}$ representing a rotation
@@ -637,7 +637,7 @@ $$\bm{x}_1 = -\bm{z}_0.$$
     brings the world $z$-axis into alignment with the vector $\bm{k}$.
   - A rotation about the axis $\bm{k}$ is computed using a similarity
     transformation as
-<p style="font-size:90%">
+<p style="font-size:80%">
 $$ \bm{R}_{k,\theta} = \bm{R}\bm{R}_{z,\theta}\bm{R}^{-1} =
 \bm{R}_{z,\alpha}\bm{R}_{y,\beta}\bm{R}_{z,\theta}\bm{R}_{y,-\beta}\bm{R}_{z,-\alpha}
 = \bm{R}_{-k,-\theta}.
@@ -645,7 +645,7 @@ $$
 </p>
 * After some lengthy calculation (homework) and with $v_\theta = \text{vers}\;{\theta} = 1-c_\theta$,
 
-<p style="font-size:95%">
+<p style="font-size:90%">
 $$
 \bm{R}_{k,\theta} = \begin{pmatrix}
 k_x^2v_\theta + c_\theta & k_xk_yv_\theta - k_zs_\theta & k_xk_zv_\theta + k_ys_\theta \\
@@ -656,9 +656,9 @@ $$
 </p>
 :::
 
-::: {.column width="25%" h-align="right"}
+::: {.column width="30%" h-align="right"}
 <center>
-<img data-src="contents/assets/rotation_arbitrary_axis.png" width="100%"/>
+<img data-src="contents/assets/rotation_arbitrary_axis.png" width="90%"/>
 </center>
 
 <p style="font-size:90%">
@@ -673,9 +673,9 @@ $$
 
 &nbsp;
 
-<u>Given $\bm{R}$, find: $\theta$ and $\bm{k}$</u>
+<u style="font-size:80%">Given $\bm{R}$, find: $\theta$ and $\bm{k}$</u>
 
-<p style="font-size:80%">
+<p style="font-size:70%">
 $$ 
 \begin{aligned}
 \theta &= \arccos{\left( \frac{1}{2}\left(\text{tr} \; \bm{R} - 1\right) \right)}, \\
@@ -741,7 +741,7 @@ $$
 </p>
 
 * We see that $\;\text{tr}\;\bm{R} = 0\;$ hence $\theta =
-\arccos{\left(-\frac{1}{2})} = 120^\circ$.
+\arccos{\left(-\frac{1}{2}\right)} = 120^\circ$.
 
 * The equivalent axis is given as 
 $$ \bm{k} = \frac{1}{\sqrt{3}} \begin{pmatrix} 
@@ -805,8 +805,6 @@ that $\left\| \bm{q} \right\| = 1$.
 $\bm{k}$: related to unit quaternions by $$ \mathring{\bm{q}} = 
 \cos{\frac{\theta}{2}} \langle \bm{k} \sin{\frac{\theta}{2}} \rangle. $$
 
-::: {.r-stack}
-::: {.fragment .fade-in-then-out}
 ::: {.callout-warning icon="false"}
 ## Concrete representation: $\xi \sim \mathring{\bm{q}} \in \mathbb{S}^3$
 
@@ -823,9 +821,54 @@ as the identity quaternion).
 \mathring{\bm{q}} \circ \mathring{\bm{v}} \circ \mathring{\bm{q}}^{-1}, $$ where 
 $\mathring{\bm{v}} = 0 \langle \bm{v} \rangle$ is known as a pure quaternion.
 :::
+
+
+
+:::
+<!-- end of column -->
+
+
+::: {.column width="50%"}
+::: {.r-stack}
+::: {.fragment fragment-index=1 .fade-in-then-out}
+::: {.callout-warning icon="false"}
+## Unit quaternion and rotation matrix
+Given $\mathring{\bm{q}} = s\langle \bm{v}\rangle$, the corresponding rotation
+matrix is $$ \bm{R} = \left(s^2 -\bm{v}^\top\bm{v} \right)\bm{I} +
+2\bm{v}\bm{v}^\top + 2s \hat{\bm{v}}. $$
+
+Given $\bm{R}$, to find the corresponding $\mathring{\bm{q}}$, we set up the
+following quaternions $\left\{\bm{x}_i\right\}_{i=0}^3 = \begin{pmatrix} s & v_1
+& v_2 & v_3 \end{pmatrix}^\top$.
+<p style="font-size:75%">
+$$
+\begin{aligned}
+\bm{x}_0 &= \begin{pmatrix} 1 + \text{tr}\;\bm{R} \\ r_{32}-r_{23} \\
+r_{13}-r_{31} \\ r_{21}-r_{12} \end{pmatrix}, \;\; 
+&\bm{x}_1 = \begin{pmatrix} r_{32}-r_{23} \\ 1 + r_{11}-r_{22}-r_{33} \\ r_{12}
++ r_{21} \\ r_{13}+r_{31}
+\end{pmatrix}, \\
+\bm{x}_2 &= \begin{pmatrix} r_{13}-r_{31} \\ r_{21}+r_{12} \\
+1+r_{22}-r_{33}-r_{11} \\ r_{23}+r_{32} \end{pmatrix}, \;\; 
+&\bm{x}_3 = \begin{pmatrix} r_{21}-r_{12} \\  r_{31}+r_{13} \\ r_{32}+r_{23} \\
+1 + r_{33} - r_{11} - r_{22}
+\end{pmatrix}.
+\end{aligned}
+$$
+</p>
+
+* Note: $\;\;\bm{x}_0 = 4s\mathring{\bm{q}}, \;\; \bm{x}_1 = 4v_1\mathring{\bm{q}}, 
+\;\; \bm{x}_2 = 4v_2\mathring{\bm{q}}, \;\; \bm{x}_3 = 4v_3\mathring{\bm{q}}$.
+
+* Choose index $i$ by $i = \arg \max \left\{s^2, v_1^2, v_2^2, v_3^2 \right\}$, where if
+$s$ is the maximum, the index is assigned $0$ and so on.
+
+* The unit quaternion is computed as $\;\; \mathring{\bm{q}} =
+\frac{\pm \bm{x}_i}{\left\|\bm{x}_i\right\|}$.
+:::
 :::
 
-::: {.fragment}
+::: {.fragment fragment-index=2 .fade-in-then-out}
 ::: {.callout-note icon="false"}
 ## Running example
 <p style="font-size:95%">
@@ -864,48 +907,48 @@ where $\bm{k}$ is the unit vector from the axis-angle slide.
 :::
 
 
-:::
-<!-- end of .r-stack -->
 
-:::
-<!-- end of column -->
+::: {.fragment fragment-index=3}
+::: {.callout-note icon="false"}
+## Running example -- Method 2
+<p style="font-size:95%">
+$$
+\bm{R} = \bm{R}_{x,60^\circ}\bm{R}_{y,30^\circ}\bm{R}_{z,90^\circ} = 
+\begin{pmatrix}
+0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\
+\frac{1}{2} & -\frac{\sqrt{3}}{4} & -\frac{3}{4} \\
+\frac{\sqrt{3}}{2} & \frac{1}{4} & \frac{\sqrt{3}}{4}
+\end{pmatrix}
+$$
+</p>
 
-
-::: {.column width="50%"}
-::: {.callout-warning icon="false"}
-## Unit quaternion and rotation matrix
-Given $\mathring{\bm{q}} = s\langle \bm{v}\rangle$, the corresponding rotation
-matrix is $$ \bm{R} = \left(s^2 -\bm{v}^\top\bm{v} \right)\bm{I} +
-2\bm{v}\bm{v}^\top + 2s \hat{\bm{v}}. $$
-
-Given $\bm{R}$, to find the corresponding $\mathring{\bm{q}}$, we set up the
-following quaternions $\left\{\bm{x}_i\right\}_{i=0}^3 = \begin{pmatrix} s & v_1
-& v_2 & v_3 \end{pmatrix}^\top$.
-<p style="font-size:75%">
+Convert the basic rotation matrices to quaternions:
+<p style="font-size:95%">
 $$
 \begin{aligned}
-\bm{x}_0 &= \begin{pmatrix} 1 + \text{tr}\;\bm{R} \\ r_{32}-r_{23} \\
-r_{13}-r_{31} \\ r_{21}-r_{12} \end{pmatrix}, \;\; 
-&\bm{x}_1 = \begin{pmatrix} r_{32}-r_{23} \\ 1 + r_{11}-r_{22}-r_{33} \\ r_{12}
-+ r_{21} \\ r_{13}+r_{31}
-\end{pmatrix}, \\
-\bm{x}_2 &= \begin{pmatrix} r_{13}-r_{31} \\ r_{21}+r_{12} \\
-1+r_{22}-r_{33}-r_{11} \\ r_{23}+r_{32} \end{pmatrix}, \;\; 
-&\bm{x}_3 = \begin{pmatrix} r_{21}-r_{12} \\  r_{31}+r_{13} \\ r_{32}+r_{23} \\
-1 + r_{33} - r_{11} - r_{22}
-\end{pmatrix}.
+\bm{R}_{x,60^\circ} &\sim \mathring{\bm{q}}_1 = \cos{30^\circ}\langle
+\sin{30^\circ}, \; 0, \; 0 \rangle = \frac{\sqrt{3}}{2}\left\langle \frac{1}{2}, \;
+0, \; 0 \right\rangle \\
+\bm{R}_{y,30^\circ} &\sim \mathring{\bm{q}}_2 = \cos{15^\circ}\langle
+0, \; \sin{15^\circ}, \; 0 \rangle = \frac{\sqrt{3}+1}{2\sqrt{2}}\left\langle 0, \;
+\frac{\sqrt{3}-1}{2\sqrt{2}}, \; 0 \right\rangle \\
+\bm{R}_{z,90^\circ} &\sim \mathring{\bm{q}}_3 = \cos{45^\circ}\langle
+0, \; 0, \; \sin{45^\circ} \rangle = \frac{\sqrt{2}}{2}\left\langle 0, \;
+0, \; \frac{\sqrt{2}}{2} \right\rangle \\
 \end{aligned}
 $$
 </p>
 
-* Note: $\;\;\bm{x}_0 = 4s\mathring{\bm{q}}, \;\; \bm{x}_1 = 4v_1\mathring{\bm{q}}, 
-\;\; \bm{x}_2 = 4v_2\mathring{\bm{q}}, \;\; \bm{x}_3 = 4v_3\mathring{\bm{q}}$.
+Compose the quaternions in the _same order_ as you do the rotation matrices!
+$$
+\bm{R} \sim \mathring{\bm{q}} = \mathring{\bm{q}}_1 \circ \mathring{\bm{q}}_2
+\circ \mathring{\bm{q}}_3 = \frac{1}{2}\left\langle \frac{1}{2},\;
+\frac{1}{4}\left(1-\sqrt{3}\right),\; \frac{1}{4}\left(1+\sqrt{3}\right)
+\right\rangle
+$$
 
-* Choose index $i$ by $i = \arg \max \left\{s^2, v_1^2, v_2^2, v_3^2 \right\}$, where if
-$s$ is the maximum, the index is assigned $0$ and so on.
-
-* The unit quaternion is computed as $\;\; \mathring{\bm{q}} =
-\frac{\pm \bm{x}_i}{\left\|\bm{x}_i\right\|}$.
+:::
+:::
 :::
 :::
 

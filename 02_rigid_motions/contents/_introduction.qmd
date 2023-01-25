@@ -6,12 +6,13 @@
 
 ::: {.column width="60%"}
 
-::: {.incremental}
+::: {.fragment}
 * A point is described by a *coordinate vector*.
   - The vector represents the displacement of a point w.r.t. some reference
     frame -- we call this a _bound_ vector.
   - Notice that a point is __not__ the same as a vector!
-
+:::
+::: {.fragment}
 * A _coordinate frame_, is a triad of orthogonal axes which intersect at a
 point, known as the origin.
 
