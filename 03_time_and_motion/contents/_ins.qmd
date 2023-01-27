@@ -284,3 +284,96 @@ $$ \hat{\theta}_y = \arctan{\frac{\cos{\theta_p}\left(m_z \sin{\theta_r} - m_y
 perhaps using measured acceleration.
 * To obtain the heading angle w.r.t. to the tru-north, we subtract the local
 declination angle $${^{tn}}\hat{\theta}_y = \hat{\theta}_y - D. $$
+
+
+## Sensor fusion {.smaller}
+
+* The collection of inertial sensors is referred to as an inertial measurement
+unit (IMU).
+  - A 6-DoF IMU comprises triaxial gyroscopes and accelerometers.
+  - A 9-DoF IMU additionally comprises triaxial magnetometers.
+  - A 10-DoF IMU may add altitude measurement through a barometric pressure
+    sensor.
+* The sensors we use, particularly the low-cost ones in phones and drones, are
+far from perfect.
+  - For any sensor value -- gyroscope, accelerometer or magnetometer -- the
+    measured signal $$ x^\sharp = sx + b + \varepsilon $$ is related to the true
+    value $x$ by a scale factor $s$, bias $b$ and random noise $\varepsilon$.
+  - $s$ is usually specified by the manufacturer to some tolerance, say $\pm
+    1\%$, and for a particular sensor this can be determined by some calibration
+    process.
+  - Bias $b$ is ideally equal to zero but will vary from device to device. Bias
+    that varies over time is often called _sensor drift_. Both the scale factor
+    and the bias are typically functions of temperature.
+* In practice, bias is the biggest problem because it varies with time and
+temperature and has a very deleterious effect on the estimated pose and
+position.
+
+## Sensor fusion {.smaller}
+
+* Sensor bias is problematic!
+  - A rule of thumb is that gyroscopes with bias stability of $0.01$ deg/h will
+    lead to position error growing at a rate of $1.85$ km/h.
+* A simple approach to this problem is to estimate bias by leaving the IMU
+stationary for a few seconds and computing the average value of all sensors.
+  - This value is then subtracted from future sensor readings.
+  - This is really only valid over a short time period because the bias is not
+    constant.
+* A more sophisticated approach is to estimate the bias online!
+  - We need to combine information from different sensors for this -- _sensor
+    fusion_.
+  - We rely on the fact that different sensors have complementary
+    characteristics.
+* Bias on angular rate sensors causes the attitude estimate error to grow with
+time.
+  - Accelerometers respond to motion of the vehicle while good gyroscopes do
+    not.
+  - Magnetometers provide partial information about roll, pitch and yaw, are
+    immute to acceleration.
+* There are many ways to achieve this kind of fusion -- we will later see how
+Kalman filters do this. Here we will consider a simple, but still very effective
+alternative.
+
+
+## Explicit complementary filter {.smaller}
+
+* In a later chapter, we will see why the complementary filter works in theory.
+For now, let us simply change the rotation update step from earlier to the following.
+$$ {^B}\xi_\Delta \langle k \rangle = e^{\left({^B}\hat{\bm{\omega}}^\sharp\langle k
+\rangle - \hat{\bm{b}}_e\langle k \rangle + k_p \hat{\bm{\sigma}}_R \langle k
+\rangle\right)\delta_t}. $$
+
+* The key differences are that the estimated bias $\bm{b}_e$ is subtracted from
+the sensor measurement and a term based on the orientation error $\bm{\sigma}_R$
+is added.
+  - The estimated bias changes with time according to $$ \bm{b}_e \langle
+    k+1 \rangle \leftarrow \bm{b}_e \langle k \rangle - k_I \bm{\sigma}_R \langle k
+    \rangle $$ and also depends on the orientation error $\bm{\sigma}_R$.
+  - $k_p, k_I > 0$ are both well chosen constants.
+  - The orientation error is derived from $N$ _vector measurements_
+    ${^0}\bm{v}_i^\sharp$: $$ \bm{\sigma}_R \langle k+1 \rangle = \sum_{i=1}^N
+    k_i \, {^0}\bm{v}_i \times {^0}\bm{v}_i^\sharp \langle k \rangle. $$ where
+    ${^0}\bm{v}_i$ is the known value of a vector signal in the inertial frame
+    (e.g. graviational acceleration) and $$ {^0}\bm{v}_i^\sharp \langle k
+    \rangle = {^0}\hat{\xi}_B \langle k \rangle \bullet {^B}\bm{v}^\sharp
+    \langle k \rangle. $$ is the value measured int he body-fixed frame and
+    rotated into the inertial frame by the estimated orientation
+    ${^0}\hat{\xi}_B$.
+
+## Explicit complementary filter {.smaller}
+
+* Any error in direction between these vectors will yield a nonzero
+cross-product which is the axis around which to rotate one vector into the
+other.
+
+* The filter uses this difference -- the _innovation_ -- to improve the
+orientation estimate by feeding it back to the rotation update.
+
+* The filter allows an unlimited number of vectorial measurements ${^0}\bm{v}_i$
+to be fused together: e.g. we could add magnetic field or any other kind of
+direction data such as altitude and azimuth of visual landmarks, stars or
+planets.
+
+<center>
+<img data-src="contents/assets/complementary_vs_ins.png" width="43%"/>
+</center>

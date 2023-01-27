@@ -10,6 +10,7 @@
 ::: {layout="[120, 62]"}
 __Instructor__: Aykut Satici, Ph.D. <br>
 <br>
+<br>
 Mechanical and Biomedical Engineering <br>
 Electrical and Computer Engineering <br>
 Boise State University, Boise, ID, USA
@@ -20,5 +21,6 @@ Transforming Spatial Velocities <br>
 Incremental Rigid-Body Motion <br>
 Dynamics of Moving Bodies <br>
 Transforming Wrenches <br>
-Inertial Navigation
+Inertial Navigation <br>
+Sensor Fusion
 :::

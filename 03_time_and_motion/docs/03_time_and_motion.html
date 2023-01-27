@@ -337,10 +337,10 @@
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 65.9%;justify-content: center;">
-<p><strong>Instructor</strong>: Aykut Satici, Ph.D.&nbsp;<br> <br> Mechanical and Biomedical Engineering <br> Electrical and Computer Engineering <br> Boise State University, Boise, ID, USA</p>
+<p><strong>Instructor</strong>: Aykut Satici, Ph.D.&nbsp;<br> <br> <br> Mechanical and Biomedical Engineering <br> Electrical and Computer Engineering <br> Boise State University, Boise, ID, USA</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 34.1%;justify-content: center;">
-<p><strong>Topics</strong>: <br> Derivative of Pose <br> Transforming Spatial Velocities <br> Incremental Rigid-Body Motion <br> Dynamics of Moving Bodies <br> Transforming Wrenches <br> Inertial Navigation</p>
+<p><strong>Topics</strong>: <br> Derivative of Pose <br> Transforming Spatial Velocities <br> Incremental Rigid-Body Motion <br> Dynamics of Moving Bodies <br> Transforming Wrenches <br> Inertial Navigation <br> Sensor Fusion</p>
 </div>
 </div>
 </div>
@@ -790,6 +790,79 @@ g \cos{\theta_p} \cos{\theta_r}
 \sin{\theta_p}}} </annotation></semantics></math> assuming the roll and pitch angles have been determined, perhaps using measured acceleration.</li>
 <li>To obtain the heading angle w.r.t. to the tru-north, we subtract the local declination angle <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mrow><mi>t</mi><mi>n</mi></mrow></msup><msub><mover><mi>θ</mi><mo accent="true">̂</mo></mover><mi>y</mi></msub><mo>=</mo><msub><mover><mi>θ</mi><mo accent="true">̂</mo></mover><mi>y</mi></msub><mo>−</mo><mi>D</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">{^{tn}}\hat{\theta}_y = \hat{\theta}_y - D. </annotation></semantics></math></li>
 </ul>
+</section>
+<section id="sensor-fusion" class="slide level2 smaller">
+<h2>Sensor fusion</h2>
+<ul>
+<li>The collection of inertial sensors is referred to as an inertial measurement unit (IMU).
+<ul>
+<li>A 6-DoF IMU comprises triaxial gyroscopes and accelerometers.</li>
+<li>A 9-DoF IMU additionally comprises triaxial magnetometers.</li>
+<li>A 10-DoF IMU may add altitude measurement through a barometric pressure sensor.</li>
+</ul></li>
+<li>The sensors we use, particularly the low-cost ones in phones and drones, are far from perfect.
+<ul>
+<li>For any sensor value – gyroscope, accelerometer or magnetometer – the measured signal <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>♯</mi></msup><mo>=</mo><mi>s</mi><mi>x</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>ε</mi></mrow><annotation encoding="application/x-tex"> x^\sharp = sx + b + \varepsilon </annotation></semantics></math> is related to the true value <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> by a scale factor <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>, bias <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> and random noise <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> is usually specified by the manufacturer to some tolerance, say <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mn>1</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\pm 1\%</annotation></semantics></math>, and for a particular sensor this can be determined by some calibration process.</li>
+<li>Bias <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math> is ideally equal to zero but will vary from device to device. Bias that varies over time is often called <em>sensor drift</em>. Both the scale factor and the bias are typically functions of temperature.</li>
+</ul></li>
+<li>In practice, bias is the biggest problem because it varies with time and temperature and has a very deleterious effect on the estimated pose and position.</li>
+</ul>
+</section>
+<section id="sensor-fusion-1" class="slide level2 smaller">
+<h2>Sensor fusion</h2>
+<ul>
+<li>Sensor bias is problematic!
+<ul>
+<li>A rule of thumb is that gyroscopes with bias stability of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.01</mn><annotation encoding="application/x-tex">0.01</annotation></semantics></math> deg/h will lead to position error growing at a rate of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1.85</mn><annotation encoding="application/x-tex">1.85</annotation></semantics></math> km/h.</li>
+</ul></li>
+<li>A simple approach to this problem is to estimate bias by leaving the IMU stationary for a few seconds and computing the average value of all sensors.
+<ul>
+<li>This value is then subtracted from future sensor readings.</li>
+<li>This is really only valid over a short time period because the bias is not constant.</li>
+</ul></li>
+<li>A more sophisticated approach is to estimate the bias online!
+<ul>
+<li>We need to combine information from different sensors for this – <em>sensor fusion</em>.</li>
+<li>We rely on the fact that different sensors have complementary characteristics.</li>
+</ul></li>
+<li>Bias on angular rate sensors causes the attitude estimate error to grow with time.
+<ul>
+<li>Accelerometers respond to motion of the vehicle while good gyroscopes do not.</li>
+<li>Magnetometers provide partial information about roll, pitch and yaw, are immute to acceleration.</li>
+</ul></li>
+<li>There are many ways to achieve this kind of fusion – we will later see how Kalman filters do this. Here we will consider a simple, but still very effective alternative.</li>
+</ul>
+</section>
+<section id="explicit-complementary-filter" class="slide level2 smaller">
+<h2>Explicit complementary filter</h2>
+<ul>
+<li><p>In a later chapter, we will see why the complementary filter works in theory. For now, let us simply change the rotation update step from earlier to the following. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>B</mi></msup><msub><mi>ξ</mi><mi>Δ</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>=</mo><msup><mi>e</mi><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi></mi><mi>B</mi></msup><msup><mover><mstyle mathvariant="bold"><mi>𝛚</mi></mstyle><mo accent="true">̂</mo></mover><mi>♯</mi></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><msub><mover><mstyle mathvariant="bold"><mi>𝐛</mi></mstyle><mo accent="true">̂</mo></mover><mi>e</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>+</mo><msub><mi>k</mi><mi>p</mi></msub><msub><mover><mstyle mathvariant="bold"><mi>𝛔</mi></mstyle><mo accent="true">̂</mo></mover><mi>R</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>δ</mi><mi>t</mi></msub></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> {^B}\xi_\Delta \langle k \rangle = e^{\left({^B}\hat{\bm{\omega}}^\sharp\langle k
+\rangle - \hat{\bm{b}}_e\langle k \rangle + k_p \hat{\bm{\sigma}}_R \langle k
+\rangle\right)\delta_t}. </annotation></semantics></math></p></li>
+<li><p>The key differences are that the estimated bias <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝐛</mi></mstyle><mi>e</mi></msub><annotation encoding="application/x-tex">\bm{b}_e</annotation></semantics></math> is subtracted from the sensor measurement and a term based on the orientation error <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝛔</mi></mstyle><mi>R</mi></msub><annotation encoding="application/x-tex">\bm{\sigma}_R</annotation></semantics></math> is added.</p>
+<ul>
+<li>The estimated bias changes with time according to <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>𝐛</mi></mstyle><mi>e</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>←</mo><msub><mstyle mathvariant="bold"><mi>𝐛</mi></mstyle><mi>e</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><msub><mi>k</mi><mi>I</mi></msub><msub><mstyle mathvariant="bold"><mi>𝛔</mi></mstyle><mi>R</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo></mrow><annotation encoding="application/x-tex"> \bm{b}_e \langle
+k+1 \rangle \leftarrow \bm{b}_e \langle k \rangle - k_I \bm{\sigma}_R \langle k
+\rangle </annotation></semantics></math> and also depends on the orientation error <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mstyle mathvariant="bold"><mi>𝛔</mi></mstyle><mi>R</mi></msub><annotation encoding="application/x-tex">\bm{\sigma}_R</annotation></semantics></math>.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>p</mi></msub><mo>,</mo><msub><mi>k</mi><mi>I</mi></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">k_p, k_I &gt; 0</annotation></semantics></math> are both well chosen constants.</li>
+<li>The orientation error is derived from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> <em>vector measurements</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msubsup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi><mi>♯</mi></msubsup></mrow><annotation encoding="application/x-tex">{^0}\bm{v}_i^\sharp</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>𝛔</mi></mstyle><mi>R</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>k</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><msup><mi></mi><mn>0</mn></msup><msub><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi></msub><mo>×</mo><msup><mi></mi><mn>0</mn></msup><msubsup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi><mi>♯</mi></msubsup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{\sigma}_R \langle k+1 \rangle = \sum_{i=1}^N
+k_i \, {^0}\bm{v}_i \times {^0}\bm{v}_i^\sharp \langle k \rangle. </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\bm{v}_i</annotation></semantics></math> is the known value of a vector signal in the inertial frame (e.g.&nbsp;graviational acceleration) and <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msubsup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi><mi>♯</mi></msubsup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>=</mo><msup><mi></mi><mn>0</mn></msup><msub><mover><mi>ξ</mi><mo accent="true">̂</mo></mover><mi>B</mi></msub><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>•</mo><msup><mi></mi><mi>B</mi></msup><msup><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>♯</mi></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mi>.</mi></mrow><annotation encoding="application/x-tex"> {^0}\bm{v}_i^\sharp \langle k
+\rangle = {^0}\hat{\xi}_B \langle k \rangle \bullet {^B}\bm{v}^\sharp
+\langle k \rangle. </annotation></semantics></math> is the value measured int he body-fixed frame and rotated into the inertial frame by the estimated orientation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mover><mi>ξ</mi><mo accent="true">̂</mo></mover><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\hat{\xi}_B</annotation></semantics></math>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="explicit-complementary-filter-1" class="slide level2 smaller">
+<h2>Explicit complementary filter</h2>
+<ul>
+<li><p>Any error in direction between these vectors will yield a nonzero cross-product which is the axis around which to rotate one vector into the other.</p></li>
+<li><p>The filter uses this difference – the <em>innovation</em> – to improve the orientation estimate by feeding it back to the rotation update.</p></li>
+<li><p>The filter allows an unlimited number of vectorial measurements <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mstyle mathvariant="bold"><mi>𝐯</mi></mstyle><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\bm{v}_i</annotation></semantics></math> to be fused together: e.g.&nbsp;we could add magnetic field or any other kind of direction data such as altitude and azimuth of visual landmarks, stars or planets.</p></li>
+</ul>
+<center>
+<img data-src="contents/assets/complementary_vs_ins.png" width="43%">
+</center>
 
 <div class="footer footer-default">
 <p>Robotics and Automated Systems • Aykut C. Satici</p>
