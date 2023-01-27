@@ -199,7 +199,7 @@ motion $${^0}\bm{a}^\sharp = {^0}\bm{g} + {^0}\bm{a}_v $$
 * We observe acceleration in the body frame so the vehicle acceleration in the
 world frame is $${^0}\hat{\bm{a}}_v = {^0}\hat{\bm{R}}_B \, {^B}\bm{a}^\sharp -
 {^0}\bm{g} $$ and we assume that ${^0}\hat{\bm{R}}_B$ and $\bm{g}$ are both
-known[^1]. Integrating that w.r.t. time
+known[^2]. Integrating that w.r.t. time
 $$ {^0}\hat{\bm{v}}_v(t) = \int {^0}\hat{\bm{a}}_v(t) \, \text{d}t $$ gives the
 velocity of the vehicle, and integrating again
 $$ {^0}\hat{\bm{p}}_v(t) = \int {^0}\hat{\bm{v}}_v(t) \, \text{d}t $$ gives its
@@ -211,7 +211,7 @@ assume attitude and estimate vehicle acceleration.
 * We cannot estimate both since there are more unknowns than measurements.
 :::
 
-[^1]: The first is a strong assumption. Any error in ${^0}\hat{\bm{R}}$ results in
+[^2]: The first is a strong assumption. Any error in ${^0}\hat{\bm{R}}$ results in
 incorrect cancellation of the gravity component of $\bm{a}^\sharp$ leading to an
 error in the estimated body acceleration.
 
