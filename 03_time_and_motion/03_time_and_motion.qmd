@@ -33,3 +33,4 @@ revealjs-plugins:
 {{< include contents/_dynamics.qmd >}}
 {{< include contents/_wrenchtransform.qmd >}}
 {{< include contents/_inertial.qmd >}}
+{{< include contents/_ins.qmd >}}

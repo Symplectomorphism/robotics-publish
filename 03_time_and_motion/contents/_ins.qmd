@@ -1,0 +1,286 @@
+# Application: Inertial Navigation
+
+## Inertial navigation system {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+* INS estimates:
+  - velocity, orientation, and position by 
+  - measuring accelerations and angular velocities and integrating them over
+    time.
+* No external inputs such as radio signals from satellites needed.
+  - Well-suited for submarines, spacecraft and missile guidance.
+* During cold war and space race, these ssytems were large, extremely expensive
+and technical details national secrets.
+
+* Today, INSs are considerably cheaper and smaller.
+  - They are built into every smart phone!
+
+* An INS estimates its pose w.r.t. an inertial reference frame which is
+typically denoted $\{0\}$ and fixed to some point on Earth.
+  - Common conventions: north-east-down (NED) or east-north-up (ENU).
+
+* The coordinate frame $\{B\}$ is attached to the moving vehicle or robot and is
+known as the body- or body-fixed frame.
+ 
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/spire.png" width="65%"/>
+
+<img data-src="contents/assets/modern_ins.png" width="65%"/>
+
+<img data-src="contents/assets/mems_ins.png" width="65%"/>
+</center>
+:::
+
+::::
+
+
+
+## Gyroscopes {.smaller}
+
+:::: {.columns}
+
+::: {.column width="75%"}
+* Measures the rate-of-change of orientation.
+* Fix the gyroscope to the vehicle in the strapdown configuration as shown in
+the figure below.
+  - If the vehicle rotates with an angular velocity $\bm{\omega}$, the attached
+    gyroscope will _resist_ and exert an orthogonal torque $\bm{\tau}$,
+    which can be measured:
+    $$ \bm{\tau} = \bm{\omega} \times \bm{h} = \bm{\omega} \times \bm{J}\bm{\omega}.$$
+  - If the magnitude of $\bm{h}$ is high, then this kind of sensor is very
+    sensitive -- a very small angular velocity leads to an easily measureable
+    torque.
+* Low-cost sensors used in mobile phones and drones are based on
+micro-electro-mechanical systems (MEMS) fabricated on silicon chips.
+* Three gyroscopes are packaged together and arranged so that their sensitive
+axes are orthogonal.
+* The three outputs of such a triaxial gyroscope are the components of the
+angular velocity vector ${^B}\bm{\omega}^\sharp$.
+:::
+
+::: {.column width="25%"}
+<center>
+<img data-src="contents/assets/mechanical_gyro.png" width="80%"/>
+
+<img data-src="contents/assets/fig3_10.svg" width="150%"/>
+</center>
+:::
+
+::::
+
+
+## Estimating orientation {.smaller}
+
+&nbsp;
+
+* _Nature_ has invented gyrocopic sensors.
+* All vertebrates have angular velocity sensors as part of their vestibular systems.
+  - In each inner ear we have three semi-circular canals: fluid-filled organs
+    that measure angular velocity.
+  - Arranged orthogonally, just like a triaxial gyroscope, with two measurement
+    axes in a vertical plane and one diagonally across the head.
+
+* If we assume that ${^B}\bm{\omega}$ is constant over a time interval
+$\delta_t$, the equivalent rotation at time step $k$ is 
+$$ {^B}\xi_\Delta \langle k \rangle \sim
+e^{{^B}\hat{\bm{\omega}}^\sharp \delta_t}. $$
+
+* If the orientation of the sensor frame is initially $\xi_B$, then the
+evolution of estimated pose can be written in discrete-time form as
+$$ \xi_B\langle k+1 \rangle \leftarrow \xi_B \langle k \rangle \oplus
+{^B}\xi_\Delta \langle k \rangle. $$
+
+
+
+## Accelerometers {.smaller}
+
+* Even when not moving they sense the acceleration due to gravity, defining the
+direction we know as _downward_.
+
+* Gravitational acceleration can be approximated by 
+$$ g \approx 9.780327 \left( 1 + 0.0053024 \sin^2{\theta} - 0.0000058
+\sin^2{2\theta} \right) - 0.000003086h, $$
+where $\theta$ is the angle of latitude and $h$ is the height above sea level.
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* An accelerometer comprises a proof mass, supported by a spring.
+$$ m \ddot{x}_m = F_s - mg = kd - mg $$
+* The various displacements are related by: $\;\; x_b - \left(l_0 + d \right) = x_m$.
+  - $l_0$: spring's natural length, $d$: its extension.
+* Taking double derivatives and substituting gives
+$$ \ddot{x}_b - \ddot{d} = \frac{1}{m}\left(kd-mg\right).$$
+* Assuming $\ddot{d} \approx 0$, we wish to measure the acceleration fo the
+accelerometer $a = \ddot{x}_b$:
+$$ d = \frac{m}{k}\left(a + g \right) \;\; \Longrightarrow \;\; a^\sharp = a + g =
+\frac{kd}{m}. $$
+:::
+
+::: {.column width="30%"}
+<img data-src="contents/assets/fig3_12.svg" width="100%"/>
+:::
+
+::::
+
+
+## Accelerometers {.smaller}
+
+::: {.callout-important appearance="minimal"}
+A stationary accelerometer indicates an upward acceleration of $1$g.
+
+* This may be counterintuitive since the accelerometer is clearly stationary --
+if anything, the acceleration should be in the downward direction.
+* However, the reality is that an accelerometer at rest in a gravity field
+reports upward acceleration.
+:::
+
+* Accelerometers measure acceleration along a single axis.
+  - Typically three accelerometers are packaged together and arranged so that
+    their sensitive axes are orthogonal.
+  - The three outputs of such a triaxial accelerometer are the components of the
+    acceleration vector ${^B}\bm{a}^\sharp$ measured in the body frame $\{B\}$.
+
+* _Nature_ has also invented the accelerometer.
+  - All vertebrates have acceleration sensors called ampullae as part of the
+    vestibular system.
+  - We have two in each ear: the saccule measures vertical acceleration, and the
+    utricle measures front-tob-ack acceleration. They help us maintain balance.
+  - The proof mass in the ampullae is a collection of calcium carbonate cyrstals
+    called otoliths. Hair cells embedded in a gelatinous substrate measure the
+    displacement of the otoliths due to acceleration.
+
+
+## Estimating pose and body acceleration {.smaller}
+
+&nbsp;
+
+* In frame $\{0\}$ with its $z$-axis vertically upward, the gravitational
+acceleration is $\;{^0}\bm{a} = \begin{pmatrix} 0 & 0 & g \end{pmatrix}^\top$.
+* In a body-fixed frame $\{B\}$ at an arbitrary orientation, in terms
+of the roll-pitch-yaw angles $${^0}\xi_B =
+\bm{R}_{z,\theta_y}\bm{R}_{y,\theta_p}\bm{R}_{x,\theta_r} $$
+the gravitational acceleration will be
+$${^B}\bm{a} = \left(\ominus {^0}\xi_B\right) \bullet {^0}\bm{a} =
+\begin{pmatrix}
+-g \sin{\theta_p} \\
+g \cos{\theta_p} \sin{\theta_r} \\
+g \cos{\theta_p} \cos{\theta_r}
+\end{pmatrix}
+$$
+* Equating this to the _measured_ acceleration vector ${^B}\bm{a}^\sharp =
+\begin{pmatrix} a_x & a_y & a_z \end{pmatrix}^\top$, we obtain
+$$
+\sin{\hat{\theta}_p} = -\frac{a_x}{g}, \quad \tan{\hat{\theta}_r} =
+\frac{a_y}{a_z}, \;\; \theta_p \neq \pm \frac{\pi}{2}.
+$$
+
+::: {.callout-important appearance="minimal"}
+We have made a very strong assumption that the measured acceleration
+${^B}\bm{a}^\sharp$ is only due to gravity. On a robot the sensor will
+experience additional acceleration as the vehicle moves and this will introduce
+an error in the estimated orientation.
+:::
+
+
+
+## Estimating pose and body acceleration {.smaller}
+
+* Frequently, we want to estimate the motion of the vehicle in the inertial
+frame, and the total measured acceleration in $\{0\}$ is due to gravity _and_
+motion $${^0}\bm{a}^\sharp = {^0}\bm{g} + {^0}\bm{a}_v $$
+
+* We observe acceleration in the body frame so the vehicle acceleration in the
+world frame is $${^0}\hat{\bm{a}}_v = {^0}\hat{\bm{R}}_B \, {^B}\bm{a}^\sharp -
+{^0}\bm{g} $$ and we assume that ${^0}\hat{\bm{R}}_B$ and $\bm{g}$ are both
+known[^1]. Integrating that w.r.t. time
+$$ {^0}\hat{\bm{v}}_v(t) = \int {^0}\hat{\bm{a}}_v(t) \, \text{d}t $$ gives the
+velocity of the vehicle, and integrating again
+$$ {^0}\hat{\bm{p}}_v(t) = \int {^0}\hat{\bm{v}}_v(t) \, \text{d}t $$ gives its
+position.
+
+::: {.callout-note appearance="minimal"}
+* We can assume vehicle acceleration is zero and estimate attitude, or
+assume attitude and estimate vehicle acceleration.
+* We cannot estimate both since there are more unknowns than measurements.
+:::
+
+[^1]: The first is a strong assumption. Any error in ${^0}\hat{\bm{R}}$ results in
+incorrect cancellation of the gravity component of $\bm{a}^\sharp$ leading to an
+error in the estimated body acceleration.
+
+
+## Magnetometers {.smaller}
+
+&nbsp;
+
+* The Earth is a massive but weak magnet. 
+  - At any point on the planet, the magnetic flux lines can be considered a
+    vector $\bm{m}$.
+  - Its magnitude and direction can be accurately predicted and mapped.
+* The direction is described by two angled: declination and inclination.
+  - A horizontal projection of $\bm{m}$ points in the direction of magnetic
+    north and the declination angle $D$ is measured from true north clockwise to
+    that projection.
+  - The inlination angle $I$ of the vector is measured in a vertical plane
+    downward from horizontal to $\bm{m}$.
+* The length of the vector, the magnetic field intensity, is measured bya
+magnetometer in units of Tesla (T).
+  - For the Earth this varies from $25-65$ $\mu$T, 
+  - By comparison a modern MRI machine has a magnetic field strength of $4-8$T.
+
+
+## How magnetometers work {.smaller}
+
+&nbsp;
+
+:::{.callout-tip icon="false"}
+## Hall-effect sensor
+A semiconductor device which produces a voltage
+proportional to the magnetic field intensity in a direction normal to the
+current flow.
+
+* Three of them are packaged together and arranged so that their sensitive axes
+are orthogonal.
+
+* The three outputs of such a triaxial magnetometer are the components of the
+Earth's magnetic field intensity vector ${^B}\bm{m}^\sharp$, measured in the
+body frame $\{B\}$.
+:::
+
+::: {.callout-note icon="false"}
+## Nature
+* Creatures from bacteria to turtles and birds are known to sense magnetic fields.
+* The effect is particularly well-known in pigeons and there is debate about
+whether or not humans have this sense. 
+* The actual biological sensing mechanism
+has not yet been discovered.
+:::
+
+
+## Estimating heading {.smaller}
+
+* Consider an inertial coordinate frame $\{0\}$ with its $z-$axis vertically
+upward and its $x-$axis pointing toward _magnetic_ north. $$ {^0}\bm{m} = B
+\begin{pmatrix} \cos{I} & 0 & \sin{I} \end{pmatrix}^\top $$ where $B$ is the
+magnetic field intensity.
+* In a body-fixed frame $\{B\}$ at an arbitrary orientation in terms of
+roll-pitch-yaw angles $${^0}\xi_B =
+\bm{R}_{z,\theta_y}\bm{R}_{y,\theta_p}\bm{R}_{x,\theta_r}$$ the magnetic field
+intensity will be $$ {^B}\bm{m} = \left(\ominus {^0}\xi_B\right) \bullet
+{^0}\bm{m}.$$
+* Equating this to the _measured_ magnetic intensity field vector
+${^B}\bm{m}^\sharp = \begin{pmatrix} m_x & m_y & m_z \end{pmatrix}^\top$ yields
+an estimate of the yaw angle
+$$ \hat{\theta}_y = \arctan{\frac{\cos{\theta_p}\left(m_z \sin{\theta_r} - m_y
+\cos{\theta_r}\right)}{m_x + B \sin{I}
+\sin{\theta_p}}} $$ assuming the roll and pitch angles have been determined,
+perhaps using measured acceleration.
+* To obtain the heading angle w.r.t. to the tru-north, we subtract the local
+declination angle $${^{tn}}\hat{\theta}_y = \hat{\theta}_y - D. $$

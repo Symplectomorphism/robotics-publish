@@ -20,4 +20,5 @@ Transforming Spatial Velocities <br>
 Incremental Rigid-Body Motion <br>
 Dynamics of Moving Bodies <br>
 Transforming Wrenches <br>
+Inertial Navigation
 :::
