@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "navigation.html#robotics-and-automated-systems",
+    "href": "navigation.html#robotics-and-automated-systems",
+    "title": "Navigation",
+    "section": "Robotics and Automated Systems",
+    "text": "Robotics and Automated Systems\n\n\nProject 1: Navigation by RRT\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nOccupation Grid Map\nAutonomous Ground Vehicle Kinematics\nRapidly-Exploring Random Tree"
+  },
+  {
+    "objectID": "navigation.html#vehicle-kinematics",
+    "href": "navigation.html#vehicle-kinematics",
+    "title": "Navigation",
+    "section": "Vehicle Kinematics",
+    "text": "Vehicle Kinematics\n\n\n\nThe autonomous ground vehicle has a circular frame\n\nThe radius of the circular frame is r=0.1r = 0.1m.\n\nThe pose of the vehicle w.r.t. the world {0}\\{0\\} is below figure.\n\nθ\\theta: angle the axis xrx_r makes with the axis x0x_0.\n(x,y)(x, y): components of the vector that connects the origins of frames {0}\\{0\\} and {R}\\{R\\} starting from {0}\\{0\\}, resolved in frame {0}\\{0\\}.\n\n\n\n ξR∼0𝐓R=(cosθ−sinθxsinθcosθy001). {\\xi}_R \\sim {^0}\\bm{T}_R = \\begin{pmatrix} \\cos{\\theta} & -\\sin{\\theta} & x\n\\\\ \\sin{\\theta} & \\cos{\\theta} & y \\\\ 0 & 0 & 1 \\end{pmatrix}. \n\n\n\nThe translational velocity vv of the vehicle is purely along the x−x- axis.\nThe angular velocity of ω\\omega of the vehicle is purely along the z−z- axis.\nThinking of vv and ω\\omega as the inputs to the system, its kinematics is given by\n\nẋ=vcosθ,ẏ=vsinθ,θ̇=ω.\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\omega.\n\\end{aligned}"
+  },
+  {
+    "objectID": "navigation.html#map",
+    "href": "navigation.html#map",
+    "title": "Navigation",
+    "section": "Map",
+    "text": "Map\n\n \n\nThe bottom-right corner is the origin of the world frame {0}\\{0\\}.\nThe map is of a 22m-by-22m room, with separators (walls) of thickness δ=0.01m=1cm\\delta = 0.01\\,\\text{m} = 1\\,\\text{cm}.\nThe two corridors have width ε=0.3m=30cm\\varepsilon = 0.3\\,\\text{m} = 30\\,\\text{cm}.\n\nEach corridor have a clearance of 12\\frac{1}{2}\\,m from the walls they face.\nThe width of the corridors fits 1.51.5 autonomous ground vehicles.\n\nThe map is static and is known by the robot."
+  },
+  {
+    "objectID": "navigation.html#problem-statement",
+    "href": "navigation.html#problem-statement",
+    "title": "Navigation",
+    "section": "Problem Statement",
+    "text": "Problem Statement\n\n\n\nTake a simulation time of δt=0.1\\delta t = 0.1\\,s.\nCreate an RRT tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to the goal configuration q★=(2−ε20−90∘)⊤q_\\bigstar = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0 & -90^\\circ \\end{pmatrix}^\\top.\nSubmit your solution and the created RRT tree as a plot or as a simulation.\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+  }
+]

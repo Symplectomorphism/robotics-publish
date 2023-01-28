@@ -1,0 +1,33 @@
+## Vehicle Kinematics {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* The autonomous ground vehicle has a circular frame
+  - The radius of the circular frame is $r = 0.1$m.
+* The pose of the vehicle w.r.t. the world $\{0\}$ is below figure. 
+  - $\theta$: angle the axis $x_r$ makes with the axis $x_0$.
+  - $(x, y)$: components of the vector that connects the origins of
+    frames $\{0\}$ and $\{R\}$ starting from $\{0\}$, resolved in frame $\{0\}$.
+:::
+
+::: {.column width="30%"}
+<img data-src="contents/assets/vehicle.png" width="100%"/>
+$$ {\xi}_R \sim {^0}\bm{T}_R = \begin{pmatrix} \cos{\theta} & -\sin{\theta} & x
+\\ \sin{\theta} & \cos{\theta} & y \\ 0 & 0 & 1 \end{pmatrix}. $$
+:::
+
+::::
+
+* The translational velocity $v$ of the vehicle is purely along the $x-$ axis.
+* The angular velocity of $\omega$ of the vehicle is purely along the $z-$ axis.
+* Thinking of $v$ and $\omega$ as the inputs to the system, its kinematics is
+given by
+
+$$
+\begin{aligned}
+\dot{x} &= v \cos{\theta}, \\
+\dot{y} &= v \sin{\theta}, \\
+\dot{\theta} &= \omega.
+\end{aligned}
+$$

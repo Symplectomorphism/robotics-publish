@@ -1,0 +1,32 @@
+## Robotics and Automated Systems {.center .smaller}
+<!-- ###################################################################### -->
+
+<hr>
+
+### Project 1: Navigation by RRT
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+__Instructor__: Aykut Satici, Ph.D. <br>
+
+* Mechanical and Biomedical Engineering <br>
+* Electrical and Computer Engineering <br>
+* Boise State University, Boise, ID, USA
+
+:::
+
+::: {.column width="45%"}
+
+__Topics__: <br>
+
+* Occupation Grid Map
+* Autonomous Ground Vehicle Kinematics
+* Rapidly-Exploring Random Tree
+
+:::
+
+::::

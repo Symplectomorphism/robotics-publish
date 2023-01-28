@@ -1,0 +1,21 @@
+## Map {.smaller}
+
+:::: {.columns}
+
+&nbsp;
+
+::: {.column width="50%"}
+* The bottom-right corner is the origin of the world frame $\{0\}$.
+* The map is of a $2$m-by-$2$m room, with separators (walls) of thickness $\delta =
+0.01\,\text{m} = 1\,\text{cm}$.
+* The two corridors have width $\varepsilon = 0.3\,\text{m} = 30\,\text{cm}$.
+  - Each corridor have a clearance of $\frac{1}{2}\,$m from the walls they face.
+  - The width of the corridors fits $1.5$ autonomous ground vehicles.
+* The map is static and is known by the robot.
+:::
+
+::: {.column width="50%"}
+<img data-src="contents/assets/map.png" width="100%"/>
+:::
+
+::::
