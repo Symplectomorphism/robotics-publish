@@ -1,5 +1,7 @@
 ## Problem Statement
 
+&nbsp;
+
 :::: {.columns}
 
 ::: {.column width="57%"}
@@ -13,6 +15,9 @@ goal configuration $q_\bigstar = \begin{pmatrix} 2-\frac{\varepsilon}{2} & 0 &
 :::
 
 ::: {.column width="43%"}
+
+&nbsp;
+
 <img data-src="contents/assets/map_and_vehicle.png" width="100%"/>
 :::
 

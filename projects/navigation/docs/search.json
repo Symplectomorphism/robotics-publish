@@ -25,6 +25,6 @@
     "href": "navigation.html#problem-statement",
     "title": "Navigation",
     "section": "Problem Statement",
-    "text": "Problem Statement\n\n\n\nTake a simulation time of δt=0.1\\delta t = 0.1\\,s.\nCreate an RRT tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to the goal configuration q★=(2−ε20−90∘)⊤q_\\bigstar = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0 & -90^\\circ \\end{pmatrix}^\\top.\nSubmit your solution and the created RRT tree as a plot or as a simulation.\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "text": "Problem Statement\n \n\n\n\nTake a simulation time of δt=0.1\\delta t = 0.1\\,s.\nCreate an RRT tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to the goal configuration q★=(2−ε20−90∘)⊤q_\\bigstar = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0 & -90^\\circ \\end{pmatrix}^\\top.\nSubmit your solution and the created RRT tree as a plot or as a simulation.\n\n\n \n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]
