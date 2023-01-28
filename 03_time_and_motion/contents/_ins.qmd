@@ -335,7 +335,7 @@ Kalman filters do this. Here we will consider a simple, but still very effective
 alternative.
 
 
-## Explicit complementary filter {.smaller}
+## Explicit complementary (Mahony) filter {.smaller}
 
 * In a later chapter, we will see why the complementary filter works in theory.
 For now, let us simply change the rotation update step from earlier to the following.
@@ -360,8 +360,13 @@ is added.
     rotated into the inertial frame by the estimated orientation
     ${^0}\hat{\xi}_B$.
 
-## Explicit complementary filter {.smaller}
+## Explicit complementary (Mahony) filter[^3] {.smaller}
 
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="50%"}
 * Any error in direction between these vectors will yield a nonzero
 cross-product which is the axis around which to rotate one vector into the
 other.
@@ -373,7 +378,16 @@ orientation estimate by feeding it back to the rotation update.
 to be fused together: e.g. we could add magnetic field or any other kind of
 direction data such as altitude and azimuth of visual landmarks, stars or
 planets.
+:::
 
+::: {.column width="50%"}
 <center>
-<img data-src="contents/assets/complementary_vs_ins.png" width="43%"/>
+<img data-src="contents/assets/complementary_vs_ins.png" width="100%"/>
 </center>
+:::
+
+::::
+
+[^3]: Mahony, R., Tarek Hamel, and Jean-Michel Pflimlin. "Nonlinear
+complementary filters on the special orthogonal group." IEEE Transactions on
+Automatic Control 53.5 (2008):1203-1218.
