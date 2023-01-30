@@ -5,6 +5,7 @@ class RRT:
     r: Robot
     vertices: list  # List of vertices -- which are states
     edges: list     # List of edges -- which are pairs of states
+    path: list      # List of edges that form the path from start to finish
     prand: Point
 
     def __init__(self, p: Point, theta: float=0.0):
@@ -65,3 +66,25 @@ class RRT:
         self.prand = random_state().p
         snear = self.nearest_neighbor(self.prand)
         return self.new_state(snear, deltat=0.05)
+
+    def findvertex(self, s: State) -> int:
+        for i in range(len(self.vertices)):
+            if self.vertices[i] == s:
+                return i
+        return -1
+
+    def findedge(self, s:State) -> int:
+        for i in range(len(self.edges)):
+            if self.edges[i][1] == s:
+                return i
+        return -1
+
+    def findpath(self) -> list:
+        s = list()
+        ind = self.findedge(self.nearest_neighbor(self.r.pgoal))
+        s.insert(0, self.edges[ind][1])
+        while self.edges[ind][0] != self.vertices[0]:
+            ind = self.findedge(self.edges[ind][0])
+            s.insert(0, self.edges[ind][1])
+        return s
+
