@@ -1,30 +1,177 @@
 [
   {
-    "objectID": "navigation.html#robotics-and-automated-systems",
-    "href": "navigation.html#robotics-and-automated-systems",
-    "title": "navigation",
+    "objectID": "03_time_and_motion.html#robotics-and-automated-systems",
+    "href": "03_time_and_motion.html#robotics-and-automated-systems",
+    "title": "03_time_and_motion",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nProject 1: Navigation by RRT\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nOccupation Grid Map\nAutonomous Ground Vehicle Kinematics\nRapidly-Exploring Random Tree"
+    "text": "Robotics and Automated Systems\n\n\nTime and Motion\n\n\n\n\nInstructor: Aykut Satici, Ph.D.    Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  Derivative of Pose  Transforming Spatial Velocities  Incremental Rigid-Body Motion  Dynamics of Moving Bodies  Transforming Wrenches  Inertial Navigation  Sensor Fusion"
   },
   {
-    "objectID": "navigation.html#vehicle-kinematics",
-    "href": "navigation.html#vehicle-kinematics",
-    "title": "navigation",
-    "section": "Vehicle Kinematics",
-    "text": "Vehicle Kinematics\n\n\n\nThe autonomous ground vehicle has a circular frame\n\nThe radius of the circular frame is r=0.1r = 0.1m.\n\nThe pose of the vehicle w.r.t. the world {0}\\{0\\} is below figure.\n\nθ\\theta: angle the axis xrx_r makes with the axis x0x_0.\n(x,y)(x, y): components of the vector that connects the origins of frames {0}\\{0\\} and {R}\\{R\\} starting from {0}\\{0\\}, resolved in frame {0}\\{0\\}.\n\n\n\n ξR∼0𝐓R=(cosθ−sinθxsinθcosθy001). {\\xi}_R \\sim {^0}\\bm{T}_R = \\begin{pmatrix} \\cos{\\theta} & -\\sin{\\theta} & x\n\\\\ \\sin{\\theta} & \\cos{\\theta} & y \\\\ 0 & 0 & 1 \\end{pmatrix}. \n\n\n\nThe translational velocity vv of the vehicle is purely along the x−x- axis.\nThe angular velocity of ω\\omega of the vehicle is purely along the z−z- axis.\nThinking of vv and ω\\omega as the inputs to the system, its kinematics is given by\n\nẋ=vcosθ,ẏ=vsinθ,θ̇=ω.\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\omega.\n\\end{aligned}"
+    "objectID": "03_time_and_motion.html#derivative-of-orientation",
+    "href": "03_time_and_motion.html#derivative-of-orientation",
+    "title": "03_time_and_motion",
+    "section": "Derivative of orientation",
+    "text": "Derivative of orientation\n\nWe start by recalling the exponential representation of the orientation: A𝐑B(t)=eA𝛚̂(t)θ(t)∈𝐒𝐎(3), {^A}\\bm{R}_B(t) = e^{{^A}\\hat{\\bm{\\omega}}(t)\\theta(t)} \\in \\bm{SO}(3),  where the rotation is described by a rotational axis A𝛚̂(t){^A}\\hat{\\bm{\\omega}}(t) expressed in frame {A}\\{A\\} and a rotational angle θ(t)\\theta(t).\nThe derivative w.r.t. time, assuming 𝛚\\bm{\\omega} is fixed is A𝐑̇B(t)=A𝛚̂(t)θ̇eA𝛚̂(t)θ(t)=A𝛚̂(t)θ̇A𝐑B(t), {^A}\\dot{\\bm{R}}_B(t) = {^A}\\hat{\\bm{\\omega}}(t) \\dot{\\theta} e^{{^A}\\hat{\\bm{\\omega}}(t)\\theta(t)}\n = {^A}\\hat{\\bm{\\omega}}(t) \\dot{\\theta} {^A}\\bm{R}_B(t), \nSubsuming θ̇\\dot{\\theta} into A𝛚{^A}\\bm{\\omega}, we write this succinctly as A𝐑̇B=A𝛚̂A𝐑B, {^A}\\dot{\\bm{R}}_B = {^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B, \nThe quantity A𝛚BA{^A}{\\bm{\\omega}}^A_B is defined as the spatial angular velocity of frame {B}\\{B\\} with respect to frame {A}\\{A\\}, expressed in frame {A}\\{A\\}.\nRecall the following identities and substitute them: A𝛚=A𝐑BB𝛚𝐀𝐯̂=𝐀𝐯̂𝐀⊤ \\begin{aligned} \n{^A}\\bm{\\omega} &= {^A}\\bm{R}_B {^B}\\bm{\\omega} \\\\\n\\widehat{\\bm{Av}} &= \\bm{A}\\hat{\\bm{v}}\\bm{A}^\\top\n\\end{aligned}"
   },
   {
-    "objectID": "navigation.html#map",
-    "href": "navigation.html#map",
-    "title": "navigation",
-    "section": "Map",
-    "text": "Map\n\n \n\nThe bottom-right corner is the origin of the world frame {0}\\{0\\}.\nThe map is of a 22m-by-22m room, with separators (walls) of thickness δ=0.01m=1cm\\delta = 0.01\\,\\text{m} = 1\\,\\text{cm}.\nThe two corridors have width ε=0.3m=30cm\\varepsilon = 0.3\\,\\text{m} = 30\\,\\text{cm}.\n\nEach corridor have a clearance of 12\\frac{1}{2}\\,m from the walls they face.\nThe width of the corridors fits 1.51.5 autonomous ground vehicles.\n\nThe map is static and is known by the robot."
+    "objectID": "03_time_and_motion.html#angular-velocity",
+    "href": "03_time_and_motion.html#angular-velocity",
+    "title": "03_time_and_motion",
+    "section": "Angular velocity",
+    "text": "Angular velocity\n \n\n\n\n\n\nBody angular velocity\n\n\nA𝐑̇B=A𝐑BB𝛚̂.{^A}\\dot{\\bm{R}}_B = {^A}\\bm{R}_B {^B}\\hat{\\bm{\\omega}}.\n\n\n\n\n\n\nSpatial angular velocity\n\n\nA𝐑̇B=A𝛚̂A𝐑B.{^A}\\dot{\\bm{R}}_B = {^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B. \n\n\n\n\n\n\nIn words, if the angular velocity of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\} is expressed in frame {B}\\{B\\}, we call it the body angular velocity, and use the formula on the left.\nIf the angular velocity of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\} is expressed in frame {A}\\{A\\}, we call it the spatial angular velocity, and use the formula on the right."
   },
   {
-    "objectID": "navigation.html#problem-statement",
-    "href": "navigation.html#problem-statement",
-    "title": "navigation",
-    "section": "Problem Statement",
-    "text": "Problem Statement\n \n\n\n\nTake a simulation time of δt=0.1\\delta t = 0.1\\,s.\nCreate an RRT tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to the goal configuration q★=(2−ε20−90∘)⊤q_\\bigstar = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0 & -90^\\circ \\end{pmatrix}^\\top.\nSubmit your solution and the created RRT tree as a plot or as a simulation.\n\n\n \n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "objectID": "03_time_and_motion.html#derivative-of-pose",
+    "href": "03_time_and_motion.html#derivative-of-pose",
+    "title": "03_time_and_motion",
+    "section": "Derivative of pose",
+    "text": "Derivative of pose\n\nThe derivative of pose may be determined by expressing the pose as a homogeneous transformation matrix ξ∼A𝐓B\\xi \\sim {^A}\\bm{T}_B: ξ̇∼A𝐓̇B=[A𝐑̇BA𝐭̇B01×30]=[A𝛚̂A𝐑BA𝐭̇B01×30]. \\dot{\\xi} \\sim {^A}\\dot{\\bm{T}}_B = \n\\begin{bmatrix}\n{^A}\\dot{\\bm{R}}_B & {^A}\\dot{\\bm{t}}_B \\\\ \\bm{0}_{1 \\times 3} & 0\n\\end{bmatrix} = \n\\begin{bmatrix}\n{^A}\\hat{\\bm{\\omega}} \\; {^A}\\bm{R}_B & {^A}\\dot{\\bm{t}}_B \\\\ \\bm{0}_{1 \\times 3} & 0\n\\end{bmatrix}.\n\nThe rate of change can be described in terms of the current orientation A𝐑B{^A}\\bm{R}_B and two velocities.\nThe linear or translational velocity 𝐯=A𝐭̇B\\bm{v} = {^A}\\dot{\\bm{t}}_B is the velocity of the origin of {B}\\{B\\} w.r.t. {A}\\{A\\}.\nThe (spatial) angular velocity A𝛚B{^A}\\bm{\\omega}_B has already been introduced.\nWe can combine these two velocity vectors to create, the so called twist: A𝛎B≜(A𝐯B,AωB)∈ℝ6. {^A}\\bm{\\nu}_B \\triangleq \\left( {^A}\\bm{v}_B, {^A}\\omega_B \\right) \\in \\mathbb{R}^6.  which can be interpreted as the ‘’velocity’’ of frame {B}\\{B\\} w.r.t. frame {A}\\{A\\}."
+  },
+  {
+    "objectID": "03_time_and_motion.html#transforming-twists",
+    "href": "03_time_and_motion.html#transforming-twists",
+    "title": "03_time_and_motion",
+    "section": "Transforming twists",
+    "text": "Transforming twists\n \n\n\n\nThe velocity of a moving body can be expressed w.r.t. a world reference frame {A}\\{A\\} or the moving body frame {B}\\{B\\} as shown in the figure:\n\nY𝛎=Ad(YξX)X𝛎. {^Y}\\bm{\\nu} = \\text{Ad}\\left( {^Y}\\xi_X \\right){^X}\\bm{\\nu}. \nby using the adjoint mapping/matrix, Ad\\text{Ad}, which is defined by:\nAd(ξ)=[𝐑𝐭̂𝐑0𝐑]∈ℝ6×6. \\text{Ad}(\\xi) = \n\\begin{bmatrix}\n\\bm{R} & \\hat{\\bm{t}} \\bm{R} \\\\ 0 & \\bm{R}\n\\end{bmatrix} \\in \\mathbb{R}^{6 \\times 6}.\n\n\nRecall ξ∼(𝐑,𝐭)\\xi \\sim (\\bm{R}, \\bm{t}) represents the rigid-body motion.\n\n\n\n\n\n\n\n\nRepresenting spatial velocities\n\n\nNotice that 𝛎\\bm{\\nu} is a 66-dimensional vector."
+  },
+  {
+    "objectID": "03_time_and_motion.html#incremental-rotation",
+    "href": "03_time_and_motion.html#incremental-rotation",
+    "title": "03_time_and_motion",
+    "section": "Incremental rotation",
+    "text": "Incremental rotation\n\nTo gain some insight into 𝐑̇\\dot{\\bm{R}}, consider a first-order approximation to the derivative (note that subtraction is not defined in 𝐒𝐎(3)\\bm{SO}(3)): 𝐑̇≈1δt(𝐑⟨t+δt⟩−𝐑⟨t⟩)∈ℝ3×3. \\dot{\\bm{R}} \\approx \\frac{1}{\\delta_t} \\left( \\bm{R} \\left\\langle t+\\delta_t\n\\right\\rangle - \\bm{R}\\langle t \\rangle \\right) \\in \\mathbb{R}^{3 \\times 3}. \nConsider an object whose body frames {B}\\{B\\} at two consecutive time steps are related by a small rotation B𝐑Δ{^B}\\bm{R}_\\Delta expressed in the body frame. 𝐑B⟨t+δt⟩=𝐑B⟨t⟩B𝐑Δ. \\bm{R}_B \\left\\langle t + \\delta_t \\right\\rangle = \\bm{R}_B \\langle t \\rangle \n{^B} \\bm{R}_\\Delta. \nNow, substitute 𝐑̇B=𝐑BB𝛚̂\\dot{\\bm{R}}_B = \\bm{R}_B \\; {^B}\\hat{\\bm{\\omega}} into the top equation and rearrange to obtain B𝐑Δ≈δtB𝛚̂+𝐈, {^B}\\bm{R}_\\Delta \\approx \\delta_t {^B}\\hat{\\bm{\\omega}} + \\bm{I},  which says that an infinitesimally small rotation can be approximated by the sum of a skew-symmetric matrix and an identity matrix.\nAlternatively, if the angular velocity expressed in the body frame is known, we can approximately update the rotation matrix 𝐑B⟨t+δt⟩≈𝐑B⟨t⟩+δt𝐑B⟨t⟩𝛚̂.\\bm{R}_B\\left\\langle t+\\delta_t \\right\\rangle \\approx \\bm{R}_B\\langle t\n\\rangle + \\delta_t \\bm{R}_B\\langle t \\rangle \\hat{\\bm{\\omega}}. \nThis is cheap to compute, involves no trigonometric operations, and is key to inertial navigation systems."
+  },
+  {
+    "objectID": "03_time_and_motion.html#incremental-rigid-body-motion",
+    "href": "03_time_and_motion.html#incremental-rigid-body-motion",
+    "title": "03_time_and_motion",
+    "section": "Incremental rigid-body motion",
+    "text": "Incremental rigid-body motion\n\nConsider two poses ξ1\\xi_1 and ξ2\\xi_2 that differ infinitesimally and are related by ξ2=ξ1⊕ξΔ, \\xi_2 = \\xi_1 \\oplus \\xi_\\Delta,  where ξΔ=⊖ξ1⊕ξ2\\xi_\\Delta = \\ominus \\xi_1 \\oplus \\xi_2.\nIn homogeneous transformation matrix form ξΔ∼𝐓Δ=[𝐑Δ𝐭Δ01×30], \\xi_\\Delta \\sim \\bm{T}_\\Delta = \\begin{bmatrix} \\bm{R}_\\Delta & \\bm{t}_\\Delta\n\\\\ \\bm{0}_{1 \\times 3} & 0 \\end{bmatrix},  where 𝐭Δ\\bm{t}_\\Delta is an incremental displacement and 𝐑Δ\\bm{R}_\\Delta is an incremental rotation matrix.\nThe incremental rigid-body motion can therefore be described by just six parameters Δ(ξ1,ξ2)↦𝚫ξ∈ℝ6, \\Delta(\\xi_1, \\xi_2) \\mapsto \\bm{\\Delta}_\\xi \\in \\mathbb{R}^6,  where 𝚫ξ=(𝚫t,𝚫R)\\bm{\\Delta}_\\xi = \\left(\\bm{\\Delta}_t, \\bm{\\Delta}_R \\right) can be considered a twist.\nA body with constant twist 𝛎\\bm{\\nu} for δt\\delta_t seconds undergoes a spatial displacement of 𝚫ξ=δt𝛎\\bm{\\Delta}_\\xi = \\delta_t \\bm{\\nu}. The inverse operator Δ−1(𝚫ξ)↦ξΔ∈𝐒𝐄(3)\\Delta^{-1}\\left(\\bm{\\Delta}_\\xi\\right) \\mapsto \\xi_\\Delta \\in \\bm{SE}(3) is given by ξΔ∼𝐓Δ=[𝚫̂R+𝐈𝚫t01×31].\n\\xi_\\Delta \\sim \\bm{T}_\\Delta = \\begin{bmatrix}\n\\hat{\\bm{\\Delta}}_R + \\bm{I} & \\bm{\\Delta}_t \\\\ \\bm{0}_{1 \\times 3} & 1\n\\end{bmatrix}."
+  },
+  {
+    "objectID": "03_time_and_motion.html#dynamics-of-moving-bodies",
+    "href": "03_time_and_motion.html#dynamics-of-moving-bodies",
+    "title": "03_time_and_motion",
+    "section": "Dynamics of moving bodies",
+    "text": "Dynamics of moving bodies\n \n\nFor translational motion, Newton’s second law describes, in the inertial frame, the acceleration of a particle with position xx and mass mm due to the applied force 𝐟\\bm{f}: m0𝐱̈=0𝐟. m {^0}\\ddot{\\bm{x}} = {^0}\\bm{f}. \nRotational motion in 𝐒𝐎(3)\\bm{SO}(3) is described by Euler’s equations of motion which relates the angular acceleration of the body in the body frame to the applied torque 𝛕\\bm{\\tau} and a positive-definite rotational inertia matrix B𝐉{^B}\\bm{J} (notice that this is frame-dependent!) B𝐉B𝛚̇+𝛚×(B𝐉𝛚)=B𝛕. {^B}\\bm{J} \\; {^B} \\dot{\\bm{\\omega}} + \\bm{\\omega} \\times \\left( {^B}\\bm{J}\n\\; \\bm{\\omega} \\right) = {^B} \\bm{\\tau}. \nNonzero angular acceleration implies that angular velocity, the axis and/or the angle of rotation, evolves over time."
+  },
+  {
+    "objectID": "03_time_and_motion.html#transforming-wrenches-forces-and-torques",
+    "href": "03_time_and_motion.html#transforming-wrenches-forces-and-torques",
+    "title": "03_time_and_motion",
+    "section": "Transforming wrenches (forces and torques)",
+    "text": "Transforming wrenches (forces and torques)\n\nThe twist is a vector quantity that represents translational and rotational velocity.\nIn a similar fashion, we can combine translational force and rotational torque into a 66-vector that is called a wrench 𝐖=(fx,fy,fz,mx,my,mz)∈ℝ6\\bm{W} = \\left(f_x, f_y, f_z, m_x, m_y, m_z\\right) \\in \\mathbb{R}^6.\nA wrench B𝐖{^B}\\bm{W} is defined w.r.t. the coordinate frame {B}\\{B\\} and applied at the origin of that frame.\nA wrench C𝐖{^C}\\bm{W} is equivalent if it causes the same motion of the body when applied to the origin of the coordinate frame {C}\\{C\\} and defined w.r.t. {C}\\{C\\}. The wrenches are related by C𝐖=[B𝐑CB𝐭̂CB𝐑C03×3B𝐑C]⊤=Ad(BξC)⊤B𝐖,\n{^C}\\bm{W} = \\begin{bmatrix}\n{^B}\\bm{R}_C & {^B}\\hat{\\bm{t}}_C \\; {^B}\\bm{R}_C \\\\ \\bm{0}_{3 \\times 3} & \n{^B}\\bm{R}_C\n\\end{bmatrix}^\\top =\n\\text{Ad}\\left({^B}\\xi_C\\right)^\\top {^B}\\bm{W},\n which is similar to the transformation of twists, but uses the transpose of the adjoint of the inverse relative pose!"
+  },
+  {
+    "objectID": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames",
+    "href": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames",
+    "title": "03_time_and_motion",
+    "section": "Inertial1 and noninertial reference frames",
+    "text": "Inertial1 and noninertial reference frames\n\nImagine that a frame {B}\\{B\\} is accelerating at a constant acceleration 0aB{^0}a_B w.r.t. {0}\\{0\\}.\n\nFrom the perspective of {B}\\{B\\}, a particle that is at rest w.r.t. frame {0}\\{0\\} appears to be accelerating, in fact BaP=−0aB{^B}a_P = -{^0}a_B and this violates Newton’s first law.\nAn observer in frame {B}\\{B\\} who was aware of Newton’s theories might invoke a magical force to explain what they observe – they only exist in an accelerating or noninertial reference frame.\n\nExample: accelerating car or an airplane.\n\n\nFor a rotating reference frame things are more complicated still:\n\nImagine that you and your friend are standing on a large rotating turntable, and throwing a ball back and forth.\nYou will observe that the ball follows a curved path in space.\nAs a Newton-aware observer in this noninertial refernce frame you would have to resort to invoking some magical force that explains why flowing objects follow curved paths.\n\n\na frame that is not accelerating or rotating."
+  },
+  {
+    "objectID": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames-1",
+    "href": "03_time_and_motion.html#inertial1-and-noninertial-reference-frames-1",
+    "title": "03_time_and_motion",
+    "section": "Inertial1 and noninertial reference frames",
+    "text": "Inertial1 and noninertial reference frames\n\nIf the reference frame {B}\\{B\\} is rotating with angular velocity 𝛚\\bm{\\omega} about its origin then Newton’s second law becomes m[B𝐯̇+𝛚×(𝛚×B𝐩)⏟centripetal+2𝛚×B𝐯⏟Coriolis+d𝛚dt×B𝐩⏟Euler]=0𝐟,\nm \\left[\n{^B}\\dot{\\bm{v}} + \\underbrace{\\bm{\\omega} \\times \\left(\\bm{\\omega} \\times\n{^B}\\bm{p}\\right)}_{\\text{centripetal}} + \\underbrace{2 \\bm{\\omega} \\times\n{^B}\\bm{v}}_{\\text{Coriolis}} + \\underbrace{\\frac{\\text{d}\n\\bm{\\omega}}{\\text{d}t} \\times {^B}\\bm{p}}_{Euler}\n\\right] = {^0}\\bm{f},\n with three new acceleration terms.\n\nCentripetal acceleration always acts inward toward the origin.\nIf the point is moving then Coriolis acceleration will be normal to its velocity.\nIf the rotational velocity is time-varying then Euler acceleration will be normal to the position vector.\n\nThis complexity is symptomatic of being in a noninertial reference frame, and another definition of an inertial frame is one which\n\n\n\n\n‘’Physical laws hold good in their simplest form.’’\n\n\n\na frame that is not accelerating or rotating."
+  },
+  {
+    "objectID": "03_time_and_motion.html#inertial-navigation-system",
+    "href": "03_time_and_motion.html#inertial-navigation-system",
+    "title": "03_time_and_motion",
+    "section": "Inertial navigation system",
+    "text": "Inertial navigation system\n\n\n\nINS estimates:\n\nvelocity, orientation, and position by\nmeasuring accelerations and angular velocities and integrating them over time.\n\nNo external inputs such as radio signals from satellites needed.\n\nWell-suited for submarines, spacecraft and missile guidance.\n\nDuring cold war and space race, these ssytems were large, extremely expensive and technical details national secrets.\nToday, INSs are considerably cheaper and smaller.\n\nThey are built into every smart phone!\n\nAn INS estimates its pose w.r.t. an inertial reference frame which is typically denoted {0}\\{0\\} and fixed to some point on Earth.\n\nCommon conventions: north-east-down (NED) or east-north-up (ENU).\n\nThe coordinate frame {B}\\{B\\} is attached to the moving vehicle or robot and is known as the body- or body-fixed frame."
+  },
+  {
+    "objectID": "03_time_and_motion.html#gyroscopes",
+    "href": "03_time_and_motion.html#gyroscopes",
+    "title": "03_time_and_motion",
+    "section": "Gyroscopes",
+    "text": "Gyroscopes\n\n\n\nMeasures the rate-of-change of orientation.\nFix the gyroscope to the vehicle in the strapdown configuration as shown in the figure below.\n\nIf the vehicle rotates with an angular velocity 𝛚\\bm{\\omega}, the attached gyroscope will resist and exert an orthogonal torque 𝛕\\bm{\\tau}, which can be measured: 𝛕=𝛚×𝐡=𝛚×𝐉𝛚. \\bm{\\tau} = \\bm{\\omega} \\times \\bm{h} = \\bm{\\omega} \\times \\bm{J}\\bm{\\omega}.\nIf the magnitude of 𝐡\\bm{h} is high, then this kind of sensor is very sensitive – a very small angular velocity leads to an easily measureable torque.\n\nLow-cost sensors used in mobile phones and drones are based on micro-electro-mechanical systems (MEMS) fabricated on silicon chips.\nThree gyroscopes are packaged together and arranged so that their sensitive axes are orthogonal.\nThe three outputs of such a triaxial gyroscope are the components of the angular velocity vector B𝛚♯{^B}\\bm{\\omega}^\\sharp."
+  },
+  {
+    "objectID": "03_time_and_motion.html#estimating-orientation",
+    "href": "03_time_and_motion.html#estimating-orientation",
+    "title": "03_time_and_motion",
+    "section": "Estimating orientation",
+    "text": "Estimating orientation\n \n\nNature has invented gyrocopic sensors.\nAll vertebrates have angular velocity sensors as part of their vestibular systems.\n\nIn each inner ear we have three semi-circular canals: fluid-filled organs that measure angular velocity.\nArranged orthogonally, just like a triaxial gyroscope, with two measurement axes in a vertical plane and one diagonally across the head.\n\nIf we assume that B𝛚{^B}\\bm{\\omega} is constant over a time interval δt\\delta_t, the equivalent rotation at time step kk is BξΔ⟨k⟩∼eB𝛚̂♯δt. {^B}\\xi_\\Delta \\langle k \\rangle \\sim\ne^{{^B}\\hat{\\bm{\\omega}}^\\sharp \\delta_t}. \nIf the orientation of the sensor frame is initially ξB\\xi_B, then the evolution of estimated pose can be written in discrete-time form as ξB⟨k+1⟩←ξB⟨k⟩⊕BξΔ⟨k⟩. \\xi_B\\langle k+1 \\rangle \\leftarrow \\xi_B \\langle k \\rangle \\oplus\n{^B}\\xi_\\Delta \\langle k \\rangle."
+  },
+  {
+    "objectID": "03_time_and_motion.html#accelerometers",
+    "href": "03_time_and_motion.html#accelerometers",
+    "title": "03_time_and_motion",
+    "section": "Accelerometers",
+    "text": "Accelerometers\n\nEven when not moving they sense the acceleration due to gravity, defining the direction we know as downward.\nGravitational acceleration can be approximated by g≈9.780327(1+0.0053024sin2θ−0.0000058sin22θ)−0.000003086h, g \\approx 9.780327 \\left( 1 + 0.0053024 \\sin^2{\\theta} - 0.0000058\n\\sin^2{2\\theta} \\right) - 0.000003086h,  where θ\\theta is the angle of latitude and hh is the height above sea level.\n\n\n\n\nAn accelerometer comprises a proof mass, supported by a spring. mẍm=Fs−mg=kd−mg m \\ddot{x}_m = F_s - mg = kd - mg \nThe various displacements are related by: xb−(l0+d)=xm\\;\\; x_b - \\left(l_0 + d \\right) = x_m.\n\nl0l_0: spring’s natural length, dd: its extension.\n\nTaking double derivatives and substituting gives ẍb−d̈=1m(kd−mg). \\ddot{x}_b - \\ddot{d} = \\frac{1}{m}\\left(kd-mg\\right).\nAssuming d̈≈0\\ddot{d} \\approx 0, we wish to measure the acceleration fo the accelerometer a=ẍba = \\ddot{x}_b: d=mk(a+g)⇒a♯=a+g=kdm. d = \\frac{m}{k}\\left(a + g \\right) \\;\\; \\Longrightarrow \\;\\; a^\\sharp = a + g =\n\\frac{kd}{m}."
+  },
+  {
+    "objectID": "03_time_and_motion.html#accelerometers-1",
+    "href": "03_time_and_motion.html#accelerometers-1",
+    "title": "03_time_and_motion",
+    "section": "Accelerometers",
+    "text": "Accelerometers\n\n\n\nA stationary accelerometer indicates an upward acceleration of 11g.\n\nThis may be counterintuitive since the accelerometer is clearly stationary – if anything, the acceleration should be in the downward direction.\nHowever, the reality is that an accelerometer at rest in a gravity field reports upward acceleration.\n\n\n\n\n\nAccelerometers measure acceleration along a single axis.\n\nTypically three accelerometers are packaged together and arranged so that their sensitive axes are orthogonal.\nThe three outputs of such a triaxial accelerometer are the components of the acceleration vector B𝐚♯{^B}\\bm{a}^\\sharp measured in the body frame {B}\\{B\\}.\n\nNature has also invented the accelerometer.\n\nAll vertebrates have acceleration sensors called ampullae as part of the vestibular system.\nWe have two in each ear: the saccule measures vertical acceleration, and the utricle measures front-tob-ack acceleration. They help us maintain balance.\nThe proof mass in the ampullae is a collection of calcium carbonate cyrstals called otoliths. Hair cells embedded in a gelatinous substrate measure the displacement of the otoliths due to acceleration."
+  },
+  {
+    "objectID": "03_time_and_motion.html#estimating-pose-and-body-acceleration",
+    "href": "03_time_and_motion.html#estimating-pose-and-body-acceleration",
+    "title": "03_time_and_motion",
+    "section": "Estimating pose and body acceleration",
+    "text": "Estimating pose and body acceleration\n \n\nIn frame {0}\\{0\\} with its zz-axis vertically upward, the gravitational acceleration is 0𝐚=(00g)⊤\\;{^0}\\bm{a} = \\begin{pmatrix} 0 & 0 & g \\end{pmatrix}^\\top.\nIn a body-fixed frame {B}\\{B\\} at an arbitrary orientation, in terms of the roll-pitch-yaw angles 0ξB=𝐑z,θy𝐑y,θp𝐑x,θr{^0}\\xi_B =\n\\bm{R}_{z,\\theta_y}\\bm{R}_{y,\\theta_p}\\bm{R}_{x,\\theta_r}  the gravitational acceleration will be B𝐚=(⊖0ξB)•0𝐚=(−gsinθpgcosθpsinθrgcosθpcosθr){^B}\\bm{a} = \\left(\\ominus {^0}\\xi_B\\right) \\bullet {^0}\\bm{a} =\n\\begin{pmatrix}\n-g \\sin{\\theta_p} \\\\\ng \\cos{\\theta_p} \\sin{\\theta_r} \\\\\ng \\cos{\\theta_p} \\cos{\\theta_r}\n\\end{pmatrix}\n\nEquating this to the measured acceleration vector B𝐚♯=(axayaz)⊤{^B}\\bm{a}^\\sharp = \\begin{pmatrix} a_x & a_y & a_z \\end{pmatrix}^\\top, we obtain sinθ̂p=−axg,tanθ̂r=ayaz,θp≠±π2.\n\\sin{\\hat{\\theta}_p} = -\\frac{a_x}{g}, \\quad \\tan{\\hat{\\theta}_r} =\n\\frac{a_y}{a_z}, \\;\\; \\theta_p \\neq \\pm \\frac{\\pi}{2}.\n\n\n\n\n\nWe have made a very strong assumption that the measured acceleration B𝐚♯{^B}\\bm{a}^\\sharp is only due to gravity. On a robot the sensor will experience additional acceleration as the vehicle moves and this will introduce an error in the estimated orientation."
+  },
+  {
+    "objectID": "03_time_and_motion.html#estimating-pose-and-body-acceleration-1",
+    "href": "03_time_and_motion.html#estimating-pose-and-body-acceleration-1",
+    "title": "03_time_and_motion",
+    "section": "Estimating pose and body acceleration",
+    "text": "Estimating pose and body acceleration\n\nFrequently, we want to estimate the motion of the vehicle in the inertial frame, and the total measured acceleration in {0}\\{0\\} is due to gravity and motion 0𝐚♯=0𝐠+0𝐚v{^0}\\bm{a}^\\sharp = {^0}\\bm{g} + {^0}\\bm{a}_v \nWe observe acceleration in the body frame so the vehicle acceleration in the world frame is 0𝐚̂v=0𝐑̂BB𝐚♯−0𝐠{^0}\\hat{\\bm{a}}_v = {^0}\\hat{\\bm{R}}_B \\, {^B}\\bm{a}^\\sharp -\n{^0}\\bm{g}  and we assume that 0𝐑̂B{^0}\\hat{\\bm{R}}_B and 𝐠\\bm{g} are both known1. Integrating that w.r.t. time 0𝐯̂v(t)=∫0𝐚̂v(t)dt {^0}\\hat{\\bm{v}}_v(t) = \\int {^0}\\hat{\\bm{a}}_v(t) \\, \\text{d}t  gives the velocity of the vehicle, and integrating again 0𝐩̂v(t)=∫0𝐯̂v(t)dt {^0}\\hat{\\bm{p}}_v(t) = \\int {^0}\\hat{\\bm{v}}_v(t) \\, \\text{d}t  gives its position.\n\n\n\n\n\nWe can assume vehicle acceleration is zero and estimate attitude, or assume attitude and estimate vehicle acceleration.\nWe cannot estimate both since there are more unknowns than measurements.\n\n\n\n\nThe first is a strong assumption. Any error in 0𝐑̂{^0}\\hat{\\bm{R}} results in incorrect cancellation of the gravity component of 𝐚♯\\bm{a}^\\sharp leading to an error in the estimated body acceleration."
+  },
+  {
+    "objectID": "03_time_and_motion.html#magnetometers",
+    "href": "03_time_and_motion.html#magnetometers",
+    "title": "03_time_and_motion",
+    "section": "Magnetometers",
+    "text": "Magnetometers\n \n\nThe Earth is a massive but weak magnet.\n\nAt any point on the planet, the magnetic flux lines can be considered a vector 𝐦\\bm{m}.\nIts magnitude and direction can be accurately predicted and mapped.\n\nThe direction is described by two angled: declination and inclination.\n\nA horizontal projection of 𝐦\\bm{m} points in the direction of magnetic north and the declination angle DD is measured from true north clockwise to that projection.\nThe inlination angle II of the vector is measured in a vertical plane downward from horizontal to 𝐦\\bm{m}.\n\nThe length of the vector, the magnetic field intensity, is measured bya magnetometer in units of Tesla (T).\n\nFor the Earth this varies from 25−6525-65 μ\\muT,\nBy comparison a modern MRI machine has a magnetic field strength of 4−84-8T."
+  },
+  {
+    "objectID": "03_time_and_motion.html#how-magnetometers-work",
+    "href": "03_time_and_motion.html#how-magnetometers-work",
+    "title": "03_time_and_motion",
+    "section": "How magnetometers work",
+    "text": "How magnetometers work\n \n\n\n\nHall-effect sensor\n\n\nA semiconductor device which produces a voltage proportional to the magnetic field intensity in a direction normal to the current flow.\n\nThree of them are packaged together and arranged so that their sensitive axes are orthogonal.\nThe three outputs of such a triaxial magnetometer are the components of the Earth’s magnetic field intensity vector B𝐦♯{^B}\\bm{m}^\\sharp, measured in the body frame {B}\\{B\\}.\n\n\n\n\n\n\n\nNature\n\n\n\nCreatures from bacteria to turtles and birds are known to sense magnetic fields.\nThe effect is particularly well-known in pigeons and there is debate about whether or not humans have this sense.\nThe actual biological sensing mechanism has not yet been discovered."
+  },
+  {
+    "objectID": "03_time_and_motion.html#estimating-heading",
+    "href": "03_time_and_motion.html#estimating-heading",
+    "title": "03_time_and_motion",
+    "section": "Estimating heading",
+    "text": "Estimating heading\n\nConsider an inertial coordinate frame {0}\\{0\\} with its z−z-axis vertically upward and its x−x-axis pointing toward magnetic north. 0𝐦=B(cosI0sinI)⊤ {^0}\\bm{m} = B\n\\begin{pmatrix} \\cos{I} & 0 & \\sin{I} \\end{pmatrix}^\\top  where BB is the magnetic field intensity.\nIn a body-fixed frame {B}\\{B\\} at an arbitrary orientation in terms of roll-pitch-yaw angles 0ξB=𝐑z,θy𝐑y,θp𝐑x,θr{^0}\\xi_B =\n\\bm{R}_{z,\\theta_y}\\bm{R}_{y,\\theta_p}\\bm{R}_{x,\\theta_r} the magnetic field intensity will be B𝐦=(⊖0ξB)•0𝐦. {^B}\\bm{m} = \\left(\\ominus {^0}\\xi_B\\right) \\bullet\n{^0}\\bm{m}.\nEquating this to the measured magnetic intensity field vector B𝐦♯=(mxmymz)⊤{^B}\\bm{m}^\\sharp = \\begin{pmatrix} m_x & m_y & m_z \\end{pmatrix}^\\top yields an estimate of the yaw angle θ̂y=arctancosθp(mzsinθr−mycosθr)mx+BsinIsinθp \\hat{\\theta}_y = \\arctan{\\frac{\\cos{\\theta_p}\\left(m_z \\sin{\\theta_r} - m_y\n\\cos{\\theta_r}\\right)}{m_x + B \\sin{I}\n\\sin{\\theta_p}}}  assuming the roll and pitch angles have been determined, perhaps using measured acceleration.\nTo obtain the heading angle w.r.t. to the tru-north, we subtract the local declination angle tnθ̂y=θ̂y−D.{^{tn}}\\hat{\\theta}_y = \\hat{\\theta}_y - D."
+  },
+  {
+    "objectID": "03_time_and_motion.html#sensor-fusion",
+    "href": "03_time_and_motion.html#sensor-fusion",
+    "title": "03_time_and_motion",
+    "section": "Sensor fusion",
+    "text": "Sensor fusion\n\nThe collection of inertial sensors is referred to as an inertial measurement unit (IMU).\n\nA 6-DoF IMU comprises triaxial gyroscopes and accelerometers.\nA 9-DoF IMU additionally comprises triaxial magnetometers.\nA 10-DoF IMU may add altitude measurement through a barometric pressure sensor.\n\nThe sensors we use, particularly the low-cost ones in phones and drones, are far from perfect.\n\nFor any sensor value – gyroscope, accelerometer or magnetometer – the measured signal x♯=sx+b+ε x^\\sharp = sx + b + \\varepsilon  is related to the true value xx by a scale factor ss, bias bb and random noise ε\\varepsilon.\nss is usually specified by the manufacturer to some tolerance, say ±1%\\pm 1\\%, and for a particular sensor this can be determined by some calibration process.\nBias bb is ideally equal to zero but will vary from device to device. Bias that varies over time is often called sensor drift. Both the scale factor and the bias are typically functions of temperature.\n\nIn practice, bias is the biggest problem because it varies with time and temperature and has a very deleterious effect on the estimated pose and position."
+  },
+  {
+    "objectID": "03_time_and_motion.html#sensor-fusion-1",
+    "href": "03_time_and_motion.html#sensor-fusion-1",
+    "title": "03_time_and_motion",
+    "section": "Sensor fusion",
+    "text": "Sensor fusion\n\nSensor bias is problematic!\n\nA rule of thumb is that gyroscopes with bias stability of 0.010.01 deg/h will lead to position error growing at a rate of 1.851.85 km/h.\n\nA simple approach to this problem is to estimate bias by leaving the IMU stationary for a few seconds and computing the average value of all sensors.\n\nThis value is then subtracted from future sensor readings.\nThis is really only valid over a short time period because the bias is not constant.\n\nA more sophisticated approach is to estimate the bias online!\n\nWe need to combine information from different sensors for this – sensor fusion.\nWe rely on the fact that different sensors have complementary characteristics.\n\nBias on angular rate sensors causes the attitude estimate error to grow with time.\n\nAccelerometers respond to motion of the vehicle while good gyroscopes do not.\nMagnetometers provide partial information about roll, pitch and yaw, are immute to acceleration.\n\nThere are many ways to achieve this kind of fusion – we will later see how Kalman filters do this. Here we will consider a simple, but still very effective alternative."
+  },
+  {
+    "objectID": "03_time_and_motion.html#explicit-complementary-mahony-filter",
+    "href": "03_time_and_motion.html#explicit-complementary-mahony-filter",
+    "title": "03_time_and_motion",
+    "section": "Explicit complementary (Mahony) filter",
+    "text": "Explicit complementary (Mahony) filter\n\nIn a later chapter, we will see why the complementary filter works in theory. For now, let us simply change the rotation update step from earlier to the following. BξΔ⟨k⟩=e(B𝛚̂♯⟨k⟩−𝐛̂e⟨k⟩+kp𝛔̂R⟨k⟩)δt. {^B}\\xi_\\Delta \\langle k \\rangle = e^{\\left({^B}\\hat{\\bm{\\omega}}^\\sharp\\langle k\n\\rangle - \\hat{\\bm{b}}_e\\langle k \\rangle + k_p \\hat{\\bm{\\sigma}}_R \\langle k\n\\rangle\\right)\\delta_t}. \nThe key differences are that the estimated bias 𝐛e\\bm{b}_e is subtracted from the sensor measurement and a term based on the orientation error 𝛔R\\bm{\\sigma}_R is added.\n\nThe estimated bias changes with time according to 𝐛e⟨k+1⟩←𝐛e⟨k⟩−kI𝛔R⟨k⟩ \\bm{b}_e \\langle\nk+1 \\rangle \\leftarrow \\bm{b}_e \\langle k \\rangle - k_I \\bm{\\sigma}_R \\langle k\n\\rangle  and also depends on the orientation error 𝛔R\\bm{\\sigma}_R.\nkp,kI>0k_p, k_I > 0 are both well chosen constants.\nThe orientation error is derived from NN vector measurements 0𝐯i♯{^0}\\bm{v}_i^\\sharp: 𝛔R⟨k+1⟩=∑i=1Nki0𝐯i×0𝐯i♯⟨k⟩. \\bm{\\sigma}_R \\langle k+1 \\rangle = \\sum_{i=1}^N\nk_i \\, {^0}\\bm{v}_i \\times {^0}\\bm{v}_i^\\sharp \\langle k \\rangle.  where 0𝐯i{^0}\\bm{v}_i is the known value of a vector signal in the inertial frame (e.g. graviational acceleration) and 0𝐯i♯⟨k⟩=0ξ̂B⟨k⟩•B𝐯♯⟨k⟩. {^0}\\bm{v}_i^\\sharp \\langle k\n\\rangle = {^0}\\hat{\\xi}_B \\langle k \\rangle \\bullet {^B}\\bm{v}^\\sharp\n\\langle k \\rangle.  is the value measured int he body-fixed frame and rotated into the inertial frame by the estimated orientation 0ξ̂B{^0}\\hat{\\xi}_B."
+  },
+  {
+    "objectID": "03_time_and_motion.html#explicit-complementary-mahony-filter3",
+    "href": "03_time_and_motion.html#explicit-complementary-mahony-filter3",
+    "title": "03_time_and_motion",
+    "section": "Explicit complementary (Mahony) filter1",
+    "text": "Explicit complementary (Mahony) filter1\n \n\n\n\nAny error in direction between these vectors will yield a nonzero cross-product which is the axis around which to rotate one vector into the other.\nThe filter uses this difference – the innovation – to improve the orientation estimate by feeding it back to the rotation update.\nThe filter allows an unlimited number of vectorial measurements 0𝐯i{^0}\\bm{v}_i to be fused together: e.g. we could add magnetic field or any other kind of direction data such as altitude and azimuth of visual landmarks, stars or planets.\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici\n\nMahony, R., Tarek Hamel, and Jean-Michel Pflimlin. “Nonlinear complementary filters on the special orthogonal group.” IEEE Transactions on Automatic Control 53.5 (2008):1203-1218."
   }
 ]
