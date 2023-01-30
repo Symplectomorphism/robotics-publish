@@ -4,21 +4,27 @@
 
 :::: {.columns}
 
-::: {.column width="57%"}
-1. Take a simulation time of $\delta t = 0.1\,$s.
-2. Create an RRT tree.
+::: {.column width="63%"}
+1. Take a exploration step of $\delta t = 0.05\,$s.
+2. Create a rapidly-exploring random tree.
 3. Find a path that takes the robot from the initial configuration $q_s =
-\begin{pmatrix} \frac{5}{4} & \frac{1}{4} & 60^\circ \end{pmatrix}^\top$ to the
-goal configuration $q_\bigstar = \begin{pmatrix} 2-\frac{\varepsilon}{2} & 0 &
--90^\circ \end{pmatrix}^\top$.
-4. Submit your solution and the created RRT tree as a plot or as a simulation.
+\begin{pmatrix} \frac{5}{4} & \frac{1}{4} & 60^\circ \end{pmatrix}^\top$ to a
+an $\eta = \frac{1}{10}$ neighborhood $B_{\eta}\left(q_{\bigstar}\right)$ of the goal location 
+$\begin{pmatrix}x_\bigstar & y_\bigstar \end{pmatrix} = \begin{pmatrix} 2-\frac{\varepsilon}{2} & 
+0\end{pmatrix}$, defined as follows
+4. Submit your solution and the created RRT as a plot or as an animation.
 :::
 
-::: {.column width="43%"}
-
-&nbsp;
-
+::: {.column width="37%"}
 <img data-src="contents/assets/map_and_vehicle.png" width="100%"/>
+
+<p style="font-size:60%">
+$$
+B_{\eta}\left(q_\bigstar\right) \triangleq \left\{(x,y):
+\max{\left\{ \left|x-x_\bigstar\right|, \left|y-y_\bigstar\right|\right\}} \leq \eta 
+\right\}.
+$$
+</p>
 :::
 
 ::::

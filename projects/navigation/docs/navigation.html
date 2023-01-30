@@ -345,8 +345,8 @@
 </div><div class="column" style="width:45%;">
 <p><strong>Topics</strong>: <br></p>
 <ul>
-<li>Occupation Grid Map</li>
 <li>Autonomous Ground Vehicle Kinematics</li>
+<li>Occupation Grid Map</li>
 <li>Rapidly-Exploring Random Tree</li>
 </ul>
 </div>
@@ -377,6 +377,8 @@
 <li>The angular velocity of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math> of the vehicle is purely along the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>−</mo></mrow><annotation encoding="application/x-tex">z-</annotation></semantics></math> axis.</li>
 <li>Thinking of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math> as the inputs to the system, its kinematics is given by</li>
 </ul>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right"><mover><mi>x</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left"><mo>=</mo><mi>v</mi><mo>cos</mo><mi>θ</mi><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mover><mi>y</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left"><mo>=</mo><mi>v</mi><mo>sin</mo><mi>θ</mi><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><mover><mi>θ</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left"><mo>=</mo><mi>ω</mi><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 \dot{x} &amp;= v \cos{\theta}, \\
@@ -384,6 +386,13 @@
 \dot{\theta} &amp;= \omega.
 \end{aligned}
 </annotation></semantics></math></p>
+</div><div class="column" style="width:50%;">
+<p>&nbsp;</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>,</mo><mi>ω</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mo>−</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
+v, \omega \in \{-1, 0, -1\}
+</annotation></semantics></math></p>
+</div>
+</div>
 </section>
 <section id="map" class="slide level2 smaller">
 <h2>Map</h2>
@@ -408,20 +417,30 @@
 <h2>Problem Statement</h2>
 <p>&nbsp;</p>
 <div class="columns">
-<div class="column" style="width:57%;">
+<div class="column" style="width:63%;">
 <ol type="1">
-<li>Take a simulation time of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>t</mi><mo>=</mo><mn>0.1</mn><mspace width="0.167em"></mspace></mrow><annotation encoding="application/x-tex">\delta t = 0.1\,</annotation></semantics></math>s.</li>
-<li>Create an RRT tree.</li>
-<li>Find a path that takes the robot from the initial configuration <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>s</mi></msub><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mfrac><mn>5</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><msup><mn>60</mn><mo>∘</mo></msup></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">q_s = \begin{pmatrix} \frac{5}{4} &amp; \frac{1}{4} &amp; 60^\circ \end{pmatrix}^\top</annotation></semantics></math> to the goal configuration <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>★</mi></msub><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>2</mn><mo>−</mo><mfrac><mi>ε</mi><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mn>0</mn></mtd><mtd columnalign="center"><mo>−</mo><msup><mn>90</mn><mo>∘</mo></msup></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">q_\bigstar = \begin{pmatrix} 2-\frac{\varepsilon}{2} &amp; 0 &amp; -90^\circ \end{pmatrix}^\top</annotation></semantics></math>.</li>
-<li>Submit your solution and the created RRT tree as a plot or as a simulation.</li>
+<li>Take a exploration step of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mi>t</mi><mo>=</mo><mn>0.05</mn><mspace width="0.167em"></mspace></mrow><annotation encoding="application/x-tex">\delta t = 0.05\,</annotation></semantics></math>s.</li>
+<li>Create a rapidly-exploring random tree.</li>
+<li>Find a path that takes the robot from the initial configuration <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>s</mi></msub><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mfrac><mn>5</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><mfrac><mn>1</mn><mn>4</mn></mfrac></mtd><mtd columnalign="center"><msup><mn>60</mn><mo>∘</mo></msup></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup></mrow><annotation encoding="application/x-tex">q_s = \begin{pmatrix} \frac{5}{4} &amp; \frac{1}{4} &amp; 60^\circ \end{pmatrix}^\top</annotation></semantics></math> to a an <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mfrac><mn>1</mn><mn>10</mn></mfrac></mrow><annotation encoding="application/x-tex">\eta = \frac{1}{10}</annotation></semantics></math> neighborhood <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>η</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>★</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">B_{\eta}\left(q_{\bigstar}\right)</annotation></semantics></math> of the goal location <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><msub><mi>x</mi><mi>★</mi></msub></mtd><mtd columnalign="center"><msub><mi>y</mi><mi>★</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center"><mn>2</mn><mo>−</mo><mfrac><mi>ε</mi><mn>2</mn></mfrac></mtd><mtd columnalign="center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{pmatrix}x_\bigstar &amp; y_\bigstar \end{pmatrix} = \begin{pmatrix} 2-\frac{\varepsilon}{2} &amp; 0\end{pmatrix}</annotation></semantics></math>, defined as follows</li>
+<li>Submit your solution and the created RRT as a plot or as an animation.</li>
 </ol>
-</div><div class="column" style="width:43%;">
-<p>&nbsp;</p>
+</div><div class="column" style="width:37%;">
 <p><img data-src="contents/assets/map_and_vehicle.png" width="100%"></p>
+<p style="font-size:60%">
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>η</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>★</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>≜</mo><mrow><mo stretchy="true" form="prefix">{</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mo>max</mo><mrow><mo stretchy="true" form="prefix">{</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>★</mi></msub><mo stretchy="true" form="postfix">|</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>y</mi><mo>−</mo><msub><mi>y</mi><mi>★</mi></msub><mo stretchy="true" form="postfix">|</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow><mo>≤</mo><mi>η</mi><mo stretchy="true" form="postfix">}</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+B_{\eta}\left(q_\bigstar\right) \triangleq \left\{(x,y):
+\max{\left\{ \left|x-x_\bigstar\right|, \left|y-y_\bigstar\right|\right\}} \leq \eta 
+\right\}.
+</annotation></semantics></math>
+</p>
 </div>
 </div>
+</section>
+<section id="solution" class="slide level2">
+<h2>Solution</h2>
 
-<div class="footer footer-default">
+
+<img data-src="contents/assets/rrt.svg" width="100%" class="r-stretch"><div class="footer footer-default">
 <p>Robotics and Automated Systems • Aykut C. Satici</p>
 </div>
 </section>

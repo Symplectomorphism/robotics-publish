@@ -23,8 +23,8 @@ __Instructor__: Aykut Satici, Ph.D. <br>
 
 __Topics__: <br>
 
-* Occupation Grid Map
 * Autonomous Ground Vehicle Kinematics
+* Occupation Grid Map
 * Rapidly-Exploring Random Tree
 
 :::

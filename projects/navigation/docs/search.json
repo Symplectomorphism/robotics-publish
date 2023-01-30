@@ -4,14 +4,14 @@
     "href": "navigation.html#robotics-and-automated-systems",
     "title": "navigation",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nProject 1: Navigation by RRT\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nOccupation Grid Map\nAutonomous Ground Vehicle Kinematics\nRapidly-Exploring Random Tree"
+    "text": "Robotics and Automated Systems\n\n\nProject 1: Navigation by RRT\n\n\n\nInstructor: Aykut Satici, Ph.D. \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nAutonomous Ground Vehicle Kinematics\nOccupation Grid Map\nRapidly-Exploring Random Tree"
   },
   {
     "objectID": "navigation.html#vehicle-kinematics",
     "href": "navigation.html#vehicle-kinematics",
     "title": "navigation",
     "section": "Vehicle Kinematics",
-    "text": "Vehicle Kinematics\n\n\n\nThe autonomous ground vehicle has a circular frame\n\nThe radius of the circular frame is r=0.1r = 0.1m.\n\nThe pose of the vehicle w.r.t. the world {0}\\{0\\} is below figure.\n\nθ\\theta: angle the axis xrx_r makes with the axis x0x_0.\n(x,y)(x, y): components of the vector that connects the origins of frames {0}\\{0\\} and {R}\\{R\\} starting from {0}\\{0\\}, resolved in frame {0}\\{0\\}.\n\n\n\n ξR∼0𝐓R=(cosθ−sinθxsinθcosθy001). {\\xi}_R \\sim {^0}\\bm{T}_R = \\begin{pmatrix} \\cos{\\theta} & -\\sin{\\theta} & x\n\\\\ \\sin{\\theta} & \\cos{\\theta} & y \\\\ 0 & 0 & 1 \\end{pmatrix}. \n\n\n\nThe translational velocity vv of the vehicle is purely along the x−x- axis.\nThe angular velocity of ω\\omega of the vehicle is purely along the z−z- axis.\nThinking of vv and ω\\omega as the inputs to the system, its kinematics is given by\n\nẋ=vcosθ,ẏ=vsinθ,θ̇=ω.\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\omega.\n\\end{aligned}"
+    "text": "Vehicle Kinematics\n\n\n\nThe autonomous ground vehicle has a circular frame\n\nThe radius of the circular frame is r=0.1r = 0.1m.\n\nThe pose of the vehicle w.r.t. the world {0}\\{0\\} is below figure.\n\nθ\\theta: angle the axis xrx_r makes with the axis x0x_0.\n(x,y)(x, y): components of the vector that connects the origins of frames {0}\\{0\\} and {R}\\{R\\} starting from {0}\\{0\\}, resolved in frame {0}\\{0\\}.\n\n\n\n ξR∼0𝐓R=(cosθ−sinθxsinθcosθy001). {\\xi}_R \\sim {^0}\\bm{T}_R = \\begin{pmatrix} \\cos{\\theta} & -\\sin{\\theta} & x\n\\\\ \\sin{\\theta} & \\cos{\\theta} & y \\\\ 0 & 0 & 1 \\end{pmatrix}. \n\n\n\nThe translational velocity vv of the vehicle is purely along the x−x- axis.\nThe angular velocity of ω\\omega of the vehicle is purely along the z−z- axis.\nThinking of vv and ω\\omega as the inputs to the system, its kinematics is given by\n\n\n\nẋ=vcosθ,ẏ=vsinθ,θ̇=ω.\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\omega.\n\\end{aligned}\n\n\n \nv,ω∈{−1,0,−1}\nv, \\omega \\in \\{-1, 0, -1\\}"
   },
   {
     "objectID": "navigation.html#map",
@@ -25,6 +25,13 @@
     "href": "navigation.html#problem-statement",
     "title": "navigation",
     "section": "Problem Statement",
-    "text": "Problem Statement\n \n\n\n\nTake a simulation time of δt=0.1\\delta t = 0.1\\,s.\nCreate an RRT tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to the goal configuration q★=(2−ε20−90∘)⊤q_\\bigstar = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0 & -90^\\circ \\end{pmatrix}^\\top.\nSubmit your solution and the created RRT tree as a plot or as a simulation.\n\n\n \n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "text": "Problem Statement\n \n\n\n\nTake a exploration step of δt=0.05\\delta t = 0.05\\,s.\nCreate a rapidly-exploring random tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to a an η=110\\eta = \\frac{1}{10} neighborhood Bη(q★)B_{\\eta}\\left(q_{\\bigstar}\\right) of the goal location (x★y★)=(2−ε20)\\begin{pmatrix}x_\\bigstar & y_\\bigstar \\end{pmatrix} = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0\\end{pmatrix}, defined as follows\nSubmit your solution and the created RRT as a plot or as an animation.\n\n\n\n\nBη(q★)≜{(x,y):max{|x−x★|,|y−y★|}≤η}.\nB_{\\eta}\\left(q_\\bigstar\\right) \\triangleq \\left\\{(x,y):\n\\max{\\left\\{ \\left|x-x_\\bigstar\\right|, \\left|y-y_\\bigstar\\right|\\right\\}} \\leq \\eta \n\\right\\}."
+  },
+  {
+    "objectID": "navigation.html#solution",
+    "href": "navigation.html#solution",
+    "title": "navigation",
+    "section": "Solution",
+    "text": "Solution\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]

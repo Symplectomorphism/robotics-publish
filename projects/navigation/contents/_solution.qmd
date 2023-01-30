@@ -1,0 +1,3 @@
+## Solution
+
+<img data-src="contents/assets/rrt.svg" width="100%"/>

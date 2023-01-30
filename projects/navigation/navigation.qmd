@@ -30,3 +30,4 @@ revealjs-plugins:
 {{< include contents/_vehicle.qmd >}}
 {{< include contents/_occupancy.qmd >}}
 {{< include contents/_statement.qmd >}}
+{{< include contents/_solution.qmd >}}

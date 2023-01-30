@@ -24,6 +24,9 @@ $$ {\xi}_R \sim {^0}\bm{T}_R = \begin{pmatrix} \cos{\theta} & -\sin{\theta} & x
 * Thinking of $v$ and $\omega$ as the inputs to the system, its kinematics is
 given by
 
+:::: {.columns}
+
+::: {.column width="50%"}
 $$
 \begin{aligned}
 \dot{x} &= v \cos{\theta}, \\
@@ -31,3 +34,14 @@ $$
 \dot{\theta} &= \omega.
 \end{aligned}
 $$
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+$$
+v, \omega \in \{-1, 0, -1\}
+$$
+:::
+::::
