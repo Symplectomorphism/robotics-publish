@@ -12,7 +12,7 @@
     time.
 * No external inputs such as radio signals from satellites needed.
   - Well-suited for submarines, spacecraft and missile guidance.
-* During cold war and space race, these ssytems were large, extremely expensive
+* During cold war and space race, these systems were large, extremely expensive
 and technical details national secrets.
 
 * Today, INSs are considerably cheaper and smaller.
@@ -151,7 +151,7 @@ reports upward acceleration.
   - All vertebrates have acceleration sensors called ampullae as part of the
     vestibular system.
   - We have two in each ear: the saccule measures vertical acceleration, and the
-    utricle measures front-tob-ack acceleration. They help us maintain balance.
+    utricle measures front-to-back acceleration. They help us maintain balance.
   - The proof mass in the ampullae is a collection of calcium carbonate cyrstals
     called otoliths. Hair cells embedded in a gelatinous substrate measure the
     displacement of the otoliths due to acceleration.

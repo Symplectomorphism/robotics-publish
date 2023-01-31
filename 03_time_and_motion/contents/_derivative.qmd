@@ -74,6 +74,6 @@ of the origin of $\{B\}$ w.r.t. $\{A\}$.
 * The (spatial) angular velocity ${^A}\bm{\omega}_B$ has already been introduced.
 
 * We can combine these two velocity vectors to create, the so called __twist__:
-$$ {^A}\bm{\nu}_B \triangleq \left( {^A}\bm{v}_B, {^A}\omega_B \right) \in \mathbb{R}^6. $$
+$$ {^A}\bm{\nu}_B \triangleq \left( {^A}\bm{v}_B, {^A}\bm{\omega}_B \right) \in \mathbb{R}^6. $$
 which can be interpreted as the ''velocity'' of frame $\{B\}$ w.r.t. frame $\{A\}$.
 
