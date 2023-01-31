@@ -1,3 +1,72 @@
-## Solution
+## Program structure
 
+<img data-src="contents/assets/dir_structure.png" width="100%"/>
+
+## Kinematics and Plotter skeletons
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<center>
+<img data-src="contents/assets/kinematics_skeleton.png" width="85%"/>
+</center>
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+<center>
+<img data-src="contents/assets/plotter_skeleton.png" width="100%"/>
+</center>
+:::
+
+::::
+
+
+## Occupancy and RRT skeletons
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+&nbsp;
+
+<center>
+<img data-src="contents/assets/occupancy_skeleton.png" width="100%"/>
+
+<img data-src="contents/assets/constants.png" width="100%"/>
+</center>
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+<center>
+<img data-src="contents/assets/rrt_skeleton.png" width="100%"/>
+</center>
+:::
+
+::::
+
+
+<section data-visibility="hidden" data-background-video="contents/assets/rrt.webm" background-video-loop="true" data-background-size="contain"></section>
+
+## Solutions
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+<center>
+<video width="55%" autoplay="true" loop="true" controls="true">
+  <source data-src="contents/assets/rrt.webm" type="video/webm"/>
+</video>
+</center>
+::: 
+
+::: {.fragment}
 <img data-src="contents/assets/rrt.svg" width="100%"/>
+:::
+
+:::

@@ -1,3 +1,3 @@
-epsilon = 0.3
-delta = 0.01
-r = 0.1
+epsilon = 0.3  # width of the corridors
+delta = 0.01   # thickness of walls
+r = 0.1        # radius of the robot

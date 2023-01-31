@@ -1,6 +1,14 @@
 from implementation.constants import epsilon, delta, r
 
 class Point:
+    """
+    A simple class that represents a point in 2D flat-space.
+
+    Attributes
+    ----------
+    x, y: float
+        the x and y components of the position vector of the point.
+    """
     x: float
     y: float
 
@@ -15,6 +23,7 @@ class Point:
         return self.x == other.x and self.y == other.y
 
 def isoccupied(point: Point) -> bool:
+    """ Returns whether a given point is occupied by a wall or it is free. """
     flag = False
     if ((0 <= point.x <= delta+r) or
         (2-delta-r <= point.x <= 2) or 

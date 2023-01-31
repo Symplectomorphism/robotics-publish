@@ -28,10 +28,31 @@
     "text": "Problem Statement\n \n\n\n\nTake a exploration step of δt=0.05\\delta t = 0.05\\,s.\nCreate a rapidly-exploring random tree.\nFind a path that takes the robot from the initial configuration qs=(541460∘)⊤q_s = \\begin{pmatrix} \\frac{5}{4} & \\frac{1}{4} & 60^\\circ \\end{pmatrix}^\\top to a an η=110\\eta = \\frac{1}{10} neighborhood Bη(q★)B_{\\eta}\\left(q_{\\bigstar}\\right) of the goal location (x★y★)=(2−ε20)\\begin{pmatrix}x_\\bigstar & y_\\bigstar \\end{pmatrix} = \\begin{pmatrix} 2-\\frac{\\varepsilon}{2} & 0\\end{pmatrix}, defined as follows\nSubmit your solution and the created RRT as a plot or as an animation.\n\n\n\n\nBη(q★)≜{(x,y):max{|x−x★|,|y−y★|}≤η}.\nB_{\\eta}\\left(q_\\bigstar\\right) \\triangleq \\left\\{(x,y):\n\\max{\\left\\{ \\left|x-x_\\bigstar\\right|, \\left|y-y_\\bigstar\\right|\\right\\}} \\leq \\eta \n\\right\\}."
   },
   {
-    "objectID": "navigation.html#solution",
-    "href": "navigation.html#solution",
+    "objectID": "navigation.html#program-structure",
+    "href": "navigation.html#program-structure",
     "title": "navigation",
-    "section": "Solution",
-    "text": "Solution\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "section": "Program structure",
+    "text": "Program structure"
+  },
+  {
+    "objectID": "navigation.html#kinematics-and-plotter-skeletons",
+    "href": "navigation.html#kinematics-and-plotter-skeletons",
+    "title": "navigation",
+    "section": "Kinematics and Plotter skeletons",
+    "text": "Kinematics and Plotter skeletons"
+  },
+  {
+    "objectID": "navigation.html#occupancy-and-rrt-skeletons",
+    "href": "navigation.html#occupancy-and-rrt-skeletons",
+    "title": "navigation",
+    "section": "Occupancy and RRT skeletons",
+    "text": "Occupancy and RRT skeletons"
+  },
+  {
+    "objectID": "navigation.html#solutions",
+    "href": "navigation.html#solutions",
+    "title": "navigation",
+    "section": "Solutions",
+    "text": "Solutions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]
