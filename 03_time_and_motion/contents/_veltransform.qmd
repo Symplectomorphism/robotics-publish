@@ -1,3 +1,42 @@
+## Relating spatial and body velocities {.smaller}
+
+* The spatial and body velocity of a rigid motion are related by a similarity
+transformation:
+$$
+{^A}\hat{\bm{V}} = \dot{\bm{T}}\bm{T}^{-1} =
+\bm{T}\left(\bm{T}^{-1}\dot{\bm{T}}\right)\bm{T}^{-1} =
+\bm{T}\;{^B}\hat{\bm{V}}\;\bm{T}^{-1}.
+$$
+Alternatively, we can write
+$$
+\begin{aligned}
+{^A}\bm{\omega} &= \bm{R}\;{^B}\bm{\omega} \\
+{^A}\bm{v} &= -{^A}\bm{\omega} \times \bm{t} + \dot{\bm{t}} = \bm{t} \times
+\left( \bm{R}\;{^B}\bm{\omega} \right) + \bm{R}\;{^B}\bm{v}
+\end{aligned}
+$$
+
+* In either case, we may summarize the calculation as
+$$ {^A}\bm{V} = \begin{bmatrix} {^A}\bm{v} \\ {^A}\bm{\omega} \end{bmatrix} =
+\underbrace{\begin{bmatrix} \bm{R} & \hat{\bm{t}}\bm{R} \\ \bm{0} & \bm{R} \end{bmatrix}}_{\text{Ad}_\bm{T}}
+\begin{bmatrix}{^B}\bm{v} \\ {^B}\bm{\omega}\end{bmatrix} \triangleq
+\text{Ad}_\bm{T}\;{^B}\bm{V}.
+$$
+
+* The $6 \times 6$ matrix, $\text{Ad}_\bm{T}$, which transforms twists from one coordinate frame to
+another is referred to as the _adjoint transformation_ associated with $\bm{T}$.
+  - In the above calculation $\text{Ad}_\bm{T}$ maps body velocity to spatial
+    velocity.
+  - $\text{Ad}_\bm{T}$ is invertibe and its inverse is given by
+  $$
+  \text{Ad}_\bm{T}^{-1} = \begin{bmatrix}\bm{R}^\top & -\left(\hat{\bm{R}^\top
+  t}\right)\bm{R}^\top \\ \bm{0} & \bm{R}^\top \end{bmatrix} =
+  \begin{bmatrix} \bm{R}^\top & -\bm{R}^\top \hat{\bm{t}} \\ \bm{0} &
+  \bm{R}^\top \end{bmatrix} = \text{Ad}_{\bm{T}^{-1}}.
+  $$
+
+
+<!--
 ## Transforming twists {.smaller}
 
 &nbsp;
@@ -32,6 +71,180 @@ $$
 ::: {.callout-tip icon="false"}
 ## Representing spatial velocities
 Notice that $\bm{\nu}$ is a $6$-dimensional vector.
+:::
+
+:::
+
+::::
+-->
+
+## Example: one DoF manipulator {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* The spatial velocity of the rotating rigid body is given by 
+$$
+{^A}\bm{V} = \begin{bmatrix} {^A}\bm{v} \\ {^A}\bm{\omega} \end{bmatrix}, \qquad
+\begin{aligned}
+{^A}\bm{v} &= -\dot{\bm{R}}\bm{R}^\top \bm{t} + \dot{\bm{t}} \\
+{^A}\bm{\omega} &= \left(\dot{\bm{R}}\bm{R}^\top\right)^\vee = \begin{bmatrix}
+0 & 0 & \dot{\theta} \end{bmatrix}^\top
+\end{aligned}
+$$
+* Using this ${^A}\bm{\omega}$, we compute
+$$
+{^A}\bm{v} = -\bm{\omega} \times \bm{t} + \dot{\bm{t}} = \dot{\theta}\begin{bmatrix}
+\left(\ell_1 +\ell_2\cos{\theta}\right) \\
+\ell_2\sin{\theta} \\ 0
+\end{bmatrix} + \dot{\theta}\begin{bmatrix} -\ell_2\cos{\theta} \\ 
+-\ell_2 \sin{\theta} \\ 0
+\end{bmatrix} = \begin{bmatrix} \ell_1\dot{\theta} \\ 0 \\ 0 \end{bmatrix}
+$$
+This is precisly the velocity of a point attached to the rigid body as it
+travels through the origin of frame $\{A\}$.
+
+* The body velocity is
+$$
+{^B}\bm{V} = \begin{bmatrix} {^B}\bm{v} \\ {^B}\bm{\omega} \end{bmatrix}, \qquad
+\begin{aligned}
+{^B}\bm{v} &= \bm{R}^\top\dot{\bm{t}} = \begin{bmatrix} -\ell_2\dot{\theta} & 0
+& 0\end{bmatrix}^\top \\
+{^B}\bm{\omega} &= \left(\bm{R}^\top\dot{\bm{R}}\right)^\vee = \begin{bmatrix}
+0 & 0 & \dot{\theta} \end{bmatrix}^\top
+\end{aligned}
+$$
+
+* The magnitude of the linear velocity is dependent on the length of the link
+connecting frame $\{B\}$ to the joint.
+
+:::
+
+
+::: {.column width="30%"}
+<img data-src="contents/assets/one-dof-manipulator.png" width="100%"/>
+
+$$
+\bm{T} = \begin{bmatrix}
+\cos{\theta} & -\sin{\theta} & 0 & -\ell_2 \sin{\theta} \\
+\sin{\theta} & \cos{\theta} & 0 & \ell_1 + \ell_2 \cos{\theta} \\
+0 & 0 & 1 & \ell_0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+* ${^B}\bm{v}$ is the velocity of the origin of frame $\{B\}$ as seen in frame
+$\{B\}$.
+
+* Linear velocity is always in the $-x$ direction and the angular velocity in
+the $z$ direction.
+
+:::
+
+::::
+
+
+## Coordinate transformations {.smaller}
+
+* Just as we can compose rigid body transformations to find ${^A}\bm{T}_C$ given
+${^A}\bm{T}_B$, ${^B}\bm{T}_C$, it is possible to determine the velocity of one
+coordinate frame relative a third, given the relative velocities between the
+first and the second and second and third coordinate frames.
+
+::: {.callout-note icon="false"}
+## Transformation of spatial velocities}
+$$ {^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B} {^B}\bm{V}_C^B. $$
+:::
+
+:::: {.callout-tip icon="false"}
+## Proof
+The configuration of frame $\{C\}$ w.r.t. $\{A\}$ is given by $${^A}\bm{T}_C =
+{^A}\bm{T}_B\,{^B}\bm{T}_C. $$
+By definition and the chain rule
+$$
+\begin{aligned}
+{^A}\hat{\bm{V}}_C^A = {^A}\dot{\bm{T}}_C \, {^A}\bm{T}_C^{-1} =
+\left({^A}\dot{\bm{T}}_B\,{^B}\bm{T}_C + {^A}\bm{T}_B\,{^B}\dot{\bm{T}}_C\right)
+\left({^B}\bm{T}_C^{-1}\,{^A}\bm{T}_B^{-1}\right) =
+{^A}\dot{\bm{T}}_B\,{^A}\bm{T}_C^{-1} +
+{^A}\bm{T}_B\left({^B}\dot{\bm{T}}_C\,{^B}\bm{T}_C^{-1}\right){^A}\bm{T}_B^{-1}
+= {^A}\hat{\bm{V}}_B^A + {^A}\bm{T}_B\,{^B}\hat{\bm{V}}_C^B\,{^A}\bm{T}_B^{-1},
+\end{aligned}
+$$
+and converting to twist coordinates,
+${^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B} {^B}\bm{V}_C^B$.
+:::
+
+::: {.callout-note icon="false"}
+## Transformation of body velocities
+$$ {^C}\bm{V}_C^A = \text{Ad}_{{^B}\bm{T}_C^{-1}}\,{^B}\bm{V}_B^A +
+{^C}\bm{V}_C^B. $$
+:::
+
+
+## Coordinate transformations {.smaller}
+
+* Often two of the coordinate frames are stationary w.r.t. each other and the
+velocity relationships can be simplified.
+  - For example, if $\{A\}$ and $\{B\}$ are two inertial frames which are fixed
+    relative to each other, then the spatial velocity of frame $\{C\}$ satisfies
+    $$ {^A}\bm{V}_C^A = \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_C^B. $$
+  - The corresponding relationship for body velocities its ${^C}\bm{V}_C^A =
+    {^C}\bm{V}_C^B$ since the body velocity is independent of the inertial frame
+    w.r.t. which it is measured.
+
+::: {.callout-tip icon="false"}
+## Rigid body velocity identities
+$$
+\begin{aligned}
+{^B}\bm{V}_B^A &= -{^B}\bm{V}_A^B \\
+{^B}\bm{V}_B^A &= -\text{Ad}_{{^B}\bm{T}_A}\,{^A}\bm{V}_A^B.
+\end{aligned}
+$$
+:::
+
+
+## Example: two DoF manipulator {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* We wish to find the velocity of frame $\{C\}$ w.r.t. frame $\{A\}$, given the
+joint velocities $\dot{\theta}_1, \dot{\theta}_2 \in \mathbb{R}$.
+$$
+\begin{aligned}
+{^A}\bm{V}_B^A &= \begin{bmatrix} \bm{v}_B^A \\ \bm{\omega}_B^A \end{bmatrix}\dot{\theta}_1, \qquad 
+\bm{v}_B^A = \bm{0}, \;\; \bm{\omega}_B^A = \begin{bmatrix} 0 & 0 & 1
+\end{bmatrix}^\top, \\
+{^B}\bm{V}_C^B &= \begin{bmatrix} \bm{v}_C^B \\ \bm{\omega}_C^B \end{bmatrix}\dot{\theta}_2, \qquad 
+\bm{v}_C^B = \begin{bmatrix} \ell_1 & 0 & 0 \end{bmatrix}^\top, \;\; \bm{\omega}_C^B = 
+\begin{bmatrix} 0 & 0 & 1 \end{bmatrix}^\top, \\
+\end{aligned}
+$$
+* We also calculate $\text{Ad}_{{^A}\bm{T}_B}$, with $\bm{t} = \begin{bmatrix} 0
+& 0 & \ell_0 \end{bmatrix}^\top$.
+$$ \text{Ad}_{{^A}\bm{T}_B} = \begin{bmatrix} {^A}\bm{R}_B & \hat{\bm{t}}\,
+{^A}\bm{R}_B \\ \bm{0} & {^A}\bm{R}_B \end{bmatrix}. $$
+* Using the coordinate transformation formula, we obtain
+<p style="font-size:77%">
+$$
+{^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_C^B = 
+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}\dot{\theta}_1 +
+\begin{bmatrix} \ell_1 \cos{\theta_1} \\ \ell_1 \sin{\theta_1} \\ 0 \\ 0 \\ 0 \\
+1 \end{bmatrix}\dot{\theta}_2.
+$$
+</p>
+:::
+
+::: {.column width="30%"}
+
+&nbsp;
+
+<img data-src="contents/assets/two-dof-manipulator.png" width="100%"/>
+
+::: {.callout-tip appearance="minimal"}
+* The velocity consists of two components, one from each of the joints
+* They add together linearly.
 :::
 
 :::

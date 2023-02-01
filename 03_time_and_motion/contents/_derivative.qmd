@@ -27,8 +27,6 @@ $$
 
 ## Angular velocity
 
-&nbsp;
-
 ::: {layout-ncol="2" layout-align="center"}
 
 ::: {.callout-warning icon="false"}
@@ -51,29 +49,148 @@ formula on the left.
 expressed in frame $\{A\}$, we call it the _spatial angular velocity_, and use 
 the formula on the right.
 
+* The space of skew-symmetric matrices is denoted by
+$$ \mathfrak{so}(3) \triangleq \left\{ S \in \mathbb{R}^{3 \times 3}: S^\top =
+-S \right\}. $$
+
+## <span style="font-size: 87%">Exponential coordinates for rigid motion and twists</span> {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* $\bm{\omega}$: axis of rotation, $\left\|\bm{\omega}\right\| = 1$ and $\bm{q}$
+a point on the axis.
+* Assume: link rotates with unit velocity:
+$$ \dot{\bm{p}}(t) = \bm{\omega} \times \left( \bm{p}(t) - \bm{q} \right). $$
+* Concise representation: $\hat{\bm{\eta}} \triangleq \begin{bmatrix}
+\hat{\bm{\omega}} & \bm{v} \\ \bm{0} & 0 \end{bmatrix} \in \mathbb{R}^{4 \times
+4}$, with $\bm{v} = -\bm{\omega} \times \bm{q}$.
+  - Above equation is then rewritten:
+  $$ \dot{\bar{\bm{p}}} = \begin{bmatrix} \dot{\bm{p}} \\ 0 \end{bmatrix} = \begin{bmatrix}
+  \hat{\bm{\omega}} & -\bm{\omega} \times \bm{q} \\ \bm{0} & 0 \end{bmatrix}
+  \begin{bmatrix} \bm{p} \\ 1 \end{bmatrix} = \hat{\bm{\eta}} \begin{bmatrix}
+  \bm{p} \\ 1 \end{bmatrix} \;\; \Longrightarrow \;\; \dot{\bar{\bm{p}}} =
+  \hat{\bm{\eta}} \bar{\bm{p}}. $$
+  - The solution to the ODE is given by $\bar{\bm{p}}(t) = e^{\bm{\hat{\eta}} t}
+    \bar{\bm{p}}(0)$.
+  - $e^{\bm{\hat{\eta}} t}$ is the matrix exponential of the $4 \times 4$ matrix
+    $\hat{\bm{\eta}}t$:
+    $$ e^{\bm{\hat{\eta}} t} \triangleq I + \hat{\bm{\eta}} t +
+    \frac{1}{2!}\left(\hat{\bm{\eta}}t\right)^2 +
+    \frac{1}{3!}\left(\hat{\bm{\eta}}t\right)^3 + \cdots $$
+  - The scalar $t$ is the total amount of rotation (since we're rotating with
+    unit velocity).
+
+:::
+
+::: {.column width="30%"}
+<img data-src="contents/assets/revolute.png" width="80%"/>
+
+::: {.callout-note icon="false"}
+## Exponential mapping
+$e^{\bm{\hat{\eta}} t}$ is a mapping from the initial location of a point to
+its location after rotating $t$ radians.
+:::
+
+:::
+
+::::
+
+
+## <span style="font-size: 87%">Exponential coordinates for rigid motion and twists</span> {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+* In a similar manner, we can represent the translational motion as the
+exponential of a $4 \times 4$ matrix.
+* The velocity of a point attached to a prismatic joint, moving with unit
+velocity is $$ \dot{\bm{p}}(t) = \bm{v}.$$
+* The solution can be written as $e^{\bm{\hat{\eta}} t}\bar{\bm{p}}(0)$, where $t$ is
+the total amount of translation and
+$$ \hat{\bm{\eta}} = \begin{bmatrix} \bm{0} & \bm{v} \\ \bm{0} & 0
+\end{bmatrix}. $$
+:::
+
+::: {.column width="30%"}
+<img data-src="contents/assets/prismatic.png" width="80%"/>
+:::
+
+::::
+
+* These $4 \times 4$ matrices $\hat{\bm{\eta}}$ are generalizations of the
+skew-symmetric matrices $\hat{\bm{\omega}}$.
+  - Such a matrix is called a _twist_ and it lives in the space 
+  $$ \mathfrak{se}(3) \triangleq \left\{(\bm{v}, \hat{\bm{\omega}}), \bm{v} \in
+  \mathbb{R}^3, \hat{\omega} \in \mathfrak{so}(3)\right\}. $$
+  - The _hat_ $\hat{~}$ and _vee_ $\vee$ operators go back and forth in this
+    manner:
+  $$ \hat{\bm{\eta}} = \begin{bmatrix} \hat{\bm{\omega}} & \bm{v} \\ \bm{0} & 0 \end{bmatrix} 
+    \leftrightarrow \begin{bmatrix} \bm{v} \\ \bm{\omega} \end{bmatrix} =
+    \bm{\eta}. $$
+
 
 ## Derivative of pose {.smaller}
 
-* The derivative of pose may be determined by expressing the pose as a homogeneous
-transformation matrix $\xi \sim {^A}\bm{T}_B$:
-$$ \dot{\xi} \sim {^A}\dot{\bm{T}}_B = 
-\begin{bmatrix}
-{^A}\dot{\bm{R}}_B & {^A}\dot{\bm{t}}_B \\ \bm{0}_{1 \times 3} & 0
-\end{bmatrix} = 
-\begin{bmatrix}
-{^A}\hat{\bm{\omega}} \; {^A}\bm{R}_B & {^A}\dot{\bm{t}}_B \\ \bm{0}_{1 \times 3} & 0
-\end{bmatrix}.
+* As in the case of rotation ${^A}\dot{\bm{T}}_B(t)$ is not particularly useful.
+  - But the two terms ${^A}\dot{\bm{T}}_B\,{^A}\bm{T}_B^{-1}$ and
+    ${^A}\bm{T}_B^{-1}\,{^A}\dot{\bm{T}}_B(t)$ have special significance.
+
+With
+$\quad{^A}\bm{T}_B = \bm{T} = \begin{bmatrix} \bm{R} & \bm{t} \\ \bm{0} & 1
+    \end{bmatrix}, \qquad
+\hat{\bm{V}} = \dot{\bm{T}}\bm{T}^{-1} = \begin{bmatrix} \dot{\bm{R}} & \dot{\bm{t}} \\ \bm{0} & 0 \end{bmatrix}
+\begin{bmatrix} \bm{R}^\top & -\bm{R}^\top \bm{t} \\ \bm{0} & 1 \end{bmatrix} = 
+\begin{bmatrix} \dot{\bm{R}} \bm{R}^\top & -\dot{\bm{R}}\bm{R}^\top \bm{t} +
+\dot{\bm{t}} \\ \bm{0} & 0 \end{bmatrix} = \begin{bmatrix} \hat{\bm{\omega}} &
+\bm{v} \\ \bm{0} & 0 \end{bmatrix} = {^A}\hat{\bm{V}}_{B}^{A}$
+
+* Notice that ${^A}\hat{\bm{V}}_{B}^{A}$ is a twist: We call it the _spatial
+velocity_ of frame $\{B\}$ w.r.t. frame $\{A\}$.
+
+::: {.callout-tip icon="false"}
+## Interpretation of the spatial velocity
+The interpretation is somewhat unintuitive:
+
+* The angular component $\bm{\hat{\omega}} = {^A}\hat{\bm{\omega}}_B^A = \dot{\bm{R}}\bm{R}^\top$ is the
+    instantenous angular velocity of the body as viewed in the frame ($\{A\}$).
+* The linear component $\bm{v} = {^A}\bm{v}_B^A = -\dot{\bm{R}}\bm{R}^\top \bm{t} + \dot{\bm{t}}$
+is _not the velocity of the origin of the body frame_ $\{B\}$.
+  - It is the velocity of a (possibly imaginary) point on the rigid body, which
+    is traveling through the origin of the spatial ($\{A\}$) frame at time t.
+  - That is, if one stands at the origin of the frame $\{A\}$ and measures the
+    instantaneous velocity of a point attached to the rigid body and traveling
+    through the origin of frame $\{A\}$ at that instant, this is $\bm{v}(t)$.
+:::
+
+
+## Derivative of pose {.smaller}
+
+&nbsp;
+
+* It is also possible to specify the velocity of a rigid body w.r.t. the
+body-fixed frame:
+  - With $\quad{^A}\bm{T}_B = \bm{T}$ and $\hat{\bm{V}} = {^B}\hat{\bm{V}}_B^A$
+    we define the _body velocity_ of a frame $\{B\}$ w.r.t. frame $\{A\}$
+$$
+\hat{\bm{V}} \triangleq \bm{T}^{-1}\dot{\bm{T}} = \begin{bmatrix}\bm{R}^\top
+\dot{\bm{R}} & \bm{R}^\top \dot{\bm{t}} \\ \bm{0} & 0\end{bmatrix} \;\;
+\leftrightarrow \;\; \bm{V} = \begin{bmatrix}\bm{v} \\ \bm{\omega} \end{bmatrix}
+= \begin{bmatrix} \bm{R}^\top \dot{\bm{t}} \\ \left(\bm{R}^\top
+\dot{\bm{R}}\right)^\vee \end{bmatrix}.
 $$
 
-* The rate of change can be described in terms of the current orientation ${^A}\bm{R}_B$
-and _two_ velocities.
+::: {.callout-tip icon="false"}
+## Interpretation of the body velocity
+* $\bm{v} = {^B}\bm{v}_B^A$ is the velocity of the origin of the body coordinate
+frame $\{B\}$ w.r.t. the spatial frame $\{A\}$, as viewed in the body
+frame $\{B\}$.
+* $\bm{\omega} = {^B}\bm{\omega}_B^A$ is the angular velocity of the body frame
+$\{B\}$ w.r.t. the spatial frame $\{A\}$, also as viewed in the body frame
+$\{B\}$.
+:::
 
-* The linear or translational velocity $\bm{v} = {^A}\dot{\bm{t}}_B$ is the velocity 
-of the origin of $\{B\}$ w.r.t. $\{A\}$.
-
-* The (spatial) angular velocity ${^A}\bm{\omega}_B$ has already been introduced.
-
-* We can combine these two velocity vectors to create, the so called __twist__:
-$$ {^A}\bm{\nu}_B \triangleq \left( {^A}\bm{v}_B, {^A}\bm{\omega}_B \right) \in \mathbb{R}^6. $$
-which can be interpreted as the ''velocity'' of frame $\{B\}$ w.r.t. frame $\{A\}$.
-
+::: {.callout-warning appearance="minimal"}
+The body velocity is _NOT_ the velocity of the body frame relative to
+the body frame! This latter quantity is always _zero_.
+:::

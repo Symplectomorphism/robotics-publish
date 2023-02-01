@@ -1,5 +1,7 @@
 ## Transforming wrenches (forces and torques) {.smaller}
 
+&nbsp;
+
 * The twist is a vector quantity that represents translational and rotational 
 velocity.
 
@@ -18,7 +20,7 @@ $$
 {^B}\bm{R}_C & {^B}\hat{\bm{t}}_C \; {^B}\bm{R}_C \\ \bm{0}_{3 \times 3} & 
 {^B}\bm{R}_C
 \end{bmatrix}^\top =
-\text{Ad}\left({^B}\xi_C\right)^\top {^B}\bm{W},
+\text{Ad}_{{^B}\bm{T}_C}^\top {^B}\bm{W},
 $$
 which is similar to the transformation of twists, but uses the transpose of the
 adjoint of the _inverse_ relative pose!
