@@ -25,6 +25,7 @@ ${^0}a_B$ w.r.t. $\{0\}$.
 
 * If the reference frame $\{B\}$ is rotating with angular velocity $\bm{\omega}$
 about its origin then Newton's second law becomes
+
 $$
 m \left[
 {^B}\dot{\bm{v}} + \underbrace{\bm{\omega} \times \left(\bm{\omega} \times
@@ -33,6 +34,7 @@ m \left[
 \bm{\omega}}{\text{d}t} \times {^B}\bm{p}}_{Euler}
 \right] = {^0}\bm{f},
 $$
+
 with three _new_ acceleration terms.
   - Centripetal acceleration always acts inward toward the origin.
   - If the point is moving then Coriolis acceleration will be normal to its

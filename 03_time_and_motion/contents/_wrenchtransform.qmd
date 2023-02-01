@@ -15,6 +15,7 @@ applied at the origin of that frame.
 * A wrench ${^C}\bm{W}$ is equivalent if it causes the same motion of the body
 when applied to the origin of the coordinate frame $\{C\}$ and defined w.r.t. 
 $\{C\}$. The wrenches are related by
+
 $$
 {^C}\bm{W} = \begin{bmatrix}
 {^B}\bm{R}_C & {^B}\hat{\bm{t}}_C \; {^B}\bm{R}_C \\ \bm{0}_{3 \times 3} & 
@@ -22,5 +23,6 @@ $$
 \end{bmatrix}^\top =
 \text{Ad}_{{^B}\bm{T}_C}^\top {^B}\bm{W},
 $$
+
 which is similar to the transformation of twists, but uses the transpose of the
 adjoint of the _inverse_ relative pose!

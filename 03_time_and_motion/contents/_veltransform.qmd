@@ -184,6 +184,8 @@ $$ {^C}\bm{V}_C^A = \text{Ad}_{{^B}\bm{T}_C^{-1}}\,{^B}\bm{V}_B^A +
 
 ## Coordinate transformations {.smaller}
 
+&nbsp;
+
 * Often two of the coordinate frames are stationary w.r.t. each other and the
 velocity relationships can be simplified.
   - For example, if $\{A\}$ and $\{B\}$ are two inertial frames which are fixed
