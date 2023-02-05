@@ -84,6 +84,8 @@ Notice that $\bm{\nu}$ is a $6$-dimensional vector.
 
 ::: {.column width="70%"}
 * The spatial velocity of the rotating rigid body is given by 
+
+<p style="font-size: 80%">
 $$
 {^A}\bm{V} = \begin{bmatrix} {^A}\bm{v} \\ {^A}\bm{\omega} \end{bmatrix}, \qquad
 \begin{aligned}
@@ -92,7 +94,9 @@ $$
 0 & 0 & \dot{\theta} \end{bmatrix}^\top
 \end{aligned}
 $$
-* Using this ${^A}\bm{\omega}$, we compute
+</p>
+
+<p style="font-size: 80%">
 $$
 {^A}\bm{v} = -\bm{\omega} \times \bm{t} + \dot{\bm{t}} = \dot{\theta}\begin{bmatrix}
 \left(\ell_1 +\ell_2\cos{\theta}\right) \\
@@ -101,10 +105,14 @@ $$
 -\ell_2 \sin{\theta} \\ 0
 \end{bmatrix} = \begin{bmatrix} \ell_1\dot{\theta} \\ 0 \\ 0 \end{bmatrix}
 $$
-This is precisly the velocity of a point attached to the rigid body as it
+</p>
+
+This is precisely the velocity of a point attached to the rigid body as it
 travels through the origin of frame $\{A\}$.
 
 * The body velocity is
+
+<p style="font-size: 80%">
 $$
 {^B}\bm{V} = \begin{bmatrix} {^B}\bm{v} \\ {^B}\bm{\omega} \end{bmatrix}, \qquad
 \begin{aligned}
@@ -114,6 +122,7 @@ $$
 0 & 0 & \dot{\theta} \end{bmatrix}^\top
 \end{aligned}
 $$
+</p>
 
 * The magnitude of the linear velocity is dependent on the length of the link
 connecting frame $\{B\}$ to the joint.
@@ -124,6 +133,7 @@ connecting frame $\{B\}$ to the joint.
 ::: {.column width="30%"}
 <img data-src="contents/assets/one-dof-manipulator.png" width="100%"/>
 
+<p style="font-size: 80%">
 $$
 \bm{T} = \begin{bmatrix}
 \cos{\theta} & -\sin{\theta} & 0 & -\ell_2 \sin{\theta} \\
@@ -132,6 +142,7 @@ $$
 0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+</p>
 
 * ${^B}\bm{v}$ is the velocity of the origin of frame $\{B\}$ as seen in frame
 $\{B\}$.
