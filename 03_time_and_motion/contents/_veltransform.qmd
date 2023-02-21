@@ -163,7 +163,7 @@ coordinate frame relative a third, given the relative velocities between the
 first and the second and second and third coordinate frames.
 
 ::: {.callout-note icon="false"}
-## Transformation of spatial velocities}
+## Transformation of spatial velocities
 $$ {^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B} {^B}\bm{V}_C^B. $$
 :::
 

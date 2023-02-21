@@ -117,7 +117,7 @@ $$ m \ddot{x}_m = F_s - mg = kd - mg $$
   - $l_0$: spring's natural length, $d$: its extension.
 * Taking double derivatives and substituting gives
 $$ \ddot{x}_b - \ddot{d} = \frac{1}{m}\left(kd-mg\right).$$
-* Assuming $\ddot{d} \approx 0$, we wish to measure the acceleration fo the
+* Assuming $\ddot{d} \approx 0$, we wish to measure the acceleration of the
 accelerometer $a = \ddot{x}_b$:
 $$ d = \frac{m}{k}\left(a + g \right) \;\; \Longrightarrow \;\; a^\sharp = a + g =
 \frac{kd}{m}. $$
@@ -269,7 +269,7 @@ has not yet been discovered.
 * Consider an inertial coordinate frame $\{0\}$ with its $z-$axis vertically
 upward and its $x-$axis pointing toward _magnetic_ north. $$ {^0}\bm{m} = B
 \begin{pmatrix} \cos{I} & 0 & \sin{I} \end{pmatrix}^\top $$ where $B$ is the
-magnetic field intensity.
+magnetic field intensity and $I$ is the inclination angle (both are known).
 * In a body-fixed frame $\{B\}$ at an arbitrary orientation in terms of
 roll-pitch-yaw angles $${^0}\xi_B =
 \bm{R}_{z,\theta_y}\bm{R}_{y,\theta_p}\bm{R}_{x,\theta_r}$$ the magnetic field
@@ -282,7 +282,7 @@ $$ \hat{\theta}_y = \arctan{\frac{\cos{\theta_p}\left(m_z \sin{\theta_r} - m_y
 \cos{\theta_r}\right)}{m_x + B \sin{I}
 \sin{\theta_p}}} $$ assuming the roll and pitch angles have been determined,
 perhaps using measured acceleration.
-* To obtain the heading angle w.r.t. to the tru-north, we subtract the local
+* To obtain the heading angle w.r.t. to the true-north, we subtract the local
 declination angle $${^{tn}}\hat{\theta}_y = \hat{\theta}_y - D. $$
 
 
