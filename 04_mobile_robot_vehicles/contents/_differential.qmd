@@ -6,7 +6,7 @@
 * Differential steering steers by independently controlling the speed of the
 wheels on each side of the vehicle -- if the speeds are not equal the vehicle
 will turn.
-* The vehicle's velocity is bey definition $v$ in the vehicle's $x$-direction,
+* The vehicle's velocity is by definition $v$ in the vehicle's $x$-direction,
 and zero in the $y$-direction since the wheel's cannot slip sideways: $$
 {^B}\bm{v} = (v, 0). $$
 * The configuration of the vehicle is represented by the generalized coordinates
