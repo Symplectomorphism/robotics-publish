@@ -1,72 +1,65 @@
 [
   {
-    "objectID": "04_mobile_robot_vehicles.html#robotics-and-automated-systems",
-    "href": "04_mobile_robot_vehicles.html#robotics-and-automated-systems",
-    "title": "04_mobile_robot_vehicles",
+    "objectID": "05_navigation.html#robotics-and-automated-systems",
+    "href": "05_navigation.html#robotics-and-automated-systems",
+    "title": "05_navigation",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nMobile Robot Vehicles\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nWheeled Mobile Robots\n\nCar-like mobile robots\nDifferentially-steered vehicle\nOmnidirectional vehicle\n\nFlying robots"
+    "text": "Robotics and Automated Systems\n\n\nNavigation\n\n\n\nInstructor: Aykut Satici, Ph.D. \n \n\nMechanical and Biomedical Engineering \nElectrical and Computer Engineering \nBoise State University, Boise, ID, USA\n\n\nTopics: \n\nReactive Navigation\nMap-Based Planning\n\nD⋆D^\\star\nRapidly-Exploring Random Tree (RRT)"
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#car-like-mobile-robots",
-    "href": "04_mobile_robot_vehicles.html#car-like-mobile-robots",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Car-like mobile robots",
-    "text": "Car-like mobile robots\n\n\n\nA commonly used model for the low-speed behavior of a four-wheeled car-like vehicle is the kinematic bicycle model.\nThe velocity of each wheel is in the plane of the wheel and the wheel rools without slipping sideways: B𝐯=(v,0). {^B}\\bm{v} = (v, 0). \nThe configuration of the vehicle is represented by the generalized coordinates 𝐪=(x,y,θ)∈𝒞=ℝ2×𝕊1\\bm{q} = (x, y, \\theta) \\in \\mathcal{C} = \\mathbb{R}^2 \\times \\mathbb{S}^1.\nThe dashed lines show the direction along which the wheels cannot move; these lines of no motion intersect at the instantenous center of rotation (ICR).\nThe angular velocity is θ̇=vRB, \\dot{\\theta} = \\frac{v}{R_B},  and by simple geometry the turning radius is RB=LtanγR_B = \\frac{L}{\\tan \\gamma}, where LL is the length of the vehicle or wheel base.\n\n\n\n\n\n\n\n\nBicycle model of a car\n\n\nThe car is shown in light gray and the bicycle approximation is dark gray. The steering wheel angle is γ\\gamma and the velocity of the back wheel in the xx-direction, is vv. The two wheel axes are extended as dashed lines and intersect at the Instantaneous Center of Rotation (ICR) and the distance from the ICR to the back and front wheels is RBR_B and RFR_F, respectively."
+    "objectID": "05_navigation.html#navigation1",
+    "href": "05_navigation.html#navigation1",
+    "title": "05_navigation",
+    "section": "Navigation1",
+    "text": "Navigation1\n\n\n\nHuman approach: make maps and erect sign posts.\nMany robotic tasks can be achieved without any map, using an approach referred to as reactive navigation.\n\nE.g.: navigating by heading towards a light, following a white line on the ground.\nmoving through a maze by following a wall,\nvacuuming a room by following a random path.\n\nHuman-style map-based navigation is used by more sophisticated robots.\nIt is also known as motion planning.\nIt supports more complex tasks, but …\n\nImposes a number of requirements such as having a map of the environment.\nAlso requires that the robot’s position be known.\n\n\n\n\n\n\n\n\n\n\n\nThe problem of guiding a robot towards a goal."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#car-like-mobile-robots-1",
-    "href": "04_mobile_robot_vehicles.html#car-like-mobile-robots-1",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Car-like mobile robots",
-    "text": "Car-like mobile robots\n\n\n\nFor a fixed steering wheel angle, the car moves along a circular arc.\nThe velocity of the robot in the world frame is (vcosθ,vsinθ)(v \\cos{\\theta}, v \\sin{\\theta}) so the equations of motion are\n\nẋ=vcosθ,ẏ=vsinθ,θ̇=vLtanγ.\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\frac{v}{L} \\tan{\\gamma}.\n\\end{aligned}\n\n\n\n\nCharacteristics of a car-like vehicle\n\n\n\nWhen v=0v=0 then θ̇=0\\dot{\\theta} = 0; i.e., it is not possible to change the vehicle’s orientation when it is stationary.\nIn the world-coordinate frame, the velocity must satisfy an algebraic equality: ẏcosθ−ẋsinθ≡0, \\dot{y}\\cos{\\theta} - \\dot{x}\\sin{\\theta} \\equiv 0,  called a nonholonomic constraint. This equation cannot be integrated to form a holonomic constraint, i.e., a relationship between xx, yy, and θ\\theta.\n\n\n\n\n\n\n\n\n\n\n\nBicycle model of a car\n\n\nThe car is shown in light gray and the bicycle approximation is dark gray. The steering wheel angle is γ\\gamma and the velocity of the back wheel in the xx-direction, is vv. The two wheel axes are extended as dashed lines and intersect at the Instantaneous Center of Rotation (ICR) and the distance from the ICR to the back and front wheels is RBR_B and RFR_F, respectively."
+    "objectID": "05_navigation.html#braitenberg-vehicles",
+    "href": "05_navigation.html#braitenberg-vehicles",
+    "title": "05_navigation",
+    "section": "Braitenberg Vehicles",
+    "text": "Braitenberg Vehicles\n\nThey have no explicit internal representation of the environment in which they operate and they do not make explicit plans.\nExample problem: robot moving in 22D that is seeking the local maxima of light intensity.\n\n\n\n\nWe estimate the gradient using two sensors on each side of the robot’s body.\nSensors return the intensity on the right and left of the robot.\nSteer the heading angle of a mobile robot by looking at the difference between the intensities on either side of the robot.\nSet the speed of the robot to zero if the sensors are both giving maximal values, otherwise increase it gradually.\n\n\n\n\n\n\n\n\n\n\n\nPath of the Braitenberg vehicle\n\n\nMoving toward the maximum of a 22D scalar field whose magnitude is shown color coded."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#differentially-steered-vehicle",
-    "href": "04_mobile_robot_vehicles.html#differentially-steered-vehicle",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Differentially-steered vehicle",
-    "text": "Differentially-steered vehicle\n\n\n\nDifferential steering steers by independently controlling the speed of the wheels on each side of the vehicle – if the speeds are not equal the vehicle will turn.\nThe vehicle’s velocity is by definition vv in the vehicle’s xx-direction, and zero in the yy-direction since the wheel’s cannot slip sideways: B𝐯=(v,0).\n{^B}\\bm{v} = (v, 0). \nThe configuration of the vehicle is represented by the generalized coordinates 𝐪=(x,y,θ)∈𝒞=ℝ2×𝕊1\\bm{q} = (x, y, \\theta) \\in \\mathcal{C} = \\mathbb{R}^2 \\times \\mathbb{S}^1.\nThe vehicle follows a curved path centered on ICR.\nThe left-hand wheels move at a speed of vLv_L along an arc with a radius RLR_L while the right-hand wheels move at a speed of vRv_R along an arc with a radius of RRR_R. The angular velocity is θ̇=vLRL=vRRR=vR−vLW,\n\\dot{\\theta} = \\frac{v_L}{R_L} = \\frac{v_R}{R_R} = \\frac{v_R - v_L}{W},\n since RR=RL+WR_R = R_L + W, with WW denoting the wheel separation.\n\n\n\n\n\n\n\n\nDifferential drive robot\n\n\nThe robot is shown in light gray and the unicycle approximation in dark gray. The vehicle follows a path around the ICP and the distance from the ICR to the left and right wheels is RLR_L and RRR_R, respectively. We can use the alternative body frame {B′}\\left\\{B^\\prime\\right\\} for trajectory tracking control."
+    "objectID": "05_navigation.html#simple-automata-a.k.a.-bugs",
+    "href": "05_navigation.html#simple-automata-a.k.a.-bugs",
+    "title": "05_navigation",
+    "section": "Simple Automata (a.k.a. bugs)",
+    "text": "Simple Automata (a.k.a. bugs)\n\n∃\\exists many bug algorithms which share the ability to sense when they are close to an obstacle.\nThey are similar to Braitenberg class, but the bug includes a state machine and other logic in between sensors and the motors.\nThe automata have memory which the Braitenberg vehicle lacked.\n\n\n\n\nAssumptions:\n\nrobot operates in a (occupancy) grid world and occupies one grid cell.\nrobot is capable of omnidirectional motion.\nit can determine its position on the plane.\nit can only sense its goal and whether adjacent cells are occupied.\n\nThe map is not used by the robot, its just there for simulation/demonstration purposes.\n\n\n\n\n\n\n\n\nMap of the environment\n\n\nApprox. scale = 4.54.5 cm. per cell.\nRed: obstacles; Green: path taken."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#differentially-steered-vehicle-1",
-    "href": "04_mobile_robot_vehicles.html#differentially-steered-vehicle-1",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Differentially-steered vehicle",
-    "text": "Differentially-steered vehicle\n\n\n\nThe equations of motion are therefore ẋ=vcosθ,ẏ=vsinθ,θ̇=vΔW,\n\\begin{aligned}\n\\dot{x} &= v \\cos{\\theta}, \\\\\n\\dot{y} &= v \\sin{\\theta}, \\\\\n\\dot{\\theta} &= \\frac{v_\\Delta}{W},\n\\end{aligned}\n where v=12(vR+vL)v = \\frac{1}{2}\\left(v_R+v_L\\right) and vΔ=vR−vLv_\\Delta = v_R - v_L are the average and differential velocities, respectively.\nFor a desired speed vv and turn rate θ̇\\dot{\\theta} we can solve for vRv_R and vLv_L. This kinematic model is often called the unicycle model.\nSimilar to the car-like vehicle, this model has a nonholonomic constraint as well: ẏcosθ−ẋsinθ=0. \\dot{y} \\cos{\\theta} - \\dot{x} \\sin{\\theta} = 0. \nIf we move the vehicle’s reference frame to {B′}\\left\\{B^\\prime\\right\\} and ignore orientation, we can rewrite the EoM as (ẋẏ)=[cosθ−asinθsinθacosθ](vω).\n\\begin{pmatrix} \\dot{x} \\\\ \\dot{y} \\end{pmatrix} = \n\\begin{bmatrix} \\cos{\\theta} & -a \\sin{\\theta} \\\\ \\sin{\\theta} & a \\cos{\\theta}\n\\end{bmatrix}\\begin{pmatrix} v \\\\ \\omega \\end{pmatrix}.\n (To be solved for desired ẋ\\dot{x} and ẏ\\dot{y}.)\n\n\n\n\n\n\n\n\nDifferential drive robot\n\n\nThe robot is shown in light gray and the unicycle approximation in dark gray. The vehicle follows a path around the ICP and the distance from the ICR to the left and right wheels is RLR_L and RRR_R, respectively. We can use the alternative body frame {B′}\\left\\{B^\\prime\\right\\} for trajectory tracking control."
+    "objectID": "05_navigation.html#simple-automata-a.k.a.-bugs-1",
+    "href": "05_navigation.html#simple-automata-a.k.a.-bugs-1",
+    "title": "05_navigation",
+    "section": "Simple Automata (a.k.a. bugs)",
+    "text": "Simple Automata (a.k.a. bugs)\n\n\n\nThe robot is given a straight line – the m-line – towards its goal.\nStrategy:\n\nIf obstacle is encountered, turn right and continue until a point on the m-line is encountered that is close to the goal than when it departed from the m-line.\n\nNotice in the example the bug reached the goal but it has taken a very suboptimal route.\n\ntraversed the inside of a wardrobe\nwent behind doors and visited two bathrooms.\n\nFundamentally, the robot is limted by not using a map.\n\nIt cannot see the big picture.\nTherefore takes paths that are locally, rather than globally, optimal.\n\n\n\n \n\n\n\n\n\n\nMap of the environment\n\n\nApprox. scale = 4.54.5 cm. per cell.\nRed: obstacles; Green: path taken."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#omnidirectional-vehicle",
-    "href": "04_mobile_robot_vehicles.html#omnidirectional-vehicle",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Omnidirectional vehicle",
-    "text": "Omnidirectional vehicle\n\n\n\nOmnidirectional wheels remove the nonholonomic constraint, simplifying control algorithms.\nSuch ‘’Swedish’’ wheels comprises a number of rollers set around a circumference of the wheel with their axes at an angle of α\\alpha relative to the axle of the wheel.\nThe rollers have a barrel shape so only one point on the roller is in contact with the ground at any time.\nRotation of the wheel will cause a forward velocity of Rω𝐱WR\\omega \\bm{x}_W where RR is the wheel radius.\nBecause the roller is free to roll in the direction indicated by the green line, normal to the roller’s axis, there is potentially arbitrary velocity in that direction.\nResolve a desired velocity 𝐯\\bm{v} into two components, one parallel to 𝐱W\\bm{x}_W and one parallel to the rolling direction 𝐯=vW𝐱W⏟driven+vr(cosα𝐱W+sinα𝐲W)⏟rolling=(vW+vrcosα)𝐱W+vrsinα𝐲W,\n\\begin{aligned}\n\\bm{v} &= \\underbrace{v_W\\bm{x}_W}_{\\text{driven}} + \\underbrace{v_r\\left(\n\\cos{\\alpha} \\bm{x}_W + \\sin{\\alpha}\\bm{y}_W\\right)}_{\\text{rolling}} \\\\ \n&= \\left( v_W + v_r \\cos{\\alpha}\\right)\\bm{x}_W + v_r \\sin{\\alpha} \\bm{y}_W,\n\\end{aligned}"
+    "objectID": "05_navigation.html#d",
+    "href": "05_navigation.html#d",
+    "title": "05_navigation",
+    "section": "D*D^*",
+    "text": "D*D^*\n\nD*D^* is popular algorithm that finds the best path through a graph, which it first computes, that corresponds to the input occupancy grid.\nFirstly, it generalizes the occupancy grid to a cost map, representing the cost c>0c > 0 of traversing each cell in the horizontal or vertical direction.\n\n\n\n\n\nD*D^* finds the path that minimizes the total cost of travel, e.g.,\n\nshortest time to reach the goal,\nmaximizing passenger comfort, etc.\n\n\n\n\n\n\n\nSecondly, D*D^* supports incremental replanning at a much lower computational cost than complete-replanning."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#omnidirectional-vehicle-1",
-    "href": "04_mobile_robot_vehicles.html#omnidirectional-vehicle-1",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Omnidirectional vehicle",
-    "text": "Omnidirectional vehicle\n\n\n \n \n\nHere vWv_W is the speed due to wheel rotation and vrv_r is the rolling speed.\nHence the required wheel rotation rate is ω=vWR\\omega = \\frac{v_W}{R}.\nA single mecanum wheel does not allow any control in the rolling direction, but for three or more mecanum wheels, suitably arranged, the motion in the rolling direction of any one wheel will be driven by the other wheels.\nThe four wheel contact points indicated by the gray dots have coordinate vectors B𝐩i{^B}\\bm{p}_i. For a desired body velocity B𝐯B{^B}\\bm{v}_B and angular rate Bω{^B}\\omega the velocity at each wheel contact point is B𝐯i=B𝐯B+Bω𝐳B×B𝐩i. {^B}\\bm{v}_i = {^B}\\bm{v}_B + {^B}\\omega \\bm{z}_B \\times {^B}\\bm{p}_i."
+    "objectID": "05_navigation.html#implementation-of-d",
+    "href": "05_navigation.html#implementation-of-d",
+    "title": "05_navigation",
+    "section": "Implementation of D*D^*",
+    "text": "Implementation of D*D^*\n\n\n\nWe create a very dense directed graph.\n\nEvery cell is a vertex and has a cost: distance to the goal.\nEach vertex has an edge to the neighboring cell that is closest to the goal.\nEach vertex has a state t∈{NEW,OPEN,CLOSED}t \\in \\{\\text{NEW,OPEN,CLOSED}\\}.\n\n\n\n\n\n\n\nInitially every cell is in the NEW state, the cost of the goal cell is zero and its state is OPEN.\nThink of the set of all cells in the OPEN state as a wavefront propagating outward from the goal.\nThe cost of reaching cells that are neighbors of an OPEN cell is computed and these cells are in turn set to OPEN and the original cell is removed from the open list and becomes CLOSED.\nThe real power of D*D^* comes from being able to efficiently change the cost map during the mission.\n\nIn reality, sensors have a finite range and a robot discovers more of world as it proceeds."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles",
-    "href": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Flying robots or unmanned aerial vehicles",
-    "text": "Flying robots or unmanned aerial vehicles\n\n\n\nUAVs are becoming increasingly common and span a huge range of size and shapes.\nFlying robots have 66-dof with configuration 𝐪∈𝒞=𝐒𝐄(3)\\bm{q} \\in \\mathcal{C} = \\bm{SE}(3).\nWe use a dynamic rather than a kinematic model.\nThe rotors are driven by electric motors, powered by electronic speed controllers.\nThe rotor speed is ϖi\\varpi_i and the thrust is an upward vector Ti=bϖi2,i=1,2,3,4, T_i = b \\varpi_i^2, \\; \\; i = 1, 2, 3, 4,  in the vehicle’s negative zz-direction.\nThe translational dynamics of the vehicle in world coordinates is given by Newton’s second law m𝐯̇=(00mg)−0𝐑B(00T)−B𝐯, m \\dot{\\bm{v}} = \\begin{pmatrix} 0 \\\\ 0 \\\\ m g \\end{pmatrix} - {^0}\\bm{R}_B \n\\begin{pmatrix} 0 \\\\ 0 \\\\ T \\end{pmatrix} - B \\bm{v},\n where 𝐯\\bm{v} is the velocity of the CoM in the world frame, gg is the gravitational acceleration, mm is the total mass, BB is the aerodynamic friction and T=∑iTiT = \\sum_i T_i is the total upward thrust.\n\n\n\n\n\n\n\n\n\n\n\nQuadrotor with four rotors, their thrust vectors and directions of rotation. Blue rotors rotate ccw while red rotors rotate cw."
+    "objectID": "05_navigation.html#rapidly-exploring-random-tree-rrt",
+    "href": "05_navigation.html#rapidly-exploring-random-tree-rrt",
+    "title": "05_navigation",
+    "section": "Rapidly-exploring random tree (RRT)",
+    "text": "Rapidly-exploring random tree (RRT)\n\n\n\nRRT is able to take into account the motion model of the vehicle.\nUnlike D*D^* that plans over a regular grid, RRT uses probabilistic methods.\nFigure shows a family of paths that the bicycle model would follow in the configuration space.\n\nPaths are computed over a fixed time interval,\nfor discrete values of velocity, forward and backward\nvarious steering angles.\n\n\n\n\n\n\n\nThis demonstrates clearly the subset of all possible configurations that a nonholonomic vehicle can reach from a given initial configuration."
   },
   {
-    "objectID": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles-1",
-    "href": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles-1",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Flying robots or unmanned aerial vehicles",
-    "text": "Flying robots or unmanned aerial vehicles\n\n\n\nPairwise differences in rotor thrusts cause the vehicle to rotate. The rolling torque is generated by the moments τx=d(T4−T2)=db(ϖ42−ϖ22), \\tau_x = d(T_4 - T_2) = db(\\varpi_4^2 - \n\\varpi_2^2),  where dd is the distance from the rotor axis to the center of mass.\nSimilarly, the pitching torque is τy=db(ϖ12−ϖ32). \\tau_y = db (\\varpi_1^2 - \\varpi_3^2). \nThe torque applied to each propeller by the motor is opposed by aerodynamic drag Qi=kϖi2. Q_i = k \\varpi_i^2. \nThis torque exerts a reaction torque on the airframe which acts to rotate the airframe about the propeller shaft in the opposite direction of rotation τz=Q1−Q2+Q3−Q4=k(ϖ12+ϖ32−ϖ22−ϖ42). \\tau_z = Q_1 - Q_2 + Q_3 - Q_4 = k \\left( \\varpi_1^2 + \\varpi_3^2 - \\varpi_2^2 - \\varpi_4^2 \\right). \n\nThat is, a yaw torque can be created simply by appropriate coordinated control of all four rotor speeds.\n\n\n\n\n\n\n\n\n\n\nQuadrotor with four rotors, their thrust vectors and directions of rotation. Blue rotors rotate ccw while red rotors rotate cw."
-  },
-  {
-    "objectID": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles-2",
-    "href": "04_mobile_robot_vehicles.html#flying-robots-or-unmanned-aerial-vehicles-2",
-    "title": "04_mobile_robot_vehicles",
-    "section": "Flying robots or unmanned aerial vehicles",
-    "text": "Flying robots or unmanned aerial vehicles\n\n\n\nThe rotational dynamics is given by Euler’s equation of motion: 𝐉𝛚̇=−𝛚×𝐉𝛚+𝛕, \\bm{J}\\dot{\\bm{\\omega}} = -\\bm{\\omega} \\times \\bm{J}\\bm{\\omega} + \\bm{\\tau},  where 𝐉\\bm{J} is the inertia matrix of the vehicle and 𝛚\\bm{\\omega} is the angular velocity vector.\nThe motion of the quadrotor may be predicted by integrating the forward dynamics equations we have derived where the wrenches on the airframe (T𝛕)=(−b−b−b−b0−db0dbdb0−db0k−kk−k)(ϖ12ϖ22ϖ32ϖ42)=𝐀(ϖ12ϖ22ϖ32ϖ42)\n\\begin{pmatrix}\nT \\\\ \\bm{\\tau}\n\\end{pmatrix} = \n\\begin{pmatrix}\n-b & -b & -b & -b \\\\ 0 & -db & 0 & db \\\\ db & 0 & -db & 0 \\\\ k & -k & k & -k\n\\end{pmatrix}\n\\begin{pmatrix}\n\\varpi_1^2 \\\\ \\varpi_2^2 \\\\ \\varpi_3^2 \\\\ \\varpi_4^2\n\\end{pmatrix} = \n\\bm{A} \n\\begin{pmatrix}\n\\varpi_1^2 \\\\ \\varpi_2^2 \\\\ \\varpi_3^2 \\\\ \\varpi_4^2\n\\end{pmatrix}\n are functions of the rotor speeds.\nThe matrix 𝐀\\bm{A} is constant and full rank so we can solve for the rotor speeds needed for desired body wrenches.\n\n\n\n\n\n\n\n\n\n\n\nQuadrotor with four rotors, their thrust vectors and directions of rotation. Blue rotors rotate ccw while red rotors rotate cw.\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "objectID": "05_navigation.html#implementation-of-rrt",
+    "href": "05_navigation.html#implementation-of-rrt",
+    "title": "05_navigation",
+    "section": "Implementation of RRT",
+    "text": "Implementation of RRT\n\n\n\nA graph of robot configurations is maintained: each node is a configuration 𝐪∈ℝ2×𝕊1\\bm{q} \\in \\mathbb{R}^2 \\times \\mathbb{S}^1.\nA random configuration 𝐪rand\\bm{q}_{\\text{rand}} is chosen, and the node with the closest configuration, 𝐪near\\bm{q}_{\\text{near}} is found.\n\nthis configuration is near in terms of a cost function that includes distance and orientation.\n\n\n\n\n\n\n\nA control is computed that moves the robot from 𝐪near\\bm{q}_{\\text{near}} toward 𝐪rand\\bm{q}_{\\text{rand}}.\nThe configuration that it reaches is 𝐪new\\bm{q}_{\\text{new}} and this is added to the graph.\nFor any desired starting configuration, we can find the closest configuration in the graph and work backward toward the starting configuration.\n\nDetermine the sequence of steering angles and velocities needed to move from the start to the goal configuration.\n\nTo handle obstacles,\n\nthe configuration 𝐪rand\\bm{q}_{\\text{rand}} is discarded if it lies within an obstacle\nthe point 𝐪near\\bm{q}_{\\text{near}} will not be added to the graph if the path from 𝐪near\\bm{q}_{\\text{near}} toward 𝐪rand\\bm{q}_{\\text{rand}} intersects an obstacle.\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
   }
 ]

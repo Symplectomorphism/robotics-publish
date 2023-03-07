@@ -47,7 +47,7 @@ cost than complete-replanning.
 
 ::: {.column width="30%"}
 <center>
-<img src="contents/assets/dstarpath.png" width=400 height=200 />
+<img src="contents/assets/dstarpath.png" width="120%" />
 </center>
 :::
 
@@ -58,7 +58,7 @@ propagating outward from the goal.
 * The cost of reaching cells that are neighbors of an OPEN cell is computed and
 these cells are in turn set to OPEN and the original cell is removed from the
 open list and becomes CLOSED.
-* The real power of $D^*$ comes from beinge able to efficiently change the cost
+* The real power of $D^*$ comes from being able to efficiently change the cost
 map during the mission.
   - In reality, sensors have a finite range and a robot discovers more of world
     as it proceeds.

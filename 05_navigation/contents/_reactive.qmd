@@ -5,7 +5,7 @@
 
 ## Braitenberg Vehicles {.smaller}
 
-* They have no explicit internal representation of the environment in which tye
+* They have no explicit internal representation of the environment in which they
 operate and they do not make explicit plans.
 * Example problem: robot moving in $2$D that is seeking the local
 maxima of light intensity.
@@ -19,6 +19,11 @@ maxima of light intensity.
 the intensities on either side of the robot.
 * Set the speed of the robot to zero if the sensors are both giving maximal
 values, otherwise increase it gradually.
+
+<center>
+<img src="contents/assets/sl_braitenberg.png" width="60%"/>
+</center>
+
 :::
 
 ::: {.column width="30%"}
