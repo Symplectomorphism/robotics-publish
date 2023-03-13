@@ -7,7 +7,7 @@
   - relies on very weak radio signals received from distant orbiting satellites.
   - GPS cannot work where there is no _line of sight_ radio reception.
 * GPS has only been in use since 1995 yet humankind has been navigating the
-planet for many thousands of years!
+planet and localizing for many thousands of years!
 * _Dead reckoning_ is the estimation of location based on estimated speed,
 direction and time of travel w.r.t. a previous estimate.
 :::

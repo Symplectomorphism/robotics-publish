@@ -10,7 +10,7 @@
 * The robot knows its own position perfectly (ideal localization).
 :::
 
-* We need to estimate the coordinates of the landmarks so for this problem, the
+* We need to estimate the coordinates of the landmarks. Hence for this problem, the
 state vector comprises the estimated coordinates of the $M$ landmarks we have
 observed so far: $$ \hat{\bm{x}} = \left(x_1, y_1, x_2, y_2, \ldots, x_M, y_M \right)
 \in \mathbb{R}^{2M \times 1}. $$
@@ -18,7 +18,7 @@ observed so far: $$ \hat{\bm{x}} = \left(x_1, y_1, x_2, y_2, \ldots, x_M, y_M \r
 * The corresponding estimated covariance $\hat{\bm{P}}$ will be a $2M \times 2M$
 matrix.
 
-* The state vector has variable length since we do now know in advance how many
+* The state vector has variable length since we do not know in advance how many
 landmarks exist.
   - Initially $M = 0$ and is incremented every time a previously unseen landmark
     is observed.

@@ -14,7 +14,7 @@ $i^{\text{th}}$ landmark in the world frame.
 
 * To make this concrete, let's consider a common type of sensor that measures
 the range and bearing angle to a landmark in the environment
-  - such as radar or a scanning-laser rangefinder.
+  - such as a radar or a scanning-laser rangefinder.
 
 :::{.callout-tip icon="false"}
 ## Observation of the $i^{\text{th}}$ landmark
@@ -72,7 +72,7 @@ $$
 :::
 is key to the operation of the Kalman filter.
 
-* It is called the innovation since it represents _new_ information.
+* It is called the _innovation_ since it represents _new_ information.
 * Kalman filter uses the innovation to correct the state estimate and update the
 uncertainty estimate in an optimal way.
 * The predicted state, computed earlier, is updated by
@@ -104,7 +104,7 @@ $$
 $$
 :::
 
-* These take the _predicted_ values for the next tiem step, denoted with the
+* These take the _predicted_ values for the next time step, denoted with the
 ${~}^+$ and compute the optimal estimate by applying landmark measurement from
 step $k+1$.
 
