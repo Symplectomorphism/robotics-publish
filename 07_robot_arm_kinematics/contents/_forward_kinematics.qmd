@@ -231,9 +231,9 @@ $\bm{x}_1 \pitchfork \bm{z}_0$.
 
 :::
 
-* $a$: distance btw. axes $\bm{z}_0$ and $\bm{z}_1$, measured along
+* $a$: distance from axis $\bm{z}_0$ to $\bm{z}_1$, measured along
 $\bm{x}_1$.
-* $\alpha$: angle btw. $\bm{z}_0$ and $\bm{z}_1$, measured along $\bm{x}_1$.
+* $\alpha$: angle from $\bm{z}_0$ to $\bm{z}_1$, measured along $\bm{x}_1$.
 
 :::
 
@@ -243,9 +243,9 @@ $\bm{x}_1$.
 </center>
 :::
 
-* $d$: distance from $o_0$ to the intersection of the $\bm{x}_1$-axis with 
-$\bm{z}_0$-axis, measured along the $\bm{z}_0$-axis.
-* $\theta$: angle btw. $\bm{x}_0$ and $\bm{x}_1$, mesaured along $\bm{z}_0$.
+* $d$: distance from the origin $o_0$ to the intersection of $\bm{x}_1$ with 
+$\bm{z}_0$, measured along the $\bm{z}_0$.
+* $\theta$: angle from $\bm{x}_0$ to $\bm{x}_1$, mesaured along $\bm{z}_0$.
 
 ::::
 
@@ -552,7 +552,7 @@ $$
 
 ::: {.column width="33%"}
 $$
-\bm{A}_4 = \begin{pmatrix}
+\bm{A}_5 = \begin{pmatrix}
 c_5 & 0 & s_5 & 0 \\ s_5 & 0 & -c_5 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1
 \end{pmatrix}
 $$
