@@ -246,7 +246,7 @@ have
 
 ::: {.column width="25%"}
 $$
-{^0}\bm{o}_c = \bm{o} - d^6 \bm{R} \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+{^0}\bm{o}_c = \bm{o} - d_6 \bm{R} \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
 $$
 
 $$
