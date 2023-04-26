@@ -351,8 +351,8 @@ $$
 
 $$
 \begin{aligned}
-  \psi &= \arctan_2{ \left( -r_{32}, r_{31} \right) } \\
-  \psi &= \arctan_2{ \left( r_{32}, -r_{31} \right) }
+  \psi &= \arctan_2{ \left( r_{32}, -r_{31} \right) } \\
+  \psi &= \arctan_2{ \left( -r_{32}, r_{31} \right) }
 \end{aligned}
 $$
 
