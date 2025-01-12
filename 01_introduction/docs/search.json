@@ -4,7 +4,7 @@
     "href": "01_introduction.html#robotics-and-automated-systems",
     "title": "01_introduction",
     "section": "Robotics and Automated Systems",
-    "text": "Robotics and Automated Systems\n\n\nWelcome and Introduction\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  History  Definitions  Classifications"
+    "text": "Robotics and Automated Systems\n\n\nWelcome and Introduction\n\n\n\n\n\n\n\nInstructor: Aykut Satici, Ph.D.   Mechanical and Biomedical Engineering  Electrical and Computer Engineering  Boise State University, Boise, ID, USA\n\n\nTopics:  History  Definitions  Classifications"
   },
   {
     "objectID": "01_introduction.html#lets-get-started",
@@ -67,6 +67,6 @@
     "href": "01_introduction.html#so-what-is-a-robot",
     "title": "01_introduction",
     "section": "So, what is a robot?",
-    "text": "So, what is a robot?\n\n\n\n\n\n\n\nOur definition of robot\n\n\nA robot is a goal-oriented machine that can sense, plan and act.\n\n\n\n\n\n\nA robot senses its environment and uses that information, together with a goal, to plan some action.\n\n\n\n\n\n\n\n\n\n\nRobotics and Automated Systems • Aykut C. Satici"
+    "text": "So, what is a robot?\n\n\n\n\n\n\n\nOur definition of robot\n\n\nA robot is a goal-oriented machine that can sense, plan and act.\n\n\n\n\n\n\nA robot senses its environment and uses that information, together with a goal, to plan some action."
   }
 ]
