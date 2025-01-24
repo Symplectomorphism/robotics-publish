@@ -10,3 +10,9 @@ This repository contains the slide decks for the Robotics course at Boise State.
 2. Pull the repository to your computer  
   `git clone git@github.com:Symplectomorphism/robotics-publish.git`
 3. Navigate into  the folder `slide deck > docs` and run the file `index.html` in Firefox.
+
+To convert the presentations to PDF follow the steps:
+
+1. Open the presentation on Firefox
+2. Hit the key 'E'
+3. Print the page as PDF and save.
