@@ -27,7 +27,7 @@ $$
 another is referred to as the _adjoint transformation_ associated with $\bm{T}$.
   - In the above calculation $\text{Ad}_\bm{T}$ maps body velocity to spatial
     velocity.
-  - $\text{Ad}_\bm{T}$ is invertibe and its inverse is given by
+  - $\text{Ad}_\bm{T}$ is invertible and its inverse is given by
   $$
   \text{Ad}_\bm{T}^{-1} = \begin{bmatrix}\bm{R}^\top & -\left(\hat{\bm{R}^\top
   t}\right)\bm{R}^\top \\ \bm{0} & \bm{R}^\top \end{bmatrix} =

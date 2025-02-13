@@ -282,7 +282,7 @@ $\quad{^A}\bm{T}_B = \bm{T} = \begin{bmatrix} \bm{R} & \bm{t} \\ \bm{0} & 1
 \dot{\bm{t}} \\ \bm{0} & 0 \end{bmatrix} = \begin{bmatrix} \hat{\bm{\omega}} &
 \bm{v} \\ \bm{0} & 0 \end{bmatrix} = {^A}\hat{\bm{V}}_{B}^{A}$
 
-* Notice that ${^A}\hat{\bm{V}}_{B}^{A}$ is a twist: We call it the _spatial
+* Notice: ${^A}\hat{\bm{V}}_{B}^{A}$ is a twist. We call it the _spatial
 velocity_ of frame $\{B\}$ w.r.t. frame $\{A\}$.
 
 ::: {.callout-tip icon="false"}
