@@ -164,7 +164,7 @@ $$
 ::: {.fragment .fade-in-then-out fragment-index=1}
 
 ::: {.callout-tip icon="false"}
-## Exponential map ($||\bm{\omega}|| \neq 1$)
+## Exponential map ($||\bm{\omega}|| \neq 0$)
 Assume $\left\|\bm{\omega}\right\| = 1$ by appropriate scaling of $\theta$.
 Then, we have
 
