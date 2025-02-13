@@ -4,7 +4,7 @@
 
 :::: {.columns}
 
-::: {.column width="70%"}
+::: {.column width="77%"}
 
 * INS estimates:
   - velocity, orientation, and position by 
@@ -27,14 +27,12 @@ known as the body- or body-fixed frame.
  
 :::
 
-::: {.column width="30%"}
-<center>
-<img data-src="contents/assets/spire.png" width="65%"/>
+::: {.column width="23%"}
+<center><img data-src="contents/assets/spire.png" width="65%"/></center>
 
-<img data-src="contents/assets/modern_ins.png" width="65%"/>
+<center><img data-src="contents/assets/modern_ins.png" width="65%"/></center>
 
-<img data-src="contents/assets/mems_ins.png" width="65%"/>
-</center>
+<center><img data-src="contents/assets/mems_ins.png" width="65%"/></center>
 :::
 
 ::::
@@ -157,9 +155,7 @@ reports upward acceleration.
     displacement of the otoliths due to acceleration.
 
 
-## Estimating pose and body acceleration {.smaller}
-
-&nbsp;
+## <span style="font-size: 90%">Estimating pose and body acceleration</span> {.smaller}
 
 * In frame $\{0\}$ with its $z$-axis vertically upward, the gravitational
 acceleration is $\;{^0}\bm{a} = \begin{pmatrix} 0 & 0 & g \end{pmatrix}^\top$.
@@ -190,13 +186,13 @@ an error in the estimated orientation.
 
 
 
-## Estimating pose and body acceleration {.smaller}
+## <span style="font-size: 90%">Estimating pose and body acceleration</span> {.smaller}
 
 * Frequently, we want to estimate the motion of the vehicle in the inertial
 frame, and the total measured acceleration in $\{0\}$ is due to gravity _and_
 motion $${^0}\bm{a}^\sharp = {^0}\bm{g} + {^0}\bm{a}_v $$
 
-* We observe acceleration in the body frame so the vehicle acceleration in the
+* We observe acc. in the body frame so the vehicle acceleration in the
 world frame is $${^0}\hat{\bm{a}}_v = {^0}\hat{\bm{R}}_B \, {^B}\bm{a}^\sharp -
 {^0}\bm{g} $$ and we assume that ${^0}\hat{\bm{R}}_B$ and $\bm{g}$ are both
 known[^2]. Integrating that w.r.t. time
@@ -283,13 +279,13 @@ $$ \hat{\theta}_y = \arctan{\frac{\cos{\theta_p}\left(m_z \sin{\theta_r} - m_y
 \sin{\theta_p}}} $$ assuming the roll and pitch angles have been determined,
 perhaps using measured acceleration.
 * To obtain the heading angle w.r.t. to the true-north, we subtract the local
-declination angle $${^{tn}}\hat{\theta}_y = \hat{\theta}_y - D. $$
+declination angle: ${^{tn}}\hat{\theta}_y = \hat{\theta}_y - D$.
 
 
 ## Sensor fusion {.smaller}
 
-* The collection of inertial sensors is referred to as an inertial measurement
-unit (IMU).
+* <span style="font-size: 97%">The collection of inertial sensors is referred to as an inertial measurement
+unit (IMU).</span>
   - A 6-DoF IMU comprises triaxial gyroscopes and accelerometers.
   - A 9-DoF IMU additionally comprises triaxial magnetometers.
   - A 10-DoF IMU may add altitude measurement through a barometric pressure
@@ -335,7 +331,7 @@ Kalman filters do this. Here we will consider a simple, but still very effective
 alternative.
 
 
-## Explicit complementary (Mahony) filter {.smaller}
+## <span style="font-size: 90%">Explicit complementary (Mahony) filter</span> {.smaller}
 
 * In a later chapter, we will see why the complementary filter works in theory.
 For now, let us simply change the rotation update step from earlier to the following.
@@ -360,7 +356,7 @@ is added.
     rotated into the inertial frame by the estimated orientation
     ${^0}\hat{\xi}_B$.
 
-## Explicit complementary (Mahony) filter[^3] {.smaller}
+## <span style="font-size: 90%">Explicit complementary (Mahony) filter[^3]</span> {.smaller}
 
 &nbsp;
 

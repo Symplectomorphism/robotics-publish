@@ -243,23 +243,18 @@ $$
 $$
 
 To show that $\bm{I} + \hat{\bm{\omega}}^2 = \bm{\omega}\bm{\omega}^\top$, let 
-us view each side of this equation as a linear transformation. 
+us view each side of this equation as a linear transformation acting on $\mathbb{R}^3 = S \oplus N$,
+where $S = \text{span}\{\bm{\omega}\}$ and $N = \text{span}\{\bm{\omega}\}^\perp$.
 
-The right-hand side transformation acts on a vector $\bm{v} \in \mathbb{R}^3$ to produce its
-projection along $\bm{\omega}$: $\bm{\omega}(\bm{\omega}^\top \bm{v}) =
-(\bm{\omega}^\top \bm{v})\bm{\omega}$.  The component of $\bm{v}$ orthogonal to
-$\bm{\omega}$ is mapped to zero: $\bm{\omega\omega}^\top\left(\bm{v} -
-(\bm{\omega}^\top \bm{v})\bm{\omega}\right) = \bm{0}$.
+Let $\bm{s} \in S$, so that $\bm{s} = \alpha \bm{\omega}$ for some $\alpha \in \mathbb{R}$. We have 
+$\bm{\omega}\bm{\omega}^\top \bm{s} = \bm{s}$. On the other hand, $(\bm{I} + \hat{\bm{\omega}}^2)\bm{s} = \bm{s} + \bm{\hat{\omega}}(\bm{\omega} \times \bm{s}) = \bm{s}$.
+Hence $\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2 = \bm{I}$ on $S$.
 
-Indeed, the left-hand side transformation acts on any vector in exactly the same 
-manner. If $\bm{v} \parallel \bm{\omega}$ then $(\bm{I} + \hat{\bm{\omega}}^2)\bm{v} =
-\bm{v} + \bm{\omega} \times (\bm{\omega} \times \bm{v}) = \bm{v}$. If, on the 
-other hand, $\bm{v} \perp \bm{\omega}$ then $\bm{\omega} \times (\bm{\omega} 
-\times \bm{v}) = -\bm{v}$. Hence $(\bm{I} + \hat{\bm{\omega}}^2)\bm{v} = \bm{0}$.
+Let $\bm{n} \in N$. Then we have 
+$\bm{\omega}\bm{\omega}^\top \bm{n} = \bm{0}$. On the other hand, $(\bm{I} + \hat{\bm{\omega}}^2)\bm{n} = \bm{n} + \bm{\hat{\omega}}(\bm{\omega} \times \bm{n}) = \bm{0}$.
+Hence $\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2 = \bm{0}$ on $N$.
 
-This shows that, as linear transformations, $\bm{I} + \hat{\bm{\omega}}^2$ and 
-$\bm{\omega}\bm{\omega}^\top$ act on any vector in exactly the same manner. 
-Therefore they are the same transformation.
+Combining these results, we have $\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2$ on $\mathbb{R}^3$.
 :::
 
 :::
