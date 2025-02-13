@@ -53,11 +53,11 @@ the formula on the right.
 $$ \mathfrak{so}(3) \triangleq \left\{ \bm{S} \in \mathbb{R}^{3 \times 3}: \bm{S}^\top =
 -\bm{S} \right\}. $$
 
-## <span style="font-size: 87%">Exponential coordinates for rigid motion and twists</span> {.smaller}
+## Twists and Exponential Coordinates {.smaller}
 
 :::: {.columns}
 
-::: {.column width="70%"}
+::: {.column width="75%"}
 * $\bm{\omega}$: axis of rotation, $\left\|\bm{\omega}\right\| = 1$ and $\bm{q}$
 a point on the axis.
 * Assume: link rotates with unit velocity:
@@ -83,8 +83,9 @@ $$ \dot{\bm{p}}(t) = \bm{\omega} \times \left( \bm{p}(t) - \bm{q} \right). $$
 
 :::
 
-::: {.column width="30%"}
-<img data-src="contents/assets/revolute.png" width="80%"/>
+::: {.column width="25%"}
+
+<center><img data-src="contents/assets/revolute.png" width="80%"/></center>
 
 ::: {.callout-note icon="false"}
 ## Exponential mapping
@@ -97,7 +98,7 @@ its location after rotating $t$ radians.
 ::::
 
 
-## <span style="font-size: 87%">Exponential coordinates for rigid motion and twists</span> {.smaller}
+## Twists and Exponential Coordinates {.smaller}
 
 :::: {.columns}
 
@@ -129,6 +130,107 @@ skew-symmetric matrices $\hat{\bm{\omega}}$.
     \leftrightarrow \begin{bmatrix} \bm{v} \\ \bm{\omega} \end{bmatrix} =
     \bm{\eta}. $$
 
+
+## Twists and Exponential Coordinates {.smaller}
+
+* By analogy to the exponential coordinates $\hat{\bm{\omega}}\theta$ for 
+rotations, we define the $6$-dimensional exponential coordinates of a homogeneous
+transformation $\bm{T}$ as $\bm{\eta} = \bm{\mathcal{S}}\theta$
+  - $\bm{\mathcal{S}} = (\bm{v}, \bm{\omega})$ is called the _screw axis_
+  - $\theta$ is the _screw parameter_: it is the distance to be travelled along 
+  the screw axis to take a frame from the origin to $\bm{T} = (\bm{R}, \bm{p})$.
+
+:::: {.r-stack}
+
+::: {.fragment .fade-in-then-out fragment-index=0}
+
+::: {.callout-tip icon="false"}
+## Exponential map ($||\bm{\omega}|| = 0$)
+If $\bm{\omega} = \bm{0}$, then a straightforward calculation shows that 
+$$
+\hat{\bm{\eta}}^2 = \hat{\bm{\eta}}^3 = \hat{\bm{\eta}}^4 = \cdots = \bm{0}
+$$
+so that $\exp{\left(\hat{\bm{\eta}}\theta\right)} = \bm{I} + \hat{\bm{\eta}}\theta$ and hence
+
+$$
+\exp{(\bm{\hat{\eta}}\theta)} = \begin{bmatrix} \bm{I} & \bm{v}\theta \\ \bm{0} & 1 
+\end{bmatrix} \in \bm{SE}(3).
+$$
+:::
+
+:::
+
+
+::: {.fragment .fade-in-then-out fragment-index=1}
+
+::: {.callout-tip icon="false"}
+## Exponential map ($||\bm{\omega}|| \neq 1$)
+Assume $\left\|\bm{\omega}\right\| = 1$ by appropriate scaling of $\theta$.
+Then, we have
+
+$$
+\begin{aligned}
+\exp{(\bm{\hat{η}}\theta)} &= \begin{bmatrix} 
+e^{\hat{\bm{\omega}}\theta} & \left(\bm{I} - e^{\hat{\bm{\omega}}\theta}\right)
+(\bm{\omega} \times \bm{v}) + \bm{\omega}\bm{\omega}^\top \bm{v}\theta \\ \bm{0} & 1 
+\end{bmatrix} \\
+&= \begin{bmatrix}
+e^{\hat{\bm{\omega}}\theta} & \left( \bm{I}\theta + (1-\cos{\theta})\hat{\bm{\omega}} + 
+(\theta - \sin{\theta})\hat{\bm{\omega}}^2 \right)\bm{v} \\ \bm{0} & 1 
+\end{bmatrix} \in \bm{SE}(3).
+\end{aligned}
+$$
+
+where we have used the fact that $\hat{\bm{\omega}}^3 = -\hat{\bm{\omega}}$ and 
+$\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2$.
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=2}
+
+::: {.callout-tip icon="false"}
+## Logarithm map ($\bm{R} = \bm{I}$)
+In this case, we have that $\bm{T} = \begin{bmatrix} \bm{I} & \bm{p} \\ \bm{0} & 1 \end{bmatrix}$.
+
+If there is no rotational motion, then set $\bm{\omega} = \bm{0}$, 
+$\bm{v} = \frac{\bm{p}}{||\bm{p}||}$ and $\theta = ||\bm{p}||$.
+:::
+
+:::
+
+
+::: {.fragment .fade-in fragment-index=3}
+
+::: {.callout-tip icon="false"}
+## Logarithm map ($\bm{R} \neq \bm{I}$)
+We are given $\bm{T} = \begin{bmatrix} \bm{R} & \bm{p} \\ \bm{0} & 1 \end{bmatrix}$.
+
+To find $\bm{\eta} = (\bm{v}, \bm{\omega})$, we equate $\exp{(\bm{\hat{\eta}}\theta)}$
+and $\bm{T}$ and solve for $\bm{v}$ and $\bm{\omega}$.
+
+$\bm{\omega}$ and $\theta$ are obtained by solving the rotation equation 
+$\exp{(\hat{\bm{\omega}}\theta)} = \bm{R}$ as in the axis-angle representation slide.
+
+This leaves the equation 
+$$
+(\bm{I} - e^{\bm{\hat{\omega}\theta}})(\bm{\omega} \times \bm{v}) + \bm{\omega}\bm{\omega}^\top \bm{v}\theta = 
+\left( \bm{I}\theta + (1-\cos{\theta})\hat{\bm{\omega}} + 
+(\theta - \sin{\theta})\hat{\bm{\omega}}^2 \right)\bm{v} = \bm{p},
+$$
+which must be solved for $\bm{v}$. It suffices to show that the matrix 
+$$
+\bm{A} = (\bm{I} - e^{\bm{\hat{\omega}\theta}})\hat{\bm{\omega}} + \bm{\omega}\bm{\omega}^\top \theta
+= \bm{I}\theta + (1-\cos{\theta})\hat{\bm{\omega}} +  (\theta - \sin{\theta})\hat{\bm{\omega}}^2
+$$
+is nonsingular for all $\theta \in (0, 2\pi)$. This follows from the fact that 
+the two matrices (first equality) which comprise $\bm{A}$ have mutually orthogonal nullspaces 
+when $\theta \neq 0$ (and $\bm{R} \neq \bm{I}$).
+:::
+
+:::
+
+::::
 
 ## Derivative of pose {.smaller}
 
