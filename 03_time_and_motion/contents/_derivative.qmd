@@ -182,7 +182,7 @@ e^{\hat{\bm{\omega}}\theta} & \left( \bm{I}\theta + (1-\cos{\theta})\hat{\bm{\om
 $$
 
 where we have used the fact that $\hat{\bm{\omega}}^3 = -\hat{\bm{\omega}}$ and 
-$\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2$.
+$\bm{\omega}\bm{\omega}^\top = \bm{I} + \hat{\bm{\omega}}^2$ (why?).
 :::
 
 :::
@@ -200,7 +200,7 @@ $\bm{v} = \frac{\bm{p}}{||\bm{p}||}$ and $\theta = ||\bm{p}||$.
 :::
 
 
-::: {.fragment .fade-in fragment-index=3}
+::: {.fragment .fade-in-then-out fragment-index=3}
 
 ::: {.callout-tip icon="false"}
 ## Logarithm map ($\bm{R} \neq \bm{I}$)
@@ -229,6 +229,41 @@ when $\theta \neq 0$ (and $\bm{R} \neq \bm{I}$).
 :::
 
 :::
+
+::: {.fragment .fade-in fragment-index=4}
+
+::: {.callout-note}
+## $\hat{\bm{\omega}}^3 = -\hat{\bm{\omega}}$, ($\left\|\bm{\omega}\right\| = 1$)
+It suffices to show that $\bm{I} + \hat{\bm{\omega}}^2 = \bm{\omega}\bm{\omega}^\top$ 
+because if this is so then 
+$$
+\hat{\bm{\omega}}^3 + \hat{\bm{\omega}} = \hat{\bm{\omega}}\left(\bm{I} + 
+\hat{\bm{\omega}}^2\right) = \hat{\bm{\omega}}\bm{\omega}\bm{\omega}^\top = 
+(\bm{\omega} \times \bm{\omega})\bm{\omega}^\top = \bm{0}.
+$$
+
+To show that $\bm{I} + \hat{\bm{\omega}}^2 = \bm{\omega}\bm{\omega}^\top$, let 
+us view each side of this equation as a linear transformation. 
+
+The right-hand side transformation acts on a vector $\bm{v} \in \mathbb{R}^3$ to produce its
+projection along $\bm{\omega}$: $\bm{\omega}(\bm{\omega}^\top \bm{v}) =
+(\bm{\omega}^\top \bm{v})\bm{\omega}$.  The component of $\bm{v}$ orthogonal to
+$\bm{\omega}$ is mapped to zero: $\bm{\omega\omega}^\top\left(\bm{v} -
+(\bm{\omega}^\top \bm{v})\bm{\omega}\right) = \bm{0}$.
+
+Indeed, the left-hand side transformation acts on any vector in exactly the same 
+manner. If $\bm{v} \parallel \bm{\omega}$ then $(\bm{I} + \hat{\bm{\omega}}^2)\bm{v} =
+\bm{v} + \bm{\omega} \times (\bm{\omega} \times \bm{v}) = \bm{v}$. If, on the 
+other hand, $\bm{v} \perp \bm{\omega}$ then $\bm{\omega} \times (\bm{\omega} 
+\times \bm{v}) = -\bm{v}$. Hence $(\bm{I} + \hat{\bm{\omega}}^2)\bm{v} = \bm{0}$.
+
+This shows that, as linear transformations, $\bm{I} + \hat{\bm{\omega}}^2$ and 
+$\bm{\omega}\bm{\omega}^\top$ act on any vector in exactly the same manner. 
+Therefore they are the same transformation.
+:::
+
+:::
+
 
 ::::
 
