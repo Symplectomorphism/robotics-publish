@@ -176,7 +176,7 @@
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="callout callout-warning no-icon callout-titled callout-style-default">
@@ -596,8 +596,8 @@ Notice that $\bm{\nu}$ is a $6$-dimensional vector.
 </ul>
 </div></div>
 </section>
-<section id="coordinate-transformations" class="slide level2 smaller">
-<h2>Coordinate transformations</h2>
+<section id="composition-of-twists" class="slide level2 smaller">
+<h2>Composition of Twists</h2>
 <ul>
 <li>Just as we can compose rigid body transformations to find <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>𝐓</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">{^A}\bm{T}_C</annotation></semantics></math> given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>𝐓</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">{^A}\bm{T}_B</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>B</mi></msup><msub><mi>𝐓</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">{^B}\bm{T}_C</annotation></semantics></math>, it is possible to determine the velocity of one coordinate frame relative a third, given the relative velocities between the first and the second and second and third coordinate frames.</li>
 </ul>
@@ -643,8 +643,8 @@ Notice that $\bm{\nu}$ is a $6$-dimensional vector.
 </div>
 </div>
 </section>
-<section id="coordinate-transformations-1" class="slide level2 smaller">
-<h2>Coordinate transformations</h2>
+<section id="composition-of-twists-1" class="slide level2">
+<h2>Composition of Twists</h2>
 <p>&nbsp;</p>
 <ul>
 <li>Often two of the coordinate frames are stationary w.r.t. each other and the velocity relationships can be simplified.
@@ -654,7 +654,11 @@ Notice that $\bm{\nu}$ is a $6$-dimensional vector.
 {^C}\bm{V}_C^B</annotation></semantics></math> since the body velocity is independent of the inertial frame w.r.t. which it is measured.</li>
 </ul></li>
 </ul>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
+</section>
+<section id="twist-composition-identities" class="slide level2 smaller">
+<h2>Twist Composition Identities</h2>
+<p>Using the velocity composition rules, one can prove many useful identities: here are some examples</p>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <p><strong>Rigid body velocity identities</strong></p>
@@ -665,6 +669,29 @@ Notice that $\bm{\nu}$ is a $6$-dimensional vector.
 {^B}\bm{V}_B^A &amp;= -{^B}\bm{V}_A^B \\
 {^B}\bm{V}_B^A &amp;= -\text{Ad}_{{^B}\bm{T}_A}\,{^A}\bm{V}_A^B.
 \end{aligned}
+</annotation></semantics></math></p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Proof</strong></p>
+</div>
+<div class="callout-content">
+<p>For the first identity, start with <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>C</mi></msup><msubsup><mi>𝐕</mi><mi>C</mi><mi>A</mi></msubsup><mo>=</mo><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐓</mi><mi>C</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup></mrow></msub><mspace width="0.167em"></mspace><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>+</mo><msup><mi></mi><mi>C</mi></msup><msubsup><mi>𝐕</mi><mi>C</mi><mi>B</mi></msubsup></mrow><annotation encoding="application/x-tex">
+{^C}\bm{V}_C^A = \text{Ad}_{{^B}\bm{T}_C^{-1}}\,{^B}\bm{V}_B^A + {^C}\bm{V}_C^B
+</annotation></semantics></math> Make the identifications <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B \rightarrow A</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">C \rightarrow B</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow
+B</annotation></semantics></math> to obtain <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>𝟎</mn><mo>=</mo><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>B</mi></msubsup><mo>=</mo><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐓</mi><mi>B</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup></mrow></msub><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mo>+</mo><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>=</mo><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mo>+</mo><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>⇒</mo><menclose notation="box"><mrow><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>=</mo><mi>−</mi><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mi>.</mi></mrow></menclose></mrow><annotation encoding="application/x-tex">
+\bm{0} = {^B}\bm{V}_B^B = \text{Ad}_{{^A}\bm{T}_B^{-1}}{^A}\bm{V}_A^B + {^B}\bm{V}_B^A
+= {^B}\bm{V}_A^B + {^B}\bm{V}_B^A \Rightarrow \boxed{{^B}\bm{V}_B^A = -{^B}\bm{V}_A^B.}
+</annotation></semantics></math></p>
+<p>For the second identity, start with <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>C</mi><mi>A</mi></msubsup><mo>=</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>+</mo><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>𝐓</mi><mi>B</mi></msub></mrow></msub><mspace width="0.167em"></mspace><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>C</mi><mi>B</mi></msubsup></mrow><annotation encoding="application/x-tex">
+{^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_C^B
+</annotation></semantics></math> Make the identification <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">C \rightarrow A</annotation></semantics></math> to obtain <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>𝟎</mn><mo>=</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>A</mi></msubsup><mo>=</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>+</mo><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>𝐓</mi><mi>B</mi></msub></mrow></msub><mspace width="0.167em"></mspace><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mo>=</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>+</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mo>=</mo><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>A</mi></msup><msub><mi>𝐓</mi><mi>B</mi></msub></mrow></msub><mspace width="0.167em"></mspace><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>+</mo><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mo>⇒</mo><menclose notation="box"><mrow><msup><mi></mi><mi>B</mi></msup><msubsup><mi>𝐕</mi><mi>B</mi><mi>A</mi></msubsup><mo>=</mo><mi>−</mi><msub><mtext mathvariant="normal">Ad</mtext><mrow><msup><mi></mi><mi>B</mi></msup><msub><mi>𝐓</mi><mi>A</mi></msub></mrow></msub><mspace width="0.167em"></mspace><msup><mi></mi><mi>A</mi></msup><msubsup><mi>𝐕</mi><mi>A</mi><mi>B</mi></msubsup><mi>.</mi></mrow></menclose></mrow><annotation encoding="application/x-tex">
+\bm{0} = {^A}\bm{V}_A^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_A^B
+= {^A}\bm{V}_B^A + {^A}\bm{V}_A^B = \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_B^A +
+{^A}\bm{V}_A^B \Rightarrow \boxed{{^B}\bm{V}_B^A = -\text{Ad}_{{^B}\bm{T}_A}\,{^A}\bm{V}_A^B.}
 </annotation></semantics></math></p>
 </div>
 </div>

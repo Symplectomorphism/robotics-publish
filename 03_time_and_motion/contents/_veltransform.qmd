@@ -155,7 +155,7 @@ the $z$ direction.
 ::::
 
 
-## Coordinate transformations {.smaller}
+## Composition of Twists {.smaller}
 
 * Just as we can compose rigid body transformations to find ${^A}\bm{T}_C$ given
 ${^A}\bm{T}_B$, ${^B}\bm{T}_C$, it is possible to determine the velocity of one
@@ -193,7 +193,7 @@ $$ {^C}\bm{V}_C^A = \text{Ad}_{{^B}\bm{T}_C^{-1}}\,{^B}\bm{V}_B^A +
 :::
 
 
-## Coordinate transformations {.smaller}
+## Composition of Twists
 
 &nbsp;
 
@@ -206,7 +206,13 @@ velocity relationships can be simplified.
     {^C}\bm{V}_C^B$ since the body velocity is independent of the inertial frame
     w.r.t. which it is measured.
 
-::: {.callout-tip icon="false"}
+
+## Twist Composition Identities {.smaller}
+
+Using the velocity composition rules, one can prove many useful identities: 
+here are some examples
+
+::: {.callout-note icon="false"}
 ## Rigid body velocity identities
 $$
 \begin{aligned}
@@ -215,6 +221,32 @@ $$
 \end{aligned}
 $$
 :::
+
+::: {.callout-tip icon="false"}
+## Proof 
+For the first identity, start with 
+$$
+{^C}\bm{V}_C^A = \text{Ad}_{{^B}\bm{T}_C^{-1}}\,{^B}\bm{V}_B^A + {^C}\bm{V}_C^B
+$$
+Make the identifications $B \rightarrow A$, $C \rightarrow B$, and $A \rightarrow
+B$ to obtain
+$$
+\bm{0} = {^B}\bm{V}_B^B = \text{Ad}_{{^A}\bm{T}_B^{-1}}{^A}\bm{V}_A^B + {^B}\bm{V}_B^A
+= {^B}\bm{V}_A^B + {^B}\bm{V}_B^A \Rightarrow \boxed{{^B}\bm{V}_B^A = -{^B}\bm{V}_A^B.}
+$$
+
+For the second identity, start with
+$$
+{^A}\bm{V}_C^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_C^B
+$$
+Make the identification $C \rightarrow A$ to obtain
+$$
+\bm{0} = {^A}\bm{V}_A^A = {^A}\bm{V}_B^A + \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_A^B
+= {^A}\bm{V}_B^A + {^A}\bm{V}_A^B = \text{Ad}_{{^A}\bm{T}_B}\,{^B}\bm{V}_B^A +
+{^A}\bm{V}_A^B \Rightarrow \boxed{{^B}\bm{V}_B^A = -\text{Ad}_{{^B}\bm{T}_A}\,{^A}\bm{V}_A^B.}
+$$
+:::
+
 
 
 ## Example: two DoF manipulator {.smaller}
