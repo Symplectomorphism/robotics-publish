@@ -57,32 +57,33 @@ not even have a compass!
 </center>
 :::
 
-::: {.column width="70%"}
+::: {.column width="50%"}
 * They navigated with crude dead reckoning but wherever possible they used
 _additional information_ to correct their position estimate.
   - sightings of islands and headlands
   - primitive maps and observations of the Sun and the Pole Star.
 :::
 
-::: {.column width="30%"}
+::: {.column width="50%"}
 <center>
-<img src="contents/assets/fig6_2.svg" width="100%"/>
+<img src="contents/assets/landmark.png" width="100%"/>
 </center>
 :::
+
+
+::::
+
+
+## Localization {.smaller}
 
 * A landmark is a visible feature in the environment whose location is known
 w.r.t. some coordinate frame.
   - A precise bearing measurement to two landmarks will therefore pinpoint our
     location, a process known as _resectioning_.
-::::
-
-
-
-## Localization {.smaller}
 
 :::: {.columns}
 
-::: {.column width="70%"}
+::: {.column width="53%"}
 * This process is critically reliant on correctly associating the observed
 landmark with the feature on the map.
   - Mistaking one lighthouse for another, e.g. $\bm{C}$ for $\bm{B}$ leads to
@@ -92,11 +93,23 @@ fundamental data association error.
   - This is why lighthouses flash with a _unique_ flashing pattern!
 :::
 
-::: {.column width="30%"}
+::: {.column width="47%"}
 <center>
-<img src="contents/assets/fig6_2.svg" width="100%"/>
+<img src="contents/assets/landmark.png" width="100%"/>
 </center>
 :::
+
+
+::::
+
+
+
+## Localization {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
 
 ::: {.column width="50%"}
 
@@ -107,7 +120,8 @@ the robot. We also wish to know the _uncertainty_ of the estimate (standard
 deviation associated with the position estimate $\hat{\bm{x}}$).
 :::
 
-* It is useful to describe a robot's estimated position in terms of a pdf.
+* It is useful to describe a robot's estimated position in terms of a probability 
+density function over all possible positions of the robot.
   - allows for multiple hypotheses about the robot's position.
 
 :::

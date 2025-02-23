@@ -177,7 +177,7 @@ $$
 {^A}\hat{\bm{V}}_C^A = {^A}\dot{\bm{T}}_C \, {^A}\bm{T}_C^{-1} =
 \left({^A}\dot{\bm{T}}_B\,{^B}\bm{T}_C + {^A}\bm{T}_B\,{^B}\dot{\bm{T}}_C\right)
 \left({^B}\bm{T}_C^{-1}\,{^A}\bm{T}_B^{-1}\right) =
-{^A}\dot{\bm{T}}_B\,{^A}\bm{T}_C^{-1} +
+{^A}\dot{\bm{T}}_B\,{^A}\bm{T}_B^{-1} +
 {^A}\bm{T}_B\left({^B}\dot{\bm{T}}_C\,{^B}\bm{T}_C^{-1}\right){^A}\bm{T}_B^{-1}
 = {^A}\hat{\bm{V}}_B^A + {^A}\bm{T}_B\,{^B}\hat{\bm{V}}_C^B\,{^A}\bm{T}_B^{-1},
 \end{aligned}

@@ -74,7 +74,7 @@ that
 $$
 \bm{x}\langle k+1 \rangle = \begin{pmatrix}
 x\langle k \rangle + \delta_d \cos{\theta\langle k \rangle} \\
-y\langle k \rangle + \delta_d \cos{\theta\langle k \rangle} \\
+y\langle k \rangle + \delta_d \sin{\theta\langle k \rangle} \\
 \theta\langle k \rangle + \delta_\theta
 \end{pmatrix}
 $$
