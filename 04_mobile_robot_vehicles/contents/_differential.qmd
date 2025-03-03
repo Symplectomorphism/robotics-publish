@@ -7,7 +7,7 @@
 wheels on each side of the vehicle -- if the speeds are not equal the vehicle
 will turn.
 * The vehicle's velocity is by definition $v$ in the vehicle's $x$-direction,
-and zero in the $y$-direction since the wheel's cannot slip sideways: $$
+and zero in the $y$-direction since the wheels cannot slip sideways: $$
 {^B}\bm{v} = (v, 0). $$
 * The configuration of the vehicle is represented by the generalized coordinates
 $\bm{q} = (x, y, \theta) \in \mathcal{C} = \mathbb{R}^2 \times \mathbb{S}^1$.

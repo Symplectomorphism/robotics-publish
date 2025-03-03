@@ -7,13 +7,13 @@
 ::: {.column width="67%"}
 * A commonly used model for the low-speed behavior of a four-wheeled car-like 
 vehicle is the kinematic bicycle model.
-* The velocity of each wheel is in the plane of the wheel and the wheel rools
+* The velocity of each wheel is in the plane of the wheel and the wheel rolls
 without slipping sideways: $$ {^B}\bm{v} = (v, 0). $$
 * The _configuration_ of the vehicle is represented by the generalized
 coordinates $\bm{q} = (x, y, \theta) \in \mathcal{C} = \mathbb{R}^2 \times
 \mathbb{S}^1$.
 * The dashed lines show the direction along which the wheels cannot move; these
-lines of no motion intersect at the instantenous center of rotation (ICR).
+lines of no motion intersect at the instantaneous center of rotation (ICR).
 * The angular velocity is $$ \dot{\theta} = \frac{v}{R_B}, $$ and by simple
 geometry the turning radius is $R_B = \frac{L}{\tan \gamma}$, where $L$ is the
 length of the vehicle or _wheel base_.

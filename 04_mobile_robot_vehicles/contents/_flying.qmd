@@ -10,7 +10,7 @@
 * We use a dynamic rather than a kinematic model.
 * The rotors are driven by electric motors, powered by electronic speed controllers.
 * The rotor speed is $\varpi_i$ and the thrust is an upward vector 
-$$ T_i = b \varpi_i^2, \; \; i = 1, 2, 3, 4, $$ in the vehicle's negative $z$-direction.
+$$ T_i = b \varpi_i^2, \; \; i = 1, 2, 3, 4, $$ in the vehicle's negative $\bm{z}$-direction.
 * The translational dynamics of the vehicle in world coordinates is given by 
 Newton's second law
 $$ m \dot{\bm{v}} = \begin{pmatrix} 0 \\ 0 \\ m g \end{pmatrix} - {^0}\bm{R}_B 
