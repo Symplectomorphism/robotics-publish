@@ -101,6 +101,13 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})$, a zero-mean multivariate
 Gaussian, with variance $\bm{V} = \text{diag}\left\{\sigma_d^2, \sigma_\theta^2
 \right\}$.
 
+## Estimating pose {.smaller}
+<center>
+<img src="contents/assets/kalman_predict_1d.svg" width="100%"/>
+</center>
+
+
+
 
 ## Estimating pose {.smaller}
 
@@ -185,11 +192,11 @@ plotted.
 
 ::: {.column width="40%"}
 <center>
-<img src="contents/assets/ekf_path.png" width="100%"/>
+<img src="contents/assets/ekf_path.svg" width="80%"/>
 </center>
 
 <center>
-<img src="contents/assets/ekf_cov.png" width="100%"/>
+<img src="contents/assets/ekf_cov.svg" width="80%"/>
 </center>
 :::
 

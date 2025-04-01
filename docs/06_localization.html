@@ -378,6 +378,12 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </section>
 <section id="estimating-pose" class="slide level2 smaller">
 <h2>Estimating pose</h2>
+<center>
+<img src="contents/assets/kalman_predict_1d.svg" width="100%">
+</center>
+</section>
+<section id="estimating-pose-1" class="slide level2 smaller">
+<h2>Estimating pose</h2>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -406,7 +412,7 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </annotation></semantics></math> describe how the state and covariance evolve with time.</li>
 </ul>
 </section>
-<section id="estimating-pose-1" class="slide level2 smaller">
+<section id="estimating-pose-2" class="slide level2 smaller">
 <h2>Estimating pose</h2>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msup><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>𝐟</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mover><mi>𝐮</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msup><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>𝐅</mi><mi>x</mi></msub><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><msubsup><mi>𝐅</mi><mi>x</mi><mi>⊤</mi></msubsup><mo>+</mo><msub><mi>𝐅</mi><mi>v</mi></msub><mover><mi>𝐕</mi><mo accent="true">̂</mo></mover><msubsup><mi>𝐅</mi><mi>v</mi><mi>⊤</mi></msubsup></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
@@ -434,7 +440,7 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </annotation></semantics></math> which are functions of the current state and odometry.</li>
 </ul>
 </section>
-<section id="estimating-pose-2" class="slide level2 smaller">
+<section id="estimating-pose-3" class="slide level2 smaller">
 <h2>Estimating pose</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -456,10 +462,10 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </ul>
 </div><div class="column" style="width:40%;">
 <center>
-<img src="contents/assets/ekf_path.png" width="100%">
+<img src="contents/assets/ekf_path.svg" width="80%">
 </center>
 <center>
-<img src="contents/assets/ekf_cov.png" width="100%">
+<img src="contents/assets/ekf_cov.svg" width="80%">
 </center>
 </div></div>
 </section></section>
@@ -542,9 +548,9 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 <p><strong>Observation error</strong></p>
 </div>
 <div class="callout-content">
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝛎</mi><mo>=</mo><msup><mi>𝐳</mi><mi>♯</mi></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><mi>𝐡</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><msub><mi>𝐩</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-\bm{\nu} = \bm{z}^\sharp \langle k+1 \rangle - \bm{h}\left(\hat{{\bm{x}}} 
-\langle k + 1 \rangle, \bm{p}_i \right)
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝛎</mi><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>=</mo><msup><mi>𝐳</mi><mi>♯</mi></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><mi>𝐡</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><msub><mi>𝐩</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\bm{\nu}\langle k \rangle = \bm{z}^\sharp \langle k \rangle - \bm{h}\left(\hat{{\bm{x}}} 
+\langle k \rangle, \bm{p}_i \right)
 </annotation></semantics></math></p>
 </div>
 </div>
@@ -561,10 +567,10 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 <p><strong>Kalman filter update equations</strong></p>
 </div>
 <div class="callout-content">
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>+</mo><mi>𝐊</mi><mi>𝛎</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><mi>𝐊</mi><msub><mi>𝐇</mi><mi>x</mi></msub><msup><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>+</mo><mi>𝐊</mi><mi>𝛎</mi><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><mi>𝐊</mi><msub><mi>𝐇</mi><mi>x</mi></msub><msup><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mo>+</mo></msup><mo stretchy="false" form="prefix">⟨</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 \hat{\bm{x}} \langle k+1 \rangle &amp;= \hat{\bm{x}}^+ \langle k+1 \rangle +
-\bm{K}\bm{\nu} \\
+\bm{K}\bm{\nu}\langle k + 1 \rangle \\
 \hat{\bm{P}} \langle k+1 \rangle &amp;= \hat{\bm{P}}^+ \langle k+1 \rangle -
 \bm{K}\bm{H}_x\hat{\bm{P}}^+ \langle k+1 \rangle
 \end{aligned}
@@ -665,10 +671,10 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </ul>
 </div><div class="column" style="width:40%;">
 <center>
-<img src="contents/assets/ekfpath_wmap.png" width="90%">
+<img src="contents/assets/ekfpath_wmap.svg" width="75%">
 </center>
 <center>
-<img src="contents/assets/ekfpath_wmap_closeup.png" width="90%">
+<img src="contents/assets/ekfpath_wmap_closeup.svg" width="75%">
 </center>
 </div></div>
 </section>
@@ -695,10 +701,10 @@ v_\theta\right)^\top \sim \mathcal{N}(0, \bm{V})</annotation></semantics></math>
 </ul>
 </div><div class="column" style="width:40%;">
 <center>
-<img src="contents/assets/ekf_cov_wmap.png" width="500" height="300">
+<img src="contents/assets/ekf_cov_wmap.svg" width="500" height="300">
 </center>
 <center>
-<img src="contents/assets/confbounds.png" width="500" height="300">
+<img src="contents/assets/confbounds.svg" width="500" height="300">
 </center>
 </div></div>
 </section></section>
@@ -788,7 +794,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <section id="creating-a-map-4" class="slide level2 smaller">
 <h2>Creating a map</h2>
 <center>
-<img src="contents/assets/mapcreation.png" width="50%">
+<img src="contents/assets/mapcreation.svg" width="100%">
 </center>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">

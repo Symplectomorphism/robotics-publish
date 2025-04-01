@@ -66,8 +66,8 @@ isn't where it _thought_ it was!
 ::: {.callout-tip icon="false"}
 ## Observation error
 $$
-\bm{\nu} = \bm{z}^\sharp \langle k+1 \rangle - \bm{h}\left(\hat{{\bm{x}}} 
-\langle k + 1 \rangle, \bm{p}_i \right)
+\bm{\nu}\langle k \rangle = \bm{z}^\sharp \langle k \rangle - \bm{h}\left(\hat{{\bm{x}}} 
+\langle k \rangle, \bm{p}_i \right)
 $$
 :::
 is key to the operation of the Kalman filter.
@@ -82,7 +82,7 @@ uncertainty estimate in an optimal way.
 $$
 \begin{aligned}
 \hat{\bm{x}} \langle k+1 \rangle &= \hat{\bm{x}}^+ \langle k+1 \rangle +
-\bm{K}\bm{\nu} \\
+\bm{K}\bm{\nu}\langle k + 1 \rangle \\
 \hat{\bm{P}} \langle k+1 \rangle &= \hat{\bm{P}}^+ \langle k+1 \rangle -
 \bm{K}\bm{H}_x\hat{\bm{P}}^+ \langle k+1 \rangle
 \end{aligned}
@@ -188,10 +188,10 @@ path (moving from top to bottom).
 
 ::: {.column width="40%"}
 <center>
-<img src="contents/assets/ekfpath_wmap.png" width="90%" />
+<img src="contents/assets/ekfpath_wmap.svg" width="75%" />
 </center>
 <center>
-<img src="contents/assets/ekfpath_wmap_closeup.png" width="90%" />
+<img src="contents/assets/ekfpath_wmap_closeup.svg" width="75%" />
 </center>
 :::
 
@@ -220,10 +220,10 @@ path (moving from top to bottom).
 
 ::: {.column width="40%"}
 <center>
-<img src="contents/assets/ekf_cov_wmap.png" width="500" height="300" />
+<img src="contents/assets/ekf_cov_wmap.svg" width="500" height="300" />
 </center>
 <center>
-<img src="contents/assets/confbounds.png" width="500" height="300" />
+<img src="contents/assets/confbounds.svg" width="500" height="300" />
 </center>
 :::
 
