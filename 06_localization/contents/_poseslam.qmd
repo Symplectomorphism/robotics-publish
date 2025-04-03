@@ -2,197 +2,247 @@
 
 ## Pose Graph SLAM {.smaller}
 
-&nbsp;
-
 * An alternative approach to the SLAM problem is to separate it into two
 components:
-  - a front-end and a back-end
-* The robot's path is considered to be a sequence of distinct poses.
-* The task is to estimate those poses.
-* Constraints between the unknown poses are based on measurements from a variety
-of sensors including odometry, laser scanners and cameras.
+  - A front-end and a back-end, connected by a pose graph.
+  - Front end adds new vertices as the robot travels as well as edges that define constraints between vertices.
+    * Odometry gives an estimate of distance and change in orientation
+    * Exteroceptive sensors observe relative position of a landmark adding a constraint.
+  - Back end runs periodically to optimize the pose graph and adjusts poses of the vertices so that the constraints are satisfied as well as possible.
 
 <center>
-<img data-src="contents/assets/fig6_13.svg" />
+<img data-src="contents/assets/front_back_end.svg" />
 </center>
 
 
-## Pose Graph SLAM {.smaller}
+## Pose Graph SLAM Fundamentals {.smaller}
 
 :::: {.columns}
 
-::: {.column width="50%"}
-* The problem is formulated as a directed graph.
-* A node corresponds to a robot pose or a landmark position.
-* An edge between two nodes represents a spatial constraint between the nodes
-derived from some sensor data.
+::: {.column width="61%"}
+* Robot's path: a seq. of distinct poses to be estimated.
+* Two types of poses: robot poses, landmarks positions.
 
 ::: {.callout-note icon="false"}
 ## Dead-reckoning example
-The robot travels around a square. By the time the robot reaches node $4$, the
-error is significant.
+As the robot progresses counter-clockwise around the square, it compounds an 
+increasing number of uncertain relative poses from odometry so that the 
+cumulative error in the estimated pose of the vertices is increasing (we 
+assume $\hat{\bm{\xi}}_0 = \bm{\xi}_0$).
 
-However, when it makes a measurement of node $1$, a consraint is added -- the
-dashed edge -- indicating that the nodes are closer than the estimated relative
-pose based on the chain of relative poses from odometry: ${^1}\xi_2^\sharp
-\oplus {^2}\xi_3^\sharp \oplus {^3}\xi_4^\sharp$.
+By the time the robot reaches the fourth positionthe pose error is singificant.
 
-The back-end algorithm will then _pull_ all the nodes closer to their correct
-pose.
+However, it is able to observe landmark A, which it saw previously and this 
+adds the constraint shown in red, which forms a loop in the pose graph.
+
+This type of event is referred to as _loop closure_.
 :::
 
+* The estimate $\bm{g}(\bm{\hat{\xi}}_0, \bm{z}_{0, A})$ is subject to sensor error.
+
 :::
 
-::: {.column width="50%"}
+::: {.column width="39%"}
 <center>
-<img data-src="contents/assets/fig6_14.svg" width="100%" />
+<img data-src="contents/assets/pose_graph_fundamentals.svg" width="90%" />
 </center>
 
 ::: {.callout-tip icon="false"}
 ## Pose-graph SLAM example
-Places are shown as _circular nodes_ and have an associated pose.
+Robot poses shown as _circular nodes_.
 
-Landmarks are shown as _star-shaped nodes_ and have an associated pose.
+Landmarks are shown as _star-shaped nodes_.
 
-Edges represent a measurement of a relative pose or position w.r.t. the node at
-the tail of the arrow.
+An edge betw. two vertices represents a spatial constraint between them due to 
+some observation $\bm{z}_{i,j}$.
 :::
 
 :::
 
 ::::
 
-
-## Pose Graph SLAM {.smaller}
-
-:::: {.columns}
-
-* The front-end adds new nodes as the robot travels as well as edges that define 
-constraints between poses. E.g.:
-  - When moving from one place to another wheel odometry gives an estimate of
-    distance and change in orientation, which is a constraint.
-  - The robot's exteroceptive sensors may observe the relative position of a
-    landmark and this also adds a constraint.
-* Every measurement adds a constraint -- an edge in the graph.
-  - There is no limit to the number of edges entering or leaving a node.
-
-::: {.column width="50%"}
-* The back-end adjusts the poses of the nodes so that the constraints are
-satisfied as well as possible
-  - The sensor observations are explained optimally.
-:::
-
-::: {.column width="50%"}
-<center>
-<img data-src="contents/assets/fig6_13.svg" />
-</center>
-:::
-
-::::
+* The estimate $\bm{g}(\bm{\hat{\xi}}_3, \bm{z}_{3, A})$ is subject to sensor and 
+accumulated odometry error in $\hat{\bm{\xi}}_3$, which can be used to produce 
+an error to be minimized.
 
 
-## Pose Graph SLAM {.smaller}
+## Pose Graph SLAM Fundamentals {.smaller}
 
 :::: {.columns}
 
-* Coordinate frames $\{i\}$ and $\{j\}$ are associated with robot poses $i$ and
-$j$.
+::: {.column width="62%"}
 
-* We seek to estimate ${^0}\xi_i$ and ${^0}\xi_j$ in the world coordinate frame.
-
-::: {.column width="70%"}
-* The robot makes a measurement of the relative pose ${^i}\xi_j^\sharp$ which
-will, in general, be different than the relative pose ${^i}\xi_j$ inferred from
-poses ${^0}\xi_i$ and ${^0}\xi_j$.
-
-* The difference, or _innovation_, is caused by the error in the sensor
-measurement ${^i}\xi_j^\sharp$ and/or the node poses ${^0}\xi_i$ and ${^0}\xi_j$.
-  - We use it to adjust the poses of the nodes.
-
-* There is insufficient information to determine where the error lies
-  - Naively adjusting ${^0}\xi_i$ and ${^0}\xi_j$ to better explain the
-    measurement might increase the error in another part of the graph.
+* There is typically insufficient information to determine exactly where the error lies.
+  - Naively adjusting $\bm{\hat{\xi}}_3$ to fit the landmark observation might increase the error in another part of the graph.
   - We need to minimize the error consistently over the whole graph.
+* Let's consider first the case w/o landmarks. The state vector contains the poses of all the vertices:
+
+$$ \bm{x} = \left\{ \bm{\xi}_0, \bm{\xi}_1, \ldots, \bm{\xi}_{N-1} \right\} $$
+
+and we seek an estimate $\hat{\bm{x}}$ that minimizes the error across all the edges.
+
+$$ \bm{x}^* = \arg \min_\bm{x} \sum_k F_k(\bm{x}) $$
+
+where $F_k(\bm{x}) \in \mathbb{R}_{\geq 0}$ is a cost associated with the edge $k$.
+
+
 :::
 
-::: {.column width="30%"}
+::: {.column width="38%"}
 <center>
-<img data-src="contents/assets/fig6_15.svg" />
+<img data-src="contents/assets/pose_graph_fundamentals.svg" width="90%" />
 </center>
 
 ::: {.callout-tip icon="false"}
-## Pose graph notation
-The _light gray robot_ is the estimated pose of $\{j\}$ based on the sensor
-measurement ${^i}\xi_j^\sharp$.
+## Pose-graph SLAM example
+Robot poses shown as _circular nodes_.
 
-The _yellow ellipse_ indicates the uncertainty associated with that measurement.
+Landmarks are shown as _star-shaped nodes_.
+
+An edge betw. two vertices represents a spatial constraint between them due to 
+some observation $\bm{z}_{i,j}$.
 :::
 
 :::
 
 ::::
 
+* The term that we are minimizing is the total edge error that is analogous to 
+the potential energy in a flexible structure which we want to _relax_ into a minimum energy state.
 
 
-## Pose Graph SLAM {.smaller}
-
-* The first step is to express the error associated with the graph edge in terms
-of the sensor measurement and our best estimates of the node poses w.r.t. the
-world frame $$ \xi_\varepsilon = \ominus {^i}\xi_j^\sharp \ominus
-{^0}\hat{\xi}_i \oplus {^0}\hat{\xi}_j \in \bm{SE}(2) $$ which is ideally zero.
+## Pose Graph SLAM: Forming the Odom. Error {.smaller}
 
 :::: {.columns}
 
 ::: {.column width="70%"}
-* We can formulate this as a minimization problem and attempt to find the poses
-of all the nodes $\bm{x} = \left\{ \xi_1, \xi_2, \ldots, \xi_N \right\}$ that
-minimizes the error across all the edges $$ \bm{x}^* = \arg \min_\bm{x} \sum_k
-F_k(\bm{x}) $$ 
-  - $\bm{x}$ is the state of the pose graph and contains the pose of every node.
-  - $F_k(\bm{x})$ is a nonnegative scalar cost associated with the edge $k$
-    connecting node $i$ to node $j$.
+
+* We have two values for the relative pose btw. the vertices:
+  - The explicit sensor measurement $\bm{z}_{i,j}$,
+  - (Dashed) Implicit based on the current estimates from the pose-graph.
+  - Any difference btw. the two indicates that one or both vertices need to be moved.
+* The relative pose - based on current estimates in the pose graph
+$$ {^i}\hat{\bm{\xi}}_j = \ominus \hat{\bm{\xi}}_i \oplus \hat{\bm{\xi}}_j \in \bm{SE}(2) $$
+which we can write as an SE(2) matrix ${^i}\bm{T}_j$. 
+
+* We can also estimate the relative pose from the odometry observation $\bm{z}_k = \bm{z}_{i,j} = (\delta_d, \delta_\theta)$.
+
+$$
+\bm{T}_z(\bm{z}_k) = \begin{bmatrix}
+\cos{\delta_\theta} & -\sin{\delta_\theta} & \delta_d \cos{\delta_\theta} \\
+\sin{\delta_\theta} & \cos{\delta_\theta} & \delta_d \sin{\delta_\theta} \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
 :::
 
 ::: {.column width="30%"}
 <center>
-<img data-src="contents/assets/fig6_15.svg" />
+<img data-src="contents/assets/single_edge.svg" />
 </center>
+
+::: {.callout-tip icon="false"}
+## Pose-graph single edge error formation
+* A single edge of the pose graph showing the estimated robot poses: $\hat{\bm{\xi}}_i$ and $\hat{\bm{\xi}}_j$.
+
+* The relative pose based on the sensor measurement is $\bm{z}_{i,j}$.
+* The implicit relative pose is shown as a dashed line.
 :::
 
-* If we convert edge pose error to a vector representation $\xi_\varepsilon \sim
-(x, y, \theta) = \bm{f}_k(\bm{x})$ then the scalar cost can be obtained as a
-quadratic expression $$ \bm{F}_k(\bm{x}) = \bm{f}_k^\top \bm{\Omega}_k
-\bm{f}_k(\bm{x}). $$
+:::
 
 ::::
 
 
-## Pose Graph SLAM {.smaller}
+## Pose Graph SLAM: Forming the Odom. Error {.smaller}
+
+&nbsp;
 
 :::: {.columns}
 
 ::: {.column width="70%"}
-* The pose graph can also include landmarks as shown in the figure.
-* Landmarks have a position $\bm{P}_j \in \mathbb{R}^2$, not a pose, and
-therefore differ from the nodes discussed so far.
-* To accommodate this, we redefine the state vector $\bm{x} = \left\{ \xi_1,
-\xi_2, \ldots, \xi_n \vert \bm{P}_1, \bm{P}_2, \ldots, \bm{P}_M \right\}$.
+
+* The _difference_ btw. these two relative poses is $\bm{T}_e = \bm{T}_z^{-1}{^i}\bm{T}_j$:
+
+$$
+\bm{f}_k(\bm{x}, \bm{z}) = \left[\bm{T}_z^{-1}(\bm{z}_{i,j})\bm{T}^{-1}(\bm{x}_i)\bm{T}(\bm{x}_j) \right]_{xy\theta}
+$$
+
+* This configuration $(x_e, y_e, \theta_e) \in \mathbb{R}^2 \times \mathbb{S}^1$ 
+will be zero if the observation and the relative pose of the vertices are equal.
+
+* To obtain the scalar cost from the error vector $\bm{e}#, we use a quadratic expression
+
+$$
+F_k(\bm{x}, \bm{z}_k) = \bm{f}_k^\top \bm{\Omega}_k \bm{f}_k(\bm{x}, \bm{z}_k), 
+$$
+
+where $\bm{\Omega}_k$ is a positive-definite information matrix used as a 
+weighting term.
+
 :::
 
 ::: {.column width="30%"}
 <center>
-<img data-src="contents/assets/fig6_18.svg" />
+<img data-src="contents/assets/single_edge.svg" />
 </center>
+
+::: {.callout-tip icon="false"}
+## Pose-graph single edge error formation
+* A single edge of the pose graph showing the estimated robot poses: $\hat{\bm{\xi}}_i$ and $\hat{\bm{\xi}}_j$.
+
+* The relative pose based on the sensor measurement is $\bm{z}_{i,j}$.
+* The implicit relative pose is shown as a dashed line.
 :::
 
-* The robot at pose $i$ observes landmark $j$ at range and bearing
-$\bm{z}^\sharp = \left( r^\sharp, \beta^\sharp \right)$ which is converted to
-Cartesian form in frame $\{i\}$ $$ {^i}\bm{P}_j^\sharp = \left( r^\sharp
-\cos{\beta^\sharp}, r^\sharp \sin{\beta^\sharp} \right) \in \mathbb{R}^2. $$
-
-* The estimated position of the landmark in frame $\{i\}$ is $$
-{^i}\hat{\bm{P}}_j = \left( \ominus {^0}\xi_i \right) \bullet \hat{\bm{P}}_j \in \mathbb{R}^2 $$
-and the error vector is $$ \bm{f}_k(\bm{x}) = \varepsilon = {^i}\hat{\bm{P}}_j -
-{^i}\bm{P}_j^\sharp \in \mathbb{R}^2. $$
+:::
 
 ::::
+
+
+## Pose Graph SLAM: Forming the Meas. Error {.smaller}
+
+&nbsp;
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+* Landmarks are described by a coordinate vector $\bm{p}_j \in \mathbb{R}^2$.
+* We redefine the state vector to be
+$$ \bm{x} = \{ \bm{\xi}_0, \bm{\xi}_1, \ldots, \bm{\xi}_{N-1} \mid \bm{p}_0, \bm{p}_1, \ldots, \bm{p}_{M-1} \}. $$
+* This includes $N$ robot poses and $M$ landmark positions.
+
+* The robot at pose $i$ observes landmark $j$ at range and bearing $\bm{z}_{i,j} = (r^\sharp, \beta^\sharp)$.
+$$ {^i}\bm{p}_j^\sharp = \left( r^\sharp \cos{\beta^\sharp}, r^\sharp \sin{\beta^\sharp} \right) \in \mathbb{R}^2. $$
+
+* The estimated position of the landmark in frame $\{i\}$ can also be determined
+from the vertices of the pose graph
+$$ {^i}\hat{\bm{p}}_j = \left( \ominus {^0}\hat{\bm{\xi}}_i\right) \cdot \hat{\bm{p}}_j \in \mathbb{R}^2. $$
+
+* The error vector is: 
+
+$$
+\bm{f}_k(\bm{x}, \bm{z}_k) = {^i}\hat{\bm{p}}_j - {^i}\bm{p}_j^\sharp \in \mathbb{R}^2.
+$$
+
+:::
+
+::: {.column width="30%"}
+<center>
+<img data-src="contents/assets/single_edge_landmark.svg" />
+</center>
+
+::: {.callout-tip icon="false"}
+## Pose-graph single edge error formation
+* A single edge of the pose graph showing the estimated robot pose $\hat{\bm{\xi}}_i$ and the landmark position $\hat{\bm{p}}_j$.
+
+* The relative position based on the sensor measurement is $\bm{z}_{i,j}$.
+* The implicit relative pose is shown as a dashed line.
+:::
+
+:::
+
+::::
+

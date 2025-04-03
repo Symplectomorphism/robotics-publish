@@ -892,28 +892,29 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 </section>
 <section id="pose-graph-slam-1" class="slide level2 smaller">
 <h2>Pose Graph SLAM</h2>
-<p>&nbsp;</p>
 <ul>
 <li>An alternative approach to the SLAM problem is to separate it into two components:
 <ul>
-<li>a front-end and a back-end</li>
+<li>A front-end and a back-end, connected by a pose graph.</li>
+<li>Front end adds new vertices as the robot travels as well as edges that define constraints between vertices.
+<ul>
+<li>Odometry gives an estimate of distance and change in orientation</li>
+<li>Exteroceptive sensors observe relative position of a landmark adding a constraint.</li>
 </ul></li>
-<li>The robot’s path is considered to be a sequence of distinct poses.</li>
-<li>The task is to estimate those poses.</li>
-<li>Constraints between the unknown poses are based on measurements from a variety of sensors including odometry, laser scanners and cameras.</li>
+<li>Back end runs periodically to optimize the pose graph and adjusts poses of the vertices so that the constraints are satisfied as well as possible.</li>
+</ul></li>
 </ul>
 <center>
-<img data-src="contents/assets/fig6_13.svg">
+<img data-src="contents/assets/front_back_end.svg">
 </center>
 </section>
-<section id="pose-graph-slam-2" class="slide level2 smaller">
-<h2>Pose Graph SLAM</h2>
+<section id="pose-graph-slam-fundamentals" class="slide level2 smaller">
+<h2>Pose Graph SLAM Fundamentals</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:61%;">
 <ul>
-<li>The problem is formulated as a directed graph.</li>
-<li>A node corresponds to a robot pose or a landmark position.</li>
-<li>An edge between two nodes represents a spatial constraint between the nodes derived from some sensor data.</li>
+<li>Robot’s path: a seq. of distinct poses to be estimated.</li>
+<li>Two types of poses: robot poses, landmarks positions.</li>
 </ul>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -921,16 +922,19 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <p><strong>Dead-reckoning example</strong></p>
 </div>
 <div class="callout-content">
-<p>The robot travels around a square. By the time the robot reaches node <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>, the error is significant.</p>
-<p>However, when it makes a measurement of node <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>, a consraint is added – the dashed edge – indicating that the nodes are closer than the estimated relative pose based on the chain of relative poses from odometry: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>1</mn></msup><msubsup><mi>ξ</mi><mn>2</mn><mi>♯</mi></msubsup><mo>⊕</mo><msup><mi></mi><mn>2</mn></msup><msubsup><mi>ξ</mi><mn>3</mn><mi>♯</mi></msubsup><mo>⊕</mo><msup><mi></mi><mn>3</mn></msup><msubsup><mi>ξ</mi><mn>4</mn><mi>♯</mi></msubsup></mrow><annotation encoding="application/x-tex">{^1}\xi_2^\sharp
-\oplus {^2}\xi_3^\sharp \oplus {^3}\xi_4^\sharp</annotation></semantics></math>.</p>
-<p>The back-end algorithm will then <em>pull</em> all the nodes closer to their correct pose.</p>
+<p>As the robot progresses counter-clockwise around the square, it compounds an increasing number of uncertain relative poses from odometry so that the cumulative error in the estimated pose of the vertices is increasing (we assume <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mn>0</mn></msub><mo>=</mo><msub><mi>𝛏</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\hat{\bm{\xi}}_0 = \bm{\xi}_0</annotation></semantics></math>).</p>
+<p>By the time the robot reaches the fourth positionthe pose error is singificant.</p>
+<p>However, it is able to observe landmark A, which it saw previously and this adds the constraint shown in red, which forms a loop in the pose graph.</p>
+<p>This type of event is referred to as <em>loop closure</em>.</p>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+<ul>
+<li>The estimate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐠</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mn>0</mn></msub><mo>,</mo><msub><mi>𝐳</mi><mrow><mn>0</mn><mo>,</mo><mi>A</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{g}(\bm{\hat{\xi}}_0, \bm{z}_{0, A})</annotation></semantics></math> is subject to sensor error.</li>
+</ul>
+</div><div class="column" style="width:39%;">
 <center>
-<img data-src="contents/assets/fig6_14.svg" width="100%">
+<img data-src="contents/assets/pose_graph_fundamentals.svg" width="90%">
 </center>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -938,125 +942,169 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 <p><strong>Pose-graph SLAM example</strong></p>
 </div>
 <div class="callout-content">
-<p>Places are shown as <em>circular nodes</em> and have an associated pose.</p>
-<p>Landmarks are shown as <em>star-shaped nodes</em> and have an associated pose.</p>
-<p>Edges represent a measurement of a relative pose or position w.r.t. the node at the tail of the arrow.</p>
+<p>Robot poses shown as <em>circular nodes</em>.</p>
+<p>Landmarks are shown as <em>star-shaped nodes</em>.</p>
+<p>An edge betw. two vertices represents a spatial constraint between them due to some observation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>.</p>
 </div>
 </div>
 </div>
 </div></div>
-</section>
-<section id="pose-graph-slam-3" class="slide level2 smaller">
-<h2>Pose Graph SLAM</h2>
-<div class="columns">
 <ul>
-<li>The front-end adds new nodes as the robot travels as well as edges that define constraints between poses. E.g.:
-<ul>
-<li>When moving from one place to another wheel odometry gives an estimate of distance and change in orientation, which is a constraint.</li>
-<li>The robot’s exteroceptive sensors may observe the relative position of a landmark and this also adds a constraint.</li>
-</ul></li>
-<li>Every measurement adds a constraint – an edge in the graph.
-<ul>
-<li>There is no limit to the number of edges entering or leaving a node.</li>
-</ul></li>
-</ul><div class="column" style="width:50%;">
-<ul>
-<li>The back-end adjusts the poses of the nodes so that the constraints are satisfied as well as possible
-<ul>
-<li>The sensor observations are explained optimally.</li>
-</ul></li>
+<li>The estimate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐠</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mn>3</mn></msub><mo>,</mo><msub><mi>𝐳</mi><mrow><mn>3</mn><mo>,</mo><mi>A</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{g}(\bm{\hat{\xi}}_3, \bm{z}_{3, A})</annotation></semantics></math> is subject to sensor and accumulated odometry error in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mn>3</mn></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_3</annotation></semantics></math>, which can be used to produce an error to be minimized.</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<center>
-<img data-src="contents/assets/fig6_13.svg">
-</center>
-</div></div>
 </section>
-<section id="pose-graph-slam-4" class="slide level2 smaller">
-<h2>Pose Graph SLAM</h2>
+<section id="pose-graph-slam-fundamentals-1" class="slide level2 smaller">
+<h2>Pose Graph SLAM Fundamentals</h2>
 <div class="columns">
+<div class="column" style="width:62%;">
 <ul>
-<li><p>Coordinate frames <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>i</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{i\}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>j</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{j\}</annotation></semantics></math> are associated with robot poses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>.</p></li>
-<li><p>We seek to estimate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math> in the world coordinate frame.</p></li>
-</ul><div class="column" style="width:70%;">
+<li>There is typically insufficient information to determine exactly where the error lies.
 <ul>
-<li><p>The robot makes a measurement of the relative pose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msubsup><mi>ξ</mi><mi>j</mi><mi>♯</mi></msubsup></mrow><annotation encoding="application/x-tex">{^i}\xi_j^\sharp</annotation></semantics></math> which will, in general, be different than the relative pose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^i}\xi_j</annotation></semantics></math> inferred from poses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math>.</p></li>
-<li><p>The difference, or <em>innovation</em>, is caused by the error in the sensor measurement <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msubsup><mi>ξ</mi><mi>j</mi><mi>♯</mi></msubsup></mrow><annotation encoding="application/x-tex">{^i}\xi_j^\sharp</annotation></semantics></math> and/or the node poses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math>.</p>
-<ul>
-<li>We use it to adjust the poses of the nodes.</li>
-</ul></li>
-<li><p>There is insufficient information to determine where the error lies</p>
-<ul>
-<li>Naively adjusting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^0}\xi_j</annotation></semantics></math> to better explain the measurement might increase the error in another part of the graph.</li>
+<li>Naively adjusting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mn>3</mn></msub><annotation encoding="application/x-tex">\bm{\hat{\xi}}_3</annotation></semantics></math> to fit the landmark observation might increase the error in another part of the graph.</li>
 <li>We need to minimize the error consistently over the whole graph.</li>
 </ul></li>
+<li>Let’s consider first the case w/o landmarks. The state vector contains the poses of all the vertices:</li>
 </ul>
-</div><div class="column" style="width:30%;">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>𝛏</mi><mn>0</mn></msub><mo>,</mo><msub><mi>𝛏</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>𝛏</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true" form="postfix">}</mo></mrow></mrow><annotation encoding="application/x-tex"> \bm{x} = \left\{ \bm{\xi}_0, \bm{\xi}_1, \ldots, \bm{\xi}_{N-1} \right\} </annotation></semantics></math></p>
+<p>and we seek an estimate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>𝐱</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\bm{x}}</annotation></semantics></math> that minimizes the error across all the edges.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐱</mi><mo>*</mo></msup><mo>=</mo><mo>arg</mo><munder><mo>min</mo><mi>𝐱</mi></munder><munder><mo>∑</mo><mi>k</mi></munder><msub><mi>F</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \bm{x}^* = \arg \min_\bm{x} \sum_k F_k(\bm{x}) </annotation></semantics></math></p>
+<p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><msub><mi>ℝ</mi><mrow><mo>≥</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">F_k(\bm{x}) \in \mathbb{R}_{\geq 0}</annotation></semantics></math> is a cost associated with the edge <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+</div><div class="column" style="width:38%;">
 <center>
-<img data-src="contents/assets/fig6_15.svg">
+<img data-src="contents/assets/pose_graph_fundamentals.svg" width="90%">
 </center>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Pose graph notation</strong></p>
+<p><strong>Pose-graph SLAM example</strong></p>
 </div>
 <div class="callout-content">
-<p>The <em>light gray robot</em> is the estimated pose of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>j</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{j\}</annotation></semantics></math> based on the sensor measurement <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msubsup><mi>ξ</mi><mi>j</mi><mi>♯</mi></msubsup></mrow><annotation encoding="application/x-tex">{^i}\xi_j^\sharp</annotation></semantics></math>.</p>
-<p>The <em>yellow ellipse</em> indicates the uncertainty associated with that measurement.</p>
+<p>Robot poses shown as <em>circular nodes</em>.</p>
+<p>Landmarks are shown as <em>star-shaped nodes</em>.</p>
+<p>An edge betw. two vertices represents a spatial constraint between them due to some observation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>.</p>
+</div>
+</div>
+</div>
+</div></div>
+<ul>
+<li>The term that we are minimizing is the total edge error that is analogous to the potential energy in a flexible structure which we want to <em>relax</em> into a minimum energy state.</li>
+</ul>
+</section>
+<section id="pose-graph-slam-forming-the-odom.-error" class="slide level2 smaller">
+<h2>Pose Graph SLAM: Forming the Odom. Error</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><p>We have two values for the relative pose btw. the vertices:</p>
+<ul>
+<li>The explicit sensor measurement <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>,</li>
+<li>(Dashed) Implicit based on the current estimates from the pose-graph.</li>
+<li>Any difference btw. the two indicates that one or both vertices need to be moved.</li>
+</ul></li>
+<li><p>The relative pose - based on current estimates in the pose graph <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>=</mo><mi>⊖</mi><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><mo>⊕</mo><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>∈</mo><mrow><mi>𝐒</mi><mi>𝐄</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> {^i}\hat{\bm{\xi}}_j = \ominus \hat{\bm{\xi}}_i \oplus \hat{\bm{\xi}}_j \in \bm{SE}(2) </annotation></semantics></math> which we can write as an SE(2) matrix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msub><mi>𝐓</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">{^i}\bm{T}_j</annotation></semantics></math>.</p></li>
+<li><p>We can also estimate the relative pose from the odometry observation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐳</mi><mi>k</mi></msub><mo>=</mo><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>δ</mi><mi>d</mi></msub><mo>,</mo><msub><mi>δ</mi><mi>θ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{z}_k = \bm{z}_{i,j} = (\delta_d, \delta_\theta)</annotation></semantics></math>.</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐓</mi><mi>z</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐳</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mo>cos</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mi>−</mi><mo>sin</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>δ</mi><mi>d</mi></msub><mo>cos</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>sin</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mo>cos</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>δ</mi><mi>d</mi></msub><mo>sin</mo><msub><mi>δ</mi><mi>θ</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+\bm{T}_z(\bm{z}_k) = \begin{bmatrix}
+\cos{\delta_\theta} &amp; -\sin{\delta_\theta} &amp; \delta_d \cos{\delta_\theta} \\
+\sin{\delta_\theta} &amp; \cos{\delta_\theta} &amp; \delta_d \sin{\delta_\theta} \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+</annotation></semantics></math></p>
+</div><div class="column" style="width:30%;">
+<center>
+<img data-src="contents/assets/single_edge.svg">
+</center>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Pose-graph single edge error formation</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>A single edge of the pose graph showing the estimated robot poses: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_j</annotation></semantics></math>.</p></li>
+<li><p>The relative pose based on the sensor measurement is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>.</p></li>
+<li><p>The implicit relative pose is shown as a dashed line.</p></li>
+</ul>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-<section id="pose-graph-slam-5" class="slide level2 smaller">
-<h2>Pose Graph SLAM</h2>
-<ul>
-<li>The first step is to express the error associated with the graph edge in terms of the sensor measurement and our best estimates of the node poses w.r.t. the world frame <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ξ</mi><mi>ε</mi></msub><mo>=</mo><mi>⊖</mi><msup><mi></mi><mi>i</mi></msup><msubsup><mi>ξ</mi><mi>j</mi><mi>♯</mi></msubsup><mo>⊖</mo><msup><mi></mi><mn>0</mn></msup><msub><mover><mi>ξ</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><mo>⊕</mo><msup><mi></mi><mn>0</mn></msup><msub><mover><mi>ξ</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>∈</mo><mrow><mi>𝐒</mi><mi>𝐄</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \xi_\varepsilon = \ominus {^i}\xi_j^\sharp \ominus
-{^0}\hat{\xi}_i \oplus {^0}\hat{\xi}_j \in \bm{SE}(2) </annotation></semantics></math> which is ideally zero.</li>
-</ul>
+<section id="pose-graph-slam-forming-the-odom.-error-1" class="slide level2 smaller">
+<h2>Pose Graph SLAM: Forming the Odom. Error</h2>
+<p>&nbsp;</p>
 <div class="columns">
 <div class="column" style="width:70%;">
 <ul>
-<li>We can formulate this as a minimization problem and attempt to find the poses of all the nodes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>ξ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>ξ</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>ξ</mi><mi>N</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{x} = \left\{ \xi_1, \xi_2, \ldots, \xi_N \right\}</annotation></semantics></math> that minimizes the error across all the edges <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐱</mi><mo>*</mo></msup><mo>=</mo><mo>arg</mo><munder><mo>min</mo><mi>𝐱</mi></munder><munder><mo>∑</mo><mi>k</mi></munder><msub><mi>F</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex"> \bm{x}^* = \arg \min_\bm{x} \sum_k
-F_k(\bm{x}) </annotation></semantics></math>
-<ul>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐱</mi><annotation encoding="application/x-tex">\bm{x}</annotation></semantics></math> is the state of the pose graph and contains the pose of every node.</li>
-<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F_k(\bm{x})</annotation></semantics></math> is a nonnegative scalar cost associated with the edge <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> connecting node <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> to node <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>.</li>
-</ul></li>
+<li>The <em>difference</em> btw. these two relative poses is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐓</mi><mi>e</mi></msub><mo>=</mo><msubsup><mi>𝐓</mi><mi>z</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msup><mi></mi><mi>i</mi></msup><msub><mi>𝐓</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\bm{T}_e = \bm{T}_z^{-1}{^i}\bm{T}_j</annotation></semantics></math>:</li>
 </ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo>,</mo><mi>𝐳</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mrow><mo stretchy="true" form="prefix">[</mo><msubsup><mi>𝐓</mi><mi>z</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><msup><mi>𝐓</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐱</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>𝐓</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐱</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow><mrow><mi>x</mi><mi>y</mi><mi>θ</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+\bm{f}_k(\bm{x}, \bm{z}) = \left[\bm{T}_z^{-1}(\bm{z}_{i,j})\bm{T}^{-1}(\bm{x}_i)\bm{T}(\bm{x}_j) \right]_{xy\theta}
+</annotation></semantics></math></p>
+<ul>
+<li><p>This configuration <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mi>e</mi></msub><mo>,</mo><msub><mi>y</mi><mi>e</mi></msub><mo>,</mo><msub><mi>θ</mi><mi>e</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mo>×</mo><msup><mi>𝕊</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">(x_e, y_e, \theta_e) \in \mathbb{R}^2 \times \mathbb{S}^1</annotation></semantics></math> will be zero if the observation and the relative pose of the vertices are equal.</p></li>
+<li><p>To obtain the scalar cost from the error vector $#, we use a quadratic expression</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo>,</mo><msub><mi>𝐳</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msubsup><mi>𝐟</mi><mi>k</mi><mi>⊤</mi></msubsup><msub><mi>𝛀</mi><mi>k</mi></msub><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo>,</mo><msub><mi>𝐳</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">
+F_k(\bm{x}, \bm{z}_k) = \bm{f}_k^\top \bm{\Omega}_k \bm{f}_k(\bm{x}, \bm{z}_k), 
+</annotation></semantics></math></p>
+<p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛀</mi><mi>k</mi></msub><annotation encoding="application/x-tex">\bm{\Omega}_k</annotation></semantics></math> is a positive-definite information matrix used as a weighting term.</p>
 </div><div class="column" style="width:30%;">
 <center>
-<img data-src="contents/assets/fig6_15.svg">
+<img data-src="contents/assets/single_edge.svg">
 </center>
-</div><ul>
-<li>If we convert edge pose error to a vector representation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ξ</mi><mi>ε</mi></msub><mo>∼</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\xi_\varepsilon \sim
-(x, y, \theta) = \bm{f}_k(\bm{x})</annotation></semantics></math> then the scalar cost can be obtained as a quadratic expression <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐅</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msubsup><mi>𝐟</mi><mi>k</mi><mi>⊤</mi></msubsup><msub><mi>𝛀</mi><mi>k</mi></msub><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{F}_k(\bm{x}) = \bm{f}_k^\top \bm{\Omega}_k
-\bm{f}_k(\bm{x}). </annotation></semantics></math></li>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Pose-graph single edge error formation</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>A single edge of the pose graph showing the estimated robot poses: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_j</annotation></semantics></math>.</p></li>
+<li><p>The relative pose based on the sensor measurement is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>.</p></li>
+<li><p>The implicit relative pose is shown as a dashed line.</p></li>
 </ul>
 </div>
+</div>
+</div>
+</div></div>
 </section>
-<section id="pose-graph-slam-6" class="slide level2 smaller">
-<h2>Pose Graph SLAM</h2>
+<section id="pose-graph-slam-forming-the-meas.-error" class="slide level2 smaller">
+<h2>Pose Graph SLAM: Forming the Meas. Error</h2>
+<p>&nbsp;</p>
 <div class="columns">
 <div class="column" style="width:70%;">
 <ul>
-<li>The pose graph can also include landmarks as shown in the figure.</li>
-<li>Landmarks have a position <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐏</mi><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\bm{P}_j \in \mathbb{R}^2</annotation></semantics></math>, not a pose, and therefore differ from the nodes discussed so far.</li>
-<li>To accommodate this, we redefine the state vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>ξ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>ξ</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>ξ</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">|</mo><msub><mi>𝐏</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝐏</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>𝐏</mi><mi>M</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{x} = \left\{ \xi_1,
-\xi_2, \ldots, \xi_n \vert \bm{P}_1, \bm{P}_2, \ldots, \bm{P}_M \right\}</annotation></semantics></math>.</li>
+<li><p>Landmarks are described by a coordinate vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐩</mi><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\bm{p}_j \in \mathbb{R}^2</annotation></semantics></math>.</p></li>
+<li><p>We redefine the state vector to be <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>𝛏</mi><mn>0</mn></msub><mo>,</mo><msub><mi>𝛏</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>𝛏</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>∣</mo><msub><mi>𝐩</mi><mn>0</mn></msub><mo>,</mo><msub><mi>𝐩</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>𝐩</mi><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{x} = \{ \bm{\xi}_0, \bm{\xi}_1, \ldots, \bm{\xi}_{N-1} \mid \bm{p}_0, \bm{p}_1, \ldots, \bm{p}_{M-1} \}. </annotation></semantics></math></p></li>
+<li><p>This includes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> robot poses and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> landmark positions.</p></li>
+<li><p>The robot at pose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> observes landmark <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math> at range and bearing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>,</mo><msup><mi>β</mi><mi>♯</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{z}_{i,j} = (r^\sharp, \beta^\sharp)</annotation></semantics></math>. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msubsup><mi>𝐩</mi><mi>j</mi><mi>♯</mi></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>cos</mo><msup><mi>β</mi><mi>♯</mi></msup><mo>,</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>sin</mo><msup><mi>β</mi><mi>♯</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> {^i}\bm{p}_j^\sharp = \left( r^\sharp \cos{\beta^\sharp}, r^\sharp \sin{\beta^\sharp} \right) \in \mathbb{R}^2. </annotation></semantics></math></p></li>
+<li><p>The estimated position of the landmark in frame <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>i</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{i\}</annotation></semantics></math> can also be determined from the vertices of the pose graph <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msub><mover><mi>𝐩</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>⊖</mi><msup><mi></mi><mn>0</mn></msup><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msub><mover><mi>𝐩</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> {^i}\hat{\bm{p}}_j = \left( \ominus {^0}\hat{\bm{\xi}}_i\right) \cdot \hat{\bm{p}}_j \in \mathbb{R}^2. </annotation></semantics></math></p></li>
+<li><p>The error vector is:</p></li>
 </ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo>,</mo><msub><mi>𝐳</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi></mi><mi>i</mi></msup><msub><mover><mi>𝐩</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>−</mo><msup><mi></mi><mi>i</mi></msup><msubsup><mi>𝐩</mi><mi>j</mi><mi>♯</mi></msubsup><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\bm{f}_k(\bm{x}, \bm{z}_k) = {^i}\hat{\bm{p}}_j - {^i}\bm{p}_j^\sharp \in \mathbb{R}^2.
+</annotation></semantics></math></p>
 </div><div class="column" style="width:30%;">
 <center>
-<img data-src="contents/assets/fig6_18.svg">
+<img data-src="contents/assets/single_edge_landmark.svg">
 </center>
-</div><ul>
-<li><p>The robot at pose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> observes landmark <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math> at range and bearing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐳</mi><mi>♯</mi></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>,</mo><msup><mi>β</mi><mi>♯</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bm{z}^\sharp = \left( r^\sharp, \beta^\sharp \right)</annotation></semantics></math> which is converted to Cartesian form in frame <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>i</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{i\}</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msubsup><mi>𝐏</mi><mi>j</mi><mi>♯</mi></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>cos</mo><msup><mi>β</mi><mi>♯</mi></msup><mo>,</mo><msup><mi>r</mi><mi>♯</mi></msup><mo>sin</mo><msup><mi>β</mi><mi>♯</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> {^i}\bm{P}_j^\sharp = \left( r^\sharp
-\cos{\beta^\sharp}, r^\sharp \sin{\beta^\sharp} \right) \in \mathbb{R}^2. </annotation></semantics></math></p></li>
-<li><p>The estimated position of the landmark in frame <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>i</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{i\}</annotation></semantics></math> is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mi>i</mi></msup><msub><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>⊖</mi><msup><mi></mi><mn>0</mn></msup><msub><mi>ξ</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>•</mo><msub><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
-{^i}\hat{\bm{P}}_j = \left( \ominus {^0}\xi_i \right) \bullet \hat{\bm{P}}_j \in \mathbb{R}^2 </annotation></semantics></math> and the error vector is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐟</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>ε</mi><mo>=</mo><msup><mi></mi><mi>i</mi></msup><msub><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>−</mo><msup><mi></mi><mi>i</mi></msup><msubsup><mi>𝐏</mi><mi>j</mi><mi>♯</mi></msubsup><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex"> \bm{f}_k(\bm{x}) = \varepsilon = {^i}\hat{\bm{P}}_j -
-{^i}\bm{P}_j^\sharp \in \mathbb{R}^2. </annotation></semantics></math></p></li>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Pose-graph single edge error formation</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>A single edge of the pose graph showing the estimated robot pose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝛏</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><annotation encoding="application/x-tex">\hat{\bm{\xi}}_i</annotation></semantics></math> and the landmark position <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>𝐩</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><annotation encoding="application/x-tex">\hat{\bm{p}}_j</annotation></semantics></math>.</p></li>
+<li><p>The relative position based on the sensor measurement is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐳</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\bm{z}_{i,j}</annotation></semantics></math>.</p></li>
+<li><p>The implicit relative pose is shown as a dashed line.</p></li>
 </ul>
 </div>
+</div>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="complementary-filter" class="title-slide slide level1 center">
