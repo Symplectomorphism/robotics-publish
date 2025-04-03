@@ -46,7 +46,7 @@ y_v + r \sin{\left(\theta_v + \beta\right)}
 and the covariance matrix whenever we encounter a previously unseen landmark.
 $$ 
 \bm{x} \langle k \rangle^\prime = \bm{y}\left(\bm{x} \langle k \rangle,
-\bm{x}_v \langle k \rangle \right) 
+\bm{z}\langle k \rangle, \bm{x}_v \langle k \rangle \right) 
 = \begin{pmatrix}
 \bm{x} \langle k \rangle \\
 \bm{g} \left(\bm{x}_v \langle k \rangle, \bm{z} \langle k \rangle \right)
@@ -63,14 +63,14 @@ $$
 * The covariance matrix also needs to be extended when a new landmark is
 observed and this is achieved by
 $$ \hat{\bm{P}} \langle k \rangle^\prime = \bm{Y}_z \begin{pmatrix}
-\hat{\bm{P}}\langle k \rangle & 0 \\ 0 & \hat{\bm{W}} \end{pmatrix}
-\bm{Y}_z^\top $$ where $\bm{Y}_z$ is the insertion Jacobian $$ \bm{Y}_z =
-\frac{\partial \bm{y}}{\partial \bm{z}} = \begin{pmatrix} \bm{I}_{n \times n} &
-& \bm{0}_{n \times 2} \\ \bm{G}_x & \bm{0}_{2 \times n-3} & \bm{G}_z
+\hat{\bm{P}}\langle k \rangle & \bm{0}_{2\times M} \\ \bm{0}_{2\times M} & 
+\hat{\bm{W}} \end{pmatrix} \bm{Y}_z^\top $$ where $\bm{Y}_z$ is the insertion 
+Jacobian $$ \bm{Y}_z =
+\frac{\partial \bm{y}}{\partial \bm{z}} = \begin{pmatrix} \bm{I}_{M \times M} &
+& \bm{0}_{M \times 2} \\ \bm{G}_x & \bm{0}_{2 \times (M-3)} & \bm{G}_z
 \end{pmatrix} $$ that relates the rate of change of the extended state vector to
-the new observation.
+the new observation, and
 
-* $n$ is the dimension of $\hat{\bm{P}}$ prior to being extended and 
 $$
 \bm{G}_x = \frac{\partial \bm{g}}{\partial \bm{x}} = \begin{pmatrix} 0 & 0 & 0
 \\ 0 & 0 & 0 \end{pmatrix}, \quad\quad
@@ -80,12 +80,15 @@ $$
 \end{pmatrix}
 $$
 
-* An additional Jacobian that we will need later is the Jacobian for
+* An additional Jacobian for $\bm{h(\cdot)}$ is $\bm{H}_{p_i}$ and $\bm{H}_x$ looks like 
 $\bm{h}(\cdot)$
 $$ \bm{H}_{p_i} = \frac{\partial \bm{h}}{\partial \bm{p}_i} = \begin{pmatrix} 
 \frac{1}{r}\left(x_i - x_v\right) & \frac{1}{r}\left(y_i - y_v\right) \\
 -\frac{1}{r^2}\left(y_i - y_v\right) & \frac{1}{r^2}\left(x_i - x_v\right)
-\end{pmatrix}. $$
+\end{pmatrix}; \quad \bm{H}_x = \begin{bmatrix}\bm{0}_{2\times 2} & \cdots & 
+\bm{H}_{p_i} & \cdots & \bm{0}_{2 \times 2}\end{bmatrix} $$
+
+* $\bm{H}_x$ describes how the landmark observation changes w.r.t. the full state vector.
 
 
 ## Creating a map {.smaller}

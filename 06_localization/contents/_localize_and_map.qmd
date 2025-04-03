@@ -39,8 +39,8 @@ vehicle's pose.
 changes w.r.t. the state vector. The observation will depend on the position of
 the vehicle and on the position of the observed landmark $$ \bm{H}_x =
 \frac{\partial \bm{h}}{\partial \bm{x}}\vert_{w=0} = \begin{pmatrix}
-\bm{H}_{x_v} & \cdots & 0 & \cdots & \bm{H}_{p_i} & \cdots & 0 \end{pmatrix} \in
-\mathbb{R}^{2 \times \left(2M+3\right)}. $$
+\bm{H}_{x_v} & \cdots & \bm{0}_{2 \times 2} & \cdots & \bm{H}_{p_i} & \cdots & 
+\bm{0}_{2 \times 2} \end{pmatrix} ∈ \mathbb{R}^{2 \times \left(2M+3\right)}. $$
 
 * Now, the Kalman gain matrix $\bm{K}$ _distributes_ innovation from the
 landmark observation, a $2$-vector, to update _every_ element of the state vector
