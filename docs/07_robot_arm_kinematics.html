@@ -161,24 +161,42 @@
 </section>
 <section id="kinematic-chains" class="slide level2 smaller">
 <h2>Kinematic chains</h2>
-<div>
+<p>&nbsp;</p>
+<div class="fragment fade-in">
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
 <ul>
-<li class="fragment"><p>A robot manipulator is composed of a set of links connected together by joints.</p>
+<li>A robot manipulator is composed of a set of links connected together by joints.
 <ul>
-<li class="fragment">Simple: revolute or prismatic with one degree-of-freedom (DoF)</li>
-<li class="fragment">Complex: universal or spherical with multiple DoF</li>
+<li>Simple: revolute or prismatic with one degree-of-freedom (DoF)</li>
+<li>Complex: universal or spherical with multiple DoF</li>
 </ul></li>
-<li class="fragment"><p>No loss of generality considering only single DoF joints as multiple DoF joints can always be thought of as a succession of single DoF joints with links of length zero in between.</p></li>
-<li class="fragment"><p>The action of each joint can be described by a <em>single real number</em>:</p>
-<ul>
-<li class="fragment">the angle of rotation in the case of a revolute joint</li>
-<li class="fragment">the displacement in the case of a prismatic joint</li>
-</ul></li>
-<li class="fragment"><p>A robot manipulator with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> joints will have <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math> links, since each joint connects two links.</p></li>
-<li class="fragment"><p>Number the joints from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> and the links from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>, starting from the base.</p></li>
-<li class="fragment"><p>Joint <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>, which is fixed w.r.t. link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math>, connects link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math> to link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p></li>
-<li class="fragment"><p>When joint <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> is actuated, link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> moves (hence, link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> is fixed).</p></li>
+<li>No loss of generality considering only single DoF joints as multiple DoF joints can always be thought of as a succession of single DoF joints with links of length zero in between.</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="fragment fade-in">
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<ul>
+<li><p>The action of each joint can be described by a <em>single real number</em>:</p>
+<ul>
+<li>the angle of rotation in the case of a revolute joint</li>
+<li>the displacement in the case of a prismatic joint</li>
+</ul></li>
+<li><p>A robot manipulator with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> joints will have <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math> links, since each joint connects two links.</p></li>
+<li><p>Number the joints from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> and the links from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>, starting from the base.</p></li>
+<li><p>Joint <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>, which is fixed w.r.t. link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math>, connects link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math> to link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p></li>
+<li><p>When joint <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> is actuated, link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> moves (hence, link <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> is fixed).</p></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="kinematic-chains-1" class="slide level2 smaller">

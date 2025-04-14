@@ -2,7 +2,9 @@
 
 ## Kinematic chains {.smaller}
 
-::: {.incremental}
+&nbsp;
+
+::: {.callout-tip appearance="minimal" .fragment .fade-in}
 
 * A robot manipulator is composed of a set of links connected together by
 joints.
@@ -12,6 +14,12 @@ joints.
 * No loss of generality considering only single DoF joints as multiple DoF
 joints can always be thought of as a succession of single DoF joints with links
 of length zero in between.
+
+:::
+
+&nbsp;
+
+::: {.callout-tip appearance="minimal" .fragment .fade-in}
 
 * The action of each joint can be described by a _single real number_:
   - the angle of rotation in the case of a revolute joint
