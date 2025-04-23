@@ -59,7 +59,7 @@ $$
 :::
 
 * This twist $\bm{\eta}$ is __NOT__ the derivative of a pose variable, since the
-angular velocity vector is tno the derivative of any particular time-varying
+angular velocity vector is not the derivative of any particular time-varying
 quantity.
 
 ::::
