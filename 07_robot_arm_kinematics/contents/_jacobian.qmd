@@ -86,10 +86,10 @@ $$
 \begin{aligned}
 {^0}\bm{\omega}_{0,n} &= {^0}\bm{\omega}_{0, 1} + {^0}\bm{R}_1{^1}\bm{\omega}_{1,
 2} + {^0}\bm{R}_2{^2}\bm{\omega}_{2,3} + \cdots +
-{^0}\bm{R}_n{^{n-1}}\bm{\omega}_{n-1, n} \\ 
+{^0}\bm{R}_{n-1}{^{n-1}}\bm{\omega}_{n-1, n} \\ 
 &= \rho_1\dot{q}_1\bm{k} + \rho_2\dot{q}_2{^0}\bm{R}_1\bm{k} + \cdots +
 \rho_n\dot{q}_n{^0}\bm{R}_{n-1}\bm{k} = \sum_{i=1}^n
-\rho_i\dot{q}-i{^0}\bm{z}_{i-1},
+\rho_i\dot{q}_i{^0}\bm{z}_{i-1},
 \end{aligned}
 $$
 since ${^0}\bm{z}_{i-1} = {^0}\bm{R}_{i-1}\bm{k}$, where $\rho_i$ is equal to
